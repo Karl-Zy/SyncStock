@@ -17,5 +17,7 @@ namespace SyncStock
         {
             InitializeComponent();
         }
+
+        // try
     }
 }
