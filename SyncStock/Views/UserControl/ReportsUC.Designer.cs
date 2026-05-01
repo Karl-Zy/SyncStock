@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(454, 133);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(47, 16);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "REPORT";
             // 
             // ReportsUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReportsUC";
-            this.Size = new System.Drawing.Size(1145, 857);
+            this.Size = new System.Drawing.Size(1336, 409);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

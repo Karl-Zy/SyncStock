@@ -30,86 +30,94 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.dashBoard = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.purchaseOrder = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.reveivingCustodian = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.auditorReview = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.reports = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // accordionControl1
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement1,
-            this.accordionControlElement2,
-            this.accordionControlElement3,
-            this.accordionControlElement4,
-            this.accordionControlElement5});
+            this.dashBoard,
+            this.purchaseOrder,
+            this.reveivingCustodian,
+            this.auditorReview,
+            this.reports});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(260, 927);
+            this.accordionControl1.Size = new System.Drawing.Size(303, 1066);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
-            // accordionControlElement1
+            // dashBoard
             // 
-            this.accordionControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement1.ImageOptions.SvgImage")));
-            this.accordionControlElement1.Name = "accordionControlElement1";
-            this.accordionControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement1.Text = "Dashboard";
+            this.dashBoard.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dashBoard.ImageOptions.SvgImage")));
+            this.dashBoard.Name = "dashBoard";
+            this.dashBoard.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.dashBoard.Text = "Dashboard";
+            this.dashBoard.Click += new System.EventHandler(this.dashBoard_Click);
             // 
-            // accordionControlElement2
+            // purchaseOrder
             // 
-            this.accordionControlElement2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement2.ImageOptions.SvgImage")));
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement2.Text = "Purchase Order";
+            this.purchaseOrder.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("purchaseOrder.ImageOptions.SvgImage")));
+            this.purchaseOrder.Name = "purchaseOrder";
+            this.purchaseOrder.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.purchaseOrder.Text = "Purchase Order";
+            this.purchaseOrder.Click += new System.EventHandler(this.purchaseOrder_Click);
             // 
-            // accordionControlElement3
+            // reveivingCustodian
             // 
-            this.accordionControlElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement3.ImageOptions.SvgImage")));
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement3.Text = "Receiving";
+            this.reveivingCustodian.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("reveivingCustodian.ImageOptions.SvgImage")));
+            this.reveivingCustodian.Name = "reveivingCustodian";
+            this.reveivingCustodian.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.reveivingCustodian.Text = "Receiving Custodian";
+            this.reveivingCustodian.Click += new System.EventHandler(this.reveivingCustodian_Click);
             // 
-            // accordionControlElement4
+            // auditorReview
             // 
-            this.accordionControlElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement4.ImageOptions.SvgImage")));
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "Auditor Review";
+            this.auditorReview.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("auditorReview.ImageOptions.SvgImage")));
+            this.auditorReview.Name = "auditorReview";
+            this.auditorReview.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.auditorReview.Text = "Auditor Review";
+            this.auditorReview.Click += new System.EventHandler(this.auditorReview_Click);
             // 
-            // accordionControlElement5
+            // reports
             // 
-            this.accordionControlElement5.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("accordionControlElement5.ImageOptions.SvgImage")));
-            this.accordionControlElement5.Name = "accordionControlElement5";
-            this.accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement5.Text = "Reports";
+            this.reports.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("reports.ImageOptions.SvgImage")));
+            this.reports.Name = "reports";
+            this.reports.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.reports.Text = "Reports";
+            this.reports.Click += new System.EventHandler(this.reports_Click);
             // 
-            // panelControl1
+            // mainPanel
             // 
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(260, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1283, 927);
-            this.panelControl1.TabIndex = 1;
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(303, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(1497, 1066);
+            this.mainPanel.TabIndex = 1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1543, 927);
-            this.Controls.Add(this.panelControl1);
+            this.ClientSize = new System.Drawing.Size(1800, 1066);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -117,11 +125,11 @@
         #endregion
 
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement dashBoard;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement purchaseOrder;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement reveivingCustodian;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement auditorReview;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement reports;
+        private DevExpress.XtraEditors.PanelControl mainPanel;
     }
 }

@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(346, 166);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(72, 16);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "DASHBOARD";
             // 
             // DashBoardUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DashBoardUC";
-            this.Size = new System.Drawing.Size(1942, 1079);
+            this.Size = new System.Drawing.Size(997, 527);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

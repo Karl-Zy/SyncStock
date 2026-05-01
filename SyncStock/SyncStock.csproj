@@ -103,8 +103,17 @@
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\AuditorReviewUC.resx">
+      <DependentUpon>AuditorReviewUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\DashBoardUC.resx">
       <DependentUpon>DashBoardUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\PurchaseOrderUC.resx">
+      <DependentUpon>PurchaseOrderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\ReceivingUC.resx">
+      <DependentUpon>ReceivingUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\ReportsUC.resx">
       <DependentUpon>ReportsUC.cs</DependentUpon>

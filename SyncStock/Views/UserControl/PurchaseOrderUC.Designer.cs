@@ -28,10 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.SuspendLayout();
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(479, 127);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(107, 16);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "PURCHASE ORDER";
+            // 
+            // PurchaseOrderUC
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelControl1);
+            this.Name = "PurchaseOrderUC";
+            this.Size = new System.Drawing.Size(1132, 333);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
