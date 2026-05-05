@@ -44,9 +44,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DashBoardUC";
-            this.Size = new System.Drawing.Size(997, 527);
+            this.Size = new System.Drawing.Size(1356, 783);
             this.ResumeLayout(false);
             this.PerformLayout();
 
