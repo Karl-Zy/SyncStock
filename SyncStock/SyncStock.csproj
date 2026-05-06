@@ -58,6 +58,7 @@
     <Compile Include="Models\InternalAuditor.cs" />
     <Compile Include="Models\Purchaser.cs" />
     <Compile Include="Models\ReceivingCustodian.cs" />
+    <Compile Include="Models\Reconciliationperiod.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

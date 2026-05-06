@@ -1,4 +1,5 @@
-﻿namespace SyncStock.Models
+﻿using System;
+namespace SyncStock.Models
 {
     public enum UserRole
     {
@@ -14,7 +15,7 @@
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
-        public string Department { get; set; } = string.Empty;
+        public string DepartmentID { get; set; } = string.Empty;
 
         // Protected set ensures the role is "locked" upon instantiation
         public UserRole Role { get; protected set; }
@@ -23,7 +24,7 @@
         {
             Username = username;
             PasswordHash = passwordHash;
-            Department = department;
+            DepartmentID = department;
         }
 
         // Polymorphism: Abstract method for role-specific security checks

@@ -1,4 +1,5 @@
-﻿namespace SyncStock.Models
+﻿using System;
+namespace SyncStock.Models
 {
     public class ReceivingCustodian : Users
     {
