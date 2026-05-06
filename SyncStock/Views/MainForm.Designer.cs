@@ -98,7 +98,10 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.AllowTouchScroll = true;
+            this.mainPanel.AutoSize = true;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.FireScrollEventOnMouseWheel = true;
             this.mainPanel.Location = new System.Drawing.Point(302, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
@@ -123,6 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
