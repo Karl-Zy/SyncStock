@@ -61,6 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Accounts\AssetManager.cs" />
+    <Compile Include="Models\Accounts\InternalAuditor.cs" />
+    <Compile Include="Models\Accounts\Purchaser.cs" />
+    <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
+    <Compile Include="Models\Accounts\User.cs" />
+    <Compile Include="Models\Item\Asset.cs" />
+    <Compile Include="Models\Item\BaseItem.cs" />
+    <Compile Include="Views\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +122,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
