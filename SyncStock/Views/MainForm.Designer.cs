@@ -115,15 +115,16 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(260, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1283, 866);
+            this.mainPanel.Size = new System.Drawing.Size(1574, 866);
             this.mainPanel.TabIndex = 1;
             // 
             // auditorReviewUC3
             // 
-            this.auditorReviewUC3.Location = new System.Drawing.Point(0, 16);
+            this.auditorReviewUC3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.auditorReviewUC3.Location = new System.Drawing.Point(2, 2);
             this.auditorReviewUC3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.auditorReviewUC3.Name = "auditorReviewUC3";
-            this.auditorReviewUC3.Size = new System.Drawing.Size(1283, 850);
+            this.auditorReviewUC3.Size = new System.Drawing.Size(1570, 862);
             this.auditorReviewUC3.TabIndex = 8;
             // 
             // reportsUC1
@@ -176,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1543, 866);
+            this.ClientSize = new System.Drawing.Size(1834, 866);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
