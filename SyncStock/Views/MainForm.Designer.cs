@@ -42,6 +42,8 @@
             // 
             // accordionControl1
             // 
+            this.accordionControl1.Appearance.Item.Default.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.accordionControl1.Appearance.Item.Default.Options.UseFont = true;
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.dashBoard,
@@ -50,7 +52,6 @@
             this.auditorReview,
             this.reports});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.Size = new System.Drawing.Size(302, 1066);
             this.accordionControl1.TabIndex = 0;
@@ -110,9 +111,9 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1800, 1066);
+            this.ClientSize = new System.Drawing.Size(1186, 616);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

@@ -319,6 +319,7 @@
             // 
             // panelControl15
             // 
+            this.panelControl15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl15.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panelControl15.Appearance.Options.UseBackColor = true;
             this.panelControl15.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -462,7 +463,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl24.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(1296, 58);
+            this.labelControl24.Location = new System.Drawing.Point(1296, 53);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(120, 18);
             this.labelControl24.TabIndex = 9;
@@ -1115,6 +1116,7 @@
             // 
             // panelControl13
             // 
+            this.panelControl13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.panelControl13.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.panelControl13.Appearance.Options.UseBackColor = true;
             this.panelControl13.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -1186,6 +1188,7 @@
             // 
             // panelControl14
             // 
+            this.panelControl14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.panelControl14.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.panelControl14.Appearance.Options.UseBackColor = true;
             this.panelControl14.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -1257,6 +1260,7 @@
             // 
             // panelControl16
             // 
+            this.panelControl16.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.panelControl16.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panelControl16.Appearance.Options.UseBackColor = true;
             this.panelControl16.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
