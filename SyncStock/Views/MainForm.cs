@@ -17,6 +17,8 @@ namespace SyncStock
         public MainForm()
         {
             InitializeComponent();
+
+            mainPanel.AutoScroll = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -43,7 +45,12 @@ namespace SyncStock
 
         private void reveivingCustodian_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReceivingUC());
+
+            ReceivingUC uc = new ReceivingUC();
+
+            uc.Dock = DockStyle.Fill;
+
+            LoadControl(uc);
         }
 
         private void auditorReview_Click(object sender, EventArgs e)
