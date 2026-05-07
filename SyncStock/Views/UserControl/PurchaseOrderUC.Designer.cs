@@ -31,6 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseOrderUC));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -40,6 +51,7 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
@@ -88,22 +100,17 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
+            this.layoutControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
@@ -156,12 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
-            this.layoutControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -175,17 +177,111 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1851, 1003);
+            this.layoutControl1.Size = new System.Drawing.Size(1851, 1134);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // panelControl5
             // 
             this.panelControl5.Controls.Add(this.layoutControl4);
-            this.panelControl5.Location = new System.Drawing.Point(12, 759);
+            this.panelControl5.Location = new System.Drawing.Point(12, 860);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1827, 232);
+            this.panelControl5.Size = new System.Drawing.Size(1827, 262);
             this.panelControl5.TabIndex = 7;
+            // 
+            // layoutControl4
+            // 
+            this.layoutControl4.Controls.Add(this.gridControl1);
+            this.layoutControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl4.Location = new System.Drawing.Point(2, 2);
+            this.layoutControl4.Name = "layoutControl4";
+            this.layoutControl4.Root = this.layoutControlGroup3;
+            this.layoutControl4.Size = new System.Drawing.Size(1823, 258);
+            this.layoutControl4.TabIndex = 0;
+            this.layoutControl4.Text = "layoutControl4";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(12, 12);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1799, 234);
+            this.gridControl1.TabIndex = 4;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Date";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Invoice#";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Item Name";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Unit Price";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Quantity";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 4;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Total";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
+            // 
+            // layoutControlGroup3
+            // 
+            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup3.GroupBordersVisible = false;
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem19});
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1823, 258);
+            this.layoutControlGroup3.TextVisible = false;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.gridControl1;
+            this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(1803, 238);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem19.TextVisible = false;
             // 
             // panelControl4
             // 
@@ -199,9 +295,9 @@
             this.panelControl4.Controls.Add(this.labelControl6);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Controls.Add(this.labelControl4);
-            this.panelControl4.Location = new System.Drawing.Point(12, 638);
+            this.panelControl4.Location = new System.Drawing.Point(12, 724);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1827, 117);
+            this.panelControl4.Size = new System.Drawing.Size(1827, 132);
             this.panelControl4.TabIndex = 6;
             // 
             // labelControl10
@@ -209,7 +305,7 @@
             this.labelControl10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(12, 72);
+            this.labelControl10.Location = new System.Drawing.Point(12, 80);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(310, 16);
             this.labelControl10.TabIndex = 6;
@@ -222,7 +318,7 @@
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(1631, 62);
+            this.labelControl9.Location = new System.Drawing.Point(1631, 70);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(11, 18);
             this.labelControl9.TabIndex = 5;
@@ -235,7 +331,7 @@
             this.labelControl8.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(1619, 62);
+            this.labelControl8.Location = new System.Drawing.Point(1619, 70);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(11, 18);
             this.labelControl8.TabIndex = 4;
@@ -246,7 +342,7 @@
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(1606, 46);
+            this.labelControl7.Location = new System.Drawing.Point(1606, 54);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(11, 18);
             this.labelControl7.TabIndex = 3;
@@ -257,7 +353,7 @@
             this.labelControl6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(1518, 62);
+            this.labelControl6.Location = new System.Drawing.Point(1518, 70);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(95, 16);
             this.labelControl6.TabIndex = 2;
@@ -268,7 +364,7 @@
             this.labelControl5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(1518, 45);
+            this.labelControl5.Location = new System.Drawing.Point(1518, 53);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(82, 16);
             this.labelControl5.TabIndex = 1;
@@ -281,7 +377,7 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl4.ImageOptions.SvgImage")));
-            this.labelControl4.Location = new System.Drawing.Point(3, 34);
+            this.labelControl4.Location = new System.Drawing.Point(3, 42);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(214, 32);
             this.labelControl4.TabIndex = 0;
@@ -296,8 +392,19 @@
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Location = new System.Drawing.Point(12, 12);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1827, 78);
+            this.panelControl3.Size = new System.Drawing.Size(1827, 88);
             this.panelControl3.TabIndex = 5;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(12, 47);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(286, 13);
+            this.labelControl11.TabIndex = 1;
+            this.labelControl11.Text = "Create a new purchase order for asset acquisition";
             // 
             // labelControl1
             // 
@@ -314,9 +421,9 @@
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.Controls.Add(this.layoutControl3);
-            this.panelControl2.Location = new System.Drawing.Point(12, 320);
+            this.panelControl2.Location = new System.Drawing.Point(12, 366);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1827, 314);
+            this.panelControl2.Size = new System.Drawing.Size(1827, 354);
             this.panelControl2.TabIndex = 0;
             // 
             // layoutControl3
@@ -334,7 +441,7 @@
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1234, 697, 650, 400);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(1823, 310);
+            this.layoutControl3.Size = new System.Drawing.Size(1823, 350);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -460,7 +567,7 @@
             this.layoutControlItem16,
             this.emptySpaceItem1});
             this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1823, 310);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1823, 350);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem9
@@ -528,7 +635,7 @@
             this.layoutControlItem14.Control = this.simpleButton2;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 132);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(202, 158);
+            this.layoutControlItem14.Size = new System.Drawing.Size(202, 198);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -583,7 +690,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(202, 132);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1601, 158);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1601, 198);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // panelControl1
@@ -591,9 +698,9 @@
             this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.Controls.Add(this.layoutControl2);
-            this.panelControl1.Location = new System.Drawing.Point(12, 94);
+            this.panelControl1.Location = new System.Drawing.Point(12, 104);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1827, 222);
+            this.panelControl1.Size = new System.Drawing.Size(1827, 258);
             this.panelControl1.TabIndex = 4;
             // 
             // layoutControl2
@@ -607,7 +714,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(2, 2);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(1823, 218);
+            this.layoutControl2.Size = new System.Drawing.Size(1823, 254);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -627,7 +734,7 @@
             // 
             // textEdit4
             // 
-            this.textEdit4.Location = new System.Drawing.Point(12, 182);
+            this.textEdit4.Location = new System.Drawing.Point(12, 218);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit4.Properties.Appearance.Options.UseFont = true;
@@ -694,7 +801,7 @@
             this.emptySpaceItem6,
             this.emptySpaceItem5});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1823, 218);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1823, 254);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem3
@@ -727,7 +834,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 140);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(901, 10);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(901, 46);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem2
@@ -748,7 +855,7 @@
             this.layoutControlItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem7.Control = this.textEdit4;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 150);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 186);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(901, 48);
             this.layoutControlItem7.Text = "Remarks";
@@ -758,7 +865,7 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(901, 150);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(901, 186);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(902, 48);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -808,7 +915,7 @@
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.Location = new System.Drawing.Point(901, 140);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(902, 10);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(902, 46);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Root
@@ -822,24 +929,24 @@
             this.layoutControlItem17,
             this.layoutControlItem18});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1851, 1003);
+            this.Root.Size = new System.Drawing.Size(1851, 1134);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.panelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 82);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 92);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1831, 226);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1831, 262);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 308);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 354);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1831, 318);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1831, 358);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -848,132 +955,36 @@
             this.layoutControlItem8.Control = this.panelControl3;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(1831, 82);
+            this.layoutControlItem8.Size = new System.Drawing.Size(1831, 92);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.panelControl4;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 626);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 712);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(1831, 121);
+            this.layoutControlItem17.Size = new System.Drawing.Size(1831, 136);
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.panelControl5;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 747);
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 848);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(1831, 236);
+            this.layoutControlItem18.Size = new System.Drawing.Size(1831, 266);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
             // 
-            // labelControl11
+            // xtraScrollableControl1
             // 
-            this.labelControl11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(12, 37);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(286, 13);
-            this.labelControl11.TabIndex = 1;
-            this.labelControl11.Text = "Create a new purchase order for asset acquisition";
-            // 
-            // layoutControl4
-            // 
-            this.layoutControl4.Controls.Add(this.gridControl1);
-            this.layoutControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl4.Location = new System.Drawing.Point(2, 2);
-            this.layoutControl4.Name = "layoutControl4";
-            this.layoutControl4.Root = this.layoutControlGroup3;
-            this.layoutControl4.Size = new System.Drawing.Size(1823, 228);
-            this.layoutControl4.TabIndex = 0;
-            this.layoutControl4.Text = "layoutControl4";
-            // 
-            // layoutControlGroup3
-            // 
-            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup3.GroupBordersVisible = false;
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem19});
-            this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1823, 228);
-            this.layoutControlGroup3.TextVisible = false;
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 12);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1799, 204);
-            this.gridControl1.TabIndex = 4;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            // 
-            // layoutControlItem19
-            // 
-            this.layoutControlItem19.Control = this.gridControl1;
-            this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(1803, 208);
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem19.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Date";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Invoice#";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Item Name";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Unit Price";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Quantity";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Total";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.xtraScrollableControl1.Controls.Add(this.layoutControl1);
+            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1851, 1134);
+            this.xtraScrollableControl1.TabIndex = 8;
             // 
             // PurchaseOrderUC
             // 
@@ -981,14 +992,20 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.layoutControl1);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PurchaseOrderUC";
-            this.Size = new System.Drawing.Size(1851, 1003);
+            this.Size = new System.Drawing.Size(1851, 1134);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
+            this.layoutControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
@@ -1043,12 +1060,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
-            this.layoutControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1126,5 +1138,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
     }
 }
