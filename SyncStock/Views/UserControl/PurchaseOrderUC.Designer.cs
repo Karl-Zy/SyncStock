@@ -184,9 +184,9 @@
             // panelControl5
             // 
             this.panelControl5.Controls.Add(this.layoutControl4);
-            this.panelControl5.Location = new System.Drawing.Point(12, 795);
+            this.panelControl5.Location = new System.Drawing.Point(12, 684);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1457, 327);
+            this.panelControl5.Size = new System.Drawing.Size(1457, 438);
             this.panelControl5.TabIndex = 7;
             // 
             // layoutControl4
@@ -196,7 +196,7 @@
             this.layoutControl4.Location = new System.Drawing.Point(2, 2);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.Root = this.layoutControlGroup3;
-            this.layoutControl4.Size = new System.Drawing.Size(1453, 323);
+            this.layoutControl4.Size = new System.Drawing.Size(1453, 434);
             this.layoutControl4.TabIndex = 0;
             this.layoutControl4.Text = "layoutControl4";
             // 
@@ -205,7 +205,7 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 12);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1429, 299);
+            this.gridControl1.Size = new System.Drawing.Size(1429, 410);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -271,7 +271,7 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem19});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1453, 323);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1453, 434);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem19
@@ -279,7 +279,7 @@
             this.layoutControlItem19.Control = this.gridControl1;
             this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(1433, 303);
+            this.layoutControlItem19.Size = new System.Drawing.Size(1433, 414);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
             // 
@@ -295,9 +295,9 @@
             this.panelControl4.Controls.Add(this.labelControl6);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Controls.Add(this.labelControl4);
-            this.panelControl4.Location = new System.Drawing.Point(12, 724);
+            this.panelControl4.Location = new System.Drawing.Point(12, 600);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1457, 67);
+            this.panelControl4.Size = new System.Drawing.Size(1457, 80);
             this.panelControl4.TabIndex = 6;
             // 
             // labelControl10
@@ -305,7 +305,7 @@
             this.labelControl10.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(12, 47);
+            this.labelControl10.Location = new System.Drawing.Point(12, 49);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(310, 16);
             this.labelControl10.TabIndex = 6;
@@ -318,7 +318,7 @@
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.labelControl9.Appearance.Options.UseFont = true;
             this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(1261, 37);
+            this.labelControl9.Location = new System.Drawing.Point(1261, 44);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(11, 18);
             this.labelControl9.TabIndex = 5;
@@ -331,7 +331,7 @@
             this.labelControl8.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(1249, 37);
+            this.labelControl8.Location = new System.Drawing.Point(1249, 44);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(11, 18);
             this.labelControl8.TabIndex = 4;
@@ -342,7 +342,7 @@
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(1236, 21);
+            this.labelControl7.Location = new System.Drawing.Point(1236, 28);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(11, 18);
             this.labelControl7.TabIndex = 3;
@@ -353,7 +353,7 @@
             this.labelControl6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(1148, 37);
+            this.labelControl6.Location = new System.Drawing.Point(1148, 44);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(95, 16);
             this.labelControl6.TabIndex = 2;
@@ -364,7 +364,7 @@
             this.labelControl5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(1148, 20);
+            this.labelControl5.Location = new System.Drawing.Point(1148, 27);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(82, 16);
             this.labelControl5.TabIndex = 1;
@@ -377,7 +377,7 @@
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl4.ImageOptions.SvgImage")));
-            this.labelControl4.Location = new System.Drawing.Point(3, 9);
+            this.labelControl4.Location = new System.Drawing.Point(3, 11);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(214, 32);
             this.labelControl4.TabIndex = 0;
@@ -392,7 +392,7 @@
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Location = new System.Drawing.Point(12, 12);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1457, 77);
+            this.panelControl3.Size = new System.Drawing.Size(1457, 67);
             this.panelControl3.TabIndex = 5;
             // 
             // labelControl11
@@ -400,7 +400,7 @@
             this.labelControl11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(12, 36);
+            this.labelControl11.Location = new System.Drawing.Point(12, 38);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(286, 13);
             this.labelControl11.TabIndex = 1;
@@ -411,7 +411,7 @@
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 9);
+            this.labelControl1.Location = new System.Drawing.Point(12, 14);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(139, 18);
             this.labelControl1.TabIndex = 0;
@@ -422,9 +422,9 @@
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.Controls.Add(this.layoutControl3);
-            this.panelControl2.Location = new System.Drawing.Point(12, 366);
+            this.panelControl2.Location = new System.Drawing.Point(12, 404);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1457, 354);
+            this.panelControl2.Size = new System.Drawing.Size(1457, 192);
             this.panelControl2.TabIndex = 0;
             // 
             // layoutControl3
@@ -442,7 +442,7 @@
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1234, 697, 650, 400);
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(1453, 350);
+            this.layoutControl3.Size = new System.Drawing.Size(1453, 188);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -568,7 +568,7 @@
             this.layoutControlItem16,
             this.emptySpaceItem1});
             this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1453, 350);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1453, 188);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem9
@@ -636,7 +636,7 @@
             this.layoutControlItem14.Control = this.simpleButton2;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 132);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(161, 198);
+            this.layoutControlItem14.Size = new System.Drawing.Size(161, 36);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -691,7 +691,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(161, 132);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1272, 198);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1272, 36);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // panelControl1
@@ -699,9 +699,9 @@
             this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.Controls.Add(this.layoutControl2);
-            this.panelControl1.Location = new System.Drawing.Point(12, 93);
+            this.panelControl1.Location = new System.Drawing.Point(12, 83);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1457, 269);
+            this.panelControl1.Size = new System.Drawing.Size(1457, 317);
             this.panelControl1.TabIndex = 4;
             // 
             // layoutControl2
@@ -715,7 +715,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(2, 2);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(1453, 265);
+            this.layoutControl2.Size = new System.Drawing.Size(1453, 313);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -735,7 +735,7 @@
             // 
             // textEdit4
             // 
-            this.textEdit4.Location = new System.Drawing.Point(12, 229);
+            this.textEdit4.Location = new System.Drawing.Point(12, 277);
             this.textEdit4.Name = "textEdit4";
             this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit4.Properties.Appearance.Options.UseFont = true;
@@ -802,7 +802,7 @@
             this.emptySpaceItem6,
             this.emptySpaceItem5});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1453, 265);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1453, 313);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem3
@@ -835,7 +835,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 140);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(716, 57);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(716, 105);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem2
@@ -856,7 +856,7 @@
             this.layoutControlItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem7.Control = this.textEdit4;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 197);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 245);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(716, 48);
             this.layoutControlItem7.Text = "Remarks";
@@ -866,7 +866,7 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(716, 197);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(716, 245);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(717, 48);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -916,7 +916,7 @@
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.Location = new System.Drawing.Point(716, 140);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(717, 57);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(717, 105);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // Root
@@ -936,18 +936,18 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.panelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 81);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 71);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1461, 273);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1461, 321);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 354);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 392);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1461, 358);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1461, 196);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -956,25 +956,25 @@
             this.layoutControlItem8.Control = this.panelControl3;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(1461, 81);
+            this.layoutControlItem8.Size = new System.Drawing.Size(1461, 71);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.panelControl4;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 712);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 588);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(1461, 71);
+            this.layoutControlItem17.Size = new System.Drawing.Size(1461, 84);
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.panelControl5;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 783);
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 672);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(1461, 331);
+            this.layoutControlItem18.Size = new System.Drawing.Size(1461, 442);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
             // 
