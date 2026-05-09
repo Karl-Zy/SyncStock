@@ -74,7 +74,6 @@
     <Compile Include="Models\Accounts\Purchaser.cs" />
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
     <Compile Include="Models\Accounts\User.cs" />
-    <Compile Include="Models\Item\Asset.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
