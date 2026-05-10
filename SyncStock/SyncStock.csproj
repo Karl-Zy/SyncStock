@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\..\..\.nuget\packages\dapper\1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.BonusSkins.v23.2" />
     <Reference Include="DevExpress.Charts.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v23.2" />
@@ -69,12 +72,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Database\Repository.cs" />
     <Compile Include="Models\Accounts\AssetManager.cs" />
     <Compile Include="Models\Accounts\InternalAuditor.cs" />
     <Compile Include="Models\Accounts\Purchaser.cs" />
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
     <Compile Include="Models\Accounts\User.cs" />
+    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
+    <Compile Include="Models\Item\Item.cs" />
+    <Compile Include="Models\PurchaseOrderItem.cs" />
+    <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +137,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -163,7 +173,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\" />
+    <None Include="Resources\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
