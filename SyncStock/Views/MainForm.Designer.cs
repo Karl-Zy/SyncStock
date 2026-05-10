@@ -45,7 +45,6 @@
             this.auditorReviewUC1 = new SyncStock.Views.UserControl.AuditorReviewUC();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
-            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // accordionControl1
@@ -61,7 +60,7 @@
             this.reports});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(302, 1066);
+            this.accordionControl1.Size = new System.Drawing.Size(302, 616);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -114,7 +113,7 @@
             this.mainPanel.Location = new System.Drawing.Point(302, 0);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1498, 1066);
+            this.mainPanel.Size = new System.Drawing.Size(884, 616);
             this.mainPanel.TabIndex = 1;
             // 
             // auditorReviewUC3
@@ -151,6 +150,7 @@
             // 
             // dashBoardUC1
             // 
+            this.dashBoardUC1.AutoScroll = true;
             this.dashBoardUC1.Location = new System.Drawing.Point(16, 16);
             this.dashBoardUC1.Name = "dashBoardUC1";
             this.dashBoardUC1.Size = new System.Drawing.Size(855, 428);
@@ -189,7 +189,6 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
-            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
