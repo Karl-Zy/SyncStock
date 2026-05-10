@@ -17,6 +17,14 @@ namespace SyncStock
         public MainForm()
         {
             InitializeComponent();
+
+            DashBoardUC dashboard = new DashBoardUC();
+
+            dashboard.Dock = DockStyle.Fill;
+
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(dashboard);
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
