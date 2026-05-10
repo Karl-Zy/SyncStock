@@ -45,7 +45,6 @@
             this.auditorReviewUC1 = new SyncStock.Views.UserControl.AuditorReviewUC();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
-            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // accordionControl1
@@ -60,8 +59,9 @@
             this.auditorReview,
             this.reports});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
+            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(302, 1066);
+            this.accordionControl1.Size = new System.Drawing.Size(352, 758);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -111,10 +111,10 @@
             this.mainPanel.AutoSize = true;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.FireScrollEventOnMouseWheel = true;
-            this.mainPanel.Location = new System.Drawing.Point(302, 0);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.mainPanel.Location = new System.Drawing.Point(352, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(5);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1498, 1066);
+            this.mainPanel.Size = new System.Drawing.Size(1032, 758);
             this.mainPanel.TabIndex = 1;
             // 
             // auditorReviewUC3
@@ -151,7 +151,9 @@
             // 
             // dashBoardUC1
             // 
+            this.dashBoardUC1.AutoScroll = true;
             this.dashBoardUC1.Location = new System.Drawing.Point(16, 16);
+            this.dashBoardUC1.Margin = new System.Windows.Forms.Padding(4);
             this.dashBoardUC1.Name = "dashBoardUC1";
             this.dashBoardUC1.Size = new System.Drawing.Size(855, 428);
             this.dashBoardUC1.TabIndex = 4;
@@ -174,22 +176,25 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 616);
+            this.ClientSize = new System.Drawing.Size(1384, 758);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.IconOptions.ColorizeInactiveIcon = DevExpress.Utils.DefaultBoolean.True;
+            this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("MainForm.IconOptions.Image")));
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.InactiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "SyncStock";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
-            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
