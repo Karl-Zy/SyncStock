@@ -14,17 +14,20 @@ namespace SyncStock
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-        public MainForm()
+        private readonly Models.Accounts.User _currentUser;
+
+        public MainForm(Models.Accounts.User user)
         {
             InitializeComponent();
+            _currentUser = user;
+
+            // e.g. lblUserName.Text = _currentUser.FirstName + " " + _currentUser.LastName;
+            this.FormClosed += (s, e) => Application.Exit();
 
             DashBoardUC dashboard = new DashBoardUC();
-
             dashboard.Dock = DockStyle.Fill;
-
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(dashboard);
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)

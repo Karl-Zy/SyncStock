@@ -39,10 +39,12 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.svgImageBox2 = new DevExpress.XtraEditors.SvgImageBox();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.svgImageBox5 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
+            this.svgImageBox4 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -50,6 +52,7 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.svgImageBox3 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
@@ -75,6 +78,7 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroupStats = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroupFilter = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -87,7 +91,6 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
@@ -98,13 +101,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -113,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStats)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFilter)).BeginInit();
@@ -123,7 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -226,14 +232,25 @@
             // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(this.svgImageBox5);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Controls.Add(this.labelControl4);
             this.panelControl4.Controls.Add(this.labelControl3);
-            this.panelControl4.Location = new System.Drawing.Point(890, 108);
+            this.panelControl4.Location = new System.Drawing.Point(6, 108);
             this.panelControl4.MaximumSize = new System.Drawing.Size(0, 69);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(436, 69);
+            this.panelControl4.Size = new System.Drawing.Size(433, 69);
             this.panelControl4.TabIndex = 3;
+            // 
+            // svgImageBox5
+            // 
+            this.svgImageBox5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.svgImageBox5.Location = new System.Drawing.Point(365, 2);
+            this.svgImageBox5.Name = "svgImageBox5";
+            this.svgImageBox5.Size = new System.Drawing.Size(66, 65);
+            this.svgImageBox5.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox5.SvgImage")));
+            this.svgImageBox5.TabIndex = 5;
+            this.svgImageBox5.Text = "svgImageBox3";
             // 
             // labelControl5
             // 
@@ -270,14 +287,26 @@
             this.panelControl5.Appearance.Options.UseBorderColor = true;
             this.panelControl5.Appearance.Options.UseFont = true;
             this.panelControl5.Appearance.Options.UseForeColor = true;
+            this.panelControl5.Controls.Add(this.svgImageBox4);
             this.panelControl5.Controls.Add(this.labelControl11);
             this.panelControl5.Controls.Add(this.labelControl10);
             this.panelControl5.Controls.Add(this.labelControl9);
-            this.panelControl5.Location = new System.Drawing.Point(448, 108);
+            this.panelControl5.Location = new System.Drawing.Point(889, 108);
             this.panelControl5.MaximumSize = new System.Drawing.Size(0, 69);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(436, 69);
+            this.panelControl5.Size = new System.Drawing.Size(437, 69);
             this.panelControl5.TabIndex = 3;
+            // 
+            // svgImageBox4
+            // 
+            this.svgImageBox4.BackColor = System.Drawing.Color.Transparent;
+            this.svgImageBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.svgImageBox4.Location = new System.Drawing.Point(369, 2);
+            this.svgImageBox4.Name = "svgImageBox4";
+            this.svgImageBox4.Size = new System.Drawing.Size(66, 65);
+            this.svgImageBox4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox4.SvgImage")));
+            this.svgImageBox4.TabIndex = 5;
+            this.svgImageBox4.Text = "svgImageBox3";
             // 
             // labelControl11
             // 
@@ -357,17 +386,28 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.svgImageBox3);
             this.panelControl3.Controls.Add(this.labelControl14);
             this.panelControl3.Controls.Add(this.labelControl8);
             this.panelControl3.Controls.Add(this.labelControl15);
             this.panelControl3.Controls.Add(this.labelControl7);
             this.panelControl3.Controls.Add(this.labelControl16);
             this.panelControl3.Controls.Add(this.labelControl6);
-            this.panelControl3.Location = new System.Drawing.Point(6, 108);
+            this.panelControl3.Location = new System.Drawing.Point(445, 108);
             this.panelControl3.MaximumSize = new System.Drawing.Size(0, 69);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(436, 69);
+            this.panelControl3.Size = new System.Drawing.Size(438, 69);
             this.panelControl3.TabIndex = 3;
+            // 
+            // svgImageBox3
+            // 
+            this.svgImageBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.svgImageBox3.Location = new System.Drawing.Point(370, 2);
+            this.svgImageBox3.Name = "svgImageBox3";
+            this.svgImageBox3.Size = new System.Drawing.Size(66, 65);
+            this.svgImageBox3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox3.SvgImage")));
+            this.svgImageBox3.TabIndex = 5;
+            this.svgImageBox3.Text = "svgImageBox3";
             // 
             // labelControl14
             // 
@@ -375,9 +415,9 @@
             this.labelControl14.Appearance.Options.UseForeColor = true;
             this.labelControl14.Location = new System.Drawing.Point(5, 55);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(31, 13);
+            this.labelControl14.Size = new System.Drawing.Size(118, 13);
             this.labelControl14.TabIndex = 4;
-            this.labelControl14.Text = "Status";
+            this.labelControl14.Text = "P635,155.00 Total Value";
             // 
             // labelControl8
             // 
@@ -392,9 +432,9 @@
             this.labelControl15.Appearance.Options.UseForeColor = true;
             this.labelControl15.Location = new System.Drawing.Point(5, 40);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(76, 13);
+            this.labelControl15.Size = new System.Drawing.Size(52, 13);
             this.labelControl15.TabIndex = 3;
-            this.labelControl15.Text = "Pending Review";
+            this.labelControl15.Text = "Capitalized";
             // 
             // labelControl7
             // 
@@ -406,14 +446,14 @@
             // labelControl16
             // 
             this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Green;
             this.labelControl16.Appearance.Options.UseFont = true;
             this.labelControl16.Appearance.Options.UseForeColor = true;
             this.labelControl16.Location = new System.Drawing.Point(5, 0);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(20, 45);
             this.labelControl16.TabIndex = 2;
-            this.labelControl16.Text = "4";
+            this.labelControl16.Text = "6";
             // 
             // labelControl6
             // 
@@ -628,21 +668,30 @@
             this.layoutControlGroupStats.Size = new System.Drawing.Size(1326, 75);
             this.layoutControlGroupStats.TextVisible = false;
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.panelControl3;
+            this.layoutControlItem9.Location = new System.Drawing.Point(439, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(444, 75);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.panelControl5;
-            this.layoutControlItem8.Location = new System.Drawing.Point(442, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(883, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(442, 75);
+            this.layoutControlItem8.Size = new System.Drawing.Size(443, 75);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.panelControl4;
-            this.layoutControlItem7.Location = new System.Drawing.Point(884, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(442, 75);
+            this.layoutControlItem7.Size = new System.Drawing.Size(439, 75);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -744,15 +793,6 @@
             this.xtraScrollableControl1.Size = new System.Drawing.Size(0, 0);
             this.xtraScrollableControl1.TabIndex = 5;
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.panelControl3;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(442, 75);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
             // AuditorReviewUC
             // 
             this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -775,15 +815,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
             this.panelControl5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -792,6 +835,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupStats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroupFilter)).EndInit();
@@ -802,7 +846,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -868,5 +911,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox5;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox4;
+        private DevExpress.XtraEditors.SvgImageBox svgImageBox3;
     }
 }

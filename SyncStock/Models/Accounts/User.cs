@@ -14,6 +14,8 @@ namespace SyncStock.Models.Accounts
         public string LastName { get; set; }
         public string UserName { get; set; }
 
+        public string RfidUID { get; set; }
+
         private string _password;
 
         public User(){}
