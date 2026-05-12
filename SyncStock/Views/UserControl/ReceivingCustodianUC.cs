@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SyncStock.Views.UserControl
 {
-    public partial class ReceivingCustodian : DevExpress.XtraEditors.XtraUserControl
+    public partial class ReceivingCustodianUC : DevExpress.XtraEditors.XtraUserControl
     {
-        public ReceivingCustodian()
+        public ReceivingCustodianUC()
         {
             InitializeComponent();
         }

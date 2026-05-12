@@ -51,7 +51,7 @@ namespace SyncStock
 
         private void reveivingCustodian_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReceivingCustodian());
+            LoadControl(new ReceivingCustodianUC());
         }
 
         private void auditorReview_Click(object sender, EventArgs e)

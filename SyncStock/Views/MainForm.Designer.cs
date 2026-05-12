@@ -38,7 +38,6 @@
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.auditorReviewUC3 = new SyncStock.Views.UserControl.AuditorReviewUC();
             this.reportsUC1 = new SyncStock.Views.UserControl.ReportsUC();
-            this.receivingUC1 = new SyncStock.Views.UserControl.ReceivingUC();
             this.purchaseOrderUC1 = new SyncStock.Views.UserControl.PurchaseOrderUC();
             this.dashBoardUC1 = new SyncStock.Views.UserControl.DashBoardUC();
             this.auditorReviewUC2 = new SyncStock.Views.UserControl.AuditorReviewUC();
@@ -133,14 +132,6 @@
             this.reportsUC1.Size = new System.Drawing.Size(1145, 332);
             this.reportsUC1.TabIndex = 7;
             // 
-            // receivingUC1
-            // 
-            this.receivingUC1.Location = new System.Drawing.Point(0, 0);
-            this.receivingUC1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.receivingUC1.Name = "receivingUC1";
-            this.receivingUC1.Size = new System.Drawing.Size(1268, 352);
-            this.receivingUC1.TabIndex = 6;
-            // 
             // purchaseOrderUC1
             // 
             this.purchaseOrderUC1.Location = new System.Drawing.Point(24, 24);
@@ -212,7 +203,6 @@
         private Views.UserControl.AuditorReviewUC auditorReviewUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC3;
         private Views.UserControl.ReportsUC reportsUC1;
-        private Views.UserControl.ReceivingUC receivingUC1;
         private Views.UserControl.PurchaseOrderUC purchaseOrderUC1;
         private Views.UserControl.DashBoardUC dashBoardUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC2;

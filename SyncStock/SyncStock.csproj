@@ -116,17 +116,11 @@
     <Compile Include="Views\UserControl\PurchaseOrderUC.Designer.cs">
       <DependentUpon>PurchaseOrderUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\ReceivingCustodian.cs">
+    <Compile Include="Views\UserControl\ReceivingCustodianUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UserControl\ReceivingCustodian.Designer.cs">
-      <DependentUpon>ReceivingCustodian.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControl\ReceivingUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UserControl\ReceivingUC.Designer.cs">
-      <DependentUpon>ReceivingUC.cs</DependentUpon>
+    <Compile Include="Views\UserControl\ReceivingCustodianUC.Designer.cs">
+      <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\ReportsUC.cs">
       <SubType>UserControl</SubType>
@@ -160,11 +154,8 @@
     <EmbeddedResource Include="Views\UserControl\PurchaseOrderUC.resx">
       <DependentUpon>PurchaseOrderUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserControl\ReceivingCustodian.resx">
-      <DependentUpon>ReceivingCustodian.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserControl\ReceivingUC.resx">
-      <DependentUpon>ReceivingUC.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UserControl\ReceivingCustodianUC.resx">
+      <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\ReportsUC.resx">
       <DependentUpon>ReportsUC.cs</DependentUpon>
