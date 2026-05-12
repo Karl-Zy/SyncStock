@@ -16,7 +16,7 @@ namespace SyncStock.Views.UserControl
     public partial class PurchaseOrderUC : DevExpress.XtraEditors.XtraUserControl
     {
         private Repository _repo = new Repository();
-        private List<PurchaseOrderItem> _itemList = new List<PurchaseOrderItem>();
+       
         private int _purchaseOrderId = 0;
         public PurchaseOrderUC()
         {
