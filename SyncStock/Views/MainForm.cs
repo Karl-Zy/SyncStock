@@ -15,22 +15,23 @@ namespace SyncStock
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-        private User _currentUser;
+        private readonly Models.Accounts.User _currentUser;
 
-        public MainForm(User user) // Must accept a 'User' object
-        public MainForm()
+        // Combine the parameter into the actual constructor block
+        public MainForm(User user)
         {
             InitializeComponent();
             _currentUser = user;
             this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
 
+            _currentUser = user; // Now 'user' is recognized
+            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
+
+            // Loading initial dashboard
             DashBoardUC dashboard = new DashBoardUC();
-
             dashboard.Dock = DockStyle.Fill;
-
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(dashboard);
-
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

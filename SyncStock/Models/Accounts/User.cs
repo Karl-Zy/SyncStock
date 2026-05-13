@@ -15,6 +15,8 @@ namespace SyncStock.Models.Accounts
         public string LastName { get; set; }
         public string UserName { get; set; }
 
+        public string RfidUID { get; set; }
+
         private string _password;
 
         public User(){}
@@ -31,13 +33,12 @@ namespace SyncStock.Models.Accounts
             get { return _password; }
             set
             {
-                // We validate that it's not null, but we don't tell the user 
-                // WHY a password might be rejected during the assignment.
-                if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+                // We only check if it is null or empty. 
+                // We don't tell the user how long it needs to be.
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Invalid entry.");
+                    throw new ArgumentException("Invalid input.");
                 }
-
                 _password = value;
             }
         }
