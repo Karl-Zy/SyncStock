@@ -170,5 +170,37 @@ namespace SyncStock.Database
                     new { PurchaseOrderID = purchaseOrderId });
             }
         }
+
+        public IEnumerable<PurchaseOrders> GetPendingPurchaseOrders()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(@"SELECT po.*, d.DepartmentName 
+                    FROM PurchaseOrders po 
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    WHERE po.Status = 'Pending'");
+            }
+        }
+
+        public IEnumerable<PendingOrderSummary> GetPendingOrderSummary()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PendingOrderSummary>(@"
+                    SELECT po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    COUNT (poi.PurchaseOrderItemID) AS TotalItems,
+                    SUM (poi.TotalPrice) AS TotalAmount
+                    FROM PurchaseOrders po
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                    WHERE po.Status = 'Pending'
+                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
+
+            }
+        }
     }
 }

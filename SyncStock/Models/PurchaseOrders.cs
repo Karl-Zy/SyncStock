@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace SyncStock.Models
 {
@@ -16,9 +17,13 @@ namespace SyncStock.Models
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
         public string Priority { get; set; }
+
+        [Browsable(false)]
         public string Remarks { get; set; }
+
+        [Browsable(false)]
         public string AttachmentPath { get; set; }
-        public List<PurchaseOrderItem> Items { get; set; } = new List<PurchaseOrderItem>();
+       
         
     }
 }

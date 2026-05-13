@@ -28,12 +28,18 @@ namespace SyncStock.Views.UserControl
             LoadAllItems();
 
             ItemsInOrderGV.OptionsBehavior.Editable = false;
+            InvoiceNumTE.Properties.ReadOnly = true;
+            QuantitySE.Properties.MinValue = 0;
+            poNumberTE.Properties.ReadOnly = true;
         }
 
         private void AutoSetDate()
         {
             purchaseDate.EditValue = DateTime.Now;
+            purchaseDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+
             AddItemDateCB.EditValue = DateTime.Now;
+            AddItemDateCB.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
         }
 
         private void AutoSetPONumber()
@@ -47,7 +53,7 @@ namespace SyncStock.Views.UserControl
 
         private void AutoSetInvoiceNumber()
         {
-            var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHmmss}";
+            var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHss}";
             InvoiceNumTE.Text = invoiceNumber;
         }
 

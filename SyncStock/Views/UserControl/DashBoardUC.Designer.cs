@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoardUC));
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
@@ -43,7 +43,7 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl15 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.approvedOrdersLBL = new DevExpress.XtraEditors.LabelControl();
             this.ApprovedOrdersNum = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
@@ -93,13 +93,6 @@
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.PendingOrdersGC = new DevExpress.XtraGrid.GridControl();
             this.PendingOrdersGV = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -115,19 +108,19 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl13 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.pendingOrdersLBL = new DevExpress.XtraEditors.LabelControl();
             this.PendingOrdersNum = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl14 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.approvedAsapLBL = new DevExpress.XtraEditors.LabelControl();
             this.ApproveAsapNum = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl16 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit4 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.totalApprovedValueLBL = new DevExpress.XtraEditors.LabelControl();
             this.TotalApprovedValueNum = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -156,8 +149,8 @@
             this.panelControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AssetCategoryChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit5.Properties)).BeginInit();
@@ -166,8 +159,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AssetAcqChart)).BeginInit();
             this.AssetAcqChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
             this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
@@ -309,7 +302,7 @@
             this.panelControl4.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.panelControl4.Appearance.Options.UseBackColor = true;
             this.panelControl4.Controls.Add(this.panelControl15);
-            this.panelControl4.Controls.Add(this.labelControl7);
+            this.panelControl4.Controls.Add(this.approvedOrdersLBL);
             this.panelControl4.Controls.Add(this.ApprovedOrdersNum);
             this.panelControl4.Controls.Add(this.labelControl9);
             this.panelControl4.Location = new System.Drawing.Point(728, 121);
@@ -341,16 +334,16 @@
             this.pictureEdit3.Size = new System.Drawing.Size(62, 62);
             this.pictureEdit3.TabIndex = 7;
             // 
-            // labelControl7
+            // approvedOrdersLBL
             // 
-            this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(22, 80);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(52, 18);
-            this.labelControl7.TabIndex = 6;
-            this.labelControl7.Text = "Number";
+            this.approvedOrdersLBL.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.approvedOrdersLBL.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approvedOrdersLBL.Appearance.Options.UseFont = true;
+            this.approvedOrdersLBL.Location = new System.Drawing.Point(22, 80);
+            this.approvedOrdersLBL.Name = "approvedOrdersLBL";
+            this.approvedOrdersLBL.Size = new System.Drawing.Size(52, 18);
+            this.approvedOrdersLBL.TabIndex = 6;
+            this.approvedOrdersLBL.Text = "Number";
             // 
             // ApprovedOrdersNum
             // 
@@ -433,11 +426,11 @@
             this.AssetCategoryChart.Legend.LegendID = -1;
             this.AssetCategoryChart.Location = new System.Drawing.Point(10, 65);
             this.AssetCategoryChart.Name = "AssetCategoryChart";
-            series1.Name = "Series 1";
-            series1.SeriesID = 0;
-            series1.View = pieSeriesView1;
+            series3.Name = "Series 1";
+            series3.SeriesID = 0;
+            series3.View = pieSeriesView2;
             this.AssetCategoryChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
+        series3};
             this.AssetCategoryChart.Size = new System.Drawing.Size(746, 268);
             this.AssetCategoryChart.TabIndex = 0;
             // 
@@ -588,16 +581,16 @@
             // chartControl1
             // 
             this.chartControl1.BackColor = System.Drawing.Color.Transparent;
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            this.chartControl1.Diagram = xyDiagram1;
+            xyDiagram2.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram2.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControl1.Diagram = xyDiagram2;
             this.chartControl1.Legend.LegendID = -1;
             this.chartControl1.Location = new System.Drawing.Point(10, 65);
             this.chartControl1.Name = "chartControl1";
-            series2.Name = "Series 1";
-            series2.SeriesID = 0;
+            series4.Name = "Series 1";
+            series4.SeriesID = 0;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series2};
+        series4};
             this.chartControl1.Size = new System.Drawing.Size(696, 268);
             this.chartControl1.TabIndex = 0;
             // 
@@ -907,80 +900,9 @@
             // 
             // PendingOrdersGV
             // 
-            this.PendingOrdersGV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7});
             this.PendingOrdersGV.GridControl = this.PendingOrdersGC;
             this.PendingOrdersGV.Name = "PendingOrdersGV";
             this.PendingOrdersGV.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "PO Number";
-            this.gridColumn1.MinWidth = 25;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 94;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Department";
-            this.gridColumn2.MinWidth = 25;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 94;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Items";
-            this.gridColumn3.MinWidth = 25;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 94;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Total Amount";
-            this.gridColumn4.MinWidth = 25;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 94;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Date Requested";
-            this.gridColumn5.MinWidth = 25;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 94;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Priority";
-            this.gridColumn6.MinWidth = 25;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 94;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Status";
-            this.gridColumn7.MinWidth = 25;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 94;
             // 
             // layoutControlGroup3
             // 
@@ -1105,7 +1027,7 @@
             this.panelControl3.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.panelControl3.Appearance.Options.UseBackColor = true;
             this.panelControl3.Controls.Add(this.panelControl13);
-            this.panelControl3.Controls.Add(this.labelControl3);
+            this.panelControl3.Controls.Add(this.pendingOrdersLBL);
             this.panelControl3.Controls.Add(this.PendingOrdersNum);
             this.panelControl3.Controls.Add(this.labelControl1);
             this.panelControl3.Location = new System.Drawing.Point(16, 121);
@@ -1138,16 +1060,16 @@
             this.pictureEdit1.Size = new System.Drawing.Size(62, 62);
             this.pictureEdit1.TabIndex = 3;
             // 
-            // labelControl3
+            // pendingOrdersLBL
             // 
-            this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(21, 78);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(52, 18);
-            this.labelControl3.TabIndex = 2;
-            this.labelControl3.Text = "Number";
+            this.pendingOrdersLBL.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pendingOrdersLBL.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pendingOrdersLBL.Appearance.Options.UseFont = true;
+            this.pendingOrdersLBL.Location = new System.Drawing.Point(21, 78);
+            this.pendingOrdersLBL.Name = "pendingOrdersLBL";
+            this.pendingOrdersLBL.Size = new System.Drawing.Size(52, 18);
+            this.pendingOrdersLBL.TabIndex = 2;
+            this.pendingOrdersLBL.Text = "Number";
             // 
             // PendingOrdersNum
             // 
@@ -1178,7 +1100,7 @@
             this.panelControl2.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.Controls.Add(this.panelControl14);
-            this.panelControl2.Controls.Add(this.labelControl4);
+            this.panelControl2.Controls.Add(this.approvedAsapLBL);
             this.panelControl2.Controls.Add(this.ApproveAsapNum);
             this.panelControl2.Controls.Add(this.labelControl6);
             this.panelControl2.Location = new System.Drawing.Point(370, 121);
@@ -1210,16 +1132,16 @@
             this.pictureEdit2.Size = new System.Drawing.Size(62, 62);
             this.pictureEdit2.TabIndex = 7;
             // 
-            // labelControl4
+            // approvedAsapLBL
             // 
-            this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(24, 74);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(52, 18);
-            this.labelControl4.TabIndex = 6;
-            this.labelControl4.Text = "Number";
+            this.approvedAsapLBL.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.approvedAsapLBL.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.approvedAsapLBL.Appearance.Options.UseFont = true;
+            this.approvedAsapLBL.Location = new System.Drawing.Point(24, 74);
+            this.approvedAsapLBL.Name = "approvedAsapLBL";
+            this.approvedAsapLBL.Size = new System.Drawing.Size(52, 18);
+            this.approvedAsapLBL.TabIndex = 6;
+            this.approvedAsapLBL.Text = "Number";
             // 
             // ApproveAsapNum
             // 
@@ -1250,7 +1172,7 @@
             this.panelControl1.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.panelControl1.Appearance.Options.UseBackColor = true;
             this.panelControl1.Controls.Add(this.panelControl16);
-            this.panelControl1.Controls.Add(this.labelControl10);
+            this.panelControl1.Controls.Add(this.totalApprovedValueLBL);
             this.panelControl1.Controls.Add(this.TotalApprovedValueNum);
             this.panelControl1.Controls.Add(this.labelControl12);
             this.panelControl1.Location = new System.Drawing.Point(1094, 121);
@@ -1283,16 +1205,16 @@
             this.pictureEdit4.Size = new System.Drawing.Size(62, 62);
             this.pictureEdit4.TabIndex = 7;
             // 
-            // labelControl10
+            // totalApprovedValueLBL
             // 
-            this.labelControl10.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(22, 78);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(52, 18);
-            this.labelControl10.TabIndex = 6;
-            this.labelControl10.Text = "Number";
+            this.totalApprovedValueLBL.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.totalApprovedValueLBL.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalApprovedValueLBL.Appearance.Options.UseFont = true;
+            this.totalApprovedValueLBL.Location = new System.Drawing.Point(22, 78);
+            this.totalApprovedValueLBL.Name = "totalApprovedValueLBL";
+            this.totalApprovedValueLBL.Size = new System.Drawing.Size(52, 18);
+            this.totalApprovedValueLBL.TabIndex = 6;
+            this.totalApprovedValueLBL.Text = "Number";
             // 
             // TotalApprovedValueNum
             // 
@@ -1424,8 +1346,8 @@
             this.panelControl10.ResumeLayout(false);
             this.panelControl10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit9.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AssetCategoryChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
             this.panelControl9.ResumeLayout(false);
@@ -1437,8 +1359,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AssetAcqChart)).EndInit();
             this.AssetAcqChart.ResumeLayout(false);
             this.AssetAcqChart.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
             this.panelControl6.ResumeLayout(false);
@@ -1526,19 +1448,19 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl pendingOrdersLBL;
         private DevExpress.XtraEditors.LabelControl PendingOrdersNum;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit3;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl approvedOrdersLBL;
         private DevExpress.XtraEditors.LabelControl ApprovedOrdersNum;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl approvedAsapLBL;
         private DevExpress.XtraEditors.LabelControl ApproveAsapNum;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.PictureEdit pictureEdit4;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl totalApprovedValueLBL;
         private DevExpress.XtraEditors.LabelControl TotalApprovedValueNum;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl14;
@@ -1553,13 +1475,6 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl3;
         private DevExpress.XtraGrid.GridControl PendingOrdersGC;
         private DevExpress.XtraGrid.Views.Grid.GridView PendingOrdersGV;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;

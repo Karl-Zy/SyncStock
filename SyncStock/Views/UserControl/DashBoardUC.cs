@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -20,15 +21,22 @@ namespace SyncStock.Views.UserControl
         {
             InitializeComponent();
 
-            LoadData();
+            PendingOrdersGV.OptionsBehavior.Editable = false;
+            ApprovedASAPOrdersGV.OptionsBehavior.Editable = false;
 
-
+            this.Load += DashBoardUC_Load;
             MakeCircularPanel(panelControl13);
             MakeCircularPanel(panelControl14);
             MakeCircularPanel(panelControl16);
             MakeCircularPanel(panelControl15);
+
+           
         }
 
+        private void DashBoardUC_Load(object sender, EventArgs e)
+        {
+            LoadData(); // ← Should be here
+        }
         private void MakeCircularPanel(PanelControl panel)
         {
             GraphicsPath path = new GraphicsPath();
@@ -45,6 +53,12 @@ namespace SyncStock.Views.UserControl
         {
             PendingOrdersNum.Text = _repo.GetPendingOrdersCount().ToString();
             ApproveAsapNum.Text = _repo.GetASAPOrders().Count.ToString();
+
+            PendingOrdersGC.DataSource = _repo.GetPendingPurchaseOrders().ToList();
+                //ApprovedASAPOrdersGC.DataSource = _repo.GetASAPOrders().ToList();
+            var items = _repo.GetAllPurchaseOrderItems().ToList();
+            decimal totalAmount = items.Sum(x => x.TotalPrice);
+            pendingOrdersLBL.Text = "₱" + totalAmount.ToString("N2");
         }
     }
 }
