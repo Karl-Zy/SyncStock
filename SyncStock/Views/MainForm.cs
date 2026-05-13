@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock
 {
@@ -16,20 +17,20 @@ namespace SyncStock
     {
         private readonly Models.Accounts.User _currentUser;
 
-        public MainForm(Models.Accounts.User user)
+        // Combine the parameter into the actual constructor block
+        public MainForm(User user)
         {
             InitializeComponent();
-            _currentUser = user;
 
-            // e.g. lblUserName.Text = _currentUser.FirstName + " " + _currentUser.LastName;
-            this.FormClosed += (s, e) => Application.Exit();
+            _currentUser = user; // Now 'user' is recognized
+            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
 
+            // Loading initial dashboard
             DashBoardUC dashboard = new DashBoardUC();
             dashboard.Dock = DockStyle.Fill;
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(dashboard);
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
 

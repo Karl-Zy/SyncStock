@@ -32,14 +32,11 @@ namespace SyncStock.Models.Accounts
             get { return _password; }
             set
             {
+                // We only check if it is null or empty. 
+                // We don't tell the user how long it needs to be.
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Password cannot be empty!");
-                }
-
-                if (value.Length < 6)
-                {
-                    throw new ArgumentException("Password must be at least 6 characters long.");
+                    throw new ArgumentException("Invalid input.");
                 }
                 _password = value;
             }

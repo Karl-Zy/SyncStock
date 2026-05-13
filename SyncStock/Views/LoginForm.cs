@@ -9,6 +9,7 @@ namespace SyncStock.Views
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
         private readonly Repository _repository = new Repository();
+        public User LoggedInUser { get; private set; }
 
         public LoginForm()
         {
@@ -33,45 +34,49 @@ namespace SyncStock.Views
             emailLoginUC.Visible = true;
         }
 
-        private void OnCardScanned(object sender, string uid)
-        {
-            User user = _repository.GetUserByRfid(uid);
-
-            if (user == null)
-            {
-                XtraMessageBox.Show(
-                    "No account found for this card.",
-                    "Access Denied",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-
-            OpenMainForm(user);
-        }
-
         private void OnLoginRequested(object sender, (string UserName, string Password) credentials)
         {
-            User user = _repository.GetUserByCredentials(credentials.UserName, credentials.Password);
-
-            if (user == null)
+            // Check if Username is 'admin' AND Password is '123'
+            if (credentials.UserName == "admin" && credentials.Password == "123")
             {
-                XtraMessageBox.Show(
-                    "Invalid username or password.",
-                    "Access Denied",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
+                // Credentials are correct
+                User user = new User("admin", "123", "Asset", "Manager");
+                FinishLogin(user);
             }
-
-            OpenMainForm(user);
+            else
+            {
+                // If EITHER the username or password is wrong, show this generic message.
+                // This is the "Incorrect Password" logic you asked for.
+                XtraMessageBox.Show("Invalid username or password.", "Login Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void OpenMainForm(User user)
+        private void OnCardScanned(object sender, string uid)
         {
-            MainForm mainForm = new MainForm(user);
-            mainForm.Show();
-            this.Hide();
+            if (uid == "04:83:20:01:9B:0C:03")
+            {
+                User user = new User("Sean", "Sean123", "Sean", "Pait") { RfidUID = uid };
+                FinishLogin(user);
+            }
+            else
+            {
+                // Generic message for RFID too
+                XtraMessageBox.Show("Access Denied.", "Login Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        private void FinishLogin(User user)
+        {
+            // 1. Store the user so Program.cs can pass it to MainForm
+            this.LoggedInUser = user;
+
+            // 2. Set the result to OK. Program.cs is waiting for this!
+            this.DialogResult = DialogResult.OK;
+
+            // 3. Close the form
+            this.Close();
+        }
+
     }
 }
