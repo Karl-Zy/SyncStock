@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SyncStock.Models.Accounts
 {
     public class User   
@@ -30,15 +31,13 @@ namespace SyncStock.Models.Accounts
             get { return _password; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                // We validate that it's not null, but we don't tell the user 
+                // WHY a password might be rejected during the assignment.
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
                 {
-                    throw new ArgumentException("Password cannot be empty!");
+                    throw new ArgumentException("Invalid entry.");
                 }
 
-                if (value.Length < 6)
-                {
-                    throw new ArgumentException("Password must be at least 6 characters long.");
-                }
                 _password = value;
             }
         }

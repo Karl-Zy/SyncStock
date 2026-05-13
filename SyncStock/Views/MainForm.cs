@@ -9,14 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
+        private User _currentUser;
+
+        public MainForm(User user) // Must accept a 'User' object
         public MainForm()
         {
             InitializeComponent();
+            _currentUser = user;
+            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
 
             DashBoardUC dashboard = new DashBoardUC();
 
@@ -26,7 +32,6 @@ namespace SyncStock
             mainPanel.Controls.Add(dashboard);
 
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
 

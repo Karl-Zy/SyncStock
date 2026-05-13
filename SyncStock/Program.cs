@@ -19,7 +19,16 @@ namespace SyncStock
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            using (var login = new SyncStock.Views.LoginForm())
+            {
+                // 2. Show it. This line waits here until FinishLogin calls this.Close()
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    // 3. ONLY NOW we run the MainForm
+                    Application.Run(new MainForm(login.LoggedInUser));
+                }
+            }
+            // If DialogResult wasn't OK, the code reaches here and the app closes safely.
         }
 
         //Test
