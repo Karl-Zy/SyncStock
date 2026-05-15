@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditorReviewUC));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnLock = new DevExpress.XtraEditors.SimpleButton();
+            this.BtnReqUnlock = new DevExpress.XtraEditors.SimpleButton();
             this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.CmbDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.svgImageBox2 = new DevExpress.XtraEditors.SvgImageBox();
@@ -42,13 +42,13 @@
             this.svgImageBox5 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.TotalAssetsNum = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.svgImageBox4 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
+            this.PendingNum = new DevExpress.XtraEditors.LabelControl();
+            this.ScFilter = new DevExpress.XtraEditors.SearchControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
@@ -57,13 +57,13 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.CapitalizedNum = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.CmbFilterList = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.CmbFilterDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.ReviewItemGC = new DevExpress.XtraGrid.GridControl();
+            this.ReviewItemGV = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.asd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -94,8 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox2)).BeginInit();
@@ -105,16 +105,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScFilter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbFilterList.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbFilterDepartment.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
@@ -134,35 +134,35 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.simpleButton2);
-            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Controls.Add(this.BtnLock);
+            this.panelControl1.Controls.Add(this.BtnReqUnlock);
             this.panelControl1.Controls.Add(this.svgImageBox1);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.comboBoxEdit1);
+            this.panelControl1.Controls.Add(this.CmbDate);
             this.panelControl1.Location = new System.Drawing.Point(6, 6);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1320, 49);
             this.panelControl1.TabIndex = 0;
             // 
-            // simpleButton2
+            // BtnLock
             // 
-            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.SteelBlue;
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Location = new System.Drawing.Point(1238, 14);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 4;
-            this.simpleButton2.Text = "Lock period";
+            this.BtnLock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnLock.Appearance.BackColor = System.Drawing.Color.SteelBlue;
+            this.BtnLock.Appearance.Options.UseBackColor = true;
+            this.BtnLock.Location = new System.Drawing.Point(1238, 14);
+            this.BtnLock.Name = "BtnLock";
+            this.BtnLock.Size = new System.Drawing.Size(75, 23);
+            this.BtnLock.TabIndex = 4;
+            this.BtnLock.Text = "Lock period";
             // 
-            // simpleButton1
+            // BtnReqUnlock
             // 
-            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Location = new System.Drawing.Point(1152, 14);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(82, 23);
-            this.simpleButton1.TabIndex = 3;
-            this.simpleButton1.Text = "Request unlock";
+            this.BtnReqUnlock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnReqUnlock.Location = new System.Drawing.Point(1152, 14);
+            this.BtnReqUnlock.Name = "BtnReqUnlock";
+            this.BtnReqUnlock.Size = new System.Drawing.Size(82, 23);
+            this.BtnReqUnlock.TabIndex = 3;
+            this.BtnReqUnlock.Text = "Request unlock";
             // 
             // svgImageBox1
             // 
@@ -183,23 +183,23 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Period lock control";
             // 
-            // comboBoxEdit1
+            // CmbDate
             // 
-            this.comboBoxEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEdit1.EditValue = null;
-            this.comboBoxEdit1.Location = new System.Drawing.Point(1044, 14);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.CmbDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbDate.EditValue = null;
+            this.CmbDate.Location = new System.Drawing.Point(1044, 14);
+            this.CmbDate.Name = "CmbDate";
+            this.CmbDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.CmbDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.DisplayFormat.FormatString = "";
-            this.comboBoxEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.comboBoxEdit1.Properties.EditFormat.FormatString = "";
-            this.comboBoxEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.comboBoxEdit1.Properties.MaskSettings.Set("mask", "");
-            this.comboBoxEdit1.Size = new System.Drawing.Size(101, 28);
-            this.comboBoxEdit1.TabIndex = 1;
+            this.CmbDate.Properties.DisplayFormat.FormatString = "";
+            this.CmbDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.CmbDate.Properties.EditFormat.FormatString = "";
+            this.CmbDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.CmbDate.Properties.MaskSettings.Set("mask", "");
+            this.CmbDate.Size = new System.Drawing.Size(101, 28);
+            this.CmbDate.TabIndex = 1;
             // 
             // panelControl2
             // 
@@ -235,7 +235,7 @@
             this.panelControl4.Controls.Add(this.svgImageBox5);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Controls.Add(this.labelControl4);
-            this.panelControl4.Controls.Add(this.labelControl3);
+            this.panelControl4.Controls.Add(this.TotalAssetsNum);
             this.panelControl4.Location = new System.Drawing.Point(6, 108);
             this.panelControl4.MaximumSize = new System.Drawing.Size(0, 69);
             this.panelControl4.Name = "panelControl4";
@@ -264,19 +264,19 @@
             // 
             this.labelControl4.Location = new System.Drawing.Point(5, 42);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(52, 13);
+            this.labelControl4.Size = new System.Drawing.Size(59, 13);
             this.labelControl4.TabIndex = 1;
-            this.labelControl4.Text = "Capitalized";
+            this.labelControl4.Text = "Total Assets";
             // 
-            // labelControl3
+            // TotalAssetsNum
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(5, 0);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(40, 45);
-            this.labelControl3.TabIndex = 0;
-            this.labelControl3.Text = "20";
+            this.TotalAssetsNum.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalAssetsNum.Appearance.Options.UseFont = true;
+            this.TotalAssetsNum.Location = new System.Drawing.Point(5, 0);
+            this.TotalAssetsNum.Name = "TotalAssetsNum";
+            this.TotalAssetsNum.Size = new System.Drawing.Size(40, 45);
+            this.TotalAssetsNum.TabIndex = 0;
+            this.TotalAssetsNum.Text = "20";
             // 
             // panelControl5
             // 
@@ -290,7 +290,7 @@
             this.panelControl5.Controls.Add(this.svgImageBox4);
             this.panelControl5.Controls.Add(this.labelControl11);
             this.panelControl5.Controls.Add(this.labelControl10);
-            this.panelControl5.Controls.Add(this.labelControl9);
+            this.panelControl5.Controls.Add(this.PendingNum);
             this.panelControl5.Location = new System.Drawing.Point(889, 108);
             this.panelControl5.MaximumSize = new System.Drawing.Size(0, 69);
             this.panelControl5.Name = "panelControl5";
@@ -328,28 +328,28 @@
             this.labelControl10.TabIndex = 1;
             this.labelControl10.Text = "Pending Review";
             // 
-            // labelControl9
+            // PendingNum
             // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Appearance.Options.UseForeColor = true;
-            this.labelControl9.Location = new System.Drawing.Point(5, 0);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(20, 45);
-            this.labelControl9.TabIndex = 0;
-            this.labelControl9.Text = "4";
+            this.PendingNum.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PendingNum.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.PendingNum.Appearance.Options.UseFont = true;
+            this.PendingNum.Appearance.Options.UseForeColor = true;
+            this.PendingNum.Location = new System.Drawing.Point(5, 0);
+            this.PendingNum.Name = "PendingNum";
+            this.PendingNum.Size = new System.Drawing.Size(20, 45);
+            this.PendingNum.TabIndex = 0;
+            this.PendingNum.Text = "4";
             // 
-            // searchControl1
+            // ScFilter
             // 
-            this.searchControl1.Location = new System.Drawing.Point(6, 183);
-            this.searchControl1.Name = "searchControl1";
-            this.searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ScFilter.Location = new System.Drawing.Point(6, 183);
+            this.ScFilter.Name = "ScFilter";
+            this.ScFilter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl1.Size = new System.Drawing.Size(796, 28);
-            this.searchControl1.StyleController = this.layoutControl1;
-            this.searchControl1.TabIndex = 4;
+            this.ScFilter.Size = new System.Drawing.Size(796, 28);
+            this.ScFilter.StyleController = this.layoutControl1;
+            this.ScFilter.TabIndex = 4;
             // 
             // layoutControl1
             // 
@@ -360,11 +360,11 @@
             this.layoutControl1.Controls.Add(this.panelControl3);
             this.layoutControl1.Controls.Add(this.panelControl5);
             this.layoutControl1.Controls.Add(this.panelControl4);
-            this.layoutControl1.Controls.Add(this.searchControl1);
+            this.layoutControl1.Controls.Add(this.ScFilter);
             this.layoutControl1.Controls.Add(this.labelControl12);
-            this.layoutControl1.Controls.Add(this.comboBoxEdit2);
-            this.layoutControl1.Controls.Add(this.comboBoxEdit3);
-            this.layoutControl1.Controls.Add(this.gridControl1);
+            this.layoutControl1.Controls.Add(this.CmbFilterList);
+            this.layoutControl1.Controls.Add(this.CmbFilterDepartment);
+            this.layoutControl1.Controls.Add(this.ReviewItemGC);
             this.layoutControl1.CustomizationMode = DevExpress.XtraLayout.CustomizationModes.Quick;
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -391,7 +391,7 @@
             this.panelControl3.Controls.Add(this.labelControl8);
             this.panelControl3.Controls.Add(this.labelControl15);
             this.panelControl3.Controls.Add(this.labelControl7);
-            this.panelControl3.Controls.Add(this.labelControl16);
+            this.panelControl3.Controls.Add(this.CapitalizedNum);
             this.panelControl3.Controls.Add(this.labelControl6);
             this.panelControl3.Location = new System.Drawing.Point(445, 108);
             this.panelControl3.MaximumSize = new System.Drawing.Size(0, 69);
@@ -443,17 +443,17 @@
             this.labelControl7.Size = new System.Drawing.Size(0, 13);
             this.labelControl7.TabIndex = 1;
             // 
-            // labelControl16
+            // CapitalizedNum
             // 
-            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Green;
-            this.labelControl16.Appearance.Options.UseFont = true;
-            this.labelControl16.Appearance.Options.UseForeColor = true;
-            this.labelControl16.Location = new System.Drawing.Point(5, 0);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(20, 45);
-            this.labelControl16.TabIndex = 2;
-            this.labelControl16.Text = "6";
+            this.CapitalizedNum.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CapitalizedNum.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.CapitalizedNum.Appearance.Options.UseFont = true;
+            this.CapitalizedNum.Appearance.Options.UseForeColor = true;
+            this.CapitalizedNum.Location = new System.Drawing.Point(5, 0);
+            this.CapitalizedNum.Name = "CapitalizedNum";
+            this.CapitalizedNum.Size = new System.Drawing.Size(20, 45);
+            this.CapitalizedNum.TabIndex = 2;
+            this.CapitalizedNum.Text = "6";
             // 
             // labelControl6
             // 
@@ -475,39 +475,39 @@
             this.labelControl12.TabIndex = 5;
             this.labelControl12.Text = "Filter by:";
             // 
-            // comboBoxEdit2
+            // CmbFilterList
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(859, 183);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.CmbFilterList.Location = new System.Drawing.Point(859, 183);
+            this.CmbFilterList.Name = "CmbFilterList";
+            this.CmbFilterList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(208, 28);
-            this.comboBoxEdit2.StyleController = this.layoutControl1;
-            this.comboBoxEdit2.TabIndex = 7;
+            this.CmbFilterList.Size = new System.Drawing.Size(208, 28);
+            this.CmbFilterList.StyleController = this.layoutControl1;
+            this.CmbFilterList.TabIndex = 7;
             // 
-            // comboBoxEdit3
+            // CmbFilterDepartment
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(1143, 183);
-            this.comboBoxEdit3.Name = "comboBoxEdit3";
-            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.CmbFilterDepartment.Location = new System.Drawing.Point(1143, 183);
+            this.CmbFilterDepartment.Name = "CmbFilterDepartment";
+            this.CmbFilterDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(183, 28);
-            this.comboBoxEdit3.StyleController = this.layoutControl1;
-            this.comboBoxEdit3.TabIndex = 7;
+            this.CmbFilterDepartment.Size = new System.Drawing.Size(183, 28);
+            this.CmbFilterDepartment.StyleController = this.layoutControl1;
+            this.CmbFilterDepartment.TabIndex = 7;
             // 
-            // gridControl1
+            // ReviewItemGC
             // 
-            this.gridControl1.Location = new System.Drawing.Point(6, 217);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1320, 448);
-            this.gridControl1.TabIndex = 8;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.ReviewItemGC.Location = new System.Drawing.Point(6, 217);
+            this.ReviewItemGC.MainView = this.ReviewItemGV;
+            this.ReviewItemGC.Name = "ReviewItemGC";
+            this.ReviewItemGC.Size = new System.Drawing.Size(1320, 448);
+            this.ReviewItemGC.TabIndex = 8;
+            this.ReviewItemGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ReviewItemGV});
             // 
-            // gridView1
+            // ReviewItemGV
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ReviewItemGV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.asd,
             this.gridColumn2,
             this.gridColumn3,
@@ -518,13 +518,13 @@
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn1});
-            this.gridView1.DetailHeight = 303;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsEditForm.PopupEditFormWidth = 686;
-            this.gridView1.OptionsView.ShowFooter = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
+            this.ReviewItemGV.DetailHeight = 303;
+            this.ReviewItemGV.GridControl = this.ReviewItemGC;
+            this.ReviewItemGV.Name = "ReviewItemGV";
+            this.ReviewItemGV.OptionsEditForm.PopupEditFormWidth = 686;
+            this.ReviewItemGV.OptionsView.ShowFooter = true;
+            this.ReviewItemGV.OptionsView.ShowGroupPanel = false;
+            this.ReviewItemGV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             // 
             // asd
             // 
@@ -548,38 +548,39 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Category";
+            this.gridColumn3.Caption = "Invoice Number";
             this.gridColumn3.MinWidth = 17;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 104;
+            this.gridColumn3.Width = 110;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "Quantity";
+            this.gridColumn4.Caption = "Unit Price";
             this.gridColumn4.MinWidth = 17;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 56;
+            this.gridColumn4.Width = 67;
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Buying Price";
+            this.gridColumn5.Caption = "Quantity";
             this.gridColumn5.MinWidth = 17;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.Width = 77;
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Amount";
+            this.gridColumn6.Caption = "Total Amount";
             this.gridColumn6.MinWidth = 17;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 84;
+            this.gridColumn6.Width = 87;
             // 
             // gridColumn7
             // 
@@ -597,25 +598,24 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
-            this.gridColumn8.Width = 72;
             // 
             // gridColumn9
             // 
-            this.gridColumn9.Caption = "Status";
+            this.gridColumn9.Caption = "Department";
             this.gridColumn9.MinWidth = 17;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 257;
+            this.gridColumn9.Width = 268;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Department";
+            this.gridColumn1.Caption = "Status";
             this.gridColumn1.MinWidth = 17;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 9;
-            this.gridColumn1.Width = 161;
+            this.gridColumn1.Width = 180;
             // 
             // Root
             // 
@@ -711,7 +711,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.searchControl1;
+            this.layoutControlItem6.Control = this.ScFilter;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(802, 34);
@@ -732,7 +732,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.comboBoxEdit2;
+            this.layoutControlItem3.Control = this.CmbFilterList;
             this.layoutControlItem3.Location = new System.Drawing.Point(853, 0);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(214, 29);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(86, 29);
@@ -756,7 +756,7 @@
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.comboBoxEdit3;
+            this.layoutControlItem2.Control = this.CmbFilterDepartment;
             this.layoutControlItem2.Location = new System.Drawing.Point(1137, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(189, 29);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(86, 29);
@@ -768,7 +768,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gridControl1;
+            this.layoutControlItem1.Control = this.ReviewItemGC;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 211);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(1326, 454);
@@ -806,8 +806,8 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -820,17 +820,17 @@
             this.panelControl5.ResumeLayout(false);
             this.panelControl5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScFilter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbFilterList.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbFilterDepartment.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
@@ -855,26 +855,26 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.DateEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.DateEdit CmbDate;
+        private DevExpress.XtraEditors.SimpleButton BtnLock;
+        private DevExpress.XtraEditors.SimpleButton BtnReqUnlock;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox2;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl TotalAssetsNum;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.SearchControl searchControl1;
+        private DevExpress.XtraEditors.LabelControl PendingNum;
+        private DevExpress.XtraEditors.SearchControl ScFilter;
         private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.ComboBoxEdit CmbFilterList;
+        private DevExpress.XtraEditors.ComboBoxEdit CmbFilterDepartment;
+        private DevExpress.XtraGrid.GridControl ReviewItemGC;
+        private DevExpress.XtraGrid.Views.Grid.GridView ReviewItemGV;
         private DevExpress.XtraGrid.Columns.GridColumn asd;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
@@ -907,7 +907,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.LabelControl CapitalizedNum;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
