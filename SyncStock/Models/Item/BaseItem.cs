@@ -13,19 +13,7 @@ namespace SyncStock.Models.Item
         public int Quantity { get; set; }
         private decimal _price { get; set; }
 
-        public decimal Price
-        {
-            get { return _price; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Price cannot be negative.");
-                }
-                _price = value;
-            }
-        }
-        public abstract decimal CalculateTotalPrice();
+        public abstract string GetItemType();
 
     }
 }

@@ -9,17 +9,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-        public MainForm()
+        private readonly Models.Accounts.User _currentUser;
+
+        // Combine the parameter into the actual constructor block
+        public MainForm(User user)
         {
             InitializeComponent();
+            _currentUser = user;
+            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
+
+            _currentUser = user; // Now 'user' is recognized
+            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
+
+            // Loading initial dashboard
+            DashBoardUC dashboard = new DashBoardUC();
+            dashboard.Dock = DockStyle.Fill;
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(dashboard);
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // important
+            this.Bounds = Screen.PrimaryScreen.WorkingArea;
 
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
 
@@ -44,7 +65,7 @@ namespace SyncStock
 
         private void reveivingCustodian_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReceivingUC());
+            LoadControl(new ReceivingCustodianUC());
         }
 
         private void auditorReview_Click(object sender, EventArgs e)
