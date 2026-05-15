@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+
 using SyncStock.Database;
 using SyncStock.Models.Accounts;
 using System;

@@ -64,14 +64,6 @@ namespace SyncStock.Database
             }
         }
 
-        //public bool DeleteItem(int itemId)
-        //{
-        //    using (var conn = CreateConnection())
-        //    {
-        //        return conn.Execute("DELETE FROM Items WHERE ItemID = @Id", new { ItemId = itemId }) > 0;
-        //    }
-        //}
-
         public IEnumerable<Departments> GetAllDepartments()
         {
             using (var conn = CreateConnection())
@@ -150,21 +142,8 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                conn.Execute(@"
-            INSERT INTO PurchaseOrderItems
-            (
-                PurchaseOrderID,
-                ItemID,
-                Quantity,
-                UnitPrice
-            )
-            VALUES
-            (
-                @PurchaseOrderID,
-                @ItemID,
-                @Quantity,
-                @UnitPrice
-            )", item);
+                conn.Execute(@"INSERT INTO PurchaseOrderItems(PurchaseOrderID, ItemID, Quantity, UnitPrice)
+                        VALUES (@PurchaseOrderID, @ItemID, @Quantity, @UnitPrice)", item);
             }
         }
         public IEnumerable<PurchaseOrderItem> GetAllPurchaseOrderItems()
@@ -175,6 +154,72 @@ namespace SyncStock.Database
             SELECT poi.*, i.ItemName
             FROM PurchaseOrderItems poi
             INNER JOIN Items i ON poi.ItemID = i.ItemID");
+            }
+        }
+
+        public int GetPendingOrdersCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>("SELECT COUNT(*) FROM PurchaseOrders WHERE Status = 'Pending'");
+            }
+        }
+
+        public List<PurchaseOrders> GetASAPOrders()
+        {
+            var orders = new List<PurchaseOrders>();
+
+            string query = @"SELECT po.*, d.DepartmentName
+                            FROM PurchaseOrders po
+                            JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                            WHERE po.Priority = 'ASAP Department'
+                            AND po.Priority = 'ASAP'
+                            ORDER BY po.OrderDate DESC";
+
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(query).ToList();
+            }
+        }
+
+        public void ApprovePurchaseOrder(int purchaseOrderId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute("UPDATE PurchaseOrders SET Status = 'Approved' WHERE PurchaseOrderID = @PurchaseOrderID",
+                    new { PurchaseOrderID = purchaseOrderId });
+            }
+        }
+
+        public IEnumerable<PurchaseOrders> GetPendingPurchaseOrders()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(@"SELECT po.*, d.DepartmentName 
+                    FROM PurchaseOrders po 
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    WHERE po.Status = 'Pending'");
+            }
+        }
+
+        public IEnumerable<PendingOrderSummary> GetPendingOrderSummary()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PendingOrderSummary>(@"
+                    SELECT po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    COUNT (poi.PurchaseOrderItemID) AS TotalItems,
+                    SUM (poi.TotalPrice) AS TotalAmount
+                    FROM PurchaseOrders po
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                    WHERE po.Status = 'Pending'
+                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
+
             }
         }
     }
