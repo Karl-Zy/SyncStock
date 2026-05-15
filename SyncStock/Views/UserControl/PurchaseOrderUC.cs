@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors.Controls;
 
 namespace SyncStock.Views.UserControl
 {
@@ -22,40 +23,36 @@ namespace SyncStock.Views.UserControl
         {
             InitializeComponent();
             LoadDepartments();
-            AutoSetDate();
-            AutoSetPONumber();
-            AutoSetInvoiceNumber();
+
             LoadAllItems();
 
-            ItemsInOrderGV.OptionsBehavior.Editable = false;
-            InvoiceNumTE.Properties.ReadOnly = true;
-            QuantitySE.Properties.MinValue = 0;
-            poNumberTE.Properties.ReadOnly = true;
+            
+            ReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
         }
 
-        private void AutoSetDate()
-        {
-            purchaseDate.EditValue = DateTime.Now;
-            purchaseDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+        //private void AutoSetDate()
+        //{
+        //    purchaseDate.EditValue = DateTime.Now;
+        //    purchaseDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
 
-            AddItemDateCB.EditValue = DateTime.Now;
-            AddItemDateCB.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-        }
+        //    AddItemDateCB.EditValue = DateTime.Now;
+        //    AddItemDateCB.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
+        //}
 
-        private void AutoSetPONumber()
-        {
-            string datePart = DateTime.Now.ToString("yyyyMMdd");
-            int count = _repo.GetPurchaseOrderCount() + 1;  
-            string sequence = count.ToString("D3");
+        //private void AutoSetPONumber()
+        //{
+        //    string datePart = DateTime.Now.ToString("yyyyMMdd");
+        //    int count = _repo.GetPurchaseOrderCount() + 1;  
+        //    string sequence = count.ToString("D3");
 
-            poNumberTE.Text = $"PO-{datePart}-{sequence}";
-        }
+        //    poNumberTE.Text = $"PO-{datePart}-{sequence}";
+        //}
 
-        private void AutoSetInvoiceNumber()
-        {
-            var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHss}";
-            InvoiceNumTE.Text = invoiceNumber;
-        }
+        //private void AutoSetInvoiceNumber()
+        //{
+        //    var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHss}";
+        //    InvoiceNumTE.Text = invoiceNumber;
+        //}
 
         private void LoadDepartments()
         {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using SyncStock.Models;
+using SyncStock.Models.Accounts;
 
 
 
@@ -24,6 +25,25 @@ namespace SyncStock.Database
                 return conn.Query<Item>("SELECT * FROM Items");
             }
 
+        }
+        public User GetUserByCredentials(string userName, string password)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.QueryFirstOrDefault<User>(
+                    "SELECT * FROM Users WHERE UserName = @UserName AND Password = @Password",
+                    new { UserName = userName, Password = password });
+            }
+        }
+
+        public User GetUserByRfid(string rfidUID)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.QueryFirstOrDefault<User>(
+                    "SELECT * FROM Users WHERE RfidUID = @RfidUID",
+                    new { RfidUID = rfidUID });
+            }
         }
 
         public Item GetItemById(int itemId)
