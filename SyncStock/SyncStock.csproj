@@ -113,11 +113,11 @@
     <Compile Include="Views\UserControl\ReceivingUC.Designer.cs">
       <DependentUpon>ReceivingUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.cs">
+    <Compile Include="Views\UserControl\ReportUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.Designer.cs">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <Compile Include="Views\UserControl\ReportUC.Designer.cs">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -147,8 +147,8 @@
     <EmbeddedResource Include="Views\UserControl\ReceivingUC.resx">
       <DependentUpon>ReceivingUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserControl\ReportsUC.resx">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UserControl\ReportUC.resx">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

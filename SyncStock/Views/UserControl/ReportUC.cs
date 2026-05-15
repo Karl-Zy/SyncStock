@@ -11,11 +11,21 @@ using System.Windows.Forms;
 
 namespace SyncStock.Views.UserControl
 {
-    public partial class ReportsUC : DevExpress.XtraEditors.XtraUserControl
+    public partial class ReportUC : DevExpress.XtraEditors.XtraUserControl
     {
-        public ReportsUC()
+        public ReportUC()
         {
             InitializeComponent();
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
