@@ -75,7 +75,7 @@ namespace SyncStock
 
         private void reports_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReportsUC());
+            LoadControl(new ReportUC());
         }
     }
 }

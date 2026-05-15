@@ -125,12 +125,7 @@
             this.auditorReviewUC3.Size = new System.Drawing.Size(1570, 862);
             this.auditorReviewUC3.TabIndex = 8;
             // 
-            // reportsUC1
-            // 
-            this.reportsUC1.Location = new System.Drawing.Point(8, 8);
-            this.reportsUC1.Name = "reportsUC1";
-            this.reportsUC1.Size = new System.Drawing.Size(1145, 332);
-            this.reportsUC1.TabIndex = 7;
+           
             // 
             // purchaseOrderUC1
             // 
