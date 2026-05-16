@@ -82,6 +82,8 @@
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
+    <Compile Include="Models\Models[Report]\DashBoardKPIs.cs" />
+    <Compile Include="Models\Models[Report]\InventorySummaryReport.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
