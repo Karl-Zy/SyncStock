@@ -37,7 +37,7 @@
             this.reports = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.auditorReviewUC3 = new SyncStock.Views.UserControl.AuditorReviewUC();
-            this.reportsUC1 = new SyncStock.Views.UserControl.ReportsUC();
+            
             this.purchaseOrderUC1 = new SyncStock.Views.UserControl.PurchaseOrderUC();
             this.dashBoardUC1 = new SyncStock.Views.UserControl.DashBoardUC();
             this.auditorReviewUC2 = new SyncStock.Views.UserControl.AuditorReviewUC();
@@ -125,12 +125,7 @@
             this.auditorReviewUC3.Size = new System.Drawing.Size(1570, 862);
             this.auditorReviewUC3.TabIndex = 8;
             // 
-            // reportsUC1
-            // 
-            this.reportsUC1.Location = new System.Drawing.Point(8, 8);
-            this.reportsUC1.Name = "reportsUC1";
-            this.reportsUC1.Size = new System.Drawing.Size(1145, 332);
-            this.reportsUC1.TabIndex = 7;
+           
             // 
             // purchaseOrderUC1
             // 
@@ -200,7 +195,7 @@
         private DevExpress.XtraEditors.PanelControl mainPanel;
         private Views.UserControl.AuditorReviewUC auditorReviewUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC3;
-        private Views.UserControl.ReportsUC reportsUC1;
+        private Views.UserControl.ReportUC reportsUC1;
         private Views.UserControl.PurchaseOrderUC purchaseOrderUC1;
         private Views.UserControl.DashBoardUC dashBoardUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC2;

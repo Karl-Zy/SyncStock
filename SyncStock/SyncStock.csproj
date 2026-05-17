@@ -79,6 +79,7 @@
     <Compile Include="Models\Accounts\Purchaser.cs" />
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
     <Compile Include="Models\Accounts\User.cs" />
+    <Compile Include="Models\ApprovedPurchaseOrder.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
@@ -129,11 +130,11 @@
     <Compile Include="Views\UserControl\ReceivingCustodianUC.Designer.cs">
       <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.cs">
+    <Compile Include="Views\UserControl\ReportUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.Designer.cs">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <Compile Include="Views\UserControl\ReportUC.Designer.cs">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\RfidLoginUC.cs">
       <SubType>UserControl</SubType>
@@ -170,8 +171,8 @@
     <EmbeddedResource Include="Views\UserControl\ReceivingCustodianUC.resx">
       <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserControl\ReportsUC.resx">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UserControl\ReportUC.resx">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

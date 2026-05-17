@@ -173,7 +173,7 @@ namespace SyncStock.Database
                             FROM PurchaseOrders po
                             JOIN Departments d ON po.DepartmentID = d.DepartmentID
                             WHERE po.Priority = 'ASAP Department'
-                            AND po.Priority = 'ASAP'
+                            OR po.Priority = 'ASAP'
                             ORDER BY po.OrderDate DESC";
 
             using (var conn = CreateConnection())
@@ -223,6 +223,28 @@ namespace SyncStock.Database
             }
         }
 
-        
-    }
+        public IEnumerable<ApprovedPurchaseOrder> GetAllApprovedMonthlyCost()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ApprovedPurchaseOrder>(@"
+            SELECT 
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status,
+                COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                SUM(poi.TotalPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = 'Approved'
+            AND MONTH(po.OrderDate) = MONTH(GETDATE())
+            AND YEAR(po.OrderDate) = YEAR(GETDATE())
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
+            }
+
+        }
+        }
 }
