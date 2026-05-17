@@ -34,8 +34,11 @@
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
             this.ItemsInOrderGC = new DevExpress.XtraGrid.GridControl();
             this.ItemsInOrderGV = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.ioTotalAmountLBL = new DevExpress.XtraEditors.LabelControl();
@@ -96,20 +99,22 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl6 = new DevExpress.XtraLayout.LayoutControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gpoItemsInOrderGC = new DevExpress.XtraGrid.GridControl();
+            this.gpoItemsInOrderGV = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.panelControl7 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.gpoItemsInOrderTotalAmount = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.gpoTotalAmountTotalItems = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
@@ -118,14 +123,14 @@
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl7 = new DevExpress.XtraLayout.LayoutControl();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.gpoTotalAmountLbl = new DevExpress.XtraEditors.LabelControl();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.gpoAddItemToOrderUnitPriceTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.gpoAddItemToOrderInvoiceNumberTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.gpoAddItemToOrderItemNameTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.gpoAddToOrderBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.gpoAddItemToOrderQuantitySpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.gpoDateAddItemToOrder = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -139,11 +144,11 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl8 = new DevExpress.XtraLayout.LayoutControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
+            this.gpoPictureAttachmentBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.gpoRemarksTxtEdit = new DevExpress.XtraEditors.TextEdit();
+            this.gpoPurchaseOrderDate = new DevExpress.XtraEditors.DateEdit();
+            this.gpoReqDepartmentCB = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.gpoPurchaseOrderNumberTxtEdit = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -161,14 +166,18 @@
             this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem38 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraScrollableControl3 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.layoutControl9 = new DevExpress.XtraLayout.LayoutControl();
             this.panelControl11 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl10 = new DevExpress.XtraLayout.LayoutControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem39 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.panelControl12 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
@@ -225,15 +234,6 @@
             this.layoutControlItem55 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem57 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
@@ -244,6 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemsInOrderGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
@@ -300,7 +302,6 @@
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
-            this.xtraTabPage3.SuspendLayout();
             this.xtraScrollableControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).BeginInit();
             this.layoutControl5.SuspendLayout();
@@ -308,10 +309,12 @@
             this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl6)).BeginInit();
             this.layoutControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoItemsInOrderGC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoItemsInOrderGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).BeginInit();
             this.panelControl7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl8)).BeginInit();
@@ -320,12 +323,12 @@
             this.panelControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).BeginInit();
             this.layoutControl7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderUnitPriceTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderItemNameTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderQuantitySpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoDateAddItemToOrder.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoDateAddItemToOrder.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
@@ -341,11 +344,11 @@
             this.panelControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl8)).BeginInit();
             this.layoutControl8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoRemarksTxtEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoReqDepartmentCB.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderNumberTxtEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
@@ -363,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).BeginInit();
+            this.xtraTabPage3.SuspendLayout();
             this.xtraScrollableControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl9)).BeginInit();
             this.layoutControl9.SuspendLayout();
@@ -374,6 +378,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl12)).BeginInit();
             this.panelControl12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl13)).BeginInit();
@@ -425,12 +431,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -486,6 +486,19 @@
             this.ItemsInOrderGV.Name = "ItemsInOrderGV";
             this.ItemsInOrderGV.OptionsView.ShowGroupPanel = false;
             // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton6.Appearance.Options.UseBackColor = true;
+            this.simpleButton6.Appearance.Options.UseFont = true;
+            this.simpleButton6.Location = new System.Drawing.Point(1147, 402);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(280, 28);
+            this.simpleButton6.StyleController = this.layoutControl4;
+            this.simpleButton6.TabIndex = 5;
+            this.simpleButton6.Text = "Confirm Order";
+            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -506,6 +519,23 @@
             this.layoutControlItem19.Size = new System.Drawing.Size(1417, 386);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
+            // 
+            // layoutControlItem58
+            // 
+            this.layoutControlItem58.Control = this.simpleButton6;
+            this.layoutControlItem58.Location = new System.Drawing.Point(1131, 386);
+            this.layoutControlItem58.Name = "layoutControlItem58";
+            this.layoutControlItem58.Size = new System.Drawing.Size(286, 34);
+            this.layoutControlItem58.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem58.TextVisible = false;
+            // 
+            // emptySpaceItem13
+            // 
+            this.emptySpaceItem13.AllowHotTrack = false;
+            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 386);
+            this.emptySpaceItem13.Name = "emptySpaceItem13";
+            this.emptySpaceItem13.Size = new System.Drawing.Size(1131, 34);
+            this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
             // panelControl4
             // 
@@ -1244,17 +1274,6 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(1496, 1033);
             this.xtraTabPage2.Text = "Group Purchase Order";
             // 
-            // xtraTabPage3
-            // 
-            this.xtraTabPage3.Appearance.Header.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xtraTabPage3.Appearance.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.xtraTabPage3.Appearance.Header.Options.UseFont = true;
-            this.xtraTabPage3.Appearance.Header.Options.UseForeColor = true;
-            this.xtraTabPage3.Controls.Add(this.xtraScrollableControl3);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1496, 1033);
-            this.xtraTabPage3.Text = "Online Purchase Order";
-            // 
             // xtraScrollableControl2
             // 
             this.xtraScrollableControl2.Controls.Add(this.layoutControl5);
@@ -1289,7 +1308,7 @@
             // 
             // layoutControl6
             // 
-            this.layoutControl6.Controls.Add(this.gridControl1);
+            this.layoutControl6.Controls.Add(this.gpoItemsInOrderGC);
             this.layoutControl6.Controls.Add(this.simpleButton7);
             this.layoutControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl6.Location = new System.Drawing.Point(2, 2);
@@ -1299,23 +1318,36 @@
             this.layoutControl6.TabIndex = 0;
             this.layoutControl6.Text = "layoutControl4";
             // 
-            // gridControl1
+            // gpoItemsInOrderGC
             // 
-            this.gridControl1.Location = new System.Drawing.Point(16, 16);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1411, 380);
-            this.gridControl1.TabIndex = 4;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gpoItemsInOrderGC.Location = new System.Drawing.Point(16, 16);
+            this.gpoItemsInOrderGC.MainView = this.gpoItemsInOrderGV;
+            this.gpoItemsInOrderGC.Name = "gpoItemsInOrderGC";
+            this.gpoItemsInOrderGC.Size = new System.Drawing.Size(1411, 380);
+            this.gpoItemsInOrderGC.TabIndex = 4;
+            this.gpoItemsInOrderGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gpoItemsInOrderGV});
             // 
-            // gridView1
+            // gpoItemsInOrderGV
             // 
-            this.gridView1.Appearance.ColumnFilterButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.ColumnFilterButton.Options.UseFont = true;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gpoItemsInOrderGV.Appearance.ColumnFilterButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoItemsInOrderGV.Appearance.ColumnFilterButton.Options.UseFont = true;
+            this.gpoItemsInOrderGV.GridControl = this.gpoItemsInOrderGC;
+            this.gpoItemsInOrderGV.Name = "gpoItemsInOrderGV";
+            this.gpoItemsInOrderGV.OptionsView.ShowGroupPanel = false;
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton7.Appearance.Options.UseBackColor = true;
+            this.simpleButton7.Appearance.Options.UseFont = true;
+            this.simpleButton7.Location = new System.Drawing.Point(1065, 402);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(362, 28);
+            this.simpleButton7.StyleController = this.layoutControl6;
+            this.simpleButton7.TabIndex = 5;
+            this.simpleButton7.Text = "Confirm Order";
             // 
             // layoutControlGroup4
             // 
@@ -1331,12 +1363,29 @@
             // 
             // layoutControlItem20
             // 
-            this.layoutControlItem20.Control = this.gridControl1;
+            this.layoutControlItem20.Control = this.gpoItemsInOrderGC;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem19";
             this.layoutControlItem20.Size = new System.Drawing.Size(1417, 386);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
+            // 
+            // layoutControlItem59
+            // 
+            this.layoutControlItem59.Control = this.simpleButton7;
+            this.layoutControlItem59.Location = new System.Drawing.Point(1049, 386);
+            this.layoutControlItem59.Name = "layoutControlItem59";
+            this.layoutControlItem59.Size = new System.Drawing.Size(368, 34);
+            this.layoutControlItem59.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem59.TextVisible = false;
+            // 
+            // emptySpaceItem14
+            // 
+            this.emptySpaceItem14.AllowHotTrack = false;
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 386);
+            this.emptySpaceItem14.Name = "emptySpaceItem14";
+            this.emptySpaceItem14.Size = new System.Drawing.Size(1049, 34);
+            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
             // 
             // panelControl7
             // 
@@ -1344,9 +1393,9 @@
             this.panelControl7.Appearance.Options.UseBackColor = true;
             this.panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl7.Controls.Add(this.labelControl3);
-            this.panelControl7.Controls.Add(this.labelControl7);
+            this.panelControl7.Controls.Add(this.gpoItemsInOrderTotalAmount);
             this.panelControl7.Controls.Add(this.labelControl9);
-            this.panelControl7.Controls.Add(this.labelControl12);
+            this.panelControl7.Controls.Add(this.gpoTotalAmountTotalItems);
             this.panelControl7.Controls.Add(this.labelControl13);
             this.panelControl7.Controls.Add(this.labelControl14);
             this.panelControl7.Controls.Add(this.labelControl15);
@@ -1366,19 +1415,19 @@
             this.labelControl3.TabIndex = 6;
             this.labelControl3.Text = "Review items before submitting purchase order";
             // 
-            // labelControl7
+            // gpoItemsInOrderTotalAmount
             // 
-            this.labelControl7.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
-            this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Appearance.Options.UseForeColor = true;
-            this.labelControl7.Location = new System.Drawing.Point(1233, 38);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(9, 20);
-            this.labelControl7.TabIndex = 5;
-            this.labelControl7.Text = "0";
+            this.gpoItemsInOrderTotalAmount.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+            this.gpoItemsInOrderTotalAmount.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.gpoItemsInOrderTotalAmount.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoItemsInOrderTotalAmount.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
+            this.gpoItemsInOrderTotalAmount.Appearance.Options.UseFont = true;
+            this.gpoItemsInOrderTotalAmount.Appearance.Options.UseForeColor = true;
+            this.gpoItemsInOrderTotalAmount.Location = new System.Drawing.Point(1233, 38);
+            this.gpoItemsInOrderTotalAmount.Name = "gpoItemsInOrderTotalAmount";
+            this.gpoItemsInOrderTotalAmount.Size = new System.Drawing.Size(9, 20);
+            this.gpoItemsInOrderTotalAmount.TabIndex = 5;
+            this.gpoItemsInOrderTotalAmount.Text = "0";
             // 
             // labelControl9
             // 
@@ -1393,16 +1442,16 @@
             this.labelControl9.TabIndex = 4;
             this.labelControl9.Text = "₱";
             // 
-            // labelControl12
+            // gpoTotalAmountTotalItems
             // 
-            this.labelControl12.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(1209, 20);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(9, 20);
-            this.labelControl12.TabIndex = 3;
-            this.labelControl12.Text = "0";
+            this.gpoTotalAmountTotalItems.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.gpoTotalAmountTotalItems.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoTotalAmountTotalItems.Appearance.Options.UseFont = true;
+            this.gpoTotalAmountTotalItems.Location = new System.Drawing.Point(1209, 20);
+            this.gpoTotalAmountTotalItems.Name = "gpoTotalAmountTotalItems";
+            this.gpoTotalAmountTotalItems.Size = new System.Drawing.Size(9, 20);
+            this.gpoTotalAmountTotalItems.TabIndex = 3;
+            this.gpoTotalAmountTotalItems.Text = "0";
             // 
             // labelControl13
             // 
@@ -1485,14 +1534,14 @@
             // 
             // layoutControl7
             // 
-            this.layoutControl7.Controls.Add(this.labelControl18);
+            this.layoutControl7.Controls.Add(this.gpoTotalAmountLbl);
             this.layoutControl7.Controls.Add(this.labelControl19);
-            this.layoutControl7.Controls.Add(this.textEdit1);
-            this.layoutControl7.Controls.Add(this.textEdit2);
-            this.layoutControl7.Controls.Add(this.textEdit3);
-            this.layoutControl7.Controls.Add(this.simpleButton2);
-            this.layoutControl7.Controls.Add(this.spinEdit1);
-            this.layoutControl7.Controls.Add(this.dateEdit1);
+            this.layoutControl7.Controls.Add(this.gpoAddItemToOrderUnitPriceTextEdit);
+            this.layoutControl7.Controls.Add(this.gpoAddItemToOrderInvoiceNumberTextEdit);
+            this.layoutControl7.Controls.Add(this.gpoAddItemToOrderItemNameTextEdit);
+            this.layoutControl7.Controls.Add(this.gpoAddToOrderBtn);
+            this.layoutControl7.Controls.Add(this.gpoAddItemToOrderQuantitySpinEdit);
+            this.layoutControl7.Controls.Add(this.gpoDateAddItemToOrder);
             this.layoutControl7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl7.Location = new System.Drawing.Point(2, 2);
             this.layoutControl7.Name = "layoutControl7";
@@ -1502,22 +1551,22 @@
             this.layoutControl7.TabIndex = 0;
             this.layoutControl7.Text = "layoutControl3";
             // 
-            // labelControl18
+            // gpoTotalAmountLbl
             // 
-            this.labelControl18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl18.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
-            this.labelControl18.Appearance.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl18.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
-            this.labelControl18.Appearance.Options.UseBackColor = true;
-            this.labelControl18.Appearance.Options.UseFont = true;
-            this.labelControl18.Appearance.Options.UseForeColor = true;
-            this.labelControl18.Location = new System.Drawing.Point(1092, 107);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Padding = new System.Windows.Forms.Padding(4, 6, 300, 6);
-            this.labelControl18.Size = new System.Drawing.Size(335, 49);
-            this.labelControl18.StyleController = this.layoutControl7;
-            this.labelControl18.TabIndex = 11;
-            this.labelControl18.Text = "₱0";
+            this.gpoTotalAmountLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gpoTotalAmountLbl.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
+            this.gpoTotalAmountLbl.Appearance.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoTotalAmountLbl.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
+            this.gpoTotalAmountLbl.Appearance.Options.UseBackColor = true;
+            this.gpoTotalAmountLbl.Appearance.Options.UseFont = true;
+            this.gpoTotalAmountLbl.Appearance.Options.UseForeColor = true;
+            this.gpoTotalAmountLbl.Location = new System.Drawing.Point(1092, 107);
+            this.gpoTotalAmountLbl.Name = "gpoTotalAmountLbl";
+            this.gpoTotalAmountLbl.Padding = new System.Windows.Forms.Padding(4, 6, 300, 6);
+            this.gpoTotalAmountLbl.Size = new System.Drawing.Size(335, 49);
+            this.gpoTotalAmountLbl.StyleController = this.layoutControl7;
+            this.gpoTotalAmountLbl.TabIndex = 11;
+            this.gpoTotalAmountLbl.Text = "₱0";
             // 
             // labelControl19
             // 
@@ -1534,90 +1583,92 @@
             this.labelControl19.TabIndex = 10;
             this.labelControl19.Text = "Total Amount: ";
             // 
-            // textEdit1
+            // gpoAddItemToOrderUnitPriceTextEdit
             // 
-            this.textEdit1.Location = new System.Drawing.Point(16, 126);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.textEdit1.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.textEdit1.Properties.MaskSettings.Set("mask", "n2");
-            this.textEdit1.Size = new System.Drawing.Size(696, 28);
-            this.textEdit1.StyleController = this.layoutControl7;
-            this.textEdit1.TabIndex = 5;
+            this.gpoAddItemToOrderUnitPriceTextEdit.Location = new System.Drawing.Point(16, 126);
+            this.gpoAddItemToOrderUnitPriceTextEdit.Name = "gpoAddItemToOrderUnitPriceTextEdit";
+            this.gpoAddItemToOrderUnitPriceTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gpoAddItemToOrderUnitPriceTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoAddItemToOrderUnitPriceTextEdit.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.gpoAddItemToOrderUnitPriceTextEdit.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.gpoAddItemToOrderUnitPriceTextEdit.Properties.MaskSettings.Set("mask", "n2");
+            this.gpoAddItemToOrderUnitPriceTextEdit.Size = new System.Drawing.Size(696, 28);
+            this.gpoAddItemToOrderUnitPriceTextEdit.StyleController = this.layoutControl7;
+            this.gpoAddItemToOrderUnitPriceTextEdit.TabIndex = 5;
+            this.gpoAddItemToOrderUnitPriceTextEdit.EditValueChanged += new System.EventHandler(this.gpoAddItemToOrderUnitPriceTextEdit_EditValueChanged);
             // 
-            // textEdit2
+            // gpoAddItemToOrderInvoiceNumberTextEdit
             // 
-            this.textEdit2.Location = new System.Drawing.Point(304, 73);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.textEdit2.Properties.Appearance.Options.UseFont = true;
-            this.textEdit2.Size = new System.Drawing.Size(744, 28);
-            this.textEdit2.StyleController = this.layoutControl7;
-            this.textEdit2.TabIndex = 6;
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Location = new System.Drawing.Point(304, 73);
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Name = "gpoAddItemToOrderInvoiceNumberTextEdit";
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Size = new System.Drawing.Size(744, 28);
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.StyleController = this.layoutControl7;
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.TabIndex = 6;
             // 
-            // textEdit3
+            // gpoAddItemToOrderItemNameTextEdit
             // 
-            this.textEdit3.Location = new System.Drawing.Point(1054, 73);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.textEdit3.Properties.Appearance.Options.UseFont = true;
-            this.textEdit3.Size = new System.Drawing.Size(373, 28);
-            this.textEdit3.StyleController = this.layoutControl7;
-            this.textEdit3.TabIndex = 7;
+            this.gpoAddItemToOrderItemNameTextEdit.Location = new System.Drawing.Point(1054, 73);
+            this.gpoAddItemToOrderItemNameTextEdit.Name = "gpoAddItemToOrderItemNameTextEdit";
+            this.gpoAddItemToOrderItemNameTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gpoAddItemToOrderItemNameTextEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoAddItemToOrderItemNameTextEdit.Size = new System.Drawing.Size(373, 28);
+            this.gpoAddItemToOrderItemNameTextEdit.StyleController = this.layoutControl7;
+            this.gpoAddItemToOrderItemNameTextEdit.TabIndex = 7;
             // 
-            // simpleButton2
+            // gpoAddToOrderBtn
             // 
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(16, 162);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.simpleButton2.Size = new System.Drawing.Size(178, 38);
-            this.simpleButton2.StyleController = this.layoutControl7;
-            this.simpleButton2.TabIndex = 9;
-            this.simpleButton2.Text = "Add to Order";
+            this.gpoAddToOrderBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.gpoAddToOrderBtn.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoAddToOrderBtn.Appearance.Options.UseBackColor = true;
+            this.gpoAddToOrderBtn.Appearance.Options.UseFont = true;
+            this.gpoAddToOrderBtn.Location = new System.Drawing.Point(16, 162);
+            this.gpoAddToOrderBtn.Name = "gpoAddToOrderBtn";
+            this.gpoAddToOrderBtn.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.gpoAddToOrderBtn.Size = new System.Drawing.Size(178, 38);
+            this.gpoAddToOrderBtn.StyleController = this.layoutControl7;
+            this.gpoAddToOrderBtn.TabIndex = 9;
+            this.gpoAddToOrderBtn.Text = "Add to Order";
             // 
-            // spinEdit1
+            // gpoAddItemToOrderQuantitySpinEdit
             // 
-            this.spinEdit1.EditValue = new decimal(new int[] {
+            this.gpoAddItemToOrderQuantitySpinEdit.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(718, 126);
-            this.spinEdit1.Name = "spinEdit1";
-            this.spinEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.spinEdit1.Properties.Appearance.Options.UseFont = true;
-            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoAddItemToOrderQuantitySpinEdit.Location = new System.Drawing.Point(718, 126);
+            this.gpoAddItemToOrderQuantitySpinEdit.Name = "gpoAddItemToOrderQuantitySpinEdit";
+            this.gpoAddItemToOrderQuantitySpinEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gpoAddItemToOrderQuantitySpinEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoAddItemToOrderQuantitySpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEdit1.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.spinEdit1.Size = new System.Drawing.Size(261, 28);
-            this.spinEdit1.StyleController = this.layoutControl7;
-            this.spinEdit1.TabIndex = 8;
+            this.gpoAddItemToOrderQuantitySpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.gpoAddItemToOrderQuantitySpinEdit.Size = new System.Drawing.Size(261, 28);
+            this.gpoAddItemToOrderQuantitySpinEdit.StyleController = this.layoutControl7;
+            this.gpoAddItemToOrderQuantitySpinEdit.TabIndex = 8;
+            this.gpoAddItemToOrderQuantitySpinEdit.ValueChanged += new System.EventHandler(this.gpoAddItemToOrderQuantitySpinEdit_ValueChanged);
             // 
-            // dateEdit1
+            // gpoDateAddItemToOrder
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(16, 73);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEdit1.Properties.Appearance.Options.UseFont = true;
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoDateAddItemToOrder.EditValue = null;
+            this.gpoDateAddItemToOrder.Location = new System.Drawing.Point(16, 73);
+            this.gpoDateAddItemToOrder.Name = "gpoDateAddItemToOrder";
+            this.gpoDateAddItemToOrder.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoDateAddItemToOrder.Properties.Appearance.Options.UseFont = true;
+            this.gpoDateAddItemToOrder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoDateAddItemToOrder.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.DisplayFormat.FormatString = "";
-            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.EditFormat.FormatString = "";
-            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.MaskSettings.Set("mask", "");
-            this.dateEdit1.Size = new System.Drawing.Size(282, 28);
-            this.dateEdit1.StyleController = this.layoutControl7;
-            this.dateEdit1.TabIndex = 4;
+            this.gpoDateAddItemToOrder.Properties.DisplayFormat.FormatString = "";
+            this.gpoDateAddItemToOrder.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gpoDateAddItemToOrder.Properties.EditFormat.FormatString = "";
+            this.gpoDateAddItemToOrder.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gpoDateAddItemToOrder.Properties.MaskSettings.Set("mask", "");
+            this.gpoDateAddItemToOrder.Size = new System.Drawing.Size(282, 28);
+            this.gpoDateAddItemToOrder.StyleController = this.layoutControl7;
+            this.gpoDateAddItemToOrder.TabIndex = 4;
             // 
             // layoutControlGroup5
             // 
@@ -1642,7 +1693,7 @@
             // 
             this.layoutControlItem21.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem21.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem21.Control = this.dateEdit1;
+            this.layoutControlItem21.Control = this.gpoDateAddItemToOrder;
             this.layoutControlItem21.Location = new System.Drawing.Point(0, 38);
             this.layoutControlItem21.Name = "layoutControlItem9";
             this.layoutControlItem21.Size = new System.Drawing.Size(288, 53);
@@ -1654,7 +1705,7 @@
             // 
             this.layoutControlItem22.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem22.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem22.Control = this.textEdit1;
+            this.layoutControlItem22.Control = this.gpoAddItemToOrderUnitPriceTextEdit;
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 91);
             this.layoutControlItem22.Name = "layoutControlItem10";
             this.layoutControlItem22.Size = new System.Drawing.Size(702, 55);
@@ -1666,7 +1717,7 @@
             // 
             this.layoutControlItem23.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem23.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem23.Control = this.textEdit2;
+            this.layoutControlItem23.Control = this.gpoAddItemToOrderInvoiceNumberTextEdit;
             this.layoutControlItem23.Location = new System.Drawing.Point(288, 38);
             this.layoutControlItem23.Name = "layoutControlItem11";
             this.layoutControlItem23.Size = new System.Drawing.Size(750, 53);
@@ -1678,7 +1729,7 @@
             // 
             this.layoutControlItem24.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem24.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem24.Control = this.textEdit3;
+            this.layoutControlItem24.Control = this.gpoAddItemToOrderItemNameTextEdit;
             this.layoutControlItem24.Location = new System.Drawing.Point(1038, 38);
             this.layoutControlItem24.Name = "layoutControlItem12";
             this.layoutControlItem24.Size = new System.Drawing.Size(379, 53);
@@ -1690,7 +1741,7 @@
             // 
             this.layoutControlItem25.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem25.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem25.Control = this.spinEdit1;
+            this.layoutControlItem25.Control = this.gpoAddItemToOrderQuantitySpinEdit;
             this.layoutControlItem25.Location = new System.Drawing.Point(702, 91);
             this.layoutControlItem25.Name = "layoutControlItem13";
             this.layoutControlItem25.Size = new System.Drawing.Size(267, 55);
@@ -1700,7 +1751,7 @@
             // 
             // layoutControlItem26
             // 
-            this.layoutControlItem26.Control = this.simpleButton2;
+            this.layoutControlItem26.Control = this.gpoAddToOrderBtn;
             this.layoutControlItem26.Location = new System.Drawing.Point(0, 146);
             this.layoutControlItem26.Name = "layoutControlItem14";
             this.layoutControlItem26.Size = new System.Drawing.Size(184, 54);
@@ -1730,7 +1781,7 @@
             // 
             // layoutControlItem28
             // 
-            this.layoutControlItem28.Control = this.labelControl18;
+            this.layoutControlItem28.Control = this.gpoTotalAmountLbl;
             this.layoutControlItem28.Location = new System.Drawing.Point(1076, 91);
             this.layoutControlItem28.Name = "layoutControlItem16";
             this.layoutControlItem28.OptionsPrint.AppearanceItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
@@ -1759,11 +1810,11 @@
             // 
             // layoutControl8
             // 
-            this.layoutControl8.Controls.Add(this.simpleButton3);
-            this.layoutControl8.Controls.Add(this.textEdit4);
-            this.layoutControl8.Controls.Add(this.dateEdit2);
-            this.layoutControl8.Controls.Add(this.comboBoxEdit1);
-            this.layoutControl8.Controls.Add(this.textEdit5);
+            this.layoutControl8.Controls.Add(this.gpoPictureAttachmentBtn);
+            this.layoutControl8.Controls.Add(this.gpoRemarksTxtEdit);
+            this.layoutControl8.Controls.Add(this.gpoPurchaseOrderDate);
+            this.layoutControl8.Controls.Add(this.gpoReqDepartmentCB);
+            this.layoutControl8.Controls.Add(this.gpoPurchaseOrderNumberTxtEdit);
             this.layoutControl8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl8.Location = new System.Drawing.Point(2, 2);
             this.layoutControl8.Name = "layoutControl8";
@@ -1772,71 +1823,71 @@
             this.layoutControl8.TabIndex = 0;
             this.layoutControl8.Text = "layoutControl2";
             // 
-            // simpleButton3
+            // gpoPictureAttachmentBtn
             // 
-            this.simpleButton3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton3.Appearance.Options.UseBackColor = true;
-            this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(559, 124);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.simpleButton3.Size = new System.Drawing.Size(116, 38);
-            this.simpleButton3.StyleController = this.layoutControl8;
-            this.simpleButton3.TabIndex = 7;
-            this.simpleButton3.Text = "Select Files";
+            this.gpoPictureAttachmentBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.gpoPictureAttachmentBtn.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoPictureAttachmentBtn.Appearance.Options.UseBackColor = true;
+            this.gpoPictureAttachmentBtn.Appearance.Options.UseFont = true;
+            this.gpoPictureAttachmentBtn.Location = new System.Drawing.Point(559, 124);
+            this.gpoPictureAttachmentBtn.Name = "gpoPictureAttachmentBtn";
+            this.gpoPictureAttachmentBtn.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.gpoPictureAttachmentBtn.Size = new System.Drawing.Size(116, 38);
+            this.gpoPictureAttachmentBtn.StyleController = this.layoutControl8;
+            this.gpoPictureAttachmentBtn.TabIndex = 7;
+            this.gpoPictureAttachmentBtn.Text = "Select Files";
             // 
-            // textEdit4
+            // gpoRemarksTxtEdit
             // 
-            this.textEdit4.Location = new System.Drawing.Point(16, 203);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit4.Properties.Appearance.Options.UseFont = true;
-            this.textEdit4.Size = new System.Drawing.Size(1411, 30);
-            this.textEdit4.StyleController = this.layoutControl8;
-            this.textEdit4.TabIndex = 8;
+            this.gpoRemarksTxtEdit.Location = new System.Drawing.Point(16, 203);
+            this.gpoRemarksTxtEdit.Name = "gpoRemarksTxtEdit";
+            this.gpoRemarksTxtEdit.Properties.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoRemarksTxtEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoRemarksTxtEdit.Size = new System.Drawing.Size(1411, 30);
+            this.gpoRemarksTxtEdit.StyleController = this.layoutControl8;
+            this.gpoRemarksTxtEdit.TabIndex = 8;
             // 
-            // dateEdit2
+            // gpoPurchaseOrderDate
             // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(559, 71);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEdit2.Properties.Appearance.Options.UseFont = true;
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoPurchaseOrderDate.EditValue = null;
+            this.gpoPurchaseOrderDate.Location = new System.Drawing.Point(559, 71);
+            this.gpoPurchaseOrderDate.Name = "gpoPurchaseOrderDate";
+            this.gpoPurchaseOrderDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoPurchaseOrderDate.Properties.Appearance.Options.UseFont = true;
+            this.gpoPurchaseOrderDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoPurchaseOrderDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.DisplayFormat.FormatString = "";
-            this.dateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit2.Properties.EditFormat.FormatString = "";
-            this.dateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit2.Properties.MaskSettings.Set("mask", "");
-            this.dateEdit2.Size = new System.Drawing.Size(868, 28);
-            this.dateEdit2.StyleController = this.layoutControl8;
-            this.dateEdit2.TabIndex = 5;
+            this.gpoPurchaseOrderDate.Properties.DisplayFormat.FormatString = "";
+            this.gpoPurchaseOrderDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gpoPurchaseOrderDate.Properties.EditFormat.FormatString = "";
+            this.gpoPurchaseOrderDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gpoPurchaseOrderDate.Properties.MaskSettings.Set("mask", "");
+            this.gpoPurchaseOrderDate.Size = new System.Drawing.Size(868, 28);
+            this.gpoPurchaseOrderDate.StyleController = this.layoutControl8;
+            this.gpoPurchaseOrderDate.TabIndex = 5;
             // 
-            // comboBoxEdit1
+            // gpoReqDepartmentCB
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(15, 72);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.gpoReqDepartmentCB.Location = new System.Drawing.Point(15, 72);
+            this.gpoReqDepartmentCB.Name = "gpoReqDepartmentCB";
+            this.gpoReqDepartmentCB.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoReqDepartmentCB.Properties.Appearance.Options.UseFont = true;
+            this.gpoReqDepartmentCB.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(539, 28);
-            this.comboBoxEdit1.StyleController = this.layoutControl8;
-            this.comboBoxEdit1.TabIndex = 4;
+            this.gpoReqDepartmentCB.Size = new System.Drawing.Size(539, 28);
+            this.gpoReqDepartmentCB.StyleController = this.layoutControl8;
+            this.gpoReqDepartmentCB.TabIndex = 4;
             // 
-            // textEdit5
+            // gpoPurchaseOrderNumberTxtEdit
             // 
-            this.textEdit5.Location = new System.Drawing.Point(16, 124);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit5.Properties.Appearance.Options.UseFont = true;
-            this.textEdit5.Size = new System.Drawing.Size(537, 28);
-            this.textEdit5.StyleController = this.layoutControl8;
-            this.textEdit5.TabIndex = 6;
+            this.gpoPurchaseOrderNumberTxtEdit.Location = new System.Drawing.Point(16, 124);
+            this.gpoPurchaseOrderNumberTxtEdit.Name = "gpoPurchaseOrderNumberTxtEdit";
+            this.gpoPurchaseOrderNumberTxtEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpoPurchaseOrderNumberTxtEdit.Properties.Appearance.Options.UseFont = true;
+            this.gpoPurchaseOrderNumberTxtEdit.Size = new System.Drawing.Size(537, 28);
+            this.gpoPurchaseOrderNumberTxtEdit.StyleController = this.layoutControl8;
+            this.gpoPurchaseOrderNumberTxtEdit.TabIndex = 6;
             // 
             // layoutControlGroup6
             // 
@@ -1861,7 +1912,7 @@
             // 
             this.layoutControlItem29.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem29.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem29.Control = this.comboBoxEdit1;
+            this.layoutControlItem29.Control = this.gpoReqDepartmentCB;
             this.layoutControlItem29.Location = new System.Drawing.Point(0, 36);
             this.layoutControlItem29.Name = "layoutControlItem3";
             this.layoutControlItem29.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
@@ -1874,7 +1925,7 @@
             // 
             this.layoutControlItem30.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem30.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem30.Control = this.textEdit5;
+            this.layoutControlItem30.Control = this.gpoPurchaseOrderNumberTxtEdit;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 89);
             this.layoutControlItem30.Name = "layoutControlItem5";
             this.layoutControlItem30.Size = new System.Drawing.Size(543, 63);
@@ -1907,7 +1958,7 @@
             // 
             this.layoutControlItem31.AppearanceItemCaption.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem31.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem31.Control = this.textEdit4;
+            this.layoutControlItem31.Control = this.gpoRemarksTxtEdit;
             this.layoutControlItem31.Location = new System.Drawing.Point(0, 165);
             this.layoutControlItem31.Name = "layoutControlItem7";
             this.layoutControlItem31.Size = new System.Drawing.Size(1417, 58);
@@ -1919,7 +1970,7 @@
             // 
             this.layoutControlItem32.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem32.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem32.Control = this.dateEdit2;
+            this.layoutControlItem32.Control = this.gpoPurchaseOrderDate;
             this.layoutControlItem32.Location = new System.Drawing.Point(543, 36);
             this.layoutControlItem32.Name = "layoutControlItem4";
             this.layoutControlItem32.Size = new System.Drawing.Size(874, 53);
@@ -1929,7 +1980,7 @@
             // 
             // layoutControlItem33
             // 
-            this.layoutControlItem33.Control = this.simpleButton3;
+            this.layoutControlItem33.Control = this.gpoPictureAttachmentBtn;
             this.layoutControlItem33.Location = new System.Drawing.Point(543, 108);
             this.layoutControlItem33.Name = "layoutControlItem6";
             this.layoutControlItem33.Size = new System.Drawing.Size(122, 44);
@@ -1941,10 +1992,11 @@
             this.simpleLabelItem6.AllowHotTrack = false;
             this.simpleLabelItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleLabelItem6.AppearanceItemCaption.Options.UseFont = true;
+            this.simpleLabelItem6.CustomizationFormText = "Picture Attachment";
             this.simpleLabelItem6.Location = new System.Drawing.Point(543, 89);
             this.simpleLabelItem6.Name = "simpleLabelItem1";
             this.simpleLabelItem6.Size = new System.Drawing.Size(874, 19);
-            this.simpleLabelItem6.Text = "Picture Attachement";
+            this.simpleLabelItem6.Text = "Picture Attachment";
             this.simpleLabelItem6.TextSize = new System.Drawing.Size(210, 13);
             // 
             // emptySpaceItem7
@@ -2022,6 +2074,17 @@
             this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem38.TextVisible = false;
             // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Appearance.Header.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPage3.Appearance.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.xtraTabPage3.Appearance.Header.Options.UseFont = true;
+            this.xtraTabPage3.Appearance.Header.Options.UseForeColor = true;
+            this.xtraTabPage3.Controls.Add(this.xtraScrollableControl3);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(1496, 1033);
+            this.xtraTabPage3.Text = "Online Purchase Order";
+            // 
             // xtraScrollableControl3
             // 
             this.xtraScrollableControl3.Controls.Add(this.layoutControl9);
@@ -2084,6 +2147,19 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
+            // simpleButton8
+            // 
+            this.simpleButton8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton8.Appearance.Options.UseBackColor = true;
+            this.simpleButton8.Appearance.Options.UseFont = true;
+            this.simpleButton8.Location = new System.Drawing.Point(1071, 402);
+            this.simpleButton8.Name = "simpleButton8";
+            this.simpleButton8.Size = new System.Drawing.Size(356, 28);
+            this.simpleButton8.StyleController = this.layoutControl10;
+            this.simpleButton8.TabIndex = 5;
+            this.simpleButton8.Text = "Confirm Order";
+            // 
             // layoutControlGroup8
             // 
             this.layoutControlGroup8.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -2104,6 +2180,23 @@
             this.layoutControlItem39.Size = new System.Drawing.Size(1417, 386);
             this.layoutControlItem39.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem39.TextVisible = false;
+            // 
+            // layoutControlItem60
+            // 
+            this.layoutControlItem60.Control = this.simpleButton8;
+            this.layoutControlItem60.Location = new System.Drawing.Point(1055, 386);
+            this.layoutControlItem60.Name = "layoutControlItem60";
+            this.layoutControlItem60.Size = new System.Drawing.Size(362, 34);
+            this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem60.TextVisible = false;
+            // 
+            // emptySpaceItem15
+            // 
+            this.emptySpaceItem15.AllowHotTrack = false;
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 386);
+            this.emptySpaceItem15.Name = "emptySpaceItem15";
+            this.emptySpaceItem15.Size = new System.Drawing.Size(1055, 34);
+            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
             // 
             // panelControl12
             // 
@@ -2789,96 +2882,6 @@
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem57.TextVisible = false;
             // 
-            // simpleButton6
-            // 
-            this.simpleButton6.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton6.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton6.Appearance.Options.UseBackColor = true;
-            this.simpleButton6.Appearance.Options.UseFont = true;
-            this.simpleButton6.Location = new System.Drawing.Point(1147, 402);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(280, 28);
-            this.simpleButton6.StyleController = this.layoutControl4;
-            this.simpleButton6.TabIndex = 5;
-            this.simpleButton6.Text = "Confirm Order";
-            // 
-            // layoutControlItem58
-            // 
-            this.layoutControlItem58.Control = this.simpleButton6;
-            this.layoutControlItem58.Location = new System.Drawing.Point(1131, 386);
-            this.layoutControlItem58.Name = "layoutControlItem58";
-            this.layoutControlItem58.Size = new System.Drawing.Size(286, 34);
-            this.layoutControlItem58.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem58.TextVisible = false;
-            // 
-            // emptySpaceItem13
-            // 
-            this.emptySpaceItem13.AllowHotTrack = false;
-            this.emptySpaceItem13.Location = new System.Drawing.Point(0, 386);
-            this.emptySpaceItem13.Name = "emptySpaceItem13";
-            this.emptySpaceItem13.Size = new System.Drawing.Size(1131, 34);
-            this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButton7
-            // 
-            this.simpleButton7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton7.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton7.Appearance.Options.UseBackColor = true;
-            this.simpleButton7.Appearance.Options.UseFont = true;
-            this.simpleButton7.Location = new System.Drawing.Point(1065, 402);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(362, 28);
-            this.simpleButton7.StyleController = this.layoutControl6;
-            this.simpleButton7.TabIndex = 5;
-            this.simpleButton7.Text = "Confirm Order";
-            // 
-            // layoutControlItem59
-            // 
-            this.layoutControlItem59.Control = this.simpleButton7;
-            this.layoutControlItem59.Location = new System.Drawing.Point(1049, 386);
-            this.layoutControlItem59.Name = "layoutControlItem59";
-            this.layoutControlItem59.Size = new System.Drawing.Size(368, 34);
-            this.layoutControlItem59.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem59.TextVisible = false;
-            // 
-            // emptySpaceItem14
-            // 
-            this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 386);
-            this.emptySpaceItem14.Name = "emptySpaceItem14";
-            this.emptySpaceItem14.Size = new System.Drawing.Size(1049, 34);
-            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // simpleButton8
-            // 
-            this.simpleButton8.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton8.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton8.Appearance.Options.UseBackColor = true;
-            this.simpleButton8.Appearance.Options.UseFont = true;
-            this.simpleButton8.Location = new System.Drawing.Point(1071, 402);
-            this.simpleButton8.Name = "simpleButton8";
-            this.simpleButton8.Size = new System.Drawing.Size(356, 28);
-            this.simpleButton8.StyleController = this.layoutControl10;
-            this.simpleButton8.TabIndex = 5;
-            this.simpleButton8.Text = "Confirm Order";
-            // 
-            // layoutControlItem60
-            // 
-            this.layoutControlItem60.Control = this.simpleButton8;
-            this.layoutControlItem60.Location = new System.Drawing.Point(1055, 386);
-            this.layoutControlItem60.Name = "layoutControlItem60";
-            this.layoutControlItem60.Size = new System.Drawing.Size(362, 34);
-            this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem60.TextVisible = false;
-            // 
-            // emptySpaceItem15
-            // 
-            this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 386);
-            this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(1055, 34);
-            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // PurchaseOrderUC
             // 
             this.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2899,6 +2902,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemsInOrderGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
@@ -2957,7 +2962,6 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
-            this.xtraTabPage3.ResumeLayout(false);
             this.xtraScrollableControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).EndInit();
             this.layoutControl5.ResumeLayout(false);
@@ -2965,10 +2969,12 @@
             this.panelControl6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl6)).EndInit();
             this.layoutControl6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoItemsInOrderGC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoItemsInOrderGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).EndInit();
             this.panelControl7.ResumeLayout(false);
             this.panelControl7.PerformLayout();
@@ -2979,12 +2985,12 @@
             this.panelControl9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl7)).EndInit();
             this.layoutControl7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderUnitPriceTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderItemNameTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoAddItemToOrderQuantitySpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoDateAddItemToOrder.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoDateAddItemToOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
@@ -3000,11 +3006,11 @@
             this.panelControl10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl8)).EndInit();
             this.layoutControl8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoRemarksTxtEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoReqDepartmentCB.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpoPurchaseOrderNumberTxtEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
@@ -3022,6 +3028,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).EndInit();
+            this.xtraTabPage3.ResumeLayout(false);
             this.xtraScrollableControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl9)).EndInit();
             this.layoutControl9.ResumeLayout(false);
@@ -3033,6 +3040,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl12)).EndInit();
             this.panelControl12.ResumeLayout(false);
             this.panelControl12.PerformLayout();
@@ -3086,12 +3095,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3170,15 +3173,15 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl5;
         private DevExpress.XtraEditors.PanelControl panelControl6;
         private DevExpress.XtraLayout.LayoutControl layoutControl6;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gpoItemsInOrderGC;
+        private DevExpress.XtraGrid.Views.Grid.GridView gpoItemsInOrderGV;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraEditors.PanelControl panelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl gpoItemsInOrderTotalAmount;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl gpoTotalAmountTotalItems;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
@@ -3187,14 +3190,14 @@
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.PanelControl panelControl9;
         private DevExpress.XtraLayout.LayoutControl layoutControl7;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
+        private DevExpress.XtraEditors.LabelControl gpoTotalAmountLbl;
         private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SpinEdit spinEdit1;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.TextEdit gpoAddItemToOrderUnitPriceTextEdit;
+        private DevExpress.XtraEditors.TextEdit gpoAddItemToOrderInvoiceNumberTextEdit;
+        private DevExpress.XtraEditors.TextEdit gpoAddItemToOrderItemNameTextEdit;
+        private DevExpress.XtraEditors.SimpleButton gpoAddToOrderBtn;
+        private DevExpress.XtraEditors.SpinEdit gpoAddItemToOrderQuantitySpinEdit;
+        private DevExpress.XtraEditors.DateEdit gpoDateAddItemToOrder;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
@@ -3208,11 +3211,11 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraEditors.PanelControl panelControl10;
         private DevExpress.XtraLayout.LayoutControl layoutControl8;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
+        private DevExpress.XtraEditors.SimpleButton gpoPictureAttachmentBtn;
+        private DevExpress.XtraEditors.TextEdit gpoRemarksTxtEdit;
+        private DevExpress.XtraEditors.DateEdit gpoPurchaseOrderDate;
+        private DevExpress.XtraEditors.ComboBoxEdit gpoReqDepartmentCB;
+        private DevExpress.XtraEditors.TextEdit gpoPurchaseOrderNumberTxtEdit;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
