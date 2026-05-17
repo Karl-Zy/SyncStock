@@ -1549,6 +1549,7 @@
             this.gpoAddToOrderBtn.StyleController = this.layoutControl7;
             this.gpoAddToOrderBtn.TabIndex = 9;
             this.gpoAddToOrderBtn.Text = "Add to Order";
+            this.gpoAddToOrderBtn.Click += new System.EventHandler(this.gpoAddToOrderBtn_Click_1);
             // 
             // gpoAddItemToOrderQuantitySpinEdit
             // 

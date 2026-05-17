@@ -27,6 +27,7 @@ namespace SyncStock.Views.UserControl
             InitializeComponent();
             LoadDepartments();
             LoadAllItems();
+            LoadGPOPurchaseOrderItems();
 
             ReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             gpoReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
@@ -146,68 +147,10 @@ namespace SyncStock.Views.UserControl
         private void QuantitySE_ValueChanged(object sender, EventArgs e) => CalculateSinglePOTotal();
 
 
-        // ==========================================
-        // GROUP PURCHASE ORDER (GPO) LOGIC
-        // ==========================================
+       
         private void gpoAddToOrderBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(gpoAddItemToOrderItemNameTextEdit.Text) || string.IsNullOrWhiteSpace(gpoAddItemToOrderUnitPriceTextEdit.Text) || gpoAddItemToOrderQuantitySpinEdit.Value <= 0)
-                {
-                    XtraMessageBox.Show("Please check your GPO item inputs.");
-                    return;
-                }
-
-                if (!decimal.TryParse(gpoAddItemToOrderUnitPriceTextEdit.Text, out decimal unitPrice))
-                {
-                    XtraMessageBox.Show("Invalid unit price.");
-                    return;
-                }
-
-                if (_gpoPurchaseOrderId == 0)
-                {
-                    PurchaseOrders order = new PurchaseOrders
-                    {
-                        InvoiceNumber = gpoAddItemToOrderInvoiceNumberTextEdit.Text,
-                        PONumber = gpoPurchaseOrderNumberTxtEdit.Text,
-                        OrderDate = gpoPurchaseOrderDate.DateTime,
-                        DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
-                        Status = "Pending",
-                        Priority = "Normal",
-                        Remarks = gpoRemarksTxtEdit.Text,
-                        AttachmentPath = ""
-                    };
-
-                    _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
-                }
-
-                int itemId = _repo.AddItem(gpoAddItemToOrderItemNameTextEdit.Text.Trim());
-
-                PurchaseOrderItem poItem = new PurchaseOrderItem
-                {
-                    PurchaseOrderID = _gpoPurchaseOrderId,
-                    ItemID = itemId,
-                    Quantity = (int)gpoAddItemToOrderQuantitySpinEdit.Value,
-                    UnitPrice = unitPrice
-                };
-
-                _repo.AddPurchaseOrderItem(poItem);
-
-                // FIX: Update the GPO Grid and refresh the global view if needed
-                LoadGPOPurchaseOrderItems();
-                LoadAllItems();
-
-                gpoAddItemToOrderItemNameTextEdit.Text = "";
-                gpoAddItemToOrderUnitPriceTextEdit.Text = "";
-                gpoAddItemToOrderQuantitySpinEdit.Value = 1;
-
-                XtraMessageBox.Show("Item added to Group PO successfully!");
-            }
-            catch (Exception ex)
-            {
-                XtraMessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void LoadGPOPurchaseOrderItems()
@@ -268,5 +211,60 @@ namespace SyncStock.Views.UserControl
         }
 
         private void TotalItemsLBL_Click(object sender, EventArgs e) { }
+
+        // ==========================================
+        // GROUP PURCHASE ORDER (GPO) LOGIC
+        // ==========================================
+        private void gpoAddToOrderBtn_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(gpoAddItemToOrderItemNameTextEdit.Text) || string.IsNullOrWhiteSpace(gpoAddItemToOrderUnitPriceTextEdit.Text) || gpoAddItemToOrderQuantitySpinEdit.Value <= 0)
+                {
+                    XtraMessageBox.Show("Please check your item inputs.");
+                    return;
+                }
+
+                if (!decimal.TryParse(gpoAddItemToOrderUnitPriceTextEdit.Text, out decimal unitPrice))
+                {
+                    XtraMessageBox.Show("Invalid unit price.");
+                    return;
+                }
+
+                if (_gpoPurchaseOrderId == 0)
+                {
+                    PurchaseOrders order = new PurchaseOrders
+                    {
+                        InvoiceNumber = gpoAddItemToOrderInvoiceNumberTextEdit.Text,
+                        PONumber = gpoPurchaseOrderNumberTxtEdit.Text,
+                        OrderDate = gpoPurchaseOrderDate.DateTime,
+                        DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
+                        Status = "Pending",
+                        Priority = "Normal",
+                        Remarks = gpoRemarksTxtEdit.Text,
+                        AttachmentPath = ""
+                    };
+
+                    _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
+                }
+
+                int itemId = _repo.AddItem(gpoAddItemToOrderItemNameTextEdit.Text.Trim());
+
+                PurchaseOrderItem poItem = new PurchaseOrderItem
+                {
+                    PurchaseOrderID = _gpoPurchaseOrderId,
+                    ItemID = itemId,
+                    Quantity = (int)gpoAddItemToOrderQuantitySpinEdit.Value,
+                    UnitPrice = unitPrice
+                };
+
+                _repo.AddPurchaseOrderItem(poItem);
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+            }
+        }
     }
 }
