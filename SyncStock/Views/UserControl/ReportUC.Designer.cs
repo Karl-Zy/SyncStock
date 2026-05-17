@@ -39,7 +39,7 @@
             this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.totalMonthlyCostLBL = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
@@ -183,7 +183,7 @@
             this.labelControl2.Location = new System.Drawing.Point(0, 4);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(231, 32);
+            this.labelControl2.Size = new System.Drawing.Size(297, 40);
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "            TOTAL ITEMS FOR THE MONTH OF ";
             // 
@@ -209,34 +209,31 @@
             this.labelControl1.Location = new System.Drawing.Point(8, 4);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(226, 32);
+            this.labelControl1.Size = new System.Drawing.Size(290, 40);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "            TOTAL COST FOR THE MONTH OF ";
             // 
             // panelControl4
             // 
-            this.panelControl4.Controls.Add(this.labelControl4);
+            this.panelControl4.Controls.Add(this.totalMonthlyCostLBL);
             this.panelControl4.Location = new System.Drawing.Point(16, 73);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(633, 125);
             this.panelControl4.TabIndex = 6;
             // 
-            // labelControl4
+            // totalMonthlyCostLBL
             // 
-            this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl4.Location = new System.Drawing.Point(286, 32);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(22, 42);
-            this.labelControl4.TabIndex = 0;
-            this.labelControl4.Text = "0";
-            this.labelControl4.Click += new System.EventHandler(this.labelControl4_Click);
+            this.totalMonthlyCostLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalMonthlyCostLBL.Appearance.Options.UseFont = true;
+            this.totalMonthlyCostLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.totalMonthlyCostLBL.Location = new System.Drawing.Point(286, 32);
+            this.totalMonthlyCostLBL.Margin = new System.Windows.Forms.Padding(4);
+            this.totalMonthlyCostLBL.Name = "totalMonthlyCostLBL";
+            this.totalMonthlyCostLBL.Size = new System.Drawing.Size(22, 42);
+            this.totalMonthlyCostLBL.TabIndex = 0;
+            this.totalMonthlyCostLBL.Text = "1";
+            this.totalMonthlyCostLBL.Click += new System.EventHandler(this.labelControl4_Click);
             // 
             // panelControl5
             // 
@@ -345,7 +342,7 @@
             this.labelControl3.Location = new System.Drawing.Point(4, 4);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(95, 32);
+            this.labelControl3.Size = new System.Drawing.Size(123, 40);
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "           CATEGORY";
             // 
@@ -527,7 +524,7 @@
             this.labelControl7.Location = new System.Drawing.Point(4, 4);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(232, 32);
+            this.labelControl7.Size = new System.Drawing.Size(278, 40);
             this.labelControl7.TabIndex = 0;
             this.labelControl7.Text = "         INVENTORY SUMMARY REPORT";
             // 
@@ -695,7 +692,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl totalMonthlyCostLBL;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
