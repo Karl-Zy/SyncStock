@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SyncStock.Models.Models_Report_
+namespace SyncStock.Models
 {
-    public class DashBoardKPIs
+    public class ApprovedPurchaseOrder : PurchaseOrders
     {
-        public decimal TotalCost { get; set; }
         public int TotalItems { get; set; }
-        public int TotalCategory { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }

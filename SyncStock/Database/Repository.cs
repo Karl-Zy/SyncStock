@@ -1,14 +1,13 @@
-﻿using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
-using SyncStock.Models.Item;
-using SyncStock.Models.Models_Report_;
+﻿using SyncStock.Models.Item;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
 
 
 
@@ -174,7 +173,7 @@ namespace SyncStock.Database
                             FROM PurchaseOrders po
                             JOIN Departments d ON po.DepartmentID = d.DepartmentID
                             WHERE po.Priority = 'ASAP Department'
-                            AND po.Priority = 'ASAP'
+                            OR po.Priority = 'ASAP'
                             ORDER BY po.OrderDate DESC";
 
             using (var conn = CreateConnection())
@@ -224,49 +223,28 @@ namespace SyncStock.Database
             }
         }
 
-        public IEnumerable<InventorySummaryReport> GetInventorySummaryReport(int month, int year)
+        public IEnumerable<ApprovedPurchaseOrder> GetAllApprovedMonthlyCost()
         {
             using (var conn = CreateConnection())
             {
-                string query = @"
-                SELECT 
-                    po.PONumber,
-                    i.ItemName,
-                    poi.Category, 
-                    poi.Quantity,
-                    poi.UnitPrice AS BuyingPrice,
-                    (poi.Quantity * poi.UnitPrice) AS Amount,
-                    po.OrderDate AS DateReceived,
-                    poi.Capitalizable,
-                    po.Status,
-                    d.DepartmentName AS Department
-                FROM PurchaseOrderItems poi
-                INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
-                INNER JOIN Items i ON poi.ItemID = i.ItemID
-                INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                WHERE MONTH(po.OrderDate) = @Month 
-                  AND YEAR(po.OrderDate) = @Year";
-
-                return conn.Query<InventorySummaryReport>(query, new { Month = month, Year = year });
+                return conn.Query<ApprovedPurchaseOrder>(@"
+            SELECT 
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status,
+                COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                SUM(poi.TotalPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = 'Approved'
+            AND MONTH(po.OrderDate) = MONTH(GETDATE())
+            AND YEAR(po.OrderDate) = YEAR(GETDATE())
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
             }
-        }
 
-        public DashBoardKPIs GetMonthlyDashboardKPIs(int month, int year)
-        {
-            using (var conn = CreateConnection())
-            {
-                string query = @"
-                SELECT 
-                    ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0) AS TotalCost,
-                    ISNULL(SUM(poi.Quantity), 0) AS TotalItems,
-                    COUNT(DISTINCT poi.Category) AS TotalCategories 
-                FROM PurchaseOrderItems poi
-                INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
-                WHERE MONTH(po.OrderDate) = @Month 
-                  AND YEAR(po.OrderDate) = @Year";
-
-                return conn.QueryFirstOrDefault<DashBoardKPIs>(query, new { Month = month, Year = year });
-            }
         }
-    }
+        }
 }
