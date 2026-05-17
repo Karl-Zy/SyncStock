@@ -32,6 +32,14 @@ namespace SyncStock
             dashboard.Dock = DockStyle.Fill;
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(dashboard);
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // important
+            this.Bounds = Screen.PrimaryScreen.WorkingArea;
+
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -67,7 +75,7 @@ namespace SyncStock
 
         private void reports_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReportsUC());
+            LoadControl(new ReportUC());
         }
     }
 }

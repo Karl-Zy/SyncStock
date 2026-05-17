@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
-      <HintPath>..\..\..\..\.nuget\packages\dapper\1.60.6\lib\net451\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v23.2" />
     <Reference Include="DevExpress.Charts.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -82,6 +82,9 @@
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
+    <Compile Include="Models\Models[Report]\DashBoardKPIs.cs" />
+    <Compile Include="Models\Models[Report]\InventorySummaryReport.cs" />
+    <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Views\LoginForm.cs">
@@ -128,11 +131,11 @@
     <Compile Include="Views\UserControl\ReceivingCustodianUC.Designer.cs">
       <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.cs">
+    <Compile Include="Views\UserControl\ReportUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UserControl\ReportsUC.Designer.cs">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <Compile Include="Views\UserControl\ReportUC.Designer.cs">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\RfidLoginUC.cs">
       <SubType>UserControl</SubType>
@@ -169,8 +172,8 @@
     <EmbeddedResource Include="Views\UserControl\ReceivingCustodianUC.resx">
       <DependentUpon>ReceivingCustodianUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UserControl\ReportsUC.resx">
-      <DependentUpon>ReportsUC.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UserControl\ReportUC.resx">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
