@@ -1,13 +1,14 @@
-﻿using SyncStock.Models.Item;
+﻿using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Item;
+using SyncStock.Models.Models_Report_;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
 
 
 
@@ -220,6 +221,51 @@ namespace SyncStock.Database
                     WHERE po.Status = 'Pending'
                     GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
 
+            }
+        }
+
+        public IEnumerable<InventorySummaryReport> GetInventorySummaryReport(int month, int year)
+        {
+            using (var conn = CreateConnection())
+            {
+                string query = @"
+                SELECT 
+                    po.PONumber,
+                    i.ItemName,
+                    poi.Category, 
+                    poi.Quantity,
+                    poi.UnitPrice AS BuyingPrice,
+                    (poi.Quantity * poi.UnitPrice) AS Amount,
+                    po.OrderDate AS DateReceived,
+                    poi.Capitalizable,
+                    po.Status,
+                    d.DepartmentName AS Department
+                FROM PurchaseOrderItems poi
+                INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                INNER JOIN Items i ON poi.ItemID = i.ItemID
+                INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                WHERE MONTH(po.OrderDate) = @Month 
+                  AND YEAR(po.OrderDate) = @Year";
+
+                return conn.Query<InventorySummaryReport>(query, new { Month = month, Year = year });
+            }
+        }
+
+        public DashBoardKPIs GetMonthlyDashboardKPIs(int month, int year)
+        {
+            using (var conn = CreateConnection())
+            {
+                string query = @"
+                SELECT 
+                    ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0) AS TotalCost,
+                    ISNULL(SUM(poi.Quantity), 0) AS TotalItems,
+                    COUNT(DISTINCT poi.Category) AS TotalCategories 
+                FROM PurchaseOrderItems poi
+                INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                WHERE MONTH(po.OrderDate) = @Month 
+                  AND YEAR(po.OrderDate) = @Year";
+
+                return conn.QueryFirstOrDefault<DashBoardKPIs>(query, new { Month = month, Year = year });
             }
         }
     }
