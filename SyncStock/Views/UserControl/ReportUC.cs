@@ -34,17 +34,25 @@ namespace SyncStock.Views.UserControl
 
         private void LoadData()
         {
+            var items = _repo.GetAllReportItems().ToList();
             var orders = _repo.GetAllApprovedMonthlyCost().ToList();
+            var totalItems = _repo.GetAllApprovedTotalItems();
 
             if (orders == null || orders.Count() == 0)
             {
                 totalMonthlyCostLBL.Text = "0";
+                totalMonthlyItemsLBL.Text = "0";
 
                 return;
             }
 
             totalMonthlyCostLBL.Text = orders.Sum(o => o.TotalAmount).ToString("N2");
-            
+            totalMonthlyItemsLBL.Text = totalItems.ToString();
+        }
+
+        private void ReportGC_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
