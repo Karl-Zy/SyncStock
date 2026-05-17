@@ -30,29 +30,7 @@ namespace SyncStock.Views.UserControl
             ReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
         }
 
-        //private void AutoSetDate()
-        //{
-        //    purchaseDate.EditValue = DateTime.Now;
-        //    purchaseDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-
-        //    AddItemDateCB.EditValue = DateTime.Now;
-        //    AddItemDateCB.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-        //}
-
-        //private void AutoSetPONumber()
-        //{
-        //    string datePart = DateTime.Now.ToString("yyyyMMdd");
-        //    int count = _repo.GetPurchaseOrderCount() + 1;  
-        //    string sequence = count.ToString("D3");
-
-        //    poNumberTE.Text = $"PO-{datePart}-{sequence}";
-        //}
-
-        //private void AutoSetInvoiceNumber()
-        //{
-        //    var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHss}";
-        //    InvoiceNumTE.Text = invoiceNumber;
-        //}
+      
 
         private void LoadDepartments()
         {
