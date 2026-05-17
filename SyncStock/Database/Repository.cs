@@ -510,6 +510,27 @@ namespace SyncStock.Database
 
 
         }
+        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
+                i.ItemName,
+                poi.Quantity,
+                poi.UnitPrice,
+                (poi.Quantity * poi.UnitPrice) AS TotalPrice
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.POType = 'GPO'
+            ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
+
         public IEnumerable<PurchaseOrderItem> GetAllOPOPurchaseOrderItems()
         {
             using (var conn = CreateConnection())
