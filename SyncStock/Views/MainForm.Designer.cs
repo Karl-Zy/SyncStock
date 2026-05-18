@@ -182,7 +182,6 @@
         private DevExpress.XtraEditors.PanelControl mainPanel;
         private Views.UserControl.AuditorReviewUC auditorReviewUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC3;
-        private Views.UserControl.ReportUC reportsUC1;
         private Views.UserControl.PurchaseOrderUC purchaseOrderUC1;
         private Views.UserControl.DashBoardUC dashBoardUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC2;
