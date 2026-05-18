@@ -1,13 +1,14 @@
-﻿using SyncStock.Models.Item;
+﻿using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Item;
+using SyncStock.Models.Models_Receiving_;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
 
 
 
@@ -199,6 +200,65 @@ namespace SyncStock.Database
                     FROM PurchaseOrders po 
                     INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
                     WHERE po.Status = 'Pending'");
+            }
+        }
+
+        public IEnumerable<PendingIncomingItem> GetPendingIncomingItemsDetails()
+        {
+            string query = @"
+        SELECT 
+            po.PONumber,
+            'N/A' AS Purchaser, 
+            d.DepartmentName AS Department,
+            i.ItemName,
+            poi.Quantity AS Quantity,
+            (poi.Quantity * poi.UnitPrice) AS Amount,
+            po.OrderDate AS DateOrdered,
+            po.Status
+        FROM PurchaseOrders po
+        INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+        INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+        INNER JOIN Items i ON poi.ItemID = i.ItemID
+        WHERE po.Status = 'Pending'";
+
+            using (var conn = CreateConnection())
+            {
+                // Dapper safely maps the SQL query rows straight into your new class structure
+                return conn.Query<PendingIncomingItem>(query);
+            }
+        }
+
+        public void AddConfirmedItem(ConfirmedItems item)
+        {
+            string query = @"
+        INSERT INTO ConfirmedItems (
+            PONumber, ItemName, DateReceived, IsCapitalizable, 
+            ExpectedQuantity, ReceivedQuantity, ExpectedAmount, 
+            ReceivedAmount, AttachmentPath, Remarks
+        ) VALUES (
+            @PONumber, @ItemName, @DateReceived, @IsCapitalizable, 
+            @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount, 
+            @ReceivedAmount, @AttachmentPath, @Remarks
+        );";
+
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(query, item);
+            }
+        }
+
+        public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
+        {
+            // FIX: Update the parent PurchaseOrders table directly using the PONumber
+            string query = @"
+        UPDATE PurchaseOrders
+        SET Status = @newStatus
+        WHERE PONumber = @poNumber";
+
+            using (var conn = CreateConnection())
+            {
+                // Dapper safely maps the parameters and executes the update
+                conn.Execute(query, new { poNumber, newStatus });
             }
         }
 
