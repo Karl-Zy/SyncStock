@@ -4,11 +4,11 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace SyncStock.Resources
+namespace SyncStock.PrintForm
 {
-    public partial class InventorySummaryReport : DevExpress.XtraReports.UI.XtraReport
+    public partial class SummaryReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public InventorySummaryReport()
+        public SummaryReport()
         {
             InitializeComponent();
         }

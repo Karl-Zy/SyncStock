@@ -21,7 +21,7 @@ namespace SyncStock.Views.UserControl
             LoadData();
         }
 
-       
+
         private void labelControl1_Click(object sender, EventArgs e)
         {
 
@@ -48,6 +48,7 @@ namespace SyncStock.Views.UserControl
 
             totalMonthlyCostLBL.Text = orders.Sum(o => o.TotalAmount).ToString("N2");
             totalMonthlyItemsLBL.Text = totalItems.ToString();
+            ReportGC.DataSource = items;
         }
 
         private void ReportGC_Click(object sender, EventArgs e)
