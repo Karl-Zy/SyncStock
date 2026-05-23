@@ -34,7 +34,6 @@
             this.BtnReqUnlock = new DevExpress.XtraEditors.SimpleButton();
             this.svgImageBox1 = new DevExpress.XtraEditors.SvgImageBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.CmbDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.svgImageBox2 = new DevExpress.XtraEditors.SvgImageBox();
@@ -53,7 +52,7 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.svgImageBox3 = new DevExpress.XtraEditors.SvgImageBox();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.LblTotalValue = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -91,11 +90,10 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.CmbDate = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox2)).BeginInit();
@@ -130,15 +128,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.CmbDate);
             this.panelControl1.Controls.Add(this.BtnLock);
             this.panelControl1.Controls.Add(this.BtnReqUnlock);
             this.panelControl1.Controls.Add(this.svgImageBox1);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.CmbDate);
             this.panelControl1.Location = new System.Drawing.Point(6, 6);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1320, 49);
@@ -182,24 +181,6 @@
             this.labelControl1.Size = new System.Drawing.Size(120, 16);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Period lock control";
-            // 
-            // CmbDate
-            // 
-            this.CmbDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CmbDate.EditValue = null;
-            this.CmbDate.Location = new System.Drawing.Point(1044, 14);
-            this.CmbDate.Name = "CmbDate";
-            this.CmbDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.CmbDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.CmbDate.Properties.DisplayFormat.FormatString = "";
-            this.CmbDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.CmbDate.Properties.EditFormat.FormatString = "";
-            this.CmbDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.CmbDate.Properties.MaskSettings.Set("mask", "");
-            this.CmbDate.Size = new System.Drawing.Size(101, 28);
-            this.CmbDate.TabIndex = 1;
             // 
             // panelControl2
             // 
@@ -274,7 +255,7 @@
             this.TotalAssetsNum.Appearance.Options.UseFont = true;
             this.TotalAssetsNum.Location = new System.Drawing.Point(5, 0);
             this.TotalAssetsNum.Name = "TotalAssetsNum";
-            this.TotalAssetsNum.Size = new System.Drawing.Size(40, 45);
+            this.TotalAssetsNum.Size = new System.Drawing.Size(20, 45);
             this.TotalAssetsNum.TabIndex = 0;
             this.TotalAssetsNum.Text = "0";
             // 
@@ -387,7 +368,7 @@
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.svgImageBox3);
-            this.panelControl3.Controls.Add(this.labelControl14);
+            this.panelControl3.Controls.Add(this.LblTotalValue);
             this.panelControl3.Controls.Add(this.labelControl8);
             this.panelControl3.Controls.Add(this.labelControl15);
             this.panelControl3.Controls.Add(this.labelControl7);
@@ -409,15 +390,14 @@
             this.svgImageBox3.TabIndex = 5;
             this.svgImageBox3.Text = "svgImageBox3";
             // 
-            // labelControl14
+            // LblTotalValue
             // 
-            this.labelControl14.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.labelControl14.Appearance.Options.UseForeColor = true;
-            this.labelControl14.Location = new System.Drawing.Point(5, 55);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(118, 13);
-            this.labelControl14.TabIndex = 4;
-            this.labelControl14.Text = "P635,155.00 Total Value";
+            this.LblTotalValue.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.LblTotalValue.Appearance.Options.UseForeColor = true;
+            this.LblTotalValue.Location = new System.Drawing.Point(5, 55);
+            this.LblTotalValue.Name = "LblTotalValue";
+            this.LblTotalValue.Size = new System.Drawing.Size(0, 13);
+            this.LblTotalValue.TabIndex = 4;
             // 
             // labelControl8
             // 
@@ -803,6 +783,15 @@
             this.xtraScrollableControl1.Size = new System.Drawing.Size(0, 0);
             this.xtraScrollableControl1.TabIndex = 5;
             // 
+            // CmbDate
+            // 
+            this.CmbDate.Location = new System.Drawing.Point(1046, 12);
+            this.CmbDate.Name = "CmbDate";
+            this.CmbDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.CmbDate.Size = new System.Drawing.Size(100, 28);
+            this.CmbDate.TabIndex = 5;
+            // 
             // AuditorReviewUC
             // 
             this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -816,8 +805,6 @@
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -856,6 +843,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -865,7 +853,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.DateEdit CmbDate;
         private DevExpress.XtraEditors.SimpleButton BtnLock;
         private DevExpress.XtraEditors.SimpleButton BtnReqUnlock;
         private DevExpress.XtraEditors.PanelControl panelControl2;
@@ -913,7 +900,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.LabelControl LblTotalValue;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl7;
@@ -924,5 +911,7 @@
         private DevExpress.XtraEditors.SvgImageBox svgImageBox5;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox4;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox3;
+        private DevExpress.XtraEditors.ComboBoxEdit CmbDate;
+
     }
 }

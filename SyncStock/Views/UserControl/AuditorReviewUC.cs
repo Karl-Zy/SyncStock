@@ -15,6 +15,7 @@ namespace SyncStock.Views.UserControl
     {
         private const string AllDepartmentsLabel = "All Departments";
         private const string AllStatusesLabel = "All Statuses";
+        private const string AllMonthsLabel = "All Months";
 
         private readonly Repository _repo = new Repository();
         private List<AuditorReviewItemDto> _reviewItems = new List<AuditorReviewItemDto>();
@@ -34,10 +35,12 @@ namespace SyncStock.Views.UserControl
             ConfigureGridColumns();
             LoadFilterDepartments();
             LoadFilterStatuses();
-            LoadReviewItems();
+            LoadReviewItems();      // must be BEFORE LoadFilterMonths
+            LoadFilterMonths();     // uses _reviewItems which is now populated
 
             CmbFilterDepartment.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
             CmbFilterList.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
+            CmbDate.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
             ReviewItemGV.ColumnFilterChanged += ReviewItemGV_ColumnFilterChanged;
         }
 
@@ -49,9 +52,6 @@ namespace SyncStock.Views.UserControl
 
         private void ConfigureGridColumns()
         {
-            var currencyFormat = "N2";
-            var dateFormat = "dd MMM yyyy";
-
             colPONumber.FieldName = nameof(AuditorReviewItemDto.PONumber);
             colItemName.FieldName = nameof(AuditorReviewItemDto.ItemName);
             colInvoiceNumber.FieldName = nameof(AuditorReviewItemDto.InvoiceNumber);
@@ -64,11 +64,17 @@ namespace SyncStock.Views.UserControl
             colStatus.FieldName = nameof(AuditorReviewItemDto.Status);
 
             colUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            colUnitPrice.DisplayFormat.FormatString = currencyFormat;
+            colUnitPrice.DisplayFormat.FormatString = "N2";
             colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            colTotalAmount.DisplayFormat.FormatString = currencyFormat;
+            colTotalAmount.DisplayFormat.FormatString = "N2";
             colDateReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            colDateReceived.DisplayFormat.FormatString = dateFormat;
+            colDateReceived.DisplayFormat.FormatString = "dd MMM yyyy";
+
+            // Hide raw text so only the custom-drawn colored badge shows
+            colStatus.AppearanceCell.ForeColor = Color.Transparent;
+            colStatus.AppearanceCell.Options.UseForeColor = true;
+            colCapitalizable.AppearanceCell.ForeColor = Color.Transparent;
+            colCapitalizable.AppearanceCell.Options.UseForeColor = true;
         }
 
         private void LoadFilterDepartments()
@@ -81,7 +87,8 @@ namespace SyncStock.Views.UserControl
             foreach (var dept in departments)
                 CmbFilterDepartment.Properties.Items.Add(dept.DepartmentName);
 
-            CmbFilterDepartment.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            CmbFilterDepartment.Properties.TextEditStyle =
+                DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             CmbFilterDepartment.SelectedIndex = 0;
         }
 
@@ -92,8 +99,28 @@ namespace SyncStock.Views.UserControl
             CmbFilterList.Properties.Items.Add(WorkflowStatus.Received);
             CmbFilterList.Properties.Items.Add(WorkflowStatus.Active);
 
-            CmbFilterList.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            CmbFilterList.Properties.TextEditStyle =
+                DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             CmbFilterList.SelectedIndex = 0;
+        }
+
+        private void LoadFilterMonths()
+        {
+            CmbDate.Properties.Items.Clear();
+            CmbDate.Properties.Items.Add(AllMonthsLabel);
+
+            var months = _reviewItems
+                .Where(x => x.DateReceived != default(DateTime))
+                .Select(x => new DateTime(x.DateReceived.Year, x.DateReceived.Month, 1))
+                .Distinct()
+                .OrderByDescending(d => d);
+
+            foreach (var month in months)
+                CmbDate.Properties.Items.Add(month.ToString("MMMM yyyy"));
+
+            CmbDate.Properties.TextEditStyle =
+                DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            CmbDate.SelectedIndex = 0;
         }
 
         private void LoadReviewItems()
@@ -160,6 +187,19 @@ namespace SyncStock.Views.UserControl
                 filters.Add($"[Status] = '{EscapeFilterValue(CmbFilterList.Text)}'");
             }
 
+            if (CmbDate.SelectedIndex > 0 &&
+                !string.Equals(CmbDate.Text, AllMonthsLabel, StringComparison.OrdinalIgnoreCase) &&
+                DateTime.TryParseExact(
+                    CmbDate.Text, "MMMM yyyy",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out DateTime selectedMonth))
+            {
+                var start = selectedMonth;
+                var end = selectedMonth.AddMonths(1).AddDays(-1);
+                filters.Add($"[DateReceived] >= #{start:MM/dd/yyyy}# And [DateReceived] <= #{end:MM/dd/yyyy}#");
+            }
+
             ReviewItemGV.ActiveFilterString = string.Join(" And ", filters);
             UpdateStatistics();
         }
@@ -174,14 +214,15 @@ namespace SyncStock.Views.UserControl
             int total = 0;
             int capitalized = 0;
             int pending = 0;
+            decimal totalValue = 0m;
 
             for (int rowHandle = 0; rowHandle < ReviewItemGV.DataRowCount; rowHandle++)
             {
                 var item = ReviewItemGV.GetRow(rowHandle) as AuditorReviewItemDto;
-                if (item == null)
-                    continue;
+                if (item == null) continue;
 
                 total++;
+                totalValue += item.TotalAmount;
 
                 if (string.Equals(item.Capitalizable, "Yes", StringComparison.OrdinalIgnoreCase))
                     capitalized++;
@@ -194,6 +235,7 @@ namespace SyncStock.Views.UserControl
             TotalAssetsNum.Text = total.ToString();
             CapitalizedNum.Text = capitalized.ToString();
             PendingNum.Text = pending.ToString();
+            LblTotalValue.Text = totalValue.ToString("N2");
         }
 
         private void FilterCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,7 +253,6 @@ namespace SyncStock.Views.UserControl
             if (e.Column.FieldName == nameof(AuditorReviewItemDto.Status))
             {
                 string val = e.CellValue?.ToString();
-
                 Color bgColor, textColor;
 
                 if (string.Equals(val, "Active", StringComparison.OrdinalIgnoreCase))
@@ -220,7 +261,7 @@ namespace SyncStock.Views.UserControl
                     textColor = Color.FromArgb(30, 120, 30);
                 }
                 else if (string.Equals(val, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals(val, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
+                      || string.Equals(val, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
                 {
                     bgColor = Color.FromArgb(255, 243, 200);
                     textColor = Color.FromArgb(160, 100, 0);

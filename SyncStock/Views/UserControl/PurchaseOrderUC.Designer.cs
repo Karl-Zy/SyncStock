@@ -1,4 +1,4 @@
-﻿namespace SyncStock.Views.UserControl
+namespace SyncStock.Views.UserControl
 {
     partial class PurchaseOrderUC
     {
