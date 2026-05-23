@@ -39,6 +39,7 @@
     <Reference Include="DevExpress.Charts.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v23.2" />
     <Reference Include="DevExpress.Data.v23.2" />
+    <Reference Include="DevExpress.DataAccess.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -47,6 +48,7 @@
     <Reference Include="DevExpress.Utils.v23.2" />
     <Reference Include="DevExpress.Sparkline.v23.2.Core" />
     <Reference Include="DevExpress.Utils.v23.2.UI, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v23.2.UI, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -89,12 +91,25 @@
     <Compile Include="Models\Accounts\User.cs" />
     <Compile Include="Models\ApprovedPurchaseOrder.cs" />
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\ItemImages.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Models\ReportItem.cs" />
+    <Compile Include="PrintForm\PendingReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintForm\PendingReport.Designer.cs">
+      <DependentUpon>PendingReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintForm\PurchaseReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintForm\PurchaseReport.Designer.cs">
+      <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintForm\SummaryReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -157,6 +172,12 @@
     <Compile Include="Views\UserControl\RfidLoginUC.Designer.cs">
       <DependentUpon>RfidLoginUC.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PrintForm\PendingReport.resx">
+      <DependentUpon>PendingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintForm\PurchaseReport.resx">
+      <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintForm\SummaryReport.resx">
       <DependentUpon>SummaryReport.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
+using SyncStock.Models;
+using SyncStock.PrintForm;
 using SyncStock.Database;
 using System;
 using System.Collections.Generic;
@@ -21,11 +24,6 @@ namespace SyncStock.Views.UserControl
             LoadData();
         }
 
-
-        private void labelControl1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void labelControl4_Click(object sender, EventArgs e)
         {
@@ -54,6 +52,37 @@ namespace SyncStock.Views.UserControl
         private void ReportGC_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void PrintSummaryButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var report = new SummaryReport();           
+                report.ShowPreviewDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Initializing Report: {ex.Message}");
+            }
+        }
+
+        private void FilterBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (FilterBox.Text) 
+            {
+                case "Purchased Orders":
+                    ReportGC.DataSource = _repo.GetAllPurchaseOrderItems().ToList();
+                    break;
+
+                case "Pending Orders":
+                    ReportGC.DataSource = _repo.GetPendingPurchaseOrders().ToList();
+                    break;
+
+                case "Approved Order":
+                    ReportGC.DataSource = _repo.GetAllReportItems().ToList();
+                    break;
+            }
         }
     }
 }
