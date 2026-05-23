@@ -176,6 +176,15 @@ namespace SyncStock.Database
 
         public List<PurchaseOrders> GetASAPOrders()
         {
+            var orders = new List<PurchaseOrders>();
+
+            string query = @"SELECT po.*, d.DepartmentName
+                            FROM PurchaseOrders po
+                            JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                            WHERE po.Priority = 'ASAP Department'
+                            OR po.Priority = 'ASAP'
+                            ORDER BY po.OrderDate DESC";
+
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrders>(@"
@@ -286,39 +295,30 @@ namespace SyncStock.Database
             }
         }
 
-        #endregion
-
-        #region Auditor Review
-
-        /// <summary>
-        /// Rows confirmed by receiving custodian (<see cref="ConfirmedItems"/>).
-        /// </summary>
-        public IEnumerable<AuditorReviewItemDto> GetAuditorReviewItems()
+        public IEnumerable<ApprovedPurchaseOrder> GetAllApprovedMonthlyCost()
         {
             using (var conn = CreateConnection())
             {
-                return conn.Query<AuditorReviewItemDto>(@"
-                    SELECT
-                        ci.ConfirmedItemID AS PurchaseOrderItemID,
-                        ci.PONumber,
-                        ci.ItemName,
-                        po.InvoiceNumber,
-                        CASE WHEN ci.ReceivedQuantity > 0
-                             THEN ci.ReceivedAmount / ci.ReceivedQuantity
-                             ELSE 0 END AS UnitPrice,
-                        ci.ReceivedQuantity AS Quantity,
-                        ci.ReceivedAmount AS TotalAmount,
-                        ci.DateReceived,
-                        CASE WHEN ci.IsCapitalizable = 1 THEN 'Yes' ELSE 'No' END AS Capitalizable,
-                        d.DepartmentName AS Department,
-                        po.Status
-                    FROM ConfirmedItems ci
-                    INNER JOIN PurchaseOrders po ON ci.PONumber = po.PONumber
+                return conn.Query<ApprovedPurchaseOrder>
+                    (@"SELECT 
+                    po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                    SUM(poi.TotalPrice) AS TotalAmount
+                    FROM PurchaseOrders po
                     INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    ORDER BY ci.DateReceived DESC, ci.PONumber, ci.ItemName");
+                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                    WHERE po.Status = 'Approved'
+                    AND MONTH(po.OrderDate) = MONTH(GETDATE())
+                    AND YEAR(po.OrderDate) = YEAR(GETDATE())
+                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
             }
+
         }
 
-        #endregion
+        
     }
 }
