@@ -4,6 +4,7 @@ using SyncStock.Database;
 using SyncStock.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -17,14 +18,29 @@ namespace SyncStock.Views.UserControl
         private const string AllStatusesLabel = "All Statuses";
         private const string AllMonthsLabel = "All Months";
 
+        // Pill labels shown in the grid (not raw Yes/No or DB status strings).
+        private const string PillCapitalizable = "Capitalizable";
+        private const string PillNonCapitalizable = "Non-Capitalizable";
+        private const string PillActive = "Active";
+        private const string PillPendingReview = "Pending Review";
+        private const string PillApproved = "Approved";
+
         private readonly Repository _repo = new Repository();
         private List<AuditorReviewItemDto> _reviewItems = new List<AuditorReviewItemDto>();
 
         public AuditorReviewUC()
         {
             InitializeComponent();
+
+            // Designer only runs InitializeComponent — avoid DB calls and runtime-only grid setup.
+            if (IsDesignTime())
+                return;
+
             InitializeReviewScreen();
         }
+
+        private bool IsDesignTime() =>
+            DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private void InitializeReviewScreen()
         {
@@ -38,15 +54,15 @@ namespace SyncStock.Views.UserControl
             LoadReviewItems();      // must be BEFORE LoadFilterMonths
             LoadFilterMonths();     // uses _reviewItems which is now populated
 
-            CmbFilterDepartment.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
-            CmbFilterList.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
-            CmbDate.SelectedIndexChanged += FilterCombo_SelectedIndexChanged;
-            ReviewItemGV.ColumnFilterChanged += ReviewItemGV_ColumnFilterChanged;
+            CmbFilterDepartment.SelectedIndexChanged += FilterChanged;
+            CmbFilterList.SelectedIndexChanged += FilterChanged;
+            CmbDate.SelectedIndexChanged += FilterChanged;
+            ScFilter.EditValueChanged += FilterChanged;
         }
 
         private void ConfigureSearchControl()
         {
-            ScFilter.Client = ReviewItemGC;
+            // Search is applied in code (same list as statistics) so totals always match the grid.
             ScFilter.Properties.NullValuePrompt = "Search accepted receipts...";
         }
 
@@ -69,12 +85,6 @@ namespace SyncStock.Views.UserControl
             colTotalAmount.DisplayFormat.FormatString = "N2";
             colDateReceived.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             colDateReceived.DisplayFormat.FormatString = "dd MMM yyyy";
-
-            // Hide raw text so only the custom-drawn colored badge shows
-            colStatus.AppearanceCell.ForeColor = Color.Transparent;
-            colStatus.AppearanceCell.Options.UseForeColor = true;
-            colCapitalizable.AppearanceCell.ForeColor = Color.Transparent;
-            colCapitalizable.AppearanceCell.Options.UseForeColor = true;
         }
 
         private void LoadFilterDepartments()
@@ -130,10 +140,7 @@ namespace SyncStock.Views.UserControl
                 _reviewItems = _repo.GetAuditorReviewItems().ToList();
                 MergeDistinctStatusesIntoFilter();
 
-                ReviewItemGC.DataSource = null;
-                ReviewItemGC.DataSource = _reviewItems;
-
-                ApplyComboFilters();
+                ApplyFiltersAndRefresh();
             }
             catch (Exception ex)
             {
@@ -171,129 +178,217 @@ namespace SyncStock.Views.UserControl
                 CmbFilterList.SelectedIndex = 0;
         }
 
-        private void ApplyComboFilters()
+        private void ApplyFiltersAndRefresh()
         {
-            var filters = new List<string>();
+            var filtered = GetFilteredReviewItems().ToList();
+
+            ReviewItemGV.ActiveFilterString = string.Empty;
+            ReviewItemGV.FindFilterText = string.Empty;
+            ReviewItemGC.DataSource = null;
+            ReviewItemGC.DataSource = filtered;
+
+            UpdateStatistics(filtered, filtered.Sum(x => x.Quantity));
+        }
+
+        private List<AuditorReviewItemDto> GetFilteredReviewItems()
+        {
+            IEnumerable<AuditorReviewItemDto> items = _reviewItems;
 
             if (CmbFilterDepartment.SelectedIndex > 0 &&
                 !string.Equals(CmbFilterDepartment.Text, AllDepartmentsLabel, StringComparison.OrdinalIgnoreCase))
             {
-                filters.Add($"[Department] = '{EscapeFilterValue(CmbFilterDepartment.Text)}'");
+                string department = CmbFilterDepartment.Text;
+                items = items.Where(x =>
+                    string.Equals(x.Department, department, StringComparison.OrdinalIgnoreCase));
             }
 
             if (CmbFilterList.SelectedIndex > 0 &&
                 !string.Equals(CmbFilterList.Text, AllStatusesLabel, StringComparison.OrdinalIgnoreCase))
             {
-                filters.Add($"[Status] = '{EscapeFilterValue(CmbFilterList.Text)}'");
+                string status = CmbFilterList.Text;
+                items = items.Where(x =>
+                    string.Equals(x.Status, status, StringComparison.OrdinalIgnoreCase));
             }
 
             if (CmbDate.SelectedIndex > 0 &&
                 !string.Equals(CmbDate.Text, AllMonthsLabel, StringComparison.OrdinalIgnoreCase) &&
                 DateTime.TryParseExact(
-                    CmbDate.Text, "MMMM yyyy",
+                    CmbDate.Text,
+                    "MMMM yyyy",
                     System.Globalization.CultureInfo.InvariantCulture,
                     System.Globalization.DateTimeStyles.None,
                     out DateTime selectedMonth))
             {
-                var start = selectedMonth;
-                var end = selectedMonth.AddMonths(1).AddDays(-1);
-                filters.Add($"[DateReceived] >= #{start:MM/dd/yyyy}# And [DateReceived] <= #{end:MM/dd/yyyy}#");
+                var start = selectedMonth.Date;
+                var end = selectedMonth.AddMonths(1).AddDays(-1).Date;
+                items = items.Where(x =>
+                {
+                    var received = x.DateReceived.Date;
+                    return received >= start && received <= end;
+                });
             }
 
-            ReviewItemGV.ActiveFilterString = string.Join(" And ", filters);
-            UpdateStatistics();
+            string searchText = GetSearchText();
+            if (!string.IsNullOrWhiteSpace(searchText))
+                items = items.Where(x => MatchesSearch(x, searchText));
+
+            return items.ToList();
         }
 
-        private static string EscapeFilterValue(string value)
+        private string GetSearchText()
         {
-            return (value ?? string.Empty).Replace("'", "''");
+            string text = Convert.ToString(ScFilter.EditValue);
+            if (string.IsNullOrWhiteSpace(text))
+                text = ScFilter.Text;
+
+            return text?.Trim() ?? string.Empty;
         }
 
-        private void UpdateStatistics()
+        private static bool MatchesSearch(AuditorReviewItemDto item, string search)
         {
-            int total = 0;
-            int capitalized = 0;
-            int pending = 0;
-            decimal totalValue = 0m;
+            return Contains(item.PONumber, search)
+                || Contains(item.ItemName, search)
+                || Contains(item.InvoiceNumber, search)
+                || Contains(item.Department, search)
+                || Contains(item.Status, search)
+                || Contains(item.Capitalizable, search)
+                || Contains(PillCapitalizable, search)
+                || Contains(PillNonCapitalizable, search)
+                || Contains(PillPendingReview, search)
+                || item.Quantity.ToString().IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0
+                || item.UnitPrice.ToString("N2").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0
+                || item.TotalAmount.ToString("N2").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0
+                || item.DateReceived.ToString("dd MMM yyyy").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
-            for (int rowHandle = 0; rowHandle < ReviewItemGV.DataRowCount; rowHandle++)
+        private static bool Contains(string value, string search)
+        {
+            return !string.IsNullOrEmpty(value)
+                && value.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static bool IsCapitalized(AuditorReviewItemDto item) =>
+            string.Equals(item.Capitalizable, "Yes", StringComparison.OrdinalIgnoreCase);
+
+        private static bool IsPendingReview(AuditorReviewItemDto item) =>
+            string.Equals(item.Status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase);
+
+        private void UpdateStatistics(IReadOnlyList<AuditorReviewItemDto> items, int totalQuantity)
+        {
+            int capitalizedCount = items.Count(IsCapitalized);
+            int pendingCount = items.Count(IsPendingReview);
+            decimal capitalizedValue = items.Where(IsCapitalized).Sum(x => x.TotalAmount);
+            decimal totalValue = items.Sum(x => x.TotalAmount);
+
+            TotalAssetsNum.Text = "₱" + totalValue.ToString("N2");
+            labelControl5.Text = GetPeriodLabelText(totalQuantity);
+
+            CapitalizedNum.Text = capitalizedCount.ToString();
+            labelControl8.Text = "₱" + capitalizedValue.ToString("N2");
+            PendingNum.Text = pendingCount.ToString();
+        }
+
+        private string GetPeriodLabelText(int totalQuantity)
+        {
+            if (CmbDate.SelectedIndex > 0 &&
+                !string.Equals(CmbDate.Text, AllMonthsLabel, StringComparison.OrdinalIgnoreCase))
             {
-                var item = ReviewItemGV.GetRow(rowHandle) as AuditorReviewItemDto;
-                if (item == null) continue;
-
-                total++;
-                totalValue += item.TotalAmount;
-
-                if (string.Equals(item.Capitalizable, "Yes", StringComparison.OrdinalIgnoreCase))
-                    capitalized++;
-
-                if (string.Equals(item.Status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals(item.Status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
-                    pending++;
+                return $"{CmbDate.Text} · {totalQuantity:N0} items";
             }
 
-            TotalAssetsNum.Text = total.ToString();
-            CapitalizedNum.Text = capitalized.ToString();
-            PendingNum.Text = pending.ToString();
-            LblTotalValue.Text = totalValue.ToString("N2");
+            return $"{totalQuantity:N0} items · Current Period";
         }
 
-        private void FilterCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void FilterChanged(object sender, EventArgs e)
         {
-            ApplyComboFilters();
-        }
-
-        private void ReviewItemGV_ColumnFilterChanged(object sender, EventArgs e)
-        {
-            UpdateStatistics();
+            ApplyFiltersAndRefresh();
         }
 
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
             if (e.Column.FieldName == nameof(AuditorReviewItemDto.Status))
             {
-                string val = e.CellValue?.ToString();
-                Color bgColor, textColor;
-
-                if (string.Equals(val, "Active", StringComparison.OrdinalIgnoreCase))
-                {
-                    bgColor = Color.FromArgb(220, 247, 220);
-                    textColor = Color.FromArgb(30, 120, 30);
-                }
-                else if (string.Equals(val, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
-                      || string.Equals(val, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
-                {
-                    bgColor = Color.FromArgb(255, 243, 200);
-                    textColor = Color.FromArgb(160, 100, 0);
-                }
-                else
-                {
+                if (!TryGetStatusPill(e.CellValue?.ToString(), out string label, out Color bgColor, out Color textColor))
                     return;
-                }
 
-                DrawBadge(e, val, bgColor, textColor);
-                e.Handled = true;
+                DrawBadge(e, label, bgColor, textColor);
+                return;
             }
 
             if (e.Column.FieldName == nameof(AuditorReviewItemDto.Capitalizable))
             {
-                string val = e.CellValue?.ToString();
+                if (!TryGetCapitalizablePill(e.CellValue?.ToString(), out string label, out Color bgColor, out Color textColor))
+                    return;
 
-                if (string.Equals(val, "Yes", StringComparison.OrdinalIgnoreCase))
-                {
-                    DrawBadge(e, val,
-                        Color.FromArgb(220, 235, 255),
-                        Color.FromArgb(30, 80, 180));
-                    e.Handled = true;
-                }
+                DrawBadge(e, label, bgColor, textColor);
             }
         }
 
-        private void DrawBadge(RowCellCustomDrawEventArgs e, string text, Color bgColor, Color textColor)
+        private static bool TryGetStatusPill(string status, out string label, out Color bgColor, out Color textColor)
         {
-            Graphics g = e.Graphics;
-            e.DefaultDraw();
+            label = null;
+            bgColor = Color.Empty;
+            textColor = Color.Empty;
 
+            if (string.Equals(status, WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase))
+            {
+                label = PillActive;
+                bgColor = Color.FromArgb(220, 247, 220);
+                textColor = Color.FromArgb(30, 120, 30);
+                return true;
+            }
+
+            if (string.Equals(status, WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase))
+            {
+                label = PillApproved;
+                bgColor = Color.FromArgb(220, 247, 220);
+                textColor = Color.FromArgb(30, 120, 30);
+                return true;
+            }
+
+            if (string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
+            {
+                label = PillPendingReview;
+                bgColor = Color.FromArgb(255, 243, 200);
+                textColor = Color.FromArgb(160, 100, 0);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool TryGetCapitalizablePill(string value, out string label, out Color bgColor, out Color textColor)
+        {
+            label = null;
+            bgColor = Color.Empty;
+            textColor = Color.Empty;
+
+            if (string.Equals(value, "Yes", StringComparison.OrdinalIgnoreCase))
+            {
+                label = PillCapitalizable;
+                bgColor = Color.FromArgb(220, 235, 255);
+                textColor = Color.FromArgb(30, 80, 180);
+                return true;
+            }
+
+            if (string.Equals(value, "No", StringComparison.OrdinalIgnoreCase))
+            {
+                label = PillNonCapitalizable;
+                bgColor = Color.FromArgb(243, 244, 246);
+                textColor = Color.FromArgb(75, 85, 99);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void DrawBadge(RowCellCustomDrawEventArgs e, string label, Color bgColor, Color textColor)
+        {
+            e.Handled = true;
+            e.Appearance.FillRectangle(e.Cache, e.Bounds);
+
+            Graphics g = e.Graphics;
             int padX = 8, padY = 4;
             Rectangle cell = e.Bounds;
             Rectangle badge = new Rectangle(
@@ -317,7 +412,7 @@ namespace SyncStock.Views.UserControl
                     Alignment = StringAlignment.Center,
                     LineAlignment = StringAlignment.Center
                 };
-                g.DrawString(text, font, textBrush, badge, sf);
+                g.DrawString(label, font, textBrush, badge, sf);
             }
         }
 
