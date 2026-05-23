@@ -64,16 +64,16 @@
             this.CmbFilterDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
             this.ReviewItemGC = new DevExpress.XtraGrid.GridControl();
             this.ReviewItemGV = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.asd = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPONumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colItemName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInvoiceNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDateReceived = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCapitalizable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -276,7 +276,7 @@
             this.TotalAssetsNum.Name = "TotalAssetsNum";
             this.TotalAssetsNum.Size = new System.Drawing.Size(40, 45);
             this.TotalAssetsNum.TabIndex = 0;
-            this.TotalAssetsNum.Text = "20";
+            this.TotalAssetsNum.Text = "0";
             // 
             // panelControl5
             // 
@@ -338,7 +338,7 @@
             this.PendingNum.Name = "PendingNum";
             this.PendingNum.Size = new System.Drawing.Size(20, 45);
             this.PendingNum.TabIndex = 0;
-            this.PendingNum.Text = "4";
+            this.PendingNum.Text = "0";
             // 
             // ScFilter
             // 
@@ -453,7 +453,7 @@
             this.CapitalizedNum.Name = "CapitalizedNum";
             this.CapitalizedNum.Size = new System.Drawing.Size(20, 45);
             this.CapitalizedNum.TabIndex = 2;
-            this.CapitalizedNum.Text = "6";
+            this.CapitalizedNum.Text = "0";
             // 
             // labelControl6
             // 
@@ -508,114 +508,124 @@
             // ReviewItemGV
             // 
             this.ReviewItemGV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.asd,
-            this.gridColumn2,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8,
-            this.gridColumn9,
-            this.gridColumn1});
+            this.colPONumber,
+            this.colItemName,
+            this.colInvoiceNumber,
+            this.colUnitPrice,
+            this.colQuantity,
+            this.colTotalAmount,
+            this.colDateReceived,
+            this.colCapitalizable,
+            this.colDepartment,
+            this.colStatus});
             this.ReviewItemGV.DetailHeight = 303;
             this.ReviewItemGV.GridControl = this.ReviewItemGC;
             this.ReviewItemGV.Name = "ReviewItemGV";
             this.ReviewItemGV.OptionsEditForm.PopupEditFormWidth = 686;
             this.ReviewItemGV.OptionsView.ShowFooter = true;
             this.ReviewItemGV.OptionsView.ShowGroupPanel = false;
-            this.ReviewItemGV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
+            this.ReviewItemGV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.ReviewItemGV_CustomDrawCell);
             // 
-            // asd
+            // colPONumber
             // 
-            this.asd.Caption = "PO Number";
-            this.asd.MinWidth = 17;
-            this.asd.Name = "asd";
-            this.asd.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "", "{1}")});
-            this.asd.Visible = true;
-            this.asd.VisibleIndex = 0;
-            this.asd.Width = 111;
+            this.colPONumber.Caption = "PO Number";
+            this.colPONumber.FieldName = "PONumber";
+            this.colPONumber.MinWidth = 17;
+            this.colPONumber.Name = "colPONumber";
+            this.colPONumber.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "PONumber", "{0}")});
+            this.colPONumber.Visible = true;
+            this.colPONumber.VisibleIndex = 0;
+            this.colPONumber.Width = 111;
             // 
-            // gridColumn2
+            // colItemName
             // 
-            this.gridColumn2.Caption = "Item Name";
-            this.gridColumn2.MinWidth = 17;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 171;
+            this.colItemName.Caption = "Item Name";
+            this.colItemName.FieldName = "ItemName";
+            this.colItemName.MinWidth = 17;
+            this.colItemName.Name = "colItemName";
+            this.colItemName.Visible = true;
+            this.colItemName.VisibleIndex = 1;
+            this.colItemName.Width = 171;
             // 
-            // gridColumn3
+            // colInvoiceNumber
             // 
-            this.gridColumn3.Caption = "Invoice Number";
-            this.gridColumn3.MinWidth = 17;
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 110;
+            this.colInvoiceNumber.Caption = "Invoice Number";
+            this.colInvoiceNumber.FieldName = "InvoiceNumber";
+            this.colInvoiceNumber.MinWidth = 17;
+            this.colInvoiceNumber.Name = "colInvoiceNumber";
+            this.colInvoiceNumber.Visible = true;
+            this.colInvoiceNumber.VisibleIndex = 2;
+            this.colInvoiceNumber.Width = 110;
             // 
-            // gridColumn4
+            // colUnitPrice
             // 
-            this.gridColumn4.Caption = "Unit Price";
-            this.gridColumn4.MinWidth = 17;
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 67;
+            this.colUnitPrice.Caption = "Unit Price";
+            this.colUnitPrice.FieldName = "UnitPrice";
+            this.colUnitPrice.MinWidth = 17;
+            this.colUnitPrice.Name = "colUnitPrice";
+            this.colUnitPrice.Visible = true;
+            this.colUnitPrice.VisibleIndex = 3;
+            this.colUnitPrice.Width = 67;
             // 
-            // gridColumn5
+            // colQuantity
             // 
-            this.gridColumn5.Caption = "Quantity";
-            this.gridColumn5.MinWidth = 17;
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 77;
+            this.colQuantity.Caption = "Quantity";
+            this.colQuantity.FieldName = "Quantity";
+            this.colQuantity.MinWidth = 17;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Visible = true;
+            this.colQuantity.VisibleIndex = 4;
+            this.colQuantity.Width = 77;
             // 
-            // gridColumn6
+            // colTotalAmount
             // 
-            this.gridColumn6.Caption = "Total Amount";
-            this.gridColumn6.MinWidth = 17;
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 87;
+            this.colTotalAmount.Caption = "Total Amount";
+            this.colTotalAmount.FieldName = "TotalAmount";
+            this.colTotalAmount.MinWidth = 17;
+            this.colTotalAmount.Name = "colTotalAmount";
+            this.colTotalAmount.Visible = true;
+            this.colTotalAmount.VisibleIndex = 5;
+            this.colTotalAmount.Width = 87;
             // 
-            // gridColumn7
+            // colDateReceived
             // 
-            this.gridColumn7.Caption = "Date Received";
-            this.gridColumn7.MinWidth = 17;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 119;
+            this.colDateReceived.Caption = "Date Received";
+            this.colDateReceived.FieldName = "DateReceived";
+            this.colDateReceived.MinWidth = 17;
+            this.colDateReceived.Name = "colDateReceived";
+            this.colDateReceived.Visible = true;
+            this.colDateReceived.VisibleIndex = 6;
+            this.colDateReceived.Width = 119;
             // 
-            // gridColumn8
+            // colCapitalizable
             // 
-            this.gridColumn8.Caption = "Capitalizable";
-            this.gridColumn8.MinWidth = 17;
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.colCapitalizable.Caption = "Capitalizable";
+            this.colCapitalizable.FieldName = "Capitalizable";
+            this.colCapitalizable.MinWidth = 17;
+            this.colCapitalizable.Name = "colCapitalizable";
+            this.colCapitalizable.Visible = true;
+            this.colCapitalizable.VisibleIndex = 7;
             // 
-            // gridColumn9
+            // colDepartment
             // 
-            this.gridColumn9.Caption = "Department";
-            this.gridColumn9.MinWidth = 17;
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 268;
+            this.colDepartment.Caption = "Department";
+            this.colDepartment.FieldName = "Department";
+            this.colDepartment.MinWidth = 17;
+            this.colDepartment.Name = "colDepartment";
+            this.colDepartment.Visible = true;
+            this.colDepartment.VisibleIndex = 8;
+            this.colDepartment.Width = 268;
             // 
-            // gridColumn1
+            // colStatus
             // 
-            this.gridColumn1.Caption = "Status";
-            this.gridColumn1.MinWidth = 17;
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 9;
-            this.gridColumn1.Width = 180;
+            this.colStatus.Caption = "Status";
+            this.colStatus.FieldName = "Status";
+            this.colStatus.MinWidth = 17;
+            this.colStatus.Name = "colStatus";
+            this.colStatus.Visible = true;
+            this.colStatus.VisibleIndex = 9;
+            this.colStatus.Width = 180;
             // 
             // Root
             // 
@@ -875,16 +885,16 @@
         private DevExpress.XtraEditors.ComboBoxEdit CmbFilterDepartment;
         private DevExpress.XtraGrid.GridControl ReviewItemGC;
         private DevExpress.XtraGrid.Views.Grid.GridView ReviewItemGV;
-        private DevExpress.XtraGrid.Columns.GridColumn asd;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn colPONumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colItemName;
+        private DevExpress.XtraGrid.Columns.GridColumn colInvoiceNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colUnitPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colDateReceived;
+        private DevExpress.XtraGrid.Columns.GridColumn colCapitalizable;
+        private DevExpress.XtraGrid.Columns.GridColumn colDepartment;
+        private DevExpress.XtraGrid.Columns.GridColumn colStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;

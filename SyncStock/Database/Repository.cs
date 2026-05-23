@@ -129,7 +129,8 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>
-                    (@"SELECT poi.*, i.ItemName
+                    (@"SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                             poi.Quantity, poi.UnitPrice, i.ItemName
                     FROM PurchaseOrderItems poi
                     INNER JOIN Items i ON poi.ItemID = i.ItemID
                     WHERE poi.PurchaseOrderID = @PurchaseOrderID",
@@ -172,9 +173,131 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-            SELECT poi.*, i.ItemName
+            SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                   poi.Quantity, poi.UnitPrice, i.ItemName
             FROM PurchaseOrderItems poi
             INNER JOIN Items i ON poi.ItemID = i.ItemID");
+            }
+        }
+
+        /// <summary>
+        /// PO line items not yet confirmed by the receiving custodian.
+        /// </summary>
+        public IEnumerable<PendingReceivingItemDto> GetPendingReceivingItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PendingReceivingItemDto>(@"
+                    SELECT
+                        poi.POItemID AS PurchaseOrderItemID,
+                        poi.PurchaseOrderID,
+                        po.PONumber,
+                        i.ItemName,
+                        d.DepartmentName AS Department,
+                        poi.Quantity AS ExpectedQuantity,
+                        poi.UnitPrice
+                    FROM PurchaseOrderItems poi
+                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    INNER JOIN Items i ON poi.ItemID = i.ItemID
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    WHERE NOT EXISTS (
+                        SELECT 1
+                        FROM ReceivingReports rr
+                        WHERE rr.POItemID = poi.POItemID
+                    )
+                    ORDER BY po.OrderDate DESC, po.PONumber, i.ItemName");
+            }
+        }
+
+        /// <summary>
+        /// Records receiving custodian acceptance for a purchase order line item.
+        /// </summary>
+        public int AcceptReceivingReport(ReceivingReport report)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                using (var tx = conn.BeginTransaction())
+                {
+                    int reportId = conn.ExecuteScalar<int>(@"
+                        INSERT INTO ReceivingReports
+                        (
+                            POItemID,
+                            DateReceived,
+                            ReceivedQuantity,
+                            ReceivedAmount,
+                            IsCapitalizable,
+                            Remarks,
+                            ProofOfDeliveryPath,
+                            AcceptedAt,
+                            AuditorStatus
+                        )
+                        VALUES
+                        (
+                            @PurchaseOrderItemID,
+                            @DateReceived,
+                            @ReceivedQuantity,
+                            @ReceivedAmount,
+                            @IsCapitalizable,
+                            @Remarks,
+                            @ProofOfDeliveryPath,
+                            @AcceptedAt,
+                            @AuditorStatus
+                        );
+                        SELECT CAST(SCOPE_IDENTITY() AS INT);",
+                        report,
+                        tx);
+
+                    conn.Execute(@"
+                        UPDATE PurchaseOrders
+                        SET Status = @Status
+                        WHERE PurchaseOrderID = (
+                            SELECT PurchaseOrderID
+                            FROM PurchaseOrderItems
+                            WHERE POItemID = @PurchaseOrderItemID
+                        )",
+                        new
+                        {
+                            Status = WorkflowStatus.AcceptedByCustodian,
+                            report.PurchaseOrderItemID
+                        },
+                        tx);
+
+                    tx.Commit();
+                    return reportId;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Line items accepted by the receiving custodian, ready for internal auditor review.
+        /// </summary>
+        public IEnumerable<AuditorReviewItemDto> GetAuditorReviewItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<AuditorReviewItemDto>(@"
+                    SELECT
+                        poi.POItemID AS PurchaseOrderItemID,
+                        po.PONumber,
+                        i.ItemName,
+                        po.InvoiceNumber,
+                        poi.UnitPrice,
+                        rr.ReceivedQuantity AS Quantity,
+                        rr.ReceivedAmount AS TotalAmount,
+                        rr.DateReceived,
+                        CASE
+                            WHEN rr.IsCapitalizable = 1 THEN 'Yes'
+                            ELSE 'No'
+                        END AS Capitalizable,
+                        d.DepartmentName AS Department,
+                        rr.AuditorStatus AS Status
+                    FROM ReceivingReports rr
+                    INNER JOIN PurchaseOrderItems poi ON rr.POItemID = poi.POItemID
+                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    INNER JOIN Items i ON poi.ItemID = i.ItemID
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    ORDER BY rr.DateReceived DESC, po.PONumber, i.ItemName");
             }
         }
     }

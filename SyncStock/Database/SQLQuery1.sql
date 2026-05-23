@@ -1,5 +1,7 @@
 ﻿USE Syncho5DB;
 
+DROP TABLE IF EXISTS ReceivingReports;
+DROP TABLE IF EXISTS PurchaseOrderItems;
 DROP TABLE IF EXISTS PurchaseOrdersItems;
 DROP TABLE IF EXISTS PurchaseOrders;
 DROP TABLE IF EXISTS UserAccounts;
@@ -38,9 +40,9 @@ CREATE TABLE PurchaseOrders (
 	
 );
 
-CREATE TABLE PurchaseOrdersItems (
+CREATE TABLE PurchaseOrderItems (
 
-	PurchaseOrderItemID INT PRIMARY KEY IDENTITY (1,1),
+	POItemID INT PRIMARY KEY IDENTITY (1,1),
 	PurchaseOrderID INT NOT NULL,
 	ItemID INT NOT NULL,
 	Quantity INT NOT NULL,
