@@ -108,7 +108,7 @@ namespace SyncStock.Views.UserControl
                         PONumber = poNumberTE.Text,
                         OrderDate = purchaseDate.DateTime,
                         DepartmentID = ReqDepartmentCB.SelectedIndex + 1,
-                        Status = "Pending",
+                        Status = WorkflowStatus.Pending,
                         Priority = "Normal",
                         Remarks = RemarksTE.Text,
                         AttachmentPath = ""

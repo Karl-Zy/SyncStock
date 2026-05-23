@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using SyncStock.Database;
+using SyncStock.Models;
 using SyncStock.Models.Models_Receiving_;
 using System;
 using System.Collections.Generic;
@@ -262,7 +263,7 @@ namespace SyncStock.Views.UserControl
 
                 // Save entry and update its status so it drops out of 'Pending'
                 _repo.AddConfirmedItem(confirmationPayload);
-                _repo.UpdatePurchaseOrderItemStatus(purePoNumber, txteditItemName.Text, "Received");
+                _repo.UpdatePurchaseOrderStatus(purePoNumber, WorkflowStatus.Received);
 
                 DevExpress.XtraEditors.XtraMessageBox.Show("Asset inventory ledger updated and item confirmed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

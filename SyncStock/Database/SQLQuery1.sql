@@ -1,5 +1,6 @@
-﻿USE Syncho5DB;
+﻿USE SyncStock;
 
+DROP TABLE IF EXISTS ConfirmedItems;
 DROP TABLE IF EXISTS ReceivingReports;
 DROP TABLE IF EXISTS PurchaseOrderItems;
 DROP TABLE IF EXISTS PurchaseOrdersItems;
@@ -9,16 +10,8 @@ DROP TABLE IF EXISTS Departments;
 DROP TABLE IF EXISTS Items;
 
 CREATE TABLE Items (
-
 	ItemID INT PRIMARY KEY IDENTITY (1,1),
-	InvoiceNumber NVARCHAR(50) NOT NULL,
-	ItemName NVARCHAR(255) NOT NULL,
-	Quantity INT NOT NULL,
-	UnitPrice DECIMAL(18, 2) NOT NULL,
-	TotalPrice AS (Quantity * UnitPrice),
-	ItemDate DATE NOT NULL,
-	CreatedAt DATETIME DEFAULT GETDATE()
-
+	ItemName NVARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Departments (
@@ -34,10 +27,28 @@ CREATE TABLE PurchaseOrders (
 	PONumber NVARCHAR(50) NOT NULL UNIQUE,
 	OrderDate DATE NOT NULL,
 	DepartmentID INT NOT NULL,
+	Status NVARCHAR(50) NOT NULL DEFAULT 'Pending',
+	Priority NVARCHAR(50) NOT NULL DEFAULT 'Normal',
+	Remarks NVARCHAR(500) NULL,
+	AttachmentPath NVARCHAR(500) NULL,
 
 	FOREIGN KEY (DepartmentID)
 	REFERENCES Departments(DepartmentID)
 	
+);
+
+CREATE TABLE ConfirmedItems (
+	ConfirmedItemID INT PRIMARY KEY IDENTITY(1,1),
+	PONumber NVARCHAR(50) NOT NULL,
+	ItemName NVARCHAR(255) NOT NULL,
+	DateReceived DATE NOT NULL,
+	IsCapitalizable BIT NOT NULL DEFAULT 0,
+	ExpectedQuantity INT NOT NULL,
+	ReceivedQuantity INT NOT NULL,
+	ExpectedAmount DECIMAL(18, 2) NOT NULL,
+	ReceivedAmount DECIMAL(18, 2) NOT NULL,
+	AttachmentPath NVARCHAR(500) NULL,
+	Remarks NVARCHAR(500) NULL
 );
 
 CREATE TABLE PurchaseOrderItems (
