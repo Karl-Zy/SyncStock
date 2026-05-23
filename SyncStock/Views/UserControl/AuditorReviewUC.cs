@@ -89,7 +89,7 @@ namespace SyncStock.Views.UserControl
         {
             CmbFilterList.Properties.Items.Clear();
             CmbFilterList.Properties.Items.Add(AllStatusesLabel);
-            CmbFilterList.Properties.Items.Add(WorkflowStatus.PendingAudit);
+            CmbFilterList.Properties.Items.Add(WorkflowStatus.Received);
             CmbFilterList.Properties.Items.Add(WorkflowStatus.Active);
 
             CmbFilterList.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -124,8 +124,9 @@ namespace SyncStock.Views.UserControl
             var known = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 AllStatusesLabel,
-                WorkflowStatus.PendingAudit,
-                WorkflowStatus.Active
+                WorkflowStatus.Received,
+                WorkflowStatus.Active,
+                WorkflowStatus.Pending
             };
 
             foreach (var status in _reviewItems
@@ -185,7 +186,8 @@ namespace SyncStock.Views.UserControl
                 if (string.Equals(item.Capitalizable, "Yes", StringComparison.OrdinalIgnoreCase))
                     capitalized++;
 
-                if (string.Equals(item.Status, WorkflowStatus.PendingAudit, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(item.Status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(item.Status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
                     pending++;
             }
 
@@ -217,7 +219,8 @@ namespace SyncStock.Views.UserControl
                     bgColor = Color.FromArgb(220, 247, 220);
                     textColor = Color.FromArgb(30, 120, 30);
                 }
-                else if (string.Equals(val, WorkflowStatus.PendingAudit, StringComparison.OrdinalIgnoreCase))
+                else if (string.Equals(val, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(val, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
                 {
                     bgColor = Color.FromArgb(255, 243, 200);
                     textColor = Color.FromArgb(160, 100, 0);

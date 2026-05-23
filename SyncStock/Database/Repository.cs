@@ -1,13 +1,14 @@
-﻿using SyncStock.Models.Item;
+﻿using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Item;
+using SyncStock.Models.Models_Receiving_;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
 
 
 
@@ -63,14 +64,6 @@ namespace SyncStock.Database
 
             }
         }
-
-        //public bool DeleteItem(int itemId)
-        //{
-        //    using (var conn = CreateConnection())
-        //    {
-        //        return conn.Execute("DELETE FROM Items WHERE ItemID = @Id", new { ItemId = itemId }) > 0;
-        //    }
-        //}
 
         public IEnumerable<Departments> GetAllDepartments()
         {
@@ -151,21 +144,8 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                conn.Execute(@"
-            INSERT INTO PurchaseOrderItems
-            (
-                PurchaseOrderID,
-                ItemID,
-                Quantity,
-                UnitPrice
-            )
-            VALUES
-            (
-                @PurchaseOrderID,
-                @ItemID,
-                @Quantity,
-                @UnitPrice
-            )", item);
+                conn.Execute(@"INSERT INTO PurchaseOrderItems(PurchaseOrderID, ItemID, Quantity, UnitPrice)
+                        VALUES (@PurchaseOrderID, @ItemID, @Quantity, @UnitPrice)", item);
             }
         }
         public IEnumerable<PurchaseOrderItem> GetAllPurchaseOrderItems()
@@ -179,6 +159,133 @@ namespace SyncStock.Database
             INNER JOIN Items i ON poi.ItemID = i.ItemID");
             }
         }
+
+        public int GetPendingOrdersCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>("SELECT COUNT(*) FROM PurchaseOrders WHERE Status = 'Pending'");
+            }
+        }
+
+        public List<PurchaseOrders> GetASAPOrders()
+        {
+            var orders = new List<PurchaseOrders>();
+
+            string query = @"SELECT po.*, d.DepartmentName
+                            FROM PurchaseOrders po
+                            JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                            WHERE po.Priority = 'ASAP Department'
+                            AND po.Priority = 'ASAP'
+                            ORDER BY po.OrderDate DESC";
+
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(query).ToList();
+            }
+        }
+
+        public void ApprovePurchaseOrder(int purchaseOrderId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute("UPDATE PurchaseOrders SET Status = 'Approved' WHERE PurchaseOrderID = @PurchaseOrderID",
+                    new { PurchaseOrderID = purchaseOrderId });
+            }
+        }
+
+        public IEnumerable<PurchaseOrders> GetPendingPurchaseOrders()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(@"SELECT po.*, d.DepartmentName 
+                    FROM PurchaseOrders po 
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    WHERE po.Status = 'Pending'");
+            }
+        }
+
+        public IEnumerable<PendingIncomingItem> GetPendingIncomingItemsDetails()
+        {
+            string query = @"
+        SELECT 
+            po.PONumber,
+            'N/A' AS Purchaser, 
+            d.DepartmentName AS Department,
+            i.ItemName,
+            poi.Quantity AS Quantity,
+            (poi.Quantity * poi.UnitPrice) AS Amount,
+            po.OrderDate AS DateOrdered,
+            po.Status
+        FROM PurchaseOrders po
+        INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+        INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+        INNER JOIN Items i ON poi.ItemID = i.ItemID
+        WHERE po.Status = 'Pending'";
+
+            using (var conn = CreateConnection())
+            {
+                // Dapper safely maps the SQL query rows straight into your new class structure
+                return conn.Query<PendingIncomingItem>(query);
+            }
+        }
+
+        public void AddConfirmedItem(ConfirmedItems item)
+        {
+            string query = @"
+        INSERT INTO ConfirmedItems (
+            PONumber, ItemName, DateReceived, IsCapitalizable, 
+            ExpectedQuantity, ReceivedQuantity, ExpectedAmount, 
+            ReceivedAmount, AttachmentPath, Remarks
+        ) VALUES (
+            @PONumber, @ItemName, @DateReceived, @IsCapitalizable, 
+            @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount, 
+            @ReceivedAmount, @AttachmentPath, @Remarks
+        );";
+
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(query, item);
+            }
+        }
+
+        public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
+        {
+            // FIX: Update the parent PurchaseOrders table directly using the PONumber
+            string query = @"
+        UPDATE PurchaseOrders
+        SET Status = @newStatus
+        WHERE PONumber = @poNumber";
+
+            using (var conn = CreateConnection())
+            {
+                // Dapper safely maps the parameters and executes the update
+                conn.Execute(query, new { poNumber, newStatus });
+            }
+        }
+
+        public IEnumerable<PendingOrderSummary> GetPendingOrderSummary()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PendingOrderSummary>(@"
+                    SELECT po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    COUNT (poi.PurchaseOrderItemID) AS TotalItems,
+                    SUM (poi.TotalPrice) AS TotalAmount
+                    FROM PurchaseOrders po
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                    WHERE po.Status = 'Pending'
+                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
+
+            }
+        }
+
+        
 
         /// <summary>
         /// PO line items not yet confirmed by the receiving custodian.
