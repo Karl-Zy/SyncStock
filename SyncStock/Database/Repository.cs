@@ -390,5 +390,50 @@ namespace SyncStock.Database
         }
 
         #endregion
+
+        public IEnumerable<CartItems> GetAllCartItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            ORDER BY CreatedAt DESC");
+            }
+        }
+
+        public void AddCartItem(CartItems cartItem)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            INSERT INTO CartItems
+            (
+                ItemName,
+                Quantity,
+                UnitPrice,
+                InvoiceNumber,
+                PONumber,
+                OrderDate
+            )
+            VALUES
+            (
+                @ItemName,
+                @Quantity,
+                @UnitPrice,
+                @InvoiceNumber,
+                @PONumber,
+                @OrderDate
+            )", cartItem);
+            }
+
+        }
+        public void ClearCart()
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute("DELETE FROM CartItems");
+            }
+        }
     }
 }
