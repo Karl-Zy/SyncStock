@@ -24,9 +24,6 @@ namespace SyncStock
             _currentUser = user;
             this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
 
-            _currentUser = user; // Now 'user' is recognized
-            this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
-
             // Loading initial dashboard
             DashBoardUC dashboard = new DashBoardUC();
             dashboard.Dock = DockStyle.Fill;

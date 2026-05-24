@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceivingCustodianUC));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -47,15 +48,8 @@
             this.dlcPendingIncoming = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItemsView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcolPONumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolPurchaser = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolItemName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolDateOrdered = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridSearch = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.pendingIncomingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridSearchView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lcgPendingIncoming = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciGrid = new DevExpress.XtraLayout.LayoutControlItem();
@@ -95,6 +89,7 @@
             this.lblUploadGuide = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblReceivingReport = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblPONumber = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.emptyspaceReceiving4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -102,7 +97,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptyspaceReceiving4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.openFileDialogReceipt = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.scrlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).BeginInit();
             this.lcMainContainer.SuspendLayout();
@@ -113,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).BeginInit();
@@ -152,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblUploadGuide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblReceivingReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPONumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -159,7 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlControl
@@ -177,7 +173,7 @@
             this.lcMainContainer.Controls.Add(this.lblTitle);
             this.lcMainContainer.Controls.Add(this.pnlPendingIncoming);
             this.lcMainContainer.Controls.Add(this.pnlReceivingReport);
-            this.lcMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcMainContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.lcMainContainer.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem7,
             this.layoutControlItem8});
@@ -244,75 +240,13 @@
             // 
             // gvItemsView
             // 
-            this.gvItemsView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcolPONumber,
-            this.gcolPurchaser,
-            this.gcolDepartment,
-            this.gcolItemName,
-            this.gcolQuantity,
-            this.gcolAmount,
-            this.gcolDateOrdered,
-            this.gcolStatus});
             this.gvItemsView.GridControl = this.gcItems;
             this.gvItemsView.Name = "gvItemsView";
+            this.gvItemsView.OptionsBehavior.Editable = false;
+            this.gvItemsView.OptionsBehavior.ReadOnly = true;
             this.gvItemsView.OptionsView.ShowGroupPanel = false;
             this.gvItemsView.OptionsView.ShowIndicator = false;
-            // 
-            // gcolPONumber
-            // 
-            this.gcolPONumber.Caption = "PO Number";
-            this.gcolPONumber.Name = "gcolPONumber";
-            this.gcolPONumber.Visible = true;
-            this.gcolPONumber.VisibleIndex = 0;
-            // 
-            // gcolPurchaser
-            // 
-            this.gcolPurchaser.Caption = "Purchaser";
-            this.gcolPurchaser.Name = "gcolPurchaser";
-            this.gcolPurchaser.Visible = true;
-            this.gcolPurchaser.VisibleIndex = 1;
-            // 
-            // gcolDepartment
-            // 
-            this.gcolDepartment.Caption = "Department";
-            this.gcolDepartment.Name = "gcolDepartment";
-            this.gcolDepartment.Visible = true;
-            this.gcolDepartment.VisibleIndex = 2;
-            // 
-            // gcolItemName
-            // 
-            this.gcolItemName.Caption = "Item Name";
-            this.gcolItemName.Name = "gcolItemName";
-            this.gcolItemName.Visible = true;
-            this.gcolItemName.VisibleIndex = 3;
-            // 
-            // gcolQuantity
-            // 
-            this.gcolQuantity.Caption = "Quantity";
-            this.gcolQuantity.Name = "gcolQuantity";
-            this.gcolQuantity.Visible = true;
-            this.gcolQuantity.VisibleIndex = 4;
-            // 
-            // gcolAmount
-            // 
-            this.gcolAmount.Caption = "Amount";
-            this.gcolAmount.Name = "gcolAmount";
-            this.gcolAmount.Visible = true;
-            this.gcolAmount.VisibleIndex = 5;
-            // 
-            // gcolDateOrdered
-            // 
-            this.gcolDateOrdered.Caption = "Date Ordered";
-            this.gcolDateOrdered.Name = "gcolDateOrdered";
-            this.gcolDateOrdered.Visible = true;
-            this.gcolDateOrdered.VisibleIndex = 6;
-            // 
-            // gcolStatus
-            // 
-            this.gcolStatus.Caption = "Status";
-            this.gcolStatus.Name = "gcolStatus";
-            this.gcolStatus.Visible = true;
-            this.gcolStatus.VisibleIndex = 7;
+            this.gvItemsView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemsView_FocusedRowChanged);
             // 
             // gridSearch
             // 
@@ -322,11 +256,16 @@
             editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
             this.gridSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.gridSearch.Properties.DataSource = this.pendingIncomingItemBindingSource;
             this.gridSearch.Properties.NullText = "Search for an item or PO number...";
             this.gridSearch.Properties.PopupView = this.gridSearchView;
             this.gridSearch.Size = new System.Drawing.Size(395, 28);
             this.gridSearch.StyleController = this.dlcPendingIncoming;
             this.gridSearch.TabIndex = 4;
+            // 
+            // pendingIncomingItemBindingSource
+            // 
+            this.pendingIncomingItemBindingSource.DataSource = typeof(SyncStock.Models.Models_Receiving_.PendingIncomingItem);
             // 
             // gridSearchView
             // 
@@ -507,12 +446,17 @@
             // 
             this.txteditReceivedAmount.Location = new System.Drawing.Point(734, 224);
             this.txteditReceivedAmount.Name = "txteditReceivedAmount";
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("mask", "c");
+            this.txteditReceivedAmount.Properties.NullText = "₱0.00";
             this.txteditReceivedAmount.Size = new System.Drawing.Size(712, 28);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
             // 
             // btnUpload
             // 
+            this.btnUpload.AllowDrop = true;
             this.btnUpload.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
             this.btnUpload.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Appearance.Options.UseBackColor = true;
@@ -523,6 +467,9 @@
             this.btnUpload.StyleController = this.dlcReceivingReport;
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "UPLOAD";
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnUpload_DragDrop);
+            this.btnUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnUpload_DragEnter);
             // 
             // txteditRemarks
             // 
@@ -544,6 +491,7 @@
             this.btnConfirm.StyleController = this.dlcReceivingReport;
             this.btnConfirm.TabIndex = 13;
             this.btnConfirm.Text = "✓ Confirm Receipt";
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
@@ -555,6 +503,7 @@
             this.btnCancel.StyleController = this.dlcReceivingReport;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lcgReceivingReport
             // 
@@ -774,6 +723,14 @@
             this.lblPONumber.Text = "PO Number:";
             this.lblPONumber.TextSize = new System.Drawing.Size(248, 13);
             // 
+            // emptyspaceReceiving4
+            // 
+            this.emptyspaceReceiving4.AllowHotTrack = false;
+            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 295);
+            this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
+            this.emptyspaceReceiving4.Size = new System.Drawing.Size(1436, 10);
+            this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 449);
@@ -839,13 +796,9 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // emptyspaceReceiving4
+            // openFileDialogReceipt
             // 
-            this.emptyspaceReceiving4.AllowHotTrack = false;
-            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 295);
-            this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
-            this.emptyspaceReceiving4.Size = new System.Drawing.Size(1436, 10);
-            this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
+            this.openFileDialogReceipt.FileName = "openFileDialogReceipt";
             // 
             // ReceivingCustodianUC
             // 
@@ -864,6 +817,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).EndInit();
@@ -903,6 +857,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblUploadGuide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblReceivingReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPONumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -910,7 +865,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -963,17 +917,8 @@
         private DevExpress.XtraLayout.LayoutControlItem lblConfirm;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving3;
         private DevExpress.XtraLayout.SimpleLabelItem lblUploadGuide;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.SimpleLabelItem lblPONumber;
         private DevExpress.XtraLayout.SimpleLabelItem lblReceivingReport;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolPONumber;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolPurchaser;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolDepartment;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolItemName;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolQuantity;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolDateOrdered;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolStatus;
         private DevExpress.XtraDataLayout.DataLayoutControl dlcPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlGroup lcgPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlItem lciGrid;
@@ -982,5 +927,7 @@
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingGuide;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpacePending;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving4;
+        private System.Windows.Forms.BindingSource pendingIncomingItemBindingSource;
+        private DevExpress.XtraEditors.XtraOpenFileDialog openFileDialogReceipt;
     }
 }

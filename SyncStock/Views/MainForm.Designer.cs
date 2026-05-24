@@ -108,7 +108,7 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.FireScrollEventOnMouseWheel = true;
             this.mainPanel.Location = new System.Drawing.Point(89, 0);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1024, 574);
             this.mainPanel.TabIndex = 1;
@@ -182,7 +182,6 @@
         private DevExpress.XtraEditors.PanelControl mainPanel;
         private Views.UserControl.AuditorReviewUC auditorReviewUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC3;
-        private Views.UserControl.ReportUC reportsUC1;
         private Views.UserControl.PurchaseOrderUC purchaseOrderUC1;
         private Views.UserControl.DashBoardUC dashBoardUC1;
         private Views.UserControl.AuditorReviewUC auditorReviewUC2;
