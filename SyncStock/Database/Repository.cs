@@ -283,7 +283,43 @@ namespace SyncStock.Database
                 WHERE po.Status = 'Approved'
                 AND MONTH(po.OrderDate) = MONTH(GETDATE())
                 AND YEAR(po.OrderDate) = YEAR(GETDATE())
-                ORDER BY po.OrderDate DESC");
+                ORDER BY po.OrderDate DESC").ToList();
+            }
+        }
+
+        public void AddItemImage(int purchaseOrderId, string imagePath) 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                conn.Execute(@"INSERT INTO ItemImages (PurchaseOrderID, ImagePath)
+                              VALUES (@PurchaseOrderID, @ImagePath)",
+                    new { PurchaseOrderID = purchaseOrderId, ImagePath = imagePath });
+            }
+        }
+
+        public IEnumerable<ItemImages> GetImagesByPurchaseOrder(int purchaseOrderId) 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.Query<ItemImages>(
+                    "SELECT * FROM ItemImages WHERE PurchaseOrderID = @PurchaseOrderId",
+                    new { PurchaseOrderID = purchaseOrderId });
+            }
+        }
+
+        public IEnumerable<PurchaseOrderBrief> GetPurchaseOrderBrief() 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.Query<PurchaseOrderBrief>(@"
+                 Select
+                        po.PONumber,
+                        po.OrderDate,
+                        poi.Quantity,
+                        poi.TotalPrice
+                 FROM PurchaseOrders po
+                 INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                 ORDER BY po.OrderDate DESC");
             }
         }
     }
