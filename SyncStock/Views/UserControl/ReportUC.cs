@@ -69,10 +69,13 @@ namespace SyncStock.Views.UserControl
 
         private void FilterBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ReportGC.DataSource = null;
+            ReportGV.Columns.Clear();
+
             switch (FilterBox.Text) 
             {
                 case "Purchased Orders":
-                    ReportGC.DataSource = _repo.GetAllPurchaseOrderItems().ToList();
+                    ReportGC.DataSource = _repo.GetPurchaseOrderBrief().ToList();
                     break;
 
                 case "Pending Orders":

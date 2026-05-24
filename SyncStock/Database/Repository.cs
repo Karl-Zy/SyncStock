@@ -306,5 +306,21 @@ namespace SyncStock.Database
                     new { PurchaseOrderID = purchaseOrderId });
             }
         }
+
+        public IEnumerable<PurchaseOrderBrief> GetPurchaseOrderBrief() 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.Query<PurchaseOrderBrief>(@"
+                 Select
+                        po.PONumber,
+                        po.OrderDate,
+                        poi.Quantity,
+                        poi.TotalPrice
+                 FROM PurchaseOrders po
+                 INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                 ORDER BY po.OrderDate DESC");
+            }
+        }
     }
 }
