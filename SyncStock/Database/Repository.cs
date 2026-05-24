@@ -435,5 +435,17 @@ namespace SyncStock.Database
                 conn.Execute("DELETE FROM CartItems");
             }
         }
+        public IEnumerable<PurchaseOrders> GetPurchaseOrderBrief()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(@"
+            SELECT po.*, d.DepartmentName
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            ORDER BY po.OrderDate DESC");
+            }
+        }
     }
 }
+
