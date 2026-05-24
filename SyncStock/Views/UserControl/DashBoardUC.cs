@@ -35,7 +35,7 @@ namespace SyncStock.Views.UserControl
 
         private void DashBoardUC_Load(object sender, EventArgs e)
         {
-            LoadData(); // ← Should be here
+            LoadData(); 
         }
         private void MakeCircularPanel(PanelControl panel)
         {

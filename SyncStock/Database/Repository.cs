@@ -173,7 +173,7 @@ namespace SyncStock.Database
                             FROM PurchaseOrders po
                             JOIN Departments d ON po.DepartmentID = d.DepartmentID
                             WHERE po.Priority = 'ASAP Department'
-                            AND po.Priority = 'ASAP'
+                            OR po.Priority = 'ASAP'
                             ORDER BY po.OrderDate DESC";
 
             using (var conn = CreateConnection())
@@ -220,6 +220,115 @@ namespace SyncStock.Database
                     WHERE po.Status = 'Pending'
                     GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
 
+            }
+        }
+
+        public IEnumerable<ApprovedPurchaseOrder> GetAllApprovedMonthlyCost()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ApprovedPurchaseOrder>
+                    (@"SELECT 
+                    po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                    SUM(poi.TotalPrice) AS TotalAmount
+                    FROM PurchaseOrders po
+                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                    WHERE po.Status = 'Approved'
+                    AND MONTH(po.OrderDate) = MONTH(GETDATE())
+                    AND YEAR(po.OrderDate) = YEAR(GETDATE())
+                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status");
+            }
+
+        }
+
+        public int GetAllApprovedTotalItems() 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.ExecuteScalar<int>(@"
+                SELECT ISNULL(COUNT(poi.PurchaseOrderItemID), 0)
+                FROM PurchaseOrders po
+                INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                WHERE po.Status = 'Approved'
+                AND MONTH(po.OrderDate) = MONTH(GETDATE())
+                AND YEAR(po.OrderDate) = YEAR(GETDATE())");
+            }
+        }
+
+        public IEnumerable <ReportItem> GetAllReportItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ReportItem>(@"
+                SELECT 
+                    po.PONumber,
+                    d.DepartmentName,
+                    po.OrderDate,
+                    po.Priority,
+                    po.Status,
+                    i.ItemName,
+                    poi.Quantity,
+                    poi.UnitPrice,
+                    poi.TotalPrice AS Amount
+                FROM PurchaseOrders po
+                INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+                INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+                INNER JOIN Items i ON poi.ItemID = i.ItemID
+                WHERE po.Status = 'Approved'
+                AND MONTH(po.OrderDate) = MONTH(GETDATE())
+                AND YEAR(po.OrderDate) = YEAR(GETDATE())
+                ORDER BY po.OrderDate DESC");
+            }
+        }
+
+        public IEnumerable<CartItems> GetAllCartItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            ORDER BY CreatedAt DESC");
+            }
+        }
+
+        public void AddCartItem(CartItems cartItem)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            INSERT INTO CartItems
+            (
+                ItemName,
+                Quantity,
+                UnitPrice,
+                InvoiceNumber,
+                PONumber,
+                OrderDate
+            )
+            VALUES
+            (
+                @ItemName,
+                @Quantity,
+                @UnitPrice,
+                @InvoiceNumber,
+                @PONumber,
+                @OrderDate
+            )", cartItem);
+            }
+
+        }
+        public void ClearCart()
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute("DELETE FROM CartItems");
             }
         }
     }
