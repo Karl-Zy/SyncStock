@@ -1,13 +1,14 @@
-﻿using SyncStock.Models.Item;
+﻿using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Item;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
 
 
 
@@ -310,7 +311,8 @@ namespace SyncStock.Database
                 UnitPrice,
                 InvoiceNumber,
                 PONumber,
-                OrderDate
+                OrderDate,
+                CartType    
             )
             VALUES
             (
@@ -319,7 +321,8 @@ namespace SyncStock.Database
                 @UnitPrice,
                 @InvoiceNumber,
                 @PONumber,
-                @OrderDate
+                @OrderDate,
+                @CartType
             )", cartItem);
             }
 
@@ -329,6 +332,30 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 conn.Execute("DELETE FROM CartItems");
+            }
+        }
+
+        public IEnumerable<CartItems> GetCartItemsByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            WHERE CartType = @CartType
+            ORDER BY CreatedAt DESC",
+                    new { CartType = type });
+            }
+        }
+
+        public void ClearCartByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            DELETE FROM CartItems
+            WHERE CartType = @CartType",
+                    new { CartType = type });
             }
         }
     }

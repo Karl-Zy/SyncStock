@@ -29,5 +29,7 @@ namespace SyncStock.Models
 
         [Browsable(false)]
         public DateTime CreatedAt { get; set; }
+
+        public string CartType { get; set; }
     }
 }
