@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUC));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
@@ -223,7 +223,7 @@
             // FilterBox
             // 
             this.FilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterBox.EditValue = "Sort";
+            this.FilterBox.EditValue = "SORT BY CATEGORY";
             this.FilterBox.Location = new System.Drawing.Point(1190, 4);
             this.FilterBox.Name = "FilterBox";
             this.FilterBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -234,7 +234,8 @@
             this.FilterBox.Properties.Items.AddRange(new object[] {
             "Purchased Orders",
             "Pending Orders",
-            "Approved Orders"});
+            "Capitalizable Orders",
+            "Reconciliation"});
             this.FilterBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.FilterBox.Size = new System.Drawing.Size(233, 48);
             this.FilterBox.TabIndex = 2;
@@ -286,9 +287,9 @@
             // 
             this.ReportGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportGC.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.ReportGC.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.ReportGC.Location = new System.Drawing.Point(2, 60);
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
