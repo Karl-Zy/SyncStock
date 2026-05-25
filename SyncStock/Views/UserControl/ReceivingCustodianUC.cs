@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models.Models_Receiving_;
 using System;
@@ -15,8 +16,7 @@ namespace SyncStock.Views.UserControl
 {
     public partial class ReceivingCustodianUC : DevExpress.XtraEditors.XtraUserControl
     {
-        private Repository _repo = new Repository();
-        private int _purchaseOrderId = 0;
+        private readonly Repository _repo = new Repository();
         private byte[] _uploadedFileBytes = null;
         private string _uploadedFileName = null;
 
@@ -26,18 +26,74 @@ namespace SyncStock.Views.UserControl
         public ReceivingCustodianUC()
         {
             InitializeComponent();
-            _repo = new Repository();
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            if (!DesignMode) // Prevents the database from running inside the VS Designer
+            if (!DesignMode)
             {
+                ApplyGridStyling();
                 LoadDataFromRepository();
             }
         }
+
+        // ─────────────────────────────────────────────
+        // GRID STYLING
+        // ─────────────────────────────────────────────
+
+        private void ApplyGridStyling()
+        {
+            // Alternating row colors — FIXED: use Appearance.OddRow / Appearance.EvenRow
+            gvItemsView.OptionsView.EnableAppearanceOddRow = true;
+            gvItemsView.OptionsView.EnableAppearanceEvenRow = true;
+            gvItemsView.Appearance.OddRow.BackColor = Color.FromArgb(245, 250, 248);
+            gvItemsView.Appearance.EvenRow.BackColor = Color.White;
+
+            // Selected row — teal to match app theme
+            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(144, 238, 144);  // light green
+            gvItemsView.Appearance.FocusedRow.ForeColor = Color.FromArgb(30, 30, 30);     // dark text for readability
+            gvItemsView.Appearance.HideSelectionRow.BackColor = Color.FromArgb(198, 239, 206);  // even lighter green
+
+            // Row height — more breathing room
+            gvItemsView.RowHeight = 32;
+
+            // Cleaner look
+            gvItemsView.OptionsView.ShowGroupPanel = false;
+            gvItemsView.OptionsView.ColumnAutoWidth = true;
+            gvItemsView.OptionsSelection.EnableAppearanceFocusedCell = false;
+        }
+
+        private void ApplyColumnAlignment()
+        {
+            foreach (DevExpress.XtraGrid.Columns.GridColumn col in gvItemsView.Columns)
+            {
+                // Bold centered headers
+                col.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                col.AppearanceHeader.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+
+                // Right-align number columns, center everything else
+                if (col.FieldName == "Amount" || col.FieldName == "Quantity" ||
+                    col.FieldName == "ItemID" || col.FieldName == "PurchaseOrderID")
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                else
+                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            }
+
+            // Format Amount column as currency
+            var amountCol = gvItemsView.Columns["Amount"];
+            if (amountCol != null)
+            {
+                amountCol.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                amountCol.DisplayFormat.FormatString = "₱{0:N2}";
+                amountCol.Width = 120;
+            }
+        }
+
+        // ─────────────────────────────────────────────
+        // DATA LOADING
+        // ─────────────────────────────────────────────
 
         private void LoadDataFromRepository()
         {
@@ -45,6 +101,9 @@ namespace SyncStock.Views.UserControl
             {
                 var incomingItems = _repo.GetPendingIncomingItemsDetails();
                 gcItems.DataSource = incomingItems;
+
+                // Apply alignment AFTER data is bound (columns exist now)
+                ApplyColumnAlignment();
             }
             catch (Exception ex)
             {
@@ -52,10 +111,13 @@ namespace SyncStock.Views.UserControl
                     $"Failed to load pending items: {ex.Message}",
                     "Database Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
+
+        // ─────────────────────────────────────────────
+        // GRID ROW SELECTION
+        // ─────────────────────────────────────────────
 
         private void gvItemsView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -113,7 +175,6 @@ namespace SyncStock.Views.UserControl
                     string selectedFilePath = openFileDialogReceipt.FileName;
                     string fileExtension = System.IO.Path.GetExtension(selectedFilePath).ToLower();
 
-                    // Strict file type validation
                     if (!_allowedExtensions.Contains(fileExtension))
                     {
                         DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -158,7 +219,6 @@ namespace SyncStock.Views.UserControl
                     string droppedFilePath = files[0];
                     string fileExtension = System.IO.Path.GetExtension(droppedFilePath).ToLower();
 
-                    // Strict file type validation
                     if (!_allowedExtensions.Contains(fileExtension))
                     {
                         DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -183,6 +243,10 @@ namespace SyncStock.Views.UserControl
                     MessageBoxIcon.Error);
             }
         }
+
+        // ─────────────────────────────────────────────
+        // CONFIRM / CANCEL
+        // ─────────────────────────────────────────────
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -297,6 +361,19 @@ namespace SyncStock.Views.UserControl
             _uploadedFileBytes = null;
             _uploadedFileName = null;
             lblUploadGuide.Text = "or drop file here";
+        }
+
+        private void searchControl_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = searchControl.Text.ToLower();
+            var allItems = _repo.GetPendingIncomingItemsDetails();
+
+            gcItems.DataSource = allItems
+                .Where(x => x.ItemName.ToLower().Contains(searchText) ||
+                            x.PONumber.ToLower().Contains(searchText))
+                .ToList();
+
+            ApplyColumnAlignment();
         }
     }
 }
