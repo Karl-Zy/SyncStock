@@ -20,7 +20,7 @@ namespace SyncStock.Views.UserControl
 
         // Pill labels shown in the grid (not raw Yes/No or DB status strings).
         private const string PillCapitalizable = "Capitalizable";
-        private const string PillNonCapitalizable = "Non-Capitalizable";
+        private const string PillNonCapitalizable = "Expenses";
         private const string PillActive = "Active";
         private const string PillPendingReview = "Pending Review";
         private const string PillApproved = "Approved";

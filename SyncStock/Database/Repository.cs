@@ -121,11 +121,11 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-                    SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
-                           poi.Quantity, poi.UnitPrice, i.ItemName
-                    FROM PurchaseOrderItems poi
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID
-                    WHERE poi.PurchaseOrderID = @PurchaseOrderID",
+            SELECT poi.PurchaseOrderItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                   poi.Quantity, poi.UnitPrice, i.ItemName
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            WHERE poi.PurchaseOrderID = @PurchaseOrderID",
                     new { PurchaseOrderID = purchaseOrderId });
             }
         }
@@ -155,10 +155,10 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-                    SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
-                           poi.Quantity, poi.UnitPrice, i.ItemName
-                    FROM PurchaseOrderItems poi
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID");
+            SELECT poi.PurchaseOrderItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                   poi.Quantity, poi.UnitPrice, i.ItemName
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID");
             }
         }
 
@@ -215,18 +215,18 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PendingOrderSummary>(@"
-                    SELECT po.PONumber,
-                           d.DepartmentName,
-                           po.OrderDate,
-                           po.Priority,
-                           po.Status,
-                           COUNT(poi.POItemID) AS TotalItems,
-                           SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    WHERE po.Status = @Status
-                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
+            SELECT po.PONumber,
+                   d.DepartmentName,
+                   po.OrderDate,
+                   po.Priority,
+                   po.Status,
+                   COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                   SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = @Status
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
                     new { Status = WorkflowStatus.Pending });
             }
         }
@@ -325,21 +325,21 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<ApprovedPurchaseOrder>(@"
-                    SELECT
-                        po.PONumber,
-                        d.DepartmentName,
-                        po.OrderDate,
-                        po.Priority,
-                        po.Status,
-                        COUNT(poi.POItemID) AS TotalItems,
-                        SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    WHERE po.Status = @Status
-                      AND MONTH(po.OrderDate) = MONTH(GETDATE())
-                      AND YEAR(po.OrderDate) = YEAR(GETDATE())
-                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
+            SELECT
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status,
+                COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = @Status
+              AND MONTH(po.OrderDate) = MONTH(GETDATE())
+              AND YEAR(po.OrderDate) = YEAR(GETDATE())
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
                     new { Status = WorkflowStatus.Approved });
             }
         }
