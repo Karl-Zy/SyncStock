@@ -17,90 +17,59 @@ namespace SyncStock.Views.UserControl
     public partial class PurchaseOrderUC : DevExpress.XtraEditors.XtraUserControl
     {
         private Repository _repo = new Repository();
-       
-        private int _purchaseOrderId = 0;
+
+        // FIX: Separate IDs for Single PO and Group PO
+        private int _singlePurchaseOrderId = 0;
+        private int _gpoPurchaseOrderId = 0;
+
         public PurchaseOrderUC()
         {
             InitializeComponent();
             LoadDepartments();
-
             LoadAllItems();
+            LoadGPOPurchaseOrderItems();
 
-            
             ReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            gpoReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
         }
-
-        //private void AutoSetDate()
-        //{
-        //    purchaseDate.EditValue = DateTime.Now;
-        //    purchaseDate.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-
-        //    AddItemDateCB.EditValue = DateTime.Now;
-        //    AddItemDateCB.Properties.DisplayFormat.FormatString = "yyyy-MM-dd";
-        //}
-
-        //private void AutoSetPONumber()
-        //{
-        //    string datePart = DateTime.Now.ToString("yyyyMMdd");
-        //    int count = _repo.GetPurchaseOrderCount() + 1;  
-        //    string sequence = count.ToString("D3");
-
-        //    poNumberTE.Text = $"PO-{datePart}-{sequence}";
-        //}
-
-        //private void AutoSetInvoiceNumber()
-        //{
-        //    var invoiceNumber = $"INV-{DateTime.Now:yyyyMMddHHss}";
-        //    InvoiceNumTE.Text = invoiceNumber;
-        //}
 
         private void LoadDepartments()
         {
             var departments = _repo.GetAllDepartments();
 
             ReqDepartmentCB.Properties.Items.Clear();
+            gpoReqDepartmentCB.Properties.Items.Clear();
 
             foreach (var dept in departments)
             {
                 ReqDepartmentCB.Properties.Items.Add(dept.DepartmentName);
+                gpoReqDepartmentCB.Properties.Items.Add(dept.DepartmentName);
             }
 
             ReqDepartmentCB.SelectedIndex = 0;
+            gpoReqDepartmentCB.SelectedIndex = 0;
         }
 
+        // ==========================================
+        // SINGLE PURCHASE ORDER LOGIC
+        // ==========================================
         private void AddToOrderBTN_Click(object sender, EventArgs e)
         {
             try
             {
-                // VALIDATION
-                if (string.IsNullOrWhiteSpace(ItemNameTE.Text))
+                if (string.IsNullOrWhiteSpace(ItemNameTE.Text) || string.IsNullOrWhiteSpace(UnitPriceTE.Text) || QuantitySE.Value <= 0)
                 {
-                    XtraMessageBox.Show("Please enter item name.");
+                    XtraMessageBox.Show("Please check your item inputs.");
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(UnitPriceTE.Text))
-                {
-                    XtraMessageBox.Show("Please enter unit price.");
-                    return;
-                }
-
-                if (QuantitySE.Value <= 0)
-                {
-                    XtraMessageBox.Show("Quantity must be greater than zero.");
-                    return;
-                }
-
-                decimal unitPrice;
-
-                if (!decimal.TryParse(UnitPriceTE.Text, out unitPrice))
+                if (!decimal.TryParse(UnitPriceTE.Text, out decimal unitPrice))
                 {
                     XtraMessageBox.Show("Invalid unit price.");
                     return;
                 }
 
-                // CREATE PURCHASE ORDER ONLY ONCE
-                if (_purchaseOrderId == 0)
+                if (_singlePurchaseOrderId == 0)
                 {
                     PurchaseOrders order = new PurchaseOrders
                     {
@@ -114,16 +83,14 @@ namespace SyncStock.Views.UserControl
                         AttachmentPath = ""
                     };
 
-                    _purchaseOrderId = _repo.AddPurchaseOrder(order);
+                    _singlePurchaseOrderId = _repo.AddPurchaseOrder(order);
                 }
 
-                // SAVE ITEM
                 int itemId = _repo.AddItem(ItemNameTE.Text.Trim());
 
-                // SAVE PURCHASE ORDER ITEM
                 PurchaseOrderItem poItem = new PurchaseOrderItem
                 {
-                    PurchaseOrderID = _purchaseOrderId,
+                    PurchaseOrderID = _singlePurchaseOrderId,
                     ItemID = itemId,
                     Quantity = (int)QuantitySE.Value,
                     UnitPrice = unitPrice
@@ -131,100 +98,173 @@ namespace SyncStock.Views.UserControl
 
                 _repo.AddPurchaseOrderItem(poItem);
 
-                // RELOAD GRID FROM DATABASE
-                LoadPurchaseOrderItems();
+                LoadSinglePurchaseOrderItems();
 
-                // CLEAR FIELDS
                 ItemNameTE.Text = "";
                 UnitPriceTE.Text = "";
                 QuantitySE.Value = 1;
 
-                XtraMessageBox.Show("Item added successfully!");
+                XtraMessageBox.Show("Item added to Single PO successfully!");
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message);
             }
-
-
-           
-            
         }
 
-        private void LoadPurchaseOrderItems()
+        private void LoadSinglePurchaseOrderItems()
         {
-            var items = _repo.GetItemsByPurchaseOrder(_purchaseOrderId).ToList();
+            var items = _repo.GetItemsByPurchaseOrder(_singlePurchaseOrderId).ToList();
 
             ItemsInOrderGC.DataSource = null;
             ItemsInOrderGC.DataSource = items;
-
             ItemsInOrderGV.PopulateColumns();
 
-            // HIDE IDS
-            ItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-            ItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-            ItemsInOrderGV.Columns["ItemID"].Visible = false;
+            if (ItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
+            {
+                ItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
+                ItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
+                ItemsInOrderGV.Columns["ItemID"].Visible = false;
+            }
 
-            // TOTAL QUANTITY
             int totalItems = items.Sum(x => x.Quantity);
-
-            // TOTAL AMOUNT
             decimal totalAmount = items.Sum(x => x.TotalPrice);
 
-            // DISPLAY
             TotalItemsLBL.Text = totalItems.ToString();
             TotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
         }
 
-        private void UnitPriceTE_EditValueChanged(object sender, EventArgs e)
+        private void CalculateSinglePOTotal()
         {
-            CalculateItemTotal();
-        }
-
-        private void QuantitySE_ValueChanged(object sender, EventArgs e)
-        {
-            CalculateItemTotal();
-        }
-
-        private void CalculateItemTotal()
-        {
-            decimal price = 0;
             int quantity = (int)QuantitySE.Value;
-
-            decimal.TryParse(UnitPriceTE.Text, out price);
-
+            decimal.TryParse(UnitPriceTE.Text, out decimal price);
             decimal total = price * quantity;
 
-
-            TotalAmountLBL.Text ="₱" + total.ToString("N2");
+            TotalAmountLBL.Text = "₱" + total.ToString("N2");
         }
 
+        private void UnitPriceTE_EditValueChanged(object sender, EventArgs e) => CalculateSinglePOTotal();
+        private void QuantitySE_ValueChanged(object sender, EventArgs e) => CalculateSinglePOTotal();
+
+
+       
+        private void gpoAddToOrderBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void LoadGPOPurchaseOrderItems()
+        {
+            var items = _repo.GetItemsByPurchaseOrder(_gpoPurchaseOrderId).ToList();
+
+            gpoItemsInOrderGC.DataSource = null;
+            gpoItemsInOrderGC.DataSource = items;
+            gpoItemsInOrderGV.PopulateColumns();
+
+            if (gpoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
+            {
+                gpoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
+                gpoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
+                gpoItemsInOrderGV.Columns["ItemID"].Visible = false;
+            }
+
+            decimal totalAmount = items.Sum(x => x.TotalPrice);
+            gpoTotalAmountLbl.Text = "₱" + totalAmount.ToString("N2");
+        }
+
+        private void CalculateGPOTotal()
+        {
+            int quantity = (int)gpoAddItemToOrderQuantitySpinEdit.Value;
+            decimal.TryParse(gpoAddItemToOrderUnitPriceTextEdit.Text, out decimal price);
+            decimal total = price * quantity;
+
+            gpoTotalAmountLbl.Text = "₱" + total.ToString("N2");
+        }
+
+        private void gpoAddItemToOrderUnitPriceTextEdit_EditValueChanged(object sender, EventArgs e) => CalculateGPOTotal();
+        private void gpoAddItemToOrderQuantitySpinEdit_ValueChanged(object sender, EventArgs e) => CalculateGPOTotal();
+
+
+        // ==========================================
+        // GLOBAL/ALL ITEMS VIEW LOGIC
+        // ==========================================
         private void LoadAllItems()
         {
+            // This loads ALL items in the database across every single purchase order
             var items = _repo.GetAllPurchaseOrderItems().ToList();
 
             ItemsInOrderGC.DataSource = null;
             ItemsInOrderGC.DataSource = items;
 
+            gpoItemsInOrderGC.DataSource = null;
+            gpoItemsInOrderGC.DataSource = items;
+
             ItemsInOrderGV.PopulateColumns();
+            gpoItemsInOrderGV.PopulateColumns();
 
             int totalItems = items.Sum(x => x.Quantity);
-
-            // TOTAL AMOUNT
             decimal totalAmount = items.Sum(x => x.TotalPrice);
 
-            // DISPLAY TOTALS
             TotalItemsLBL.Text = totalItems.ToString();
-
-            ioTotalAmountLBL.Text = "" + totalAmount.ToString("N2");
-            
+            gpoItemsInOrderTotalAmount.Text = "₱" + totalAmount.ToString("N2");
+            ioTotalAmountLBL.Text = totalAmount.ToString("N2");
         }
 
-        private void TotalItemsLBL_Click(object sender, EventArgs e)
+        private void TotalItemsLBL_Click(object sender, EventArgs e) { }
+
+        // ==========================================
+        // GROUP PURCHASE ORDER (GPO) LOGIC
+        // ==========================================
+        private void gpoAddToOrderBtn_Click_1(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(gpoAddItemToOrderItemNameTextEdit.Text) || string.IsNullOrWhiteSpace(gpoAddItemToOrderUnitPriceTextEdit.Text) || gpoAddItemToOrderQuantitySpinEdit.Value <= 0)
+                {
+                    XtraMessageBox.Show("Please check your item inputs.");
+                    return;
+                }
 
+                if (!decimal.TryParse(gpoAddItemToOrderUnitPriceTextEdit.Text, out decimal unitPrice))
+                {
+                    XtraMessageBox.Show("Invalid unit price.");
+                    return;
+                }
+
+                if (_gpoPurchaseOrderId == 0)
+                {
+                    PurchaseOrders order = new PurchaseOrders
+                    {
+                        InvoiceNumber = gpoAddItemToOrderInvoiceNumberTextEdit.Text,
+                        PONumber = gpoPurchaseOrderNumberTxtEdit.Text,
+                        OrderDate = gpoPurchaseOrderDate.DateTime,
+                        DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
+                        Status = "Pending",
+                        Priority = "Normal",
+                        Remarks = gpoRemarksTxtEdit.Text,
+                        AttachmentPath = ""
+                    };
+
+                    _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
+                }
+
+                int itemId = _repo.AddItem(gpoAddItemToOrderItemNameTextEdit.Text.Trim());
+
+                PurchaseOrderItem poItem = new PurchaseOrderItem
+                {
+                    PurchaseOrderID = _gpoPurchaseOrderId,
+                    ItemID = itemId,
+                    Quantity = (int)gpoAddItemToOrderQuantitySpinEdit.Value,
+                    UnitPrice = unitPrice
+                };
+
+                _repo.AddPurchaseOrderItem(poItem);
+
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(ex.Message);
+            }
         }
-
-       
     }
 }
