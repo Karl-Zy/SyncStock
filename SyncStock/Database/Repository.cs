@@ -1,14 +1,14 @@
-﻿using SyncStock.Models.Item;
+﻿using Dapper;
+using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Item;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
-using SyncStock.Models;
-using SyncStock.Models.Accounts;
-using SyncStock.Models.Reports;
 
 
 
@@ -104,9 +104,12 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.ExecuteScalar<int>(@"INSERT INTO PurchaseOrders (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath) 
-                        VALUES (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath);
-                    SELECT SCOPE_IDENTITY();", order);
+                return conn.ExecuteScalar<int>(@"
+            INSERT INTO PurchaseOrders 
+                (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath, POType) 
+            VALUES 
+                (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath, @POType);
+            SELECT SCOPE_IDENTITY();", order);
             }
         }
 
@@ -325,94 +328,127 @@ namespace SyncStock.Database
             }
         }
 
-        public IEnumerable<CapitalizedOrder> GetAllCapitalizedOrder() 
-        {
-            using (var conn = CreateConnection()) 
-            {
-                return conn.Query<CapitalizedOrder>(@"
-                  SELECT
-                        ConfirmedItemID,
-                        PONumber,
-                        ItemName,
-                        DateReceived,
-                        IsCapitalizable,
-                        ExpectedQuantity,
-                        ReceivedQuantity,
-                        ExpectedAmount,
-                        ReceivedAmount,
-                        Remarks,
-                        Status
-                  FROM ConfirmedItems
-                  WHERE IsCapitalizable = 1
-                  ORDER BY  DateReceived DESC");
-            }
-        }
-
-        public void MarkAsCapitalizable(int confirmedItemId, bool isCapitalizable) 
-        {
-            using (var conn = CreateConnection()) 
-            {
-                conn.Execute(@"UPDATE ConfirmedItems
-                              SET IsCapitalizable = @IsCapitalizable
-                              WHERE ConfirmedItemID = @ConfirmedItemID",
-                              new { ConfirmedItemID = confirmedItemId, IsCapitalizable = isCapitalizable });
-            }
-        }
-
-        public IEnumerable<ReceivingReports> GetAllReceivedOrders()
+        public IEnumerable<CartItems> GetAllCartItems()
         {
             using (var conn = CreateConnection())
             {
-                return conn.Query<ReceivingReports>(@"
-            SELECT 
-                ConfirmedItemID,
-                PONumber,
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            ORDER BY CreatedAt DESC");
+            }
+        }
+
+        public void AddCartItem(CartItems cartItem)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            INSERT INTO CartItems
+            (
                 ItemName,
-                DateReceived,
-                ExpectedQuantity,
-                ReceivedQuantity,
-                ExpectedAmount,
-                ReceivedAmount,
-                Remarks,
-                Status
-            FROM ConfirmedItems
-            WHERE IsCapitalizable = 0
-            ORDER BY DateReceived DESC");
+                Quantity,
+                UnitPrice,
+                InvoiceNumber,
+                PONumber,
+                OrderDate,
+                CartType    
+            )
+            VALUES
+            (
+                @ItemName,
+                @Quantity,
+                @UnitPrice,
+                @InvoiceNumber,
+                @PONumber,
+                @OrderDate,
+                @CartType
+            )", cartItem);
             }
-        }
 
-        public IEnumerable<ReconcilationItem> GetReconciliationItems()
+        }
+        public void ClearCart()
         {
             using (var conn = CreateConnection())
             {
-                return conn.Query<ReconcilationItem>(@"
-            SELECT
-                po.PONumber,
-                d.DepartmentName,
-                po.OrderDate,
-                po.Priority,
-                po.Status           AS POStatus,
+                conn.Execute("DELETE FROM CartItems");
+            }
+        }
+
+        public IEnumerable<CartItems> GetCartItemsByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            WHERE CartType = @CartType
+            ORDER BY CreatedAt DESC",
+                    new { CartType = type });
+            }
+        }
+
+        public void ClearCartByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            DELETE FROM CartItems
+            WHERE CartType = @CartType",
+                    new { CartType = type });
+            }
+        }
+
+        public void DeleteCartItem(int cartItemId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM CartItems WHERE CartItemID = @id", conn);
+                cmd.Parameters.AddWithValue("@id", cartItemId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
                 i.ItemName,
-                poi.Quantity        AS OrderedQuantity,
+                poi.Quantity,
                 poi.UnitPrice,
-                poi.TotalPrice      AS OrderedAmount,
-                ci.DateReceived,
-                ci.ExpectedQuantity,
-                ci.ReceivedQuantity,
-                ci.ExpectedAmount,
-                ci.ReceivedAmount,
-                ci.Status           AS ReceivingStatus,
-                ci.Remarks,
-                ci.AttachmentData,
-                ci.AttachmentFileName
-            FROM PurchaseOrders po
-            INNER JOIN Departments d          ON po.DepartmentID = d.DepartmentID
-            INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-            INNER JOIN Items i                ON poi.ItemID = i.ItemID
-            LEFT  JOIN ConfirmedItems ci      ON ci.PONumber = po.PONumber
-                                             AND ci.ItemName = i.ItemName
-            ORDER BY po.OrderDate DESC, i.ItemName"
-                ).ToList();
+                (poi.Quantity * poi.UnitPrice) AS TotalPrice
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.POType = 'GPO'
+            ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
+
+        public IEnumerable<PurchaseOrderItem> GetAllOPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+                    SELECT 
+                        poi.PurchaseOrderItemID,
+                        poi.PurchaseOrderID,
+                        poi.ItemID,
+                        i.ItemName,
+                        poi.Quantity,
+                        poi.UnitPrice,
+                        (poi.Quantity * poi.UnitPrice) AS TotalPrice
+                    FROM PurchaseOrderItems poi
+                    INNER JOIN Items i ON poi.ItemID = i.ItemID
+                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    WHERE po.POType = 'OPO'
+                    ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
     }

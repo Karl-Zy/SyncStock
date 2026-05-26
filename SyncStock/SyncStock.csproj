@@ -90,6 +90,7 @@
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
     <Compile Include="Models\Accounts\User.cs" />
     <Compile Include="Models\ApprovedPurchaseOrder.cs" />
+    <Compile Include="Models\CartItems.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\ItemImages.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
