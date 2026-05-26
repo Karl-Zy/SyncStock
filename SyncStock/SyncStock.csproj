@@ -167,6 +167,9 @@
     <EmbeddedResource Include="Views\UserControl\DashBoardUC.resx">
       <DependentUpon>DashBoardUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\EmailLoginUC.resx">
+      <DependentUpon>EmailLoginUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\PurchaseOrderUC.resx">
       <DependentUpon>PurchaseOrderUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\ReportUC.resx">
       <DependentUpon>ReportUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\RfidLoginUC.resx">
+      <DependentUpon>RfidLoginUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -190,6 +196,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 10, 2026, 10_59_09 AM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back dark UI copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back g w UI copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back w UI copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo main ui.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO UI.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoui.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

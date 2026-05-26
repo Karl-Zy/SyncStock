@@ -320,8 +320,6 @@ namespace SyncStock.Views.UserControl
             int totalItems = items.Sum(x => x.Quantity);
             decimal totalAmount = items.Sum(x => x.TotalPrice);
 
-            opoTotalItemsInCartLBL.Text = totalItems.ToString();
-            opoTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
             opoioTotalAmountLBL.Text = totalAmount.ToString("N2");
             opoTotalItemsLBL.Text = totalItems.ToString();
         }
