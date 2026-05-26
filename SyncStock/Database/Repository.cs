@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using SyncStock.Models;
 using SyncStock.Models.Accounts;
+using SyncStock.Models.Reports;
 
 
 
@@ -316,10 +317,102 @@ namespace SyncStock.Database
                         po.PONumber,
                         po.OrderDate,
                         poi.Quantity,
-                        poi.TotalPrice
+                        poi.TotalPrice,
+                        po.Remarks
                  FROM PurchaseOrders po
                  INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
                  ORDER BY po.OrderDate DESC");
+            }
+        }
+
+        public IEnumerable<CapitalizedOrder> GetAllCapitalizedOrder() 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.Query<CapitalizedOrder>(@"
+                  SELECT
+                        ConfirmedItemID,
+                        PONumber,
+                        ItemName,
+                        DateReceived,
+                        IsCapitalizable,
+                        ExpectedQuantity,
+                        ReceivedQuantity,
+                        ExpectedAmount,
+                        ReceivedAmount,
+                        Remarks,
+                        Status
+                  FROM ConfirmedItems
+                  WHERE IsCapitalizable = 1
+                  ORDER BY  DateReceived DESC");
+            }
+        }
+
+        public void MarkAsCapitalizable(int confirmedItemId, bool isCapitalizable) 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                conn.Execute(@"UPDATE ConfirmedItems
+                              SET IsCapitalizable = @IsCapitalizable
+                              WHERE ConfirmedItemID = @ConfirmedItemID",
+                              new { ConfirmedItemID = confirmedItemId, IsCapitalizable = isCapitalizable });
+            }
+        }
+
+        public IEnumerable<ReceivingReports> GetAllReceivedOrders()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ReceivingReports>(@"
+            SELECT 
+                ConfirmedItemID,
+                PONumber,
+                ItemName,
+                DateReceived,
+                ExpectedQuantity,
+                ReceivedQuantity,
+                ExpectedAmount,
+                ReceivedAmount,
+                Remarks,
+                Status
+            FROM ConfirmedItems
+            WHERE IsCapitalizable = 0
+            ORDER BY DateReceived DESC");
+            }
+        }
+
+        public IEnumerable<ReconcilationItem> GetReconciliationItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ReconcilationItem>(@"
+            SELECT
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status           AS POStatus,
+                i.ItemName,
+                poi.Quantity        AS OrderedQuantity,
+                poi.UnitPrice,
+                poi.TotalPrice      AS OrderedAmount,
+                ci.DateReceived,
+                ci.ExpectedQuantity,
+                ci.ReceivedQuantity,
+                ci.ExpectedAmount,
+                ci.ReceivedAmount,
+                ci.Status           AS ReceivingStatus,
+                ci.Remarks,
+                ci.AttachmentData,
+                ci.AttachmentFileName
+            FROM PurchaseOrders po
+            INNER JOIN Departments d          ON po.DepartmentID = d.DepartmentID
+            INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            INNER JOIN Items i                ON poi.ItemID = i.ItemID
+            LEFT  JOIN ConfirmedItems ci      ON ci.PONumber = po.PONumber
+                                             AND ci.ItemName = i.ItemName
+            ORDER BY po.OrderDate DESC, i.ItemName"
+                ).ToList();
             }
         }
     }

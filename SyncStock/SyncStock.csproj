@@ -95,10 +95,13 @@
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
-    <Compile Include="Models\PurchaseOrderBrief.cs" />
+    <Compile Include="Models\Reports\CapitalizedOrder.cs" />
+    <Compile Include="Models\Reports\PurchaseOrderBrief.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Models\ReportItem.cs" />
+    <Compile Include="Models\Reports\ReceivingReports.cs" />
+    <Compile Include="Models\Reports\ReconcilationItem.cs" />
     <Compile Include="PrintForm\PendingReport.cs">
       <SubType>Component</SubType>
     </Compile>

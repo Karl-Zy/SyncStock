@@ -12,6 +12,7 @@ namespace SyncStock.Models
         public DateTime OrderDate { get; set; }
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
+        public string Remarksz { get; set; }
 
     }
 }
