@@ -29,34 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceivingCustodianUC));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.scrlControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.lcMainContainer = new DevExpress.XtraLayout.LayoutControl();
             this.lblSubtitle = new DevExpress.XtraEditors.LabelControl();
             this.lblTitle = new DevExpress.XtraEditors.LabelControl();
             this.pnlPendingIncoming = new DevExpress.XtraEditors.PanelControl();
             this.dlcPendingIncoming = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.searchControl = new DevExpress.XtraEditors.SearchControl();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItemsView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridSearch = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.pendingIncomingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridSearchView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.lblSearchStatus = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgPendingIncoming = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciGrid = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciSearch = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblPendingIncoming = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblPendingGuide = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpacePending = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.pnlReceivingReport = new DevExpress.XtraEditors.PanelControl();
             this.dlcReceivingReport = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.dateEdit = new DevExpress.XtraEditors.DateEdit();
@@ -97,6 +92,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.pendingIncomingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialogReceipt = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.scrlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).BeginInit();
@@ -105,17 +101,16 @@
             this.pnlPendingIncoming.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlcPendingIncoming)).BeginInit();
             this.dlcPendingIncoming.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSearchStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingIncoming)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingGuide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpacePending)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlReceivingReport)).BeginInit();
             this.pnlReceivingReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlcReceivingReport)).BeginInit();
@@ -156,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlControl
@@ -217,9 +213,12 @@
             // 
             // dlcPendingIncoming
             // 
+            this.dlcPendingIncoming.Controls.Add(this.labelControl1);
+            this.dlcPendingIncoming.Controls.Add(this.searchControl);
             this.dlcPendingIncoming.Controls.Add(this.gcItems);
-            this.dlcPendingIncoming.Controls.Add(this.gridSearch);
             this.dlcPendingIncoming.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlcPendingIncoming.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lblSearchStatus});
             this.dlcPendingIncoming.Location = new System.Drawing.Point(2, 2);
             this.dlcPendingIncoming.Name = "dlcPendingIncoming";
             this.dlcPendingIncoming.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(504, 319, 650, 400);
@@ -227,6 +226,28 @@
             this.dlcPendingIncoming.Size = new System.Drawing.Size(1462, 461);
             this.dlcPendingIncoming.TabIndex = 1;
             this.dlcPendingIncoming.Text = "dataLayoutControl2";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(966, 71);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.StyleController = this.dlcPendingIncoming;
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // searchControl
+            // 
+            this.searchControl.Location = new System.Drawing.Point(966, 71);
+            this.searchControl.Name = "searchControl";
+            this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Repository.ClearButton(),
+            new DevExpress.XtraEditors.Repository.SearchButton()});
+            this.searchControl.Properties.NullValuePrompt = "Enter PO Number or Item Name...";
+            this.searchControl.Size = new System.Drawing.Size(480, 28);
+            this.searchControl.StyleController = this.dlcPendingIncoming;
+            this.searchControl.TabIndex = 6;
+            this.searchControl.TextChanged += new System.EventHandler(this.searchControl_TextChanged);
             // 
             // gcItems
             // 
@@ -248,31 +269,18 @@
             this.gvItemsView.OptionsView.ShowIndicator = false;
             this.gvItemsView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemsView_FocusedRowChanged);
             // 
-            // gridSearch
+            // lblSearchStatus
             // 
-            this.gridSearch.Location = new System.Drawing.Point(1051, 71);
-            this.gridSearch.Name = "gridSearch";
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
-            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.gridSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.gridSearch.Properties.DataSource = this.pendingIncomingItemBindingSource;
-            this.gridSearch.Properties.NullText = "Search for an item or PO number...";
-            this.gridSearch.Properties.PopupView = this.gridSearchView;
-            this.gridSearch.Size = new System.Drawing.Size(395, 28);
-            this.gridSearch.StyleController = this.dlcPendingIncoming;
-            this.gridSearch.TabIndex = 4;
-            // 
-            // pendingIncomingItemBindingSource
-            // 
-            this.pendingIncomingItemBindingSource.DataSource = typeof(SyncStock.Models.Models_Receiving_.PendingIncomingItem);
-            // 
-            // gridSearchView
-            // 
-            this.gridSearchView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridSearchView.Name = "gridSearchView";
-            this.gridSearchView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridSearchView.OptionsView.ShowGroupPanel = false;
+            this.lblSearchStatus.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
+            this.lblSearchStatus.AppearanceItemCaption.Options.UseForeColor = true;
+            this.lblSearchStatus.ContentVisible = false;
+            this.lblSearchStatus.Control = this.labelControl1;
+            this.lblSearchStatus.Location = new System.Drawing.Point(950, 55);
+            this.lblSearchStatus.Name = "lblSearchStatus";
+            this.lblSearchStatus.Size = new System.Drawing.Size(69, 34);
+            this.lblSearchStatus.Text = " ";
+            this.lblSearchStatus.TextSize = new System.Drawing.Size(0, 0);
+            this.lblSearchStatus.TextVisible = false;
             // 
             // lcgPendingIncoming
             // 
@@ -280,11 +288,11 @@
             this.lcgPendingIncoming.GroupBordersVisible = false;
             this.lcgPendingIncoming.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciGrid,
-            this.lciSearch,
             this.lblPendingIncoming,
             this.lblPendingGuide,
-            this.emptySpacePending});
-            this.lcgPendingIncoming.Name = "lcgPendingIncoming";
+            this.emptySpacePending,
+            this.layoutControlItem5});
+            this.lcgPendingIncoming.Name = "Root";
             this.lcgPendingIncoming.Size = new System.Drawing.Size(1462, 461);
             this.lcgPendingIncoming.TextVisible = false;
             // 
@@ -296,15 +304,6 @@
             this.lciGrid.Size = new System.Drawing.Size(1436, 346);
             this.lciGrid.TextSize = new System.Drawing.Size(0, 0);
             this.lciGrid.TextVisible = false;
-            // 
-            // lciSearch
-            // 
-            this.lciSearch.Control = this.gridSearch;
-            this.lciSearch.Location = new System.Drawing.Point(1035, 55);
-            this.lciSearch.Name = "lciSearch";
-            this.lciSearch.Size = new System.Drawing.Size(401, 34);
-            this.lciSearch.TextSize = new System.Drawing.Size(0, 0);
-            this.lciSearch.TextVisible = false;
             // 
             // lblPendingIncoming
             // 
@@ -335,8 +334,17 @@
             this.emptySpacePending.AllowHotTrack = false;
             this.emptySpacePending.Location = new System.Drawing.Point(0, 55);
             this.emptySpacePending.Name = "emptySpacePending";
-            this.emptySpacePending.Size = new System.Drawing.Size(1035, 34);
+            this.emptySpacePending.Size = new System.Drawing.Size(950, 34);
             this.emptySpacePending.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.searchControl;
+            this.layoutControlItem5.Location = new System.Drawing.Point(950, 55);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(486, 34);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
             // 
             // pnlReceivingReport
             // 
@@ -373,10 +381,10 @@
             this.dateEdit.EditValue = null;
             this.dateEdit.Location = new System.Drawing.Point(16, 90);
             this.dateEdit.Name = "dateEdit";
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
-            editorButtonImageOptions2.SvgImageSize = new System.Drawing.Size(20, 20);
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
             this.dateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.dateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit.Size = new System.Drawing.Size(712, 28);
@@ -796,6 +804,10 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // pendingIncomingItemBindingSource
+            // 
+            this.pendingIncomingItemBindingSource.DataSource = typeof(SyncStock.Models.Models_Receiving_.PendingIncomingItem);
+            // 
             // openFileDialogReceipt
             // 
             this.openFileDialogReceipt.FileName = "openFileDialogReceipt";
@@ -814,17 +826,16 @@
             this.pnlPendingIncoming.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlcPendingIncoming)).EndInit();
             this.dlcPendingIncoming.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSearchStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingIncoming)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingGuide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpacePending)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlReceivingReport)).EndInit();
             this.pnlReceivingReport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlcReceivingReport)).EndInit();
@@ -865,6 +876,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -884,8 +896,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.GridControl gcItems;
         private DevExpress.XtraGrid.Views.Grid.GridView gvItemsView;
-        private DevExpress.XtraEditors.SearchLookUpEdit gridSearch;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridSearchView;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraDataLayout.DataLayoutControl dlcReceivingReport;
@@ -922,12 +932,15 @@
         private DevExpress.XtraDataLayout.DataLayoutControl dlcPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlGroup lcgPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlItem lciGrid;
-        private DevExpress.XtraLayout.LayoutControlItem lciSearch;
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingIncoming;
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingGuide;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpacePending;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving4;
         private System.Windows.Forms.BindingSource pendingIncomingItemBindingSource;
         private DevExpress.XtraEditors.XtraOpenFileDialog openFileDialogReceipt;
+        private DevExpress.XtraEditors.SearchControl searchControl;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem lblSearchStatus;
     }
 }

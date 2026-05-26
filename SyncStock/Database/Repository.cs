@@ -235,16 +235,17 @@ namespace SyncStock.Database
         public void AddConfirmedItem(ConfirmedItems item)
         {
             string query = @"
-        INSERT INTO ConfirmedItems (
-            PONumber, ItemName, DateReceived, IsCapitalizable, 
-            ExpectedQuantity, ReceivedQuantity, ExpectedAmount, 
-            ReceivedAmount, AttachmentPath, Remarks
-        ) VALUES (
-            @PONumber, @ItemName, @DateReceived, @IsCapitalizable, 
-            @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount, 
-            @ReceivedAmount, @AttachmentPath, @Remarks
-        );";
-
+                    INSERT INTO ConfirmedItems (
+                        PONumber, ItemName, DateReceived, IsCapitalizable,
+                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
+                        ReceivedAmount, Remarks, Status,
+                        AttachmentData, AttachmentFileName
+                    ) VALUES (
+                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
+                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
+                        @ReceivedAmount, @Remarks, @Status,
+                        @AttachmentData, @AttachmentFileName
+                    );";
             using (var conn = CreateConnection())
             {
                 conn.Execute(query, item);
@@ -253,16 +254,14 @@ namespace SyncStock.Database
 
         public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
         {
-            // FIX: Update the parent PurchaseOrders table directly using the PONumber
             string query = @"
-        UPDATE PurchaseOrders
-        SET Status = @newStatus
-        WHERE PONumber = @poNumber";
-
+                    UPDATE PurchaseOrders
+                    SET Status = @newStatus
+                    WHERE PONumber = @poNumber
+                    AND ItemName = @itemName";
             using (var conn = CreateConnection())
             {
-                // Dapper safely maps the parameters and executes the update
-                conn.Execute(query, new { poNumber, newStatus });
+                conn.Execute(query, new { poNumber, itemName, newStatus });
             }
         }
 
