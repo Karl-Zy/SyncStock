@@ -102,11 +102,11 @@
     <Compile Include="Models\ReportItem.cs" />
     <Compile Include="Models\Reports\ReceivingReports.cs" />
     <Compile Include="Models\Reports\ReconcilationItem.cs" />
-    <Compile Include="PrintForm\PendingReport.cs">
+    <Compile Include="PrintForm\ReceivedReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PrintForm\PendingReport.Designer.cs">
-      <DependentUpon>PendingReport.cs</DependentUpon>
+    <Compile Include="PrintForm\ReceivedReport.Designer.cs">
+      <DependentUpon>ReceivedReport.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintForm\PurchaseReport.cs">
       <SubType>Component</SubType>
@@ -114,11 +114,17 @@
     <Compile Include="PrintForm\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintForm\SummaryReport.cs">
+    <Compile Include="PrintForm\CapitalizedReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PrintForm\SummaryReport.Designer.cs">
-      <DependentUpon>SummaryReport.cs</DependentUpon>
+    <Compile Include="PrintForm\CapitalizedReport.Designer.cs">
+      <DependentUpon>CapitalizedReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintForm\ReconciliationReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PrintForm\ReconciliationReport.Designer.cs">
+      <DependentUpon>ReconciliationReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
@@ -176,14 +182,17 @@
     <Compile Include="Views\UserControl\RfidLoginUC.Designer.cs">
       <DependentUpon>RfidLoginUC.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PrintForm\PendingReport.resx">
-      <DependentUpon>PendingReport.cs</DependentUpon>
+    <EmbeddedResource Include="PrintForm\ReceivedReport.resx">
+      <DependentUpon>ReceivedReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintForm\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintForm\SummaryReport.resx">
-      <DependentUpon>SummaryReport.cs</DependentUpon>
+    <EmbeddedResource Include="PrintForm\CapitalizedReport.resx">
+      <DependentUpon>CapitalizedReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintForm\ReconciliationReport.resx">
+      <DependentUpon>ReconciliationReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
