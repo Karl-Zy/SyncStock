@@ -104,9 +104,12 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.ExecuteScalar<int>(@"INSERT INTO PurchaseOrders (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath) 
-                        VALUES (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath);
-                    SELECT SCOPE_IDENTITY();", order);
+                return conn.ExecuteScalar<int>(@"
+            INSERT INTO PurchaseOrders 
+                (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath, POType) 
+            VALUES 
+                (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath, @POType);
+            SELECT SCOPE_IDENTITY();", order);
             }
         }
 
@@ -356,6 +359,59 @@ namespace SyncStock.Database
             DELETE FROM CartItems
             WHERE CartType = @CartType",
                     new { CartType = type });
+            }
+        }
+
+        public void DeleteCartItem(int cartItemId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM CartItems WHERE CartItemID = @id", conn);
+                cmd.Parameters.AddWithValue("@id", cartItemId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
+                i.ItemName,
+                poi.Quantity,
+                poi.UnitPrice,
+                (poi.Quantity * poi.UnitPrice) AS TotalPrice
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.POType = 'GPO'
+            ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
+
+        public IEnumerable<PurchaseOrderItem> GetAllOPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+                    SELECT 
+                        poi.PurchaseOrderItemID,
+                        poi.PurchaseOrderID,
+                        poi.ItemID,
+                        i.ItemName,
+                        poi.Quantity,
+                        poi.UnitPrice,
+                        (poi.Quantity * poi.UnitPrice) AS TotalPrice
+                    FROM PurchaseOrderItems poi
+                    INNER JOIN Items i ON poi.ItemID = i.ItemID
+                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    WHERE po.POType = 'OPO'
+                    ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
     }
