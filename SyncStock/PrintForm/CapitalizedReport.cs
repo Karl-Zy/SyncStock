@@ -7,11 +7,11 @@ using SyncStock.Database;
 
 namespace SyncStock.PrintForm
 {
-    public partial class SummaryReport : DevExpress.XtraReports.UI.XtraReport
+    public partial class CapitalizedReport : DevExpress.XtraReports.UI.XtraReport
     {
         Repository _repository = new Repository();
 
-        public SummaryReport()
+        public CapitalizedReport()
         {
             InitializeComponent();
         }

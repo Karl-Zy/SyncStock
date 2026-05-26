@@ -59,7 +59,7 @@ namespace SyncStock.Views.UserControl
         {
             try
             {
-                var report = new SummaryReport();           
+                var report = new CapitalizedReport();           
                 report.ShowPreviewDialog();
             }
             catch (Exception ex)
