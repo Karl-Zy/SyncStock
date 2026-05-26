@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
+using SyncStock.Models;
 using SyncStock.Models.Models_Receiving_;
 using System;
 using System.Collections.Generic;
@@ -313,7 +314,7 @@ namespace SyncStock.Views.UserControl
                 };
 
                 _repo.AddConfirmedItem(confirmationPayload);
-                _repo.UpdatePurchaseOrderItemStatus(purePoNumber, txteditItemName.Text, "Received");
+                _repo.UpdatePurchaseOrderStatus(purePoNumber, WorkflowStatus.Received);
 
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Asset inventory ledger updated and item confirmed successfully!",
