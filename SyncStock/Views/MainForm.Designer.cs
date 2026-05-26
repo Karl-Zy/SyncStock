@@ -37,8 +37,6 @@
             this.reports = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.auditorReviewUC3 = new SyncStock.Views.UserControl.AuditorReviewUC();
-            
-            this.purchaseOrderUC1 = new SyncStock.Views.UserControl.PurchaseOrderUC();
             this.dashBoardUC1 = new SyncStock.Views.UserControl.DashBoardUC();
             this.auditorReviewUC2 = new SyncStock.Views.UserControl.AuditorReviewUC();
             this.auditorReviewUC1 = new SyncStock.Views.UserControl.AuditorReviewUC();
@@ -58,9 +56,8 @@
             this.auditorReview,
             this.reports});
             this.accordionControl1.Location = new System.Drawing.Point(0, 0);
-            this.accordionControl1.Margin = new System.Windows.Forms.Padding(4);
             this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.Size = new System.Drawing.Size(352, 758);
+            this.accordionControl1.Size = new System.Drawing.Size(89, 574);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -110,10 +107,10 @@
             this.mainPanel.AutoSize = true;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.FireScrollEventOnMouseWheel = true;
-            this.mainPanel.Location = new System.Drawing.Point(352, 0);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(5);
+            this.mainPanel.Location = new System.Drawing.Point(89, 0);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1032, 758);
+            this.mainPanel.Size = new System.Drawing.Size(1024, 574);
             this.mainPanel.TabIndex = 1;
             // 
             // auditorReviewUC3
@@ -124,16 +121,6 @@
             this.auditorReviewUC3.Name = "auditorReviewUC3";
             this.auditorReviewUC3.Size = new System.Drawing.Size(1570, 862);
             this.auditorReviewUC3.TabIndex = 8;
-            // 
-           
-            // 
-            // purchaseOrderUC1
-            // 
-            this.purchaseOrderUC1.Location = new System.Drawing.Point(24, 24);
-            this.purchaseOrderUC1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.purchaseOrderUC1.Name = "purchaseOrderUC1";
-            this.purchaseOrderUC1.Size = new System.Drawing.Size(970, 271);
-            this.purchaseOrderUC1.TabIndex = 5;
             // 
             // dashBoardUC1
             // 
@@ -162,16 +149,16 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 758);
+            this.ClientSize = new System.Drawing.Size(1113, 574);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.accordionControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.IconOptions.ColorizeInactiveIcon = DevExpress.Utils.DefaultBoolean.True;
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("MainForm.IconOptions.SvgImage")));
             this.InactiveGlowColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoardUC));
-            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
@@ -149,8 +149,8 @@
             this.panelControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AssetCategoryChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit5.Properties)).BeginInit();
@@ -159,8 +159,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AssetAcqChart)).BeginInit();
             this.AssetAcqChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
             this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
@@ -426,11 +426,11 @@
             this.AssetCategoryChart.Legend.LegendID = -1;
             this.AssetCategoryChart.Location = new System.Drawing.Point(10, 65);
             this.AssetCategoryChart.Name = "AssetCategoryChart";
-            series3.Name = "Series 1";
-            series3.SeriesID = 0;
-            series3.View = pieSeriesView2;
+            series1.Name = "Series 1";
+            series1.SeriesID = 0;
+            series1.View = pieSeriesView1;
             this.AssetCategoryChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series3};
+        series1};
             this.AssetCategoryChart.Size = new System.Drawing.Size(746, 268);
             this.AssetCategoryChart.TabIndex = 0;
             // 
@@ -581,16 +581,16 @@
             // chartControl1
             // 
             this.chartControl1.BackColor = System.Drawing.Color.Transparent;
-            xyDiagram2.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram2.AxisY.VisibleInPanesSerializable = "-1";
-            this.chartControl1.Diagram = xyDiagram2;
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Legend.LegendID = -1;
             this.chartControl1.Location = new System.Drawing.Point(10, 65);
             this.chartControl1.Name = "chartControl1";
-            series4.Name = "Series 1";
-            series4.SeriesID = 0;
+            series2.Name = "Series 1";
+            series2.SeriesID = 0;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series4};
+        series2};
             this.chartControl1.Size = new System.Drawing.Size(696, 268);
             this.chartControl1.TabIndex = 0;
             // 
@@ -660,10 +660,10 @@
             // 
             this.layoutControl4.Controls.Add(this.panelControl12);
             this.layoutControl4.Controls.Add(this.ApprovedASAPOrdersGC);
-            this.layoutControl4.Location = new System.Drawing.Point(16, 356);
+            this.layoutControl4.Location = new System.Drawing.Point(16, 365);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.Root = this.layoutControlGroup4;
-            this.layoutControl4.Size = new System.Drawing.Size(1413, 323);
+            this.layoutControl4.Size = new System.Drawing.Size(1413, 314);
             this.layoutControl4.TabIndex = 5;
             this.layoutControl4.Text = "layoutControl4";
             // 
@@ -679,7 +679,7 @@
             this.panelControl12.Controls.Add(this.labelControl31);
             this.panelControl12.Location = new System.Drawing.Point(16, 16);
             this.panelControl12.Name = "panelControl12";
-            this.panelControl12.Size = new System.Drawing.Size(1381, 63);
+            this.panelControl12.Size = new System.Drawing.Size(1381, 61);
             this.panelControl12.TabIndex = 6;
             // 
             // pictureEdit7
@@ -693,7 +693,7 @@
             this.pictureEdit7.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit7.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit7.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit7.Size = new System.Drawing.Size(39, 33);
+            this.pictureEdit7.Size = new System.Drawing.Size(39, 31);
             this.pictureEdit7.TabIndex = 11;
             // 
             // labelControl30
@@ -722,10 +722,10 @@
             // 
             // ApprovedASAPOrdersGC
             // 
-            this.ApprovedASAPOrdersGC.Location = new System.Drawing.Point(16, 85);
+            this.ApprovedASAPOrdersGC.Location = new System.Drawing.Point(16, 83);
             this.ApprovedASAPOrdersGC.MainView = this.ApprovedASAPOrdersGV;
             this.ApprovedASAPOrdersGC.Name = "ApprovedASAPOrdersGC";
-            this.ApprovedASAPOrdersGC.Size = new System.Drawing.Size(1381, 222);
+            this.ApprovedASAPOrdersGC.Size = new System.Drawing.Size(1381, 215);
             this.ApprovedASAPOrdersGC.TabIndex = 4;
             this.ApprovedASAPOrdersGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ApprovedASAPOrdersGV});
@@ -805,15 +805,15 @@
             this.layoutControlItem12,
             this.layoutControlItem20});
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(1413, 323);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(1413, 314);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.ApprovedASAPOrdersGC;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 69);
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 67);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(1387, 228);
+            this.layoutControlItem12.Size = new System.Drawing.Size(1387, 221);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
@@ -822,7 +822,7 @@
             this.layoutControlItem20.Control = this.panelControl12;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(1387, 69);
+            this.layoutControlItem20.Size = new System.Drawing.Size(1387, 67);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
@@ -833,7 +833,7 @@
             this.layoutControl3.Location = new System.Drawing.Point(16, 16);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(1413, 334);
+            this.layoutControl3.Size = new System.Drawing.Size(1413, 343);
             this.layoutControl3.TabIndex = 4;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -847,7 +847,7 @@
             this.panelControl11.Controls.Add(this.labelControl29);
             this.panelControl11.Location = new System.Drawing.Point(16, 16);
             this.panelControl11.Name = "panelControl11";
-            this.panelControl11.Size = new System.Drawing.Size(1381, 72);
+            this.panelControl11.Size = new System.Drawing.Size(1381, 74);
             this.panelControl11.TabIndex = 5;
             // 
             // pictureEdit6
@@ -861,7 +861,7 @@
             this.pictureEdit6.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit6.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit6.Size = new System.Drawing.Size(44, 40);
+            this.pictureEdit6.Size = new System.Drawing.Size(44, 42);
             this.pictureEdit6.TabIndex = 11;
             // 
             // labelControl28
@@ -890,10 +890,10 @@
             // 
             // PendingOrdersGC
             // 
-            this.PendingOrdersGC.Location = new System.Drawing.Point(16, 94);
+            this.PendingOrdersGC.Location = new System.Drawing.Point(16, 96);
             this.PendingOrdersGC.MainView = this.PendingOrdersGV;
             this.PendingOrdersGC.Name = "PendingOrdersGC";
-            this.PendingOrdersGC.Size = new System.Drawing.Size(1381, 224);
+            this.PendingOrdersGC.Size = new System.Drawing.Size(1381, 231);
             this.PendingOrdersGC.TabIndex = 4;
             this.PendingOrdersGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PendingOrdersGV});
@@ -912,15 +912,15 @@
             this.layoutControlItem11,
             this.layoutControlItem19});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1413, 334);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1413, 343);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.PendingOrdersGC;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 78);
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 80);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(1387, 230);
+            this.layoutControlItem11.Size = new System.Drawing.Size(1387, 237);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -929,7 +929,7 @@
             this.layoutControlItem19.Control = this.panelControl11;
             this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(1387, 78);
+            this.layoutControlItem19.Size = new System.Drawing.Size(1387, 80);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
             // 
@@ -955,16 +955,16 @@
             this.layoutControlItem9.Control = this.layoutControl3;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(1419, 340);
+            this.layoutControlItem9.Size = new System.Drawing.Size(1419, 349);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.layoutControl4;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 340);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 349);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(1419, 329);
+            this.layoutControlItem10.Size = new System.Drawing.Size(1419, 320);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -1346,8 +1346,8 @@
             this.panelControl10.ResumeLayout(false);
             this.panelControl10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit9.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AssetCategoryChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
             this.panelControl9.ResumeLayout(false);
@@ -1359,8 +1359,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AssetAcqChart)).EndInit();
             this.AssetAcqChart.ResumeLayout(false);
             this.AssetAcqChart.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
             this.panelControl6.ResumeLayout(false);

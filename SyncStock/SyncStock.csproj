@@ -82,6 +82,7 @@
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
     <Compile Include="Models\Accounts\User.cs" />
     <Compile Include="Models\ApprovedPurchaseOrder.cs" />
+    <Compile Include="Models\CartItems.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Item\BaseItem.cs" />
     <Compile Include="Models\Item\Item.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
+    <Compile Include="Models\ReportItem.cs" />
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
