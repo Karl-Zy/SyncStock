@@ -10,7 +10,6 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace SyncStock.Database
 {
@@ -297,53 +296,32 @@ namespace SyncStock.Database
 
         public void AddConfirmedItem(ConfirmedItems item)
         {
-            string query = @"
-                    INSERT INTO ConfirmedItems (
-                        PONumber, ItemName, DateReceived, IsCapitalizable,
-                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
-                        ReceivedAmount, Remarks, Status,
-                        AttachmentData, AttachmentFileName
-                    ) VALUES (
-                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
-                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
-                        @ReceivedAmount, @Remarks, @Status,
-                        @AttachmentData, @AttachmentFileName
-                    );";
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
             INSERT INTO ConfirmedItems (
-                PurchaseOrderItemID,
-                DateReceived,
-                IsCapitalizable,
-                ReceivedQuantity,
-                ReceivedAmount,
-                AttachmentPath,
-                Remarks,
-                Status
-            )
-            VALUES (
-                @PurchaseOrderItemID,
-                @DateReceived,
-                @IsCapitalizable,
-                @ReceivedQuantity,
-                @ReceivedAmount,
-                @AttachmentPath,
-                @Remarks,
-                @Status
+                PONumber, ItemName, DateReceived, IsCapitalizable,
+                ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
+                ReceivedAmount, Remarks, Status,
+                AttachmentData, AttachmentFileName
+            ) VALUES (
+                @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
+                @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
+                @ReceivedAmount, @Remarks, @Status,
+                @AttachmentData, @AttachmentFileName
             );", item);
             }
         }
 
-        public void UpdatePurchaseOrderStatus(string poNumber, string newStatus)
+        public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
         {
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-                    UPDATE PurchaseOrders
-                    SET Status = @newStatus
-                    WHERE PONumber = @poNumber",
-                    new { poNumber, newStatus });
+            UPDATE PurchaseOrders
+            SET Status = @newStatus
+            WHERE PONumber = @poNumber",
+                    new { poNumber, itemName, newStatus });
             }
         }
 
@@ -785,11 +763,6 @@ namespace SyncStock.Database
                 ORDER BY 1 DESC");
             }
         }
-
-
-
-
-
     }
 }
 

@@ -15,5 +15,9 @@ namespace SyncStock.Models.Models_Receiving_
         public decimal Amount { get; set; }
         public DateTime DateOrdered { get; set; }
         public string Status { get; set; }
+        public string POType { get; set; }
+
+        // ✅ ADD THIS — computed from POType, no DB column needed
+        public string OrderType => POType == "OPO" ? "Online" : "Local";
     }
 }
