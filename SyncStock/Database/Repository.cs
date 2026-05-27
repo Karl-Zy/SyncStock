@@ -3,6 +3,7 @@ using SyncStock.Models;
 using SyncStock.Models.Accounts;
 using SyncStock.Models.Item;
 using SyncStock.Models.Models_Receiving_;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -155,10 +156,15 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-                    SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
-                           poi.Quantity, poi.UnitPrice, i.ItemName
-                    FROM PurchaseOrderItems poi
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID");
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
+                poi.Quantity,
+                poi.UnitPrice,
+                i.ItemName
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID");
             }
         }
 
@@ -262,15 +268,26 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-                    INSERT INTO ConfirmedItems (
-                        PONumber, ItemName, DateReceived, IsCapitalizable, 
-                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount, 
-                        ReceivedAmount, AttachmentPath, Remarks
-                    ) VALUES (
-                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable, 
-                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount, 
-                        @ReceivedAmount, @AttachmentPath, @Remarks
-                    );", item);
+            INSERT INTO ConfirmedItems (
+                PurchaseOrderItemID,
+                DateReceived,
+                IsCapitalizable,
+                ReceivedQuantity,
+                ReceivedAmount,
+                AttachmentPath,
+                Remarks,
+                Status
+            )
+            VALUES (
+                @PurchaseOrderItemID,
+                @DateReceived,
+                @IsCapitalizable,
+                @ReceivedQuantity,
+                @ReceivedAmount,
+                @AttachmentPath,
+                @Remarks,
+                @Status
+            );", item);
             }
         }
 
@@ -363,30 +380,72 @@ namespace SyncStock.Database
 
         #region Auditor Review
 
-        public IEnumerable<AuditorReviewItemDto> GetAuditorReviewItems()
+        public List<AuditorReviewItemDto> GetAuditorReviewItems()
         {
+            var items = new List<AuditorReviewItemDto>();
+
             using (var conn = CreateConnection())
             {
-                return conn.Query<AuditorReviewItemDto>(@"
-                    SELECT
-                        ci.ConfirmedItemID AS PurchaseOrderItemID,
-                        ci.PONumber,
-                        ci.ItemName,
-                        po.InvoiceNumber,
-                        CASE WHEN ci.ReceivedQuantity > 0
-                             THEN ci.ReceivedAmount / ci.ReceivedQuantity
-                             ELSE 0 END AS UnitPrice,
-                        ci.ReceivedQuantity AS Quantity,
-                        ci.ReceivedAmount AS TotalAmount,
-                        ci.DateReceived,
-                        CASE WHEN ci.IsCapitalizable = 1 THEN 'Yes' ELSE 'No' END AS Capitalizable,
-                        d.DepartmentName AS Department,
-                        po.Status
-                    FROM ConfirmedItems ci
-                    INNER JOIN PurchaseOrders po ON ci.PONumber = po.PONumber
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    ORDER BY ci.DateReceived DESC, ci.PONumber, ci.ItemName");
+                conn.Open();
+
+                string query = @"
+        SELECT
+            poi.PurchaseOrderItemID,
+            po.PONumber,
+            i.ItemName,
+            po.InvoiceNumber,
+            poi.UnitPrice,
+            ci.ReceivedQuantity AS Quantity,
+            ci.ReceivedAmount AS TotalAmount,
+            ci.DateReceived,
+
+            CASE
+                WHEN ci.IsCapitalizable = 1 THEN 'Yes'
+                ELSE 'No'
+            END AS Capitalizable,
+
+            d.DepartmentName AS Department,
+            ci.Status
+
+        FROM ConfirmedItems ci
+
+        INNER JOIN PurchaseOrderItems poi
+            ON ci.PurchaseOrderItemID = poi.PurchaseOrderItemID
+
+        INNER JOIN PurchaseOrders po
+            ON poi.PurchaseOrderID = po.PurchaseOrderID
+
+        INNER JOIN Items i
+            ON poi.ItemID = i.ItemID
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+        ";
+
+                using (var cmd = new SqlCommand(query, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        items.Add(new AuditorReviewItemDto
+                        {
+                            PurchaseOrderItemID = Convert.ToInt32(reader["PurchaseOrderItemID"]),
+                            PONumber = reader["PONumber"].ToString(),
+                            ItemName = reader["ItemName"].ToString(),
+                            InvoiceNumber = reader["InvoiceNumber"].ToString(),
+                            UnitPrice = Convert.ToDecimal(reader["UnitPrice"]),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            TotalAmount = Convert.ToDecimal(reader["TotalAmount"]),
+                            DateReceived = Convert.ToDateTime(reader["DateReceived"]),
+                            Capitalizable = reader["Capitalizable"].ToString(),
+                            Department = reader["Department"].ToString(),
+                            Status = reader["Status"].ToString()
+                        });
+                    }
+                }
             }
+
+            return items;
         }
 
         #endregion
