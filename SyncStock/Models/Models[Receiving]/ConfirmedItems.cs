@@ -8,7 +8,7 @@ namespace SyncStock.Models.Models_Receiving_
 {
     public class ConfirmedItems
     {
-        public int ConfirmedItemID { get; set; } // SQL primary key identity
+        public int ConfirmedItemID { get; set; }        // SQL primary key identity
         public string PONumber { get; set; }
         public string ItemName { get; set; }
         public DateTime DateReceived { get; set; }
@@ -17,7 +17,9 @@ namespace SyncStock.Models.Models_Receiving_
         public int ReceivedQuantity { get; set; }
         public decimal ExpectedAmount { get; set; }
         public decimal ReceivedAmount { get; set; }
-        public string AttachmentPath { get; set; }
         public string Remarks { get; set; }
+        public string Status { get; set; } = "Confirmed"; // Matches SQL DEFAULT 'Confirmed'
+        public byte[] AttachmentData { get; set; }        // Stores image/PDF bytes
+        public string AttachmentFileName { get; set; }    // Stores original filename e.g. "receipt.jpg"
     }
 }
