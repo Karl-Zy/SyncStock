@@ -23,7 +23,7 @@
             // 
             // lblEmail
             // 
-            this.lblEmail.Location = new System.Drawing.Point(24, 18);
+            this.lblEmail.Location = new System.Drawing.Point(40, 18);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(24, 13);
             this.lblEmail.TabIndex = 0;
@@ -31,7 +31,7 @@
             // 
             // lblPassword
             // 
-            this.lblPassword.Location = new System.Drawing.Point(24, 79);
+            this.lblPassword.Location = new System.Drawing.Point(35, 79);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(46, 13);
             this.lblPassword.TabIndex = 2;
@@ -43,7 +43,7 @@
             this.BtnLogin.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnLogin.Appearance.Options.UseBackColor = true;
             this.BtnLogin.Appearance.Options.UseFont = true;
-            this.BtnLogin.Location = new System.Drawing.Point(24, 185);
+            this.BtnLogin.Location = new System.Drawing.Point(35, 183);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(340, 40);
             this.BtnLogin.TabIndex = 4;
@@ -52,7 +52,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(24, 99);
+            this.txtPassword.Location = new System.Drawing.Point(35, 98);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(340, 28);
@@ -60,13 +60,15 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(24, 38);
+            this.txtEmail.Location = new System.Drawing.Point(35, 37);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(340, 28);
             this.txtEmail.TabIndex = 1;
             // 
             // EmailLoginUC
             // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(162)))), ((int)(((byte)(161)))));
+            this.Appearance.Options.UseBackColor = true;
             this.Controls.Add(this.BtnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);

@@ -29,7 +29,7 @@
             // 
             this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Appearance.Options.UseFont = true;
-            this.lblTitle.Location = new System.Drawing.Point(120, 93);
+            this.lblTitle.Location = new System.Drawing.Point(155, 94);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(110, 23);
             this.lblTitle.TabIndex = 1;
@@ -39,7 +39,7 @@
             // 
             this.lblSubtitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.lblSubtitle.Appearance.Options.UseFont = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(138, 122);
+            this.lblSubtitle.Location = new System.Drawing.Point(173, 123);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(70, 17);
             this.lblSubtitle.TabIndex = 2;
@@ -51,7 +51,7 @@
             this.BtnSimulate.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnSimulate.Appearance.Options.UseBackColor = true;
             this.BtnSimulate.Appearance.Options.UseFont = true;
-            this.BtnSimulate.Location = new System.Drawing.Point(94, 168);
+            this.BtnSimulate.Location = new System.Drawing.Point(123, 161);
             this.BtnSimulate.Name = "BtnSimulate";
             this.BtnSimulate.Size = new System.Drawing.Size(175, 53);
             this.BtnSimulate.TabIndex = 3;
@@ -62,7 +62,7 @@
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.pictureEdit1);
-            this.panelControl1.Location = new System.Drawing.Point(130, 12);
+            this.panelControl1.Location = new System.Drawing.Point(164, 13);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(93, 75);
             this.panelControl1.TabIndex = 4;
@@ -86,6 +86,8 @@
             // 
             // RfidLoginUC
             // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(162)))), ((int)(((byte)(161)))));
+            this.Appearance.Options.UseBackColor = true;
             this.Controls.Add(this.BtnSimulate);
             this.Controls.Add(this.lblSubtitle);
             this.Controls.Add(this.lblTitle);
