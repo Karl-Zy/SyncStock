@@ -295,6 +295,89 @@ namespace SyncStock.Database
             }
         }
 
+        public IEnumerable<CartItems> GetAllCartItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            ORDER BY CreatedAt DESC");
+            }
+        }
+
+        public void AddCartItem(CartItems cartItem)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            INSERT INTO CartItems
+            (
+                ItemName,
+                Quantity,
+                UnitPrice,
+                InvoiceNumber,
+                PONumber,
+                OrderDate,
+                CartType    
+            )
+            VALUES
+            (
+                @ItemName,
+                @Quantity,
+                @UnitPrice,
+                @InvoiceNumber,
+                @PONumber,
+                @OrderDate,
+                @CartType
+            )", cartItem);
+            }
+
+        }
+        public void ClearCart()
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute("DELETE FROM CartItems");
+            }
+        }
+
+        public IEnumerable<CartItems> GetCartItemsByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            WHERE CartType = @CartType
+            ORDER BY CreatedAt DESC",
+                    new { CartType = type });
+            }
+        }
+
+        public void ClearCartByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            DELETE FROM CartItems
+            WHERE CartType = @CartType",
+                    new { CartType = type });
+            }
+        }
+
+        public void DeleteCartItem(int cartItemId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM CartItems WHERE CartItemID = @id", conn);
+                cmd.Parameters.AddWithValue("@id", cartItemId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public void AddItemImage(int purchaseOrderId, string imagePath) 
         {
             using (var conn = CreateConnection()) 
