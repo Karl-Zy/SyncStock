@@ -50,7 +50,7 @@ namespace SyncStock.Views.UserControl
             gvItemsView.Appearance.OddRow.BackColor = Color.FromArgb(245, 250, 248);
             gvItemsView.Appearance.EvenRow.BackColor = Color.White;
 
-            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(144, 238, 144);
+            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(83, 237, 126);
             gvItemsView.Appearance.FocusedRow.ForeColor = Color.FromArgb(30, 30, 30);
             gvItemsView.Appearance.HideSelectionRow.BackColor = Color.FromArgb(198, 239, 206);
 
@@ -84,11 +84,24 @@ namespace SyncStock.Views.UserControl
                 amountCol.Width = 120;
             }
 
-            // Hide raw POType — show friendly OrderType instead
+            // Hide raw POType and OrderMode — show friendly computed columns instead
             var poTypeCol = gvItemsView.Columns["POType"];
             if (poTypeCol != null)
                 poTypeCol.Visible = false;
 
+            var orderModeCol = gvItemsView.Columns["OrderMode"];
+            if (orderModeCol != null)
+                orderModeCol.Visible = false;
+
+            // "Order Mode" column — Single Order / Grouped Order
+            var orderModeDisplayCol = gvItemsView.Columns["OrderModeDisplay"];
+            if (orderModeDisplayCol != null)
+            {
+                orderModeDisplayCol.Caption = "Order Mode";
+                orderModeDisplayCol.Width = 120;
+            }
+
+            // "Order Type" column — Local / Online
             var orderTypeCol = gvItemsView.Columns["OrderType"];
             if (orderTypeCol != null)
             {
@@ -170,7 +183,6 @@ namespace SyncStock.Views.UserControl
             string searchText = searchControl.Text?.Trim().ToLower() ?? string.Empty;
             var allItems = _repo.GetPendingIncomingItemsDetails();
 
-            // Empty search — show everything
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 gcItems.DataSource = allItems.ToList();
@@ -178,20 +190,20 @@ namespace SyncStock.Views.UserControl
                 return;
             }
 
-            // Multi-keyword support — e.g. "laptop online" matches both words
             string[] keywords = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             gcItems.DataSource = allItems.Where(x =>
             {
                 string po = x.PONumber?.ToLower() ?? string.Empty;
                 string item = x.ItemName?.ToLower() ?? string.Empty;
-                string orderType = x.OrderType?.ToLower() ?? string.Empty; // "local" or "online"
+                string orderType = x.OrderType?.ToLower() ?? string.Empty;
+                string orderMode = x.OrderModeDisplay?.ToLower() ?? string.Empty;
 
-                // Every keyword must match at least one of the three fields
                 return keywords.All(k =>
                     po.Contains(k) ||
                     item.Contains(k) ||
-                    orderType.Contains(k)
+                    orderType.Contains(k) ||
+                    orderMode.Contains(k)
                 );
             }).ToList();
 

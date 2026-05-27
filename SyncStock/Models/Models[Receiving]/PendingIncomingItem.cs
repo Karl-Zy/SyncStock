@@ -16,8 +16,12 @@ namespace SyncStock.Models.Models_Receiving_
         public DateTime DateOrdered { get; set; }
         public string Status { get; set; }
         public string POType { get; set; }
+        public string OrderMode { get; set; }
 
-        // ✅ ADD THIS — computed from POType, no DB column needed
-        public string OrderType => POType == "OPO" ? "Online" : "Local";
+        // Computed columns — no DB column needed
+        public string OrderType => POType?.ToUpper() == "OPO" ? "Online" : "Local";
+        public string OrderModeDisplay => OrderMode?.ToLower() == "grouped" ? "Grouped Order"
+                                        : OrderMode?.ToLower() == "single" ? "Single Order"
+                                        : "—";
     }
 }
