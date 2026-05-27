@@ -41,7 +41,8 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.totalMonthlyCostLBL = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.FilterDateBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.SecondFilterBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.PeriodTypeBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.FilterBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.PrintSummaryButton = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -57,6 +58,7 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -70,7 +72,8 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FilterDateBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondFilterBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PeriodTypeBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -85,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -210,7 +215,8 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.FilterDateBox);
+            this.panelControl3.Controls.Add(this.SecondFilterBox);
+            this.panelControl3.Controls.Add(this.PeriodTypeBox);
             this.panelControl3.Controls.Add(this.FilterBox);
             this.panelControl3.Controls.Add(this.PrintSummaryButton);
             this.panelControl3.Location = new System.Drawing.Point(16, 204);
@@ -219,30 +225,50 @@
             this.panelControl3.Size = new System.Drawing.Size(1861, 56);
             this.panelControl3.TabIndex = 5;
             // 
-            // FilterDateBox
+            // SecondFilterBox
             // 
-            this.FilterDateBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterDateBox.EditValue = "SORT BY DATE INTERVAL";
-            this.FilterDateBox.Location = new System.Drawing.Point(1451, 4);
-            this.FilterDateBox.Name = "FilterDateBox";
-            this.FilterDateBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FilterDateBox.Properties.Appearance.Options.UseFont = true;
-            this.FilterDateBox.Properties.AutoHeight = false;
-            this.FilterDateBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SecondFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondFilterBox.EditValue = "SORT SPECIFICATION";
+            this.SecondFilterBox.Location = new System.Drawing.Point(1214, 3);
+            this.SecondFilterBox.Name = "SecondFilterBox";
+            this.SecondFilterBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecondFilterBox.Properties.Appearance.Options.UseFont = true;
+            this.SecondFilterBox.Properties.AutoHeight = false;
+            this.SecondFilterBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.FilterDateBox.Properties.Items.AddRange(new object[] {
+            this.SecondFilterBox.Properties.Items.AddRange(new object[] {
             "Sort by Monthly",
             "Sort by Quarterly",
             "Sort by Yearly"});
-            this.FilterDateBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.FilterDateBox.Size = new System.Drawing.Size(233, 48);
-            this.FilterDateBox.TabIndex = 3;
+            this.SecondFilterBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.SecondFilterBox.Size = new System.Drawing.Size(233, 48);
+            this.SecondFilterBox.TabIndex = 4;
+            this.SecondFilterBox.SelectedIndexChanged += new System.EventHandler(this.SecondFilterBox_SelectedIndexChanged);
+            // 
+            // PeriodTypeBox
+            // 
+            this.PeriodTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PeriodTypeBox.EditValue = "SORT BY DATE INTERVAL";
+            this.PeriodTypeBox.Location = new System.Drawing.Point(1464, 3);
+            this.PeriodTypeBox.Name = "PeriodTypeBox";
+            this.PeriodTypeBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PeriodTypeBox.Properties.Appearance.Options.UseFont = true;
+            this.PeriodTypeBox.Properties.AutoHeight = false;
+            this.PeriodTypeBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.PeriodTypeBox.Properties.Items.AddRange(new object[] {
+            "Sort by Monthly",
+            "Sort by Quarterly",
+            "Sort by Yearly"});
+            this.PeriodTypeBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.PeriodTypeBox.Size = new System.Drawing.Size(233, 48);
+            this.PeriodTypeBox.TabIndex = 3;
+            this.PeriodTypeBox.SelectedIndexChanged += new System.EventHandler(this.PeriodTypeBox_SelectedIndexChanged);
             // 
             // FilterBox
             // 
-            this.FilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FilterBox.EditValue = "SORT BY CATEGORY";
-            this.FilterBox.Location = new System.Drawing.Point(1190, 4);
+            this.FilterBox.Location = new System.Drawing.Point(8, 3);
             this.FilterBox.Name = "FilterBox";
             this.FilterBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilterBox.Properties.Appearance.Options.UseFont = true;
@@ -253,7 +279,6 @@
             "Purchased Orders",
             "Received Orders",
             "Capitalized Orders",
-            "Online Orders",
             "Reconciliation"});
             this.FilterBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.FilterBox.Size = new System.Drawing.Size(233, 48);
@@ -318,6 +343,7 @@
             this.panelControl7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
             this.panelControl7.Appearance.Options.UseBackColor = true;
             this.panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl7.Controls.Add(this.dateEdit1);
             this.panelControl7.Controls.Add(this.labelControl7);
             this.panelControl7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl7.Location = new System.Drawing.Point(2, 2);
@@ -417,6 +443,19 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Width = 223;
             // 
+            // dateEdit1
+            // 
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(422, 15);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.MaskSettings.Set("mask", "Y");
+            this.dateEdit1.Size = new System.Drawing.Size(100, 28);
+            this.dateEdit1.TabIndex = 1;
+            // 
             // ReportUC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -439,7 +478,8 @@
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FilterDateBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondFilterBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PeriodTypeBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -455,6 +495,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -487,6 +529,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.ComboBoxEdit FilterBox;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraEditors.ComboBoxEdit FilterDateBox;
+        private DevExpress.XtraEditors.ComboBoxEdit PeriodTypeBox;
+        private DevExpress.XtraEditors.ComboBoxEdit SecondFilterBox;
+        private DevExpress.XtraEditors.DateEdit dateEdit1;
     }
 }

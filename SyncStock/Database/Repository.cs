@@ -415,5 +415,25 @@ namespace SyncStock.Database
                 ).ToList();
             }
         }
+
+
+
+
+        public IEnumerable<int> GetDistinctYear() 
+        {
+            using (var conn = CreateConnection()) 
+            {
+                return conn.Query<int>(@"
+                SELECT DISTINCT YEAR(OrderDate) FROM PurchaseOrders
+                UNION
+                SELECT DISTINCT YEAR(DateReceived) FROM ConfirmedItems
+                ORDER BY 1 DESC");
+            }
+        }
+        
+        
+        
+
+        
     }
 }

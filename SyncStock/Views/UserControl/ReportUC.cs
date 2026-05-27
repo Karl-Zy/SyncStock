@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.DataAccess.Native.Data;
+using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -22,6 +23,7 @@ namespace SyncStock.Views.UserControl
         public ReportUC()
         {
             InitializeComponent();
+            
             LoadData();
         }
 
@@ -73,7 +75,7 @@ namespace SyncStock.Views.UserControl
             ReportGC.DataSource = null;
             ReportGV.Columns.Clear();
 
-            switch (FilterBox.Text) 
+            switch (FilterBox.Text)
             {
                 case "Purchased Orders":
                     ReportGC.DataSource = _repo.GetPurchaseOrderBrief().ToList();
@@ -83,23 +85,20 @@ namespace SyncStock.Views.UserControl
                     ReportGC.DataSource = _repo.GetAllReceivedOrders().ToList();
                     break;
 
-                case "Reconciliation":                               // ← only ONE of these
-                    {
-                        var data = _repo.GetReconciliationItems().ToList();
-                        ReportGC.DataSource = data;
-
-                        if (ReportGV.Columns["AttachmentData"] != null)
-                            ReportGV.Columns["AttachmentData"].Visible = false;
-
-                        if (ReportGV.Columns["AttachmentPreview"] == null)
-                            AddAttachmentImageColumn();
-
-                        break;
-                    }
-
                 case "Capitalized Orders":
                     ReportGC.DataSource = _repo.GetAllCapitalizedOrder().ToList();
-                    break; 
+                    break;
+
+                case "Reconciliation":
+                    var data = _repo.GetReconciliationItems().ToList();
+                    ReportGC.DataSource = data;
+
+                    if (ReportGV.Columns["AttachmentData"] != null)
+                        ReportGV.Columns["AttachmentData"].Visible = false;
+
+                    if (ReportGV.Columns["AttachmentPreview"] == null)
+                        AddAttachmentImageColumn();
+                    break;
             }
         }
 
@@ -184,5 +183,104 @@ namespace SyncStock.Views.UserControl
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void PeriodTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SecondFilterBox.Properties.Items.Clear();
+            var years = _repo.GetDistinctYear().ToList();
+
+            switch (PeriodTypeBox.SelectedIndex) 
+            {
+                case 0:
+                    SecondFilterBox.Text = "Monthly";
+                    foreach (var year in years) 
+                    {
+                        for (int month = 1; month <= 12; month++) 
+                        {
+                            string monthName = new DateTime(year, month, 1).ToString("MMMM yyyy");
+                            SecondFilterBox.Properties.Items.Add(monthName);
+                        }
+                    }
+                    break;
+                case 1:
+                    SecondFilterBox.Text = "Quarterly";
+                    foreach (var year in years) 
+                    {
+                        SecondFilterBox.Properties.Items.Add($"Q1 {year}");
+                        SecondFilterBox.Properties.Items.Add($"Q2 {year}");
+                        SecondFilterBox.Properties.Items.Add($"Q3 {year}");
+                        SecondFilterBox.Properties.Items.Add($"Q4 {year}");
+                    }
+                    break;
+                case 2:
+                    SecondFilterBox.Text = "Yearly";
+                    foreach (var year in years) 
+                    {
+                        SecondFilterBox.Properties.Items.Add(year.ToString());
+                    }
+                    break;
+            }
+        }
+
+        private void ApplyPeriodFilter() 
+        {
+            if (string.IsNullOrEmpty(SecondFilterBox.Text)) return;
+
+            string DateColumn = (FilterBox.Text == "Received Orders" || FilterBox.Text == "Capitalized Orders")
+                ? "DateReceived"
+                : "OrderDate";
+            DateTime start, end;
+
+            switch (PeriodTypeBox.Text) 
+            {
+                case "Monthly":
+                    DateTime SelectedMonth = DateTime.ParseExact(SecondFilterBox.Text, "MMMM yyyy", null);
+                    start = new DateTime(SelectedMonth.Year, SelectedMonth.Month, 1);
+                    end = new DateTime(SelectedMonth.Year, SelectedMonth.Month, DateTime.DaysInMonth(SelectedMonth.Year, SelectedMonth.Month));
+                    break;
+
+                case "Quarterly":
+                    string[] Parts = SecondFilterBox.Text.Split(' ');
+                    string Quarter = Parts[0];
+                    int QYear = int.Parse(Parts[1]);
+                    int StartMonth, EndMonth;
+                    switch (Quarter)
+                    {
+                        case "Q1": StartMonth = 1; EndMonth = 3; break;
+                        case "Q2": StartMonth = 4; EndMonth = 6; break;
+                        case "Q3": StartMonth = 7; EndMonth = 9; break;
+                        case "Q4": StartMonth = 10; EndMonth = 12; break;
+                        default: return;
+                    }
+                    start = new DateTime(QYear, StartMonth, 1);
+                    end = new DateTime(QYear, EndMonth, DateTime.DaysInMonth(QYear, EndMonth));
+                    break;
+
+                case "Yearly":
+                    int SelectedYear = int.Parse(SecondFilterBox.Text);
+                    start = new DateTime(SelectedYear, 1, 1);
+                    end = new DateTime(SelectedYear, 12, 31);
+                    break;
+
+                default:
+                    ReportGV.ActiveFilterString = string.Empty;
+                    return;
+
+            }
+
+            ReportGV.ActiveFilterString = $"[{DateColumn}] >= #{start:MM/dd/yyyy}# AND [{DateColumn}] <= #{end:MM/dd/yyyy}#";
+        }
+
+        private void SecondFilterBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyPeriodFilter();
+        }
     }
-}
+
+        
+
+       
+
+       
+    }
+
