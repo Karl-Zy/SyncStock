@@ -799,11 +799,6 @@
             // 
             // AuditorReviewUC
             // 
-            this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.Appearance.Options.UseBorderColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.layoutControl1);
             this.Name = "AuditorReviewUC";
             this.Size = new System.Drawing.Size(1332, 671);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

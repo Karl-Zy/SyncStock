@@ -1,8 +1,9 @@
 ﻿using DevExpress.XtraEditors;
-
 using SyncStock.Database;
 using SyncStock.Models.Accounts;
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace SyncStock.Views
@@ -79,5 +80,44 @@ namespace SyncStock.Views
             this.Close();
         }
 
+        private void pictureEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RoundPanel(DevExpress.XtraEditors.PanelControl panel, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90);
+            path.CloseFigure();
+
+            panel.Region = new Region(path);
+        }
+
+        private void RoundButton(Control btn, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(btn.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(btn.Width - radius, btn.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, btn.Height - radius, radius, radius), 90, 90);
+            path.CloseFigure();
+
+            btn.Region = new Region(path);
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            RoundPanel(panelControl1, 25);
+            RoundButton(BtnRfidTab, 20);
+            RoundButton(BtnEmailTab, 20);
+        }
     }
 }

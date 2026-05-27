@@ -22,6 +22,9 @@
             this.BtnRfidTab = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.PnlCard)).BeginInit();
             this.PnlCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -73,6 +76,8 @@
             // 
             // BtnEmailTab
             // 
+            this.BtnEmailTab.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEmailTab.Appearance.Options.UseFont = true;
             this.BtnEmailTab.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnEmailTab.ImageOptions.SvgImage")));
             this.BtnEmailTab.Location = new System.Drawing.Point(206, 5);
             this.BtnEmailTab.Name = "BtnEmailTab";
@@ -83,6 +88,8 @@
             // 
             // BtnRfidTab
             // 
+            this.BtnRfidTab.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRfidTab.Appearance.Options.UseFont = true;
             this.BtnRfidTab.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnRfidTab.ImageOptions.SvgImage")));
             this.BtnRfidTab.Location = new System.Drawing.Point(5, 5);
             this.BtnRfidTab.Name = "BtnRfidTab";
@@ -104,6 +111,9 @@
             this.Text = "SyncStock Login";
             ((System.ComponentModel.ISupportInitialize)(this.PnlCard)).EndInit();
             this.PnlCard.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +125,7 @@
         private DevExpress.XtraEditors.SimpleButton BtnEmailTab;
         private RfidLoginUC rfidLoginUC;
         private EmailLoginUC emailLoginUC;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }
