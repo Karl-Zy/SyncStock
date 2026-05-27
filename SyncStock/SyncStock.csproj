@@ -232,7 +232,7 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\SyncStock.Models.Models_Receiving_.PendingIncomingItem.datasource" />
+    <None Include="Properties\DataSources\SyncStock.Models.PendingIncomingItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -246,30 +246,15 @@
   <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
-  <ItemGroup>
-<<<<<<< HEAD
+    <ItemGroup>
     <Folder Include="Uploaded Proofs\" />
-=======
     <None Include="Resources\ChatGPT Image May 10, 2026, 10_59_09 AM.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\back dark UI copy.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\back g w UI copy.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\back w UI copy.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo main ui.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\LOGO UI.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logoui.png" />
->>>>>>> origin/Dashboard(Rohan)
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
