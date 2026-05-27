@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace SyncStock.PrintForm
 {
-    public partial class PendingReport : DevExpress.XtraReports.UI.XtraReport
+    public partial class ReconciliationReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public PendingReport()
+        public ReconciliationReport()
         {
             InitializeComponent();
         }
