@@ -23,17 +23,17 @@
             // 
             // lblEmail
             // 
-            this.lblEmail.Location = new System.Drawing.Point(57, 20);
+            this.lblEmail.Location = new System.Drawing.Point(24, 18);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(31, 16);
+            this.lblEmail.Size = new System.Drawing.Size(24, 13);
             this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "Email";
             // 
             // lblPassword
             // 
-            this.lblPassword.Location = new System.Drawing.Point(57, 101);
+            this.lblPassword.Location = new System.Drawing.Point(24, 79);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(55, 16);
+            this.lblPassword.Size = new System.Drawing.Size(46, 13);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password";
             // 
@@ -43,7 +43,7 @@
             this.BtnLogin.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnLogin.Appearance.Options.UseBackColor = true;
             this.BtnLogin.Appearance.Options.UseFont = true;
-            this.BtnLogin.Location = new System.Drawing.Point(57, 229);
+            this.BtnLogin.Location = new System.Drawing.Point(24, 185);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(340, 40);
             this.BtnLogin.TabIndex = 4;
@@ -52,17 +52,17 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(57, 121);
+            this.txtPassword.Location = new System.Drawing.Point(24, 99);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '●';
-            this.txtPassword.Size = new System.Drawing.Size(340, 34);
+            this.txtPassword.Size = new System.Drawing.Size(340, 28);
             this.txtPassword.TabIndex = 3;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(57, 40);
+            this.txtEmail.Location = new System.Drawing.Point(24, 38);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(340, 34);
+            this.txtEmail.Size = new System.Drawing.Size(340, 28);
             this.txtEmail.TabIndex = 1;
             // 
             // EmailLoginUC
