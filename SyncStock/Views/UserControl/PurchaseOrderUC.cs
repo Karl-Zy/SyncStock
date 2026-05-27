@@ -302,6 +302,7 @@ namespace SyncStock.Views.UserControl
         {
             var items = _repo.GetAllOPOPurchaseOrderItems().ToList();
 
+
             opoItemsInOrderGC.DataSource = null;
             opoItemsInOrderGC.DataSource = items;
             opoItemsInOrderGV.PopulateColumns();
