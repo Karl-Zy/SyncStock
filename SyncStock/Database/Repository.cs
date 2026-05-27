@@ -7,6 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Text;
+using System.Threading.Tasks;
+using System;
 
 namespace SyncStock.Database
 {
@@ -103,6 +107,12 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.ExecuteScalar<int>(@"
+            INSERT INTO PurchaseOrders 
+                (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath, POType) 
+            VALUES 
+                (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath, @POType);
+            SELECT SCOPE_IDENTITY();", order);
+                return conn.ExecuteScalar<int>(@"
                     INSERT INTO PurchaseOrders (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath) 
                     VALUES (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath);
                     SELECT SCOPE_IDENTITY();", order);
@@ -122,11 +132,11 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-                    SELECT poi.POItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
-                           poi.Quantity, poi.UnitPrice, i.ItemName
-                    FROM PurchaseOrderItems poi
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID
-                    WHERE poi.PurchaseOrderID = @PurchaseOrderID",
+            SELECT poi.PurchaseOrderItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                   poi.Quantity, poi.UnitPrice, i.ItemName
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            WHERE poi.PurchaseOrderID = @PurchaseOrderID",
                     new { PurchaseOrderID = purchaseOrderId });
             }
         }
@@ -156,13 +166,8 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-            SELECT 
-                poi.PurchaseOrderItemID,
-                poi.PurchaseOrderID,
-                poi.ItemID,
-                poi.Quantity,
-                poi.UnitPrice,
-                i.ItemName
+            SELECT poi.PurchaseOrderItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
+                   poi.Quantity, poi.UnitPrice, i.ItemName
             FROM PurchaseOrderItems poi
             INNER JOIN Items i ON poi.ItemID = i.ItemID");
             }
@@ -221,18 +226,18 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PendingOrderSummary>(@"
-                    SELECT po.PONumber,
-                           d.DepartmentName,
-                           po.OrderDate,
-                           po.Priority,
-                           po.Status,
-                           COUNT(poi.POItemID) AS TotalItems,
-                           SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    WHERE po.Status = @Status
-                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
+            SELECT po.PONumber,
+                   d.DepartmentName,
+                   po.OrderDate,
+                   po.Priority,
+                   po.Status,
+                   COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                   SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = @Status
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
                     new { Status = WorkflowStatus.Pending });
             }
         }
@@ -342,21 +347,21 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<ApprovedPurchaseOrder>(@"
-                    SELECT
-                        po.PONumber,
-                        d.DepartmentName,
-                        po.OrderDate,
-                        po.Priority,
-                        po.Status,
-                        COUNT(poi.POItemID) AS TotalItems,
-                        SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    WHERE po.Status = @Status
-                      AND MONTH(po.OrderDate) = MONTH(GETDATE())
-                      AND YEAR(po.OrderDate) = YEAR(GETDATE())
-                    GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
+            SELECT
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status,
+                COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+                SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = @Status
+              AND MONTH(po.OrderDate) = MONTH(GETDATE())
+              AND YEAR(po.OrderDate) = YEAR(GETDATE())
+            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
                     new { Status = WorkflowStatus.Approved });
             }
         }
@@ -473,7 +478,8 @@ namespace SyncStock.Database
                 UnitPrice,
                 InvoiceNumber,
                 PONumber,
-                OrderDate
+                OrderDate,
+                CartType    
             )
             VALUES
             (
@@ -482,7 +488,8 @@ namespace SyncStock.Database
                 @UnitPrice,
                 @InvoiceNumber,
                 @PONumber,
-                @OrderDate
+                @OrderDate,
+                @CartType
             )", cartItem);
             }
 
@@ -494,6 +501,83 @@ namespace SyncStock.Database
                 conn.Execute("DELETE FROM CartItems");
             }
         }
+
+        public IEnumerable<CartItems> GetCartItemsByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CartItems>(@"
+            SELECT *
+            FROM CartItems
+            WHERE CartType = @CartType
+            ORDER BY CreatedAt DESC",
+                    new { CartType = type });
+            }
+        }
+
+        public void ClearCartByType(string type)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+            DELETE FROM CartItems
+            WHERE CartType = @CartType",
+                    new { CartType = type });
+            }
+        }
+
+        public void DeleteCartItem(int cartItemId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var cmd = new SqlCommand(
+                    "DELETE FROM CartItems WHERE CartItemID = @id", conn);
+                cmd.Parameters.AddWithValue("@id", cartItemId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
+                i.ItemName,
+                poi.Quantity,
+                poi.UnitPrice,
+                (poi.Quantity * poi.UnitPrice) AS TotalPrice
+            FROM PurchaseOrderItems poi
+            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.POType = 'GPO'
+            ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
+
+        public IEnumerable<PurchaseOrderItem> GetAllOPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+                    SELECT 
+                        poi.PurchaseOrderItemID,
+                        poi.PurchaseOrderID,
+                        poi.ItemID,
+                        i.ItemName,
+                        poi.Quantity,
+                        poi.UnitPrice,
+                        (poi.Quantity * poi.UnitPrice) AS TotalPrice
+                    FROM PurchaseOrderItems poi
+                    INNER JOIN Items i ON poi.ItemID = i.ItemID
+                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    WHERE po.POType = 'OPO'
+                    ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
         public IEnumerable<PurchaseOrders> GetPurchaseOrderBrief()
         {
             using (var conn = CreateConnection())
@@ -503,6 +587,58 @@ namespace SyncStock.Database
             FROM PurchaseOrders po
             INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
             ORDER BY po.OrderDate DESC");
+            }
+        }
+        // In Repository.cs
+
+        public MonthLock GetMonthLock(DateTime monthYear)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.QueryFirstOrDefault<MonthLock>(
+                    "SELECT * FROM MonthLocks WHERE MonthYear = @MonthYear AND IsLocked = 1",
+                    new { MonthYear = new DateTime(monthYear.Year, monthYear.Month, 1) });
+            }
+        }
+
+        public void SaveMonthLock(MonthLock monthLock)
+        {
+            using (var conn = CreateConnection())
+            {
+                // Normalize to 1st of the month
+                monthLock.MonthYear = new DateTime(monthLock.MonthYear.Year, monthLock.MonthYear.Month, 1);
+
+                int exists = conn.ExecuteScalar<int>(
+                    "SELECT COUNT(1) FROM MonthLocks WHERE MonthYear = @MonthYear",
+                    new { monthLock.MonthYear });
+
+                if (exists > 0)
+                {
+                    conn.Execute(@"
+                UPDATE MonthLocks
+                SET IsLocked       = @IsLocked,
+                    LockedByUserId = @LockedByUserId,
+                    LockedAt       = @LockedAt
+                WHERE MonthYear = @MonthYear", monthLock);
+                }
+                else
+                {
+                    conn.Execute(@"
+                INSERT INTO MonthLocks (MonthYear, IsLocked, LockedByUserId, LockedAt)
+                VALUES (@MonthYear, @IsLocked, @LockedByUserId, @LockedAt)", monthLock);
+                }
+            }
+        }
+
+        public void SaveUnlockRequest(UnlockRequest request)
+        {
+            using (var conn = CreateConnection())
+            {
+                request.MonthYear = new DateTime(request.MonthYear.Year, request.MonthYear.Month, 1);
+
+                conn.Execute(@"
+            INSERT INTO UnlockRequests (MonthYear, RequestedByUserId, RequestedAt, Status)
+            VALUES (@MonthYear, @RequestedByUserId, @RequestedAt, @Status)", request);
             }
         }
     }

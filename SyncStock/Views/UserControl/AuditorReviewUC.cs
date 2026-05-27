@@ -17,10 +17,17 @@ namespace SyncStock.Views.UserControl
         private const string AllDepartmentsLabel = "All Departments";
         private const string AllStatusesLabel = "All Statuses";
         private const string AllMonthsLabel = "All Months";
+        private string CurrentUserRole { get; set; } = "Auditor"; // placeholder
+        private string CurrentUserId { get; set; } = "user-001"; // placeholder
+        private bool CanLockDirectly =>
+    string.Equals(CurrentUserRole, "Admin", StringComparison.OrdinalIgnoreCase);
+
+        // Tracks whether the currently selected month is locked.
+        private bool _selectedMonthIsLocked = false;
 
         // Pill labels shown in the grid (not raw Yes/No or DB status strings).
         private const string PillCapitalizable = "Capitalizable";
-        private const string PillNonCapitalizable = "Non-Capitalizable";
+        private const string PillNonCapitalizable = "Expenses";
         private const string PillActive = "Active";
         private const string PillPendingReview = "Pending Review";
         private const string PillApproved = "Approved";
@@ -53,11 +60,19 @@ namespace SyncStock.Views.UserControl
             LoadFilterStatuses();
             LoadReviewItems();      // must be BEFORE LoadFilterMonths
             LoadFilterMonths();     // uses _reviewItems which is now populated
+            LoadReviewItems();
+            LoadFilterMonths();
 
             CmbFilterDepartment.SelectedIndexChanged += FilterChanged;
             CmbFilterList.SelectedIndexChanged += FilterChanged;
             CmbDate.SelectedIndexChanged += FilterChanged;
             ScFilter.EditValueChanged += FilterChanged;
+            CmbFilterDepartment.SelectedIndexChanged += FilterChanged;
+            CmbFilterList.SelectedIndexChanged += FilterChanged;
+            CmbDate.SelectedIndexChanged += FilterChanged;
+            ScFilter.EditValueChanged += FilterChanged;
+
+            RefreshLockButtonState(); // ← add this
         }
 
         private void ConfigureSearchControl()
@@ -114,6 +129,8 @@ namespace SyncStock.Views.UserControl
             CmbFilterList.SelectedIndex = 0;
         }
 
+        // ── Replace LoadFilterMonths ────────────────────────────────────────────────
+
         private void LoadFilterMonths()
         {
             CmbDate.Properties.Items.Clear();
@@ -123,14 +140,24 @@ namespace SyncStock.Views.UserControl
                 .Where(x => x.DateReceived != default(DateTime))
                 .Select(x => new DateTime(x.DateReceived.Year, x.DateReceived.Month, 1))
                 .Distinct()
-                .OrderByDescending(d => d);
+                .OrderByDescending(d => d)
+                .ToList();
 
-            foreach (var month in months)
+            // Ensure current month is always present in the list
+            var currentMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            if (!months.Contains(currentMonth))
+                months.Insert(0, currentMonth);
+
+            foreach (var month in months.OrderByDescending(d => d))
                 CmbDate.Properties.Items.Add(month.ToString("MMMM yyyy"));
 
             CmbDate.Properties.TextEditStyle =
                 DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            CmbDate.SelectedIndex = 0;
+
+            // ── Default to current month ──────────────────────────────────────────
+            string currentMonthLabel = currentMonth.ToString("MMMM yyyy");
+            int idx = CmbDate.Properties.Items.IndexOf(currentMonthLabel);
+            CmbDate.SelectedIndex = idx >= 0 ? idx : 0;
         }
 
         private void LoadReviewItems()
@@ -302,6 +329,7 @@ namespace SyncStock.Views.UserControl
         private void FilterChanged(object sender, EventArgs e)
         {
             ApplyFiltersAndRefresh();
+            RefreshLockButtonState();   // update Lock/Unlock button after every filter change
         }
 
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
@@ -428,6 +456,185 @@ namespace SyncStock.Views.UserControl
             path.CloseFigure();
 
             return path;
+        }
+
+        // ── Replace BtnLock_Click ───────────────────────────────────────────────────
+
+        private void BtnLock_Click(object sender, EventArgs e)
+        {
+            if (!TryParseSelectedMonth(out DateTime selectedMonth))
+            {
+                XtraMessageBox.Show("Please select a specific month to lock.",
+                    "Lock Month", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!CanLockDirectly)
+            {
+                XtraMessageBox.Show(
+                    "You do not have permission to lock a month.\n" +
+                    "Use 'Request Unlock' to submit a request to an Admin.",
+                    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirm = XtraMessageBox.Show(
+                $"Lock {selectedMonth:MMMM yyyy}?\n\nNo changes can be made to this month once locked.",
+                "Confirm Lock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            try
+            {
+                _repo.SaveMonthLock(new MonthLock
+                {
+                    MonthYear = selectedMonth,
+                    IsLocked = true,
+                    LockedByUserId = CurrentUserId,
+                    LockedAt = DateTime.Now
+                });
+
+                XtraMessageBox.Show(
+                    $"{selectedMonth:MMMM yyyy} has been locked.",
+                    "Month Locked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                RefreshLockButtonState();
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(
+                    $"Failed to lock month.\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ── Replace BtnReqUnlock_Click ──────────────────────────────────────────────
+
+        private void BtnReqUnlock_Click(object sender, EventArgs e)
+        {
+            if (!TryParseSelectedMonth(out DateTime selectedMonth))
+            {
+                XtraMessageBox.Show("Please select a specific month.",
+                    "Unlock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // ── Admin: unlock directly ────────────────────────────────────────────
+            if (CanLockDirectly)
+            {
+                var confirm = XtraMessageBox.Show(
+                    $"Unlock {selectedMonth:MMMM yyyy}?\n\nThis will allow changes to this month again.",
+                    "Confirm Unlock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                try
+                {
+                    _repo.SaveMonthLock(new MonthLock
+                    {
+                        MonthYear = selectedMonth,
+                        IsLocked = false,
+                        LockedByUserId = CurrentUserId,
+                        LockedAt = DateTime.Now
+                    });
+
+                    XtraMessageBox.Show(
+                        $"{selectedMonth:MMMM yyyy} has been unlocked.",
+                        "Month Unlocked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    RefreshLockButtonState();
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(
+                        $"Failed to unlock month.\n{ex.Message}",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                return;
+            }
+
+            // ── Non-admin: submit an unlock request ───────────────────────────────
+            var confirmReq = XtraMessageBox.Show(
+                $"Submit an unlock request for {selectedMonth:MMMM yyyy}?\n\nAn Admin will review your request.",
+                "Request Unlock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmReq != DialogResult.Yes)
+                return;
+
+            try
+            {
+                _repo.SaveUnlockRequest(new UnlockRequest
+                {
+                    MonthYear = selectedMonth,
+                    RequestedByUserId = CurrentUserId,
+                    RequestedAt = DateTime.Now,
+                    Status = "Pending"
+                });
+
+                XtraMessageBox.Show(
+                    $"Your unlock request for {selectedMonth:MMMM yyyy} has been submitted.\n" +
+                    "You will be notified once an Admin reviews it.",
+                    "Request Submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(
+                    $"Failed to submit unlock request.\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        // ── Add these new methods ───────────────────────────────────────────────────
+
+        /// <summary>
+        /// Reads the DB to see if the selected month is locked, then updates
+        /// BtnLock / BtnReqUnlock text and visibility accordingly.
+        /// </summary>
+        private void RefreshLockButtonState()
+        {
+            bool monthSelected = CmbDate.SelectedIndex > 0 &&
+                !string.Equals(CmbDate.Text, AllMonthsLabel, StringComparison.OrdinalIgnoreCase);
+
+            // Hide both buttons when "All Months" is selected — locking needs a specific month.
+            BtnLock.Visible = monthSelected;
+            BtnReqUnlock.Visible = monthSelected;
+
+            if (!monthSelected)
+                return;
+
+            if (!TryParseSelectedMonth(out DateTime selectedMonth))
+                return;
+
+            var lockRecord = _repo.GetMonthLock(selectedMonth);
+            _selectedMonthIsLocked = lockRecord != null && lockRecord.IsLocked;
+
+            if (_selectedMonthIsLocked)
+            {
+                // Month is locked → show Unlock (or Request Unlock)
+                BtnLock.Visible = false;
+                BtnReqUnlock.Visible = true;
+                BtnReqUnlock.Text = CanLockDirectly ? "Unlock Month" : "Request Unlock";
+            }
+            else
+            {
+                // Month is unlocked → show Lock button only to Admin, or also to others
+                // (everyone sees Lock — non-admins will be blocked with a message on click)
+                BtnLock.Visible = true;
+                BtnLock.Text = "Lock Month";
+                BtnReqUnlock.Visible = false;
+            }
+        }
+
+        private bool TryParseSelectedMonth(out DateTime result)
+        {
+            return DateTime.TryParseExact(
+                CmbDate.Text,
+                "MMMM yyyy",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out result);
         }
     }
 }

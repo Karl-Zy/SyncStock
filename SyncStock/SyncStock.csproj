@@ -64,14 +64,14 @@
     <Reference Include="DevExpress.XtraPrinting.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v23.2.Extensions, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="PCSC, Version=7.0.1.0, Culture=neutral, PublicKeyToken=13b76e54a2ee80a7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PCSC.7.0.1\lib\netstandard2.0\PCSC.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.XtraGrid.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\DevExpress 23.2\Components\Bin\Framework\DevExpress.XtraGrid.v23.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraLayout.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PCSC, Version=7.0.1.0, Culture=neutral, PublicKeyToken=13b76e54a2ee80a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCSC.7.0.1\lib\netstandard2.0\PCSC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -101,11 +101,13 @@
     <Compile Include="Models\AuditorReviewItemDto.cs" />
     <Compile Include="Models\Models[Receiving]\ConfirmedItems.cs" />
     <Compile Include="Models\Models[Receiving]\PendingIncomingItem.cs" />
+    <Compile Include="Models\MonthLock.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderBrief.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Models\ReportItem.cs" />
+    <Compile Include="Models\UnlockRequest.cs" />
     <Compile Include="Models\WorkflowStatus.cs" />
     <Compile Include="PrintForm\PendingReport.cs">
       <SubType>Component</SubType>
@@ -213,6 +215,9 @@
     <EmbeddedResource Include="Views\UserControl\DashBoardUC.resx">
       <DependentUpon>DashBoardUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\EmailLoginUC.resx">
+      <DependentUpon>EmailLoginUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\PurchaseOrderUC.resx">
       <DependentUpon>PurchaseOrderUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,9 +227,12 @@
     <EmbeddedResource Include="Views\UserControl\ReportUC.resx">
       <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl\RfidLoginUC.resx">
+      <DependentUpon>RfidLoginUC.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\SyncStock.Models.Models_Receiving_.PendingIncomingItem.datasource" />
+    <None Include="Properties\DataSources\SyncStock.Models.PendingIncomingItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -237,6 +245,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 10, 2026, 10_59_09 AM.png" />
+    <None Include="Resources\back dark UI copy.png" />
+    <None Include="Resources\back g w UI copy.png" />
+    <None Include="Resources\back w UI copy.png" />
+    <None Include="Resources\logo main ui.png" />
+    <None Include="Resources\LOGO UI.png" />
+    <None Include="Resources\logoui.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploaded Proofs\" />

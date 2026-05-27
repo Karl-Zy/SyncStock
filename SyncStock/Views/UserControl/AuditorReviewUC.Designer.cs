@@ -59,19 +59,6 @@
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.CmbFilterList = new DevExpress.XtraEditors.ComboBoxEdit();
             this.CmbFilterDepartment = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.ReviewItemGC = new DevExpress.XtraGrid.GridControl();
-            this.ReviewItemGV = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colPONumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colItemName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colInvoiceNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDateReceived = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCapitalizable = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -85,10 +72,23 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ReviewItemGV = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPONumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colItemName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInvoiceNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDateReceived = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCapitalizable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ReviewItemGC = new DevExpress.XtraGrid.GridControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).BeginInit();
@@ -110,8 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbFilterList.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbFilterDepartment.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
@@ -125,8 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -161,6 +161,7 @@
             this.BtnLock.Size = new System.Drawing.Size(75, 23);
             this.BtnLock.TabIndex = 4;
             this.BtnLock.Text = "Lock period";
+            this.BtnLock.Click += new System.EventHandler(this.BtnLock_Click);
             // 
             // BtnReqUnlock
             // 
@@ -170,6 +171,7 @@
             this.BtnReqUnlock.Size = new System.Drawing.Size(82, 23);
             this.BtnReqUnlock.TabIndex = 3;
             this.BtnReqUnlock.Text = "Request unlock";
+            this.BtnReqUnlock.Click += new System.EventHandler(this.BtnReqUnlock_Click);
             // 
             // svgImageBox1
             // 
@@ -192,14 +194,14 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Appearance.BackColor = System.Drawing.Color.LightGreen;
+            this.panelControl2.Appearance.BackColor = System.Drawing.Color.LightGray;
             this.panelControl2.Appearance.Options.UseBackColor = true;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl2.Controls.Add(this.labelControl2);
             this.panelControl2.Controls.Add(this.svgImageBox2);
-            this.panelControl2.Location = new System.Drawing.Point(6, 61);
+            this.panelControl2.Location = new System.Drawing.Point(6, 95);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1320, 28);
+            this.panelControl2.Size = new System.Drawing.Size(1320, 45);
             this.panelControl2.TabIndex = 1;
             // 
             // labelControl2
@@ -221,29 +223,32 @@
             // 
             // panelControl4
             // 
+            this.panelControl4.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(242)))), ((int)(((byte)(254)))));
+            this.panelControl4.Appearance.Options.UseBackColor = true;
+            this.panelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl4.Controls.Add(this.svgImageBox5);
             this.panelControl4.Controls.Add(this.labelControl5);
             this.panelControl4.Controls.Add(this.labelControl4);
             this.panelControl4.Controls.Add(this.TotalAssetsNum);
-            this.panelControl4.Location = new System.Drawing.Point(6, 95);
+            this.panelControl4.Location = new System.Drawing.Point(6, 146);
             this.panelControl4.MaximumSize = new System.Drawing.Size(0, 90);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(433, 58);
+            this.panelControl4.Size = new System.Drawing.Size(433, 75);
             this.panelControl4.TabIndex = 3;
             // 
             // svgImageBox5
             // 
             this.svgImageBox5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.svgImageBox5.Location = new System.Drawing.Point(365, 2);
+            this.svgImageBox5.Location = new System.Drawing.Point(367, 0);
             this.svgImageBox5.Name = "svgImageBox5";
-            this.svgImageBox5.Size = new System.Drawing.Size(66, 54);
+            this.svgImageBox5.Size = new System.Drawing.Size(66, 75);
             this.svgImageBox5.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox5.SvgImage")));
             this.svgImageBox5.TabIndex = 5;
             this.svgImageBox5.Text = "svgImageBox3";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(5, 64);
+            this.labelControl5.Location = new System.Drawing.Point(3, 62);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(70, 13);
             this.labelControl5.TabIndex = 1;
@@ -251,7 +256,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(5, 50);
+            this.labelControl4.Location = new System.Drawing.Point(3, 48);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(59, 13);
             this.labelControl4.TabIndex = 1;
@@ -261,7 +266,7 @@
             // 
             this.TotalAssetsNum.Appearance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalAssetsNum.Appearance.Options.UseFont = true;
-            this.TotalAssetsNum.Location = new System.Drawing.Point(5, 8);
+            this.TotalAssetsNum.Location = new System.Drawing.Point(3, 6);
             this.TotalAssetsNum.Name = "TotalAssetsNum";
             this.TotalAssetsNum.Size = new System.Drawing.Size(20, 45);
             this.TotalAssetsNum.TabIndex = 0;
@@ -269,30 +274,31 @@
             // 
             // panelControl5
             // 
-            this.panelControl5.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelControl5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.panelControl5.Appearance.BorderColor = System.Drawing.Color.Red;
             this.panelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.panelControl5.Appearance.Options.UseBackColor = true;
             this.panelControl5.Appearance.Options.UseBorderColor = true;
             this.panelControl5.Appearance.Options.UseFont = true;
             this.panelControl5.Appearance.Options.UseForeColor = true;
+            this.panelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl5.Controls.Add(this.svgImageBox4);
             this.panelControl5.Controls.Add(this.labelControl11);
             this.panelControl5.Controls.Add(this.labelControl10);
             this.panelControl5.Controls.Add(this.PendingNum);
-            this.panelControl5.Location = new System.Drawing.Point(889, 95);
+            this.panelControl5.Location = new System.Drawing.Point(889, 146);
             this.panelControl5.MaximumSize = new System.Drawing.Size(0, 90);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(437, 58);
+            this.panelControl5.Size = new System.Drawing.Size(437, 75);
             this.panelControl5.TabIndex = 3;
             // 
             // svgImageBox4
             // 
             this.svgImageBox4.BackColor = System.Drawing.Color.Transparent;
             this.svgImageBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.svgImageBox4.Location = new System.Drawing.Point(369, 2);
+            this.svgImageBox4.Location = new System.Drawing.Point(371, 0);
             this.svgImageBox4.Name = "svgImageBox4";
-            this.svgImageBox4.Size = new System.Drawing.Size(66, 54);
+            this.svgImageBox4.Size = new System.Drawing.Size(66, 75);
             this.svgImageBox4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox4.SvgImage")));
             this.svgImageBox4.TabIndex = 5;
             this.svgImageBox4.Text = "svgImageBox3";
@@ -301,7 +307,7 @@
             // 
             this.labelControl11.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl11.Appearance.Options.UseForeColor = true;
-            this.labelControl11.Location = new System.Drawing.Point(5, 64);
+            this.labelControl11.Location = new System.Drawing.Point(3, 62);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(31, 13);
             this.labelControl11.TabIndex = 1;
@@ -311,7 +317,7 @@
             // 
             this.labelControl10.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl10.Appearance.Options.UseForeColor = true;
-            this.labelControl10.Location = new System.Drawing.Point(5, 50);
+            this.labelControl10.Location = new System.Drawing.Point(3, 48);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(76, 13);
             this.labelControl10.TabIndex = 1;
@@ -323,7 +329,7 @@
             this.PendingNum.Appearance.ForeColor = System.Drawing.Color.Red;
             this.PendingNum.Appearance.Options.UseFont = true;
             this.PendingNum.Appearance.Options.UseForeColor = true;
-            this.PendingNum.Location = new System.Drawing.Point(5, 8);
+            this.PendingNum.Location = new System.Drawing.Point(3, 6);
             this.PendingNum.Name = "PendingNum";
             this.PendingNum.Size = new System.Drawing.Size(20, 45);
             this.PendingNum.TabIndex = 0;
@@ -331,7 +337,7 @@
             // 
             // ScFilter
             // 
-            this.ScFilter.Location = new System.Drawing.Point(6, 159);
+            this.ScFilter.Location = new System.Drawing.Point(6, 61);
             this.ScFilter.Name = "ScFilter";
             this.ScFilter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
@@ -358,7 +364,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(817, 186, 650, 400);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(716, 186, 650, 400);
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(1332, 671);
             this.layoutControl1.TabIndex = 9;
@@ -366,7 +372,7 @@
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(1073, 159);
+            this.labelControl13.Location = new System.Drawing.Point(1073, 61);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(64, 28);
             this.labelControl13.StyleController = this.layoutControl1;
@@ -375,22 +381,30 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(225)))), ((int)(((byte)(180)))));
+            this.panelControl3.Appearance.BorderColor = System.Drawing.Color.White;
+            this.panelControl3.Appearance.ForeColor = System.Drawing.Color.White;
+            this.panelControl3.Appearance.Options.UseBackColor = true;
+            this.panelControl3.Appearance.Options.UseBorderColor = true;
+            this.panelControl3.Appearance.Options.UseFont = true;
+            this.panelControl3.Appearance.Options.UseForeColor = true;
+            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl3.Controls.Add(this.svgImageBox3);
             this.panelControl3.Controls.Add(this.labelControl15);
             this.panelControl3.Controls.Add(this.CapitalizedNum);
             this.panelControl3.Controls.Add(this.labelControl8);
-            this.panelControl3.Location = new System.Drawing.Point(445, 95);
+            this.panelControl3.Location = new System.Drawing.Point(445, 146);
             this.panelControl3.MaximumSize = new System.Drawing.Size(0, 90);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(438, 58);
+            this.panelControl3.Size = new System.Drawing.Size(438, 75);
             this.panelControl3.TabIndex = 3;
             // 
             // svgImageBox3
             // 
             this.svgImageBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.svgImageBox3.Location = new System.Drawing.Point(370, 2);
+            this.svgImageBox3.Location = new System.Drawing.Point(372, 0);
             this.svgImageBox3.Name = "svgImageBox3";
-            this.svgImageBox3.Size = new System.Drawing.Size(66, 54);
+            this.svgImageBox3.Size = new System.Drawing.Size(66, 75);
             this.svgImageBox3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageBox3.SvgImage")));
             this.svgImageBox3.TabIndex = 5;
             this.svgImageBox3.Text = "svgImageBox3";
@@ -399,7 +413,7 @@
             // 
             this.labelControl15.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl15.Appearance.Options.UseForeColor = true;
-            this.labelControl15.Location = new System.Drawing.Point(5, 48);
+            this.labelControl15.Location = new System.Drawing.Point(3, 46);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(52, 13);
             this.labelControl15.TabIndex = 3;
@@ -411,7 +425,7 @@
             this.CapitalizedNum.Appearance.ForeColor = System.Drawing.Color.Green;
             this.CapitalizedNum.Appearance.Options.UseFont = true;
             this.CapitalizedNum.Appearance.Options.UseForeColor = true;
-            this.CapitalizedNum.Location = new System.Drawing.Point(5, 8);
+            this.CapitalizedNum.Location = new System.Drawing.Point(3, 6);
             this.CapitalizedNum.Name = "CapitalizedNum";
             this.CapitalizedNum.Size = new System.Drawing.Size(20, 45);
             this.CapitalizedNum.TabIndex = 2;
@@ -422,14 +436,14 @@
             this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl8.Appearance.Options.UseForeColor = true;
             this.labelControl8.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.labelControl8.Location = new System.Drawing.Point(5, 62);
+            this.labelControl8.Location = new System.Drawing.Point(3, 60);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(0, 13);
             this.labelControl8.TabIndex = 4;
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(808, 159);
+            this.labelControl12.Location = new System.Drawing.Point(808, 61);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(45, 28);
             this.labelControl12.StyleController = this.layoutControl1;
@@ -438,7 +452,7 @@
             // 
             // CmbFilterList
             // 
-            this.CmbFilterList.Location = new System.Drawing.Point(859, 159);
+            this.CmbFilterList.Location = new System.Drawing.Point(859, 61);
             this.CmbFilterList.Name = "CmbFilterList";
             this.CmbFilterList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -448,7 +462,7 @@
             // 
             // CmbFilterDepartment
             // 
-            this.CmbFilterDepartment.Location = new System.Drawing.Point(1143, 159);
+            this.CmbFilterDepartment.Location = new System.Drawing.Point(1143, 61);
             this.CmbFilterDepartment.Name = "CmbFilterDepartment";
             this.CmbFilterDepartment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -456,16 +470,189 @@
             this.CmbFilterDepartment.StyleController = this.layoutControl1;
             this.CmbFilterDepartment.TabIndex = 7;
             // 
-            // ReviewItemGC
+            // Root
             // 
-            this.ReviewItemGC.Location = new System.Drawing.Point(6, 193);
-            this.ReviewItemGC.MainView = this.ReviewItemGV;
-            this.ReviewItemGC.Margin = new System.Windows.Forms.Padding(4);
-            this.ReviewItemGC.Name = "ReviewItemGC";
-            this.ReviewItemGC.Size = new System.Drawing.Size(1320, 472);
-            this.ReviewItemGC.TabIndex = 9;
-            this.ReviewItemGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.ReviewItemGV});
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem11,
+            this.layoutControlItem10,
+            this.layoutControlGroupStats,
+            this.layoutControlGroupFilter,
+            this.layoutControlItem1});
+            this.Root.Name = "Root";
+            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.Root.Size = new System.Drawing.Size(1332, 671);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.panelControl1;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(0, 55);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(86, 55);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(1326, 55);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem11.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.panelControl2;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 89);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(7, 7);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(1326, 51);
+            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
+            // layoutControlGroupStats
+            // 
+            this.layoutControlGroupStats.GroupBordersVisible = false;
+            this.layoutControlGroupStats.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem9,
+            this.layoutControlItem8,
+            this.layoutControlItem7});
+            this.layoutControlGroupStats.Location = new System.Drawing.Point(0, 140);
+            this.layoutControlGroupStats.Name = "layoutControlGroupStats";
+            this.layoutControlGroupStats.Size = new System.Drawing.Size(1326, 81);
+            this.layoutControlGroupStats.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.AppearanceItemCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.layoutControlItem9.AppearanceItemCaption.Options.UseBackColor = true;
+            this.layoutControlItem9.Control = this.panelControl3;
+            this.layoutControlItem9.Location = new System.Drawing.Point(439, 0);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(7, 7);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(444, 81);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.panelControl5;
+            this.layoutControlItem8.Location = new System.Drawing.Point(883, 0);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(7, 7);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(443, 81);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.panelControl4;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(7, 7);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(439, 81);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlGroupFilter
+            // 
+            this.layoutControlGroupFilter.GroupBordersVisible = false;
+            this.layoutControlGroupFilter.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem6,
+            this.layoutControlItem5,
+            this.layoutControlItem3,
+            this.layoutControlItem12,
+            this.layoutControlItem2});
+            this.layoutControlGroupFilter.Location = new System.Drawing.Point(0, 55);
+            this.layoutControlGroupFilter.Name = "layoutControlGroupFilter";
+            this.layoutControlGroupFilter.Size = new System.Drawing.Size(1326, 34);
+            this.layoutControlGroupFilter.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.ScFilter;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(96, 34);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(802, 34);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.labelControl12;
+            this.layoutControlItem5.Location = new System.Drawing.Point(802, 0);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(49, 19);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(51, 34);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.CmbFilterList;
+            this.layoutControlItem3.Location = new System.Drawing.Point(853, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(214, 34);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(214, 34);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(214, 34);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.labelControl13;
+            this.layoutControlItem12.Location = new System.Drawing.Point(1067, 0);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(67, 19);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(70, 34);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.CmbFilterDepartment;
+            this.layoutControlItem2.Location = new System.Drawing.Point(1137, 0);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(64, 34);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(189, 34);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Name = "gridColumn10";
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 94);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(173, 25);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(50, 20);
+            // 
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(0, 0);
+            this.xtraScrollableControl1.TabIndex = 5;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.ReviewItemGC;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 221);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(50, 25);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(1326, 444);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // ReviewItemGV
             // 
@@ -599,195 +786,19 @@
             this.gridColumn1.VisibleIndex = 10;
             this.gridColumn1.Width = 81;
             // 
-            // Root
+            // ReviewItemGC
             // 
-            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem11,
-            this.layoutControlItem10,
-            this.layoutControlGroupStats,
-            this.layoutControlGroupFilter,
-            this.layoutControlItem1});
-            this.Root.Name = "Root";
-            this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.Root.Size = new System.Drawing.Size(1332, 671);
-            this.Root.TextVisible = false;
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.panelControl1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem11.MaxSize = new System.Drawing.Size(0, 55);
-            this.layoutControlItem11.MinSize = new System.Drawing.Size(86, 55);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(1326, 55);
-            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem11.TextVisible = false;
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.panelControl2;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 55);
-            this.layoutControlItem10.MinSize = new System.Drawing.Size(7, 7);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(1326, 34);
-            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
-            // layoutControlGroupStats
-            // 
-            this.layoutControlGroupStats.GroupBordersVisible = false;
-            this.layoutControlGroupStats.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem9,
-            this.layoutControlItem8,
-            this.layoutControlItem7});
-            this.layoutControlGroupStats.Location = new System.Drawing.Point(0, 89);
-            this.layoutControlGroupStats.Name = "layoutControlGroupStats";
-            this.layoutControlGroupStats.Size = new System.Drawing.Size(1326, 64);
-            this.layoutControlGroupStats.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.panelControl3;
-            this.layoutControlItem9.Location = new System.Drawing.Point(439, 0);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(7, 7);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(444, 64);
-            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.panelControl5;
-            this.layoutControlItem8.Location = new System.Drawing.Point(883, 0);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(7, 7);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(443, 64);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.panelControl4;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(7, 7);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(439, 64);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlGroupFilter
-            // 
-            this.layoutControlGroupFilter.GroupBordersVisible = false;
-            this.layoutControlGroupFilter.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem6,
-            this.layoutControlItem5,
-            this.layoutControlItem3,
-            this.layoutControlItem12,
-            this.layoutControlItem2});
-            this.layoutControlGroupFilter.Location = new System.Drawing.Point(0, 153);
-            this.layoutControlGroupFilter.Name = "layoutControlGroupFilter";
-            this.layoutControlGroupFilter.Size = new System.Drawing.Size(1326, 34);
-            this.layoutControlGroupFilter.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.ScFilter;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(96, 34);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(802, 34);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.labelControl12;
-            this.layoutControlItem5.Location = new System.Drawing.Point(802, 0);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(49, 19);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(51, 34);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.CmbFilterList;
-            this.layoutControlItem3.Location = new System.Drawing.Point(853, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(214, 34);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(214, 34);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(214, 34);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.labelControl13;
-            this.layoutControlItem12.Location = new System.Drawing.Point(1067, 0);
-            this.layoutControlItem12.MinSize = new System.Drawing.Size(67, 19);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(70, 34);
-            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.CmbFilterDepartment;
-            this.layoutControlItem2.Location = new System.Drawing.Point(1137, 0);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(64, 34);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(189, 34);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.ReviewItemGC;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 187);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(106, 26);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1326, 478);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // gridColumn10
-            // 
-            this.gridColumn10.Name = "gridColumn10";
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 94);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(173, 25);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(50, 20);
-            // 
-            // xtraScrollableControl1
-            // 
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(0, 0);
-            this.xtraScrollableControl1.TabIndex = 5;
+            this.ReviewItemGC.Location = new System.Drawing.Point(6, 227);
+            this.ReviewItemGC.MainView = this.ReviewItemGV;
+            this.ReviewItemGC.Margin = new System.Windows.Forms.Padding(4);
+            this.ReviewItemGC.Name = "ReviewItemGC";
+            this.ReviewItemGC.Size = new System.Drawing.Size(1320, 438);
+            this.ReviewItemGC.TabIndex = 9;
+            this.ReviewItemGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.ReviewItemGV});
             // 
             // AuditorReviewUC
             // 
-            this.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.Appearance.Options.UseBorderColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.layoutControl1);
             this.Name = "AuditorReviewUC";
             this.Size = new System.Drawing.Size(1332, 671);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -816,8 +827,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.svgImageBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbFilterList.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CmbFilterDepartment.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
@@ -831,8 +840,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReviewItemGC)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -859,18 +870,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.ComboBoxEdit CmbFilterList;
         private DevExpress.XtraEditors.ComboBoxEdit CmbFilterDepartment;
-        private DevExpress.XtraGrid.GridControl ReviewItemGC;
-        private DevExpress.XtraGrid.Views.Grid.GridView ReviewItemGV;
-        private DevExpress.XtraGrid.Columns.GridColumn colPONumber;
-        private DevExpress.XtraGrid.Columns.GridColumn colItemName;
-        private DevExpress.XtraGrid.Columns.GridColumn colInvoiceNumber;
-        private DevExpress.XtraGrid.Columns.GridColumn colUnitPrice;
-        private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
-        private DevExpress.XtraGrid.Columns.GridColumn colTotalAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colDateReceived;
-        private DevExpress.XtraGrid.Columns.GridColumn colCapitalizable;
-        private DevExpress.XtraGrid.Columns.GridColumn colDepartment;
-        private DevExpress.XtraGrid.Columns.GridColumn colStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
@@ -881,7 +880,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
@@ -898,6 +896,19 @@
         private DevExpress.XtraEditors.SvgImageBox svgImageBox4;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox3;
         private DevExpress.XtraEditors.ComboBoxEdit CmbDate;
+        private DevExpress.XtraGrid.GridControl ReviewItemGC;
+        private DevExpress.XtraGrid.Views.Grid.GridView ReviewItemGV;
+        private DevExpress.XtraGrid.Columns.GridColumn colPONumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colItemName;
+        private DevExpress.XtraGrid.Columns.GridColumn colInvoiceNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colUnitPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colDateReceived;
+        private DevExpress.XtraGrid.Columns.GridColumn colCapitalizable;
+        private DevExpress.XtraGrid.Columns.GridColumn colDepartment;
+        private DevExpress.XtraGrid.Columns.GridColumn colStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }
