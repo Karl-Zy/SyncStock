@@ -161,6 +161,7 @@
             this.BtnLock.Size = new System.Drawing.Size(75, 23);
             this.BtnLock.TabIndex = 4;
             this.BtnLock.Text = "Lock period";
+            this.BtnLock.Click += new System.EventHandler(this.BtnLock_Click);
             // 
             // BtnReqUnlock
             // 
@@ -170,6 +171,7 @@
             this.BtnReqUnlock.Size = new System.Drawing.Size(82, 23);
             this.BtnReqUnlock.TabIndex = 3;
             this.BtnReqUnlock.Text = "Request unlock";
+            this.BtnReqUnlock.Click += new System.EventHandler(this.BtnReqUnlock_Click);
             // 
             // svgImageBox1
             // 

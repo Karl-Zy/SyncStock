@@ -6,6 +6,7 @@ using SyncStock.Models.Models_Receiving_;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System;
 
 namespace SyncStock.Database
 {
@@ -444,6 +445,58 @@ namespace SyncStock.Database
             FROM PurchaseOrders po
             INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
             ORDER BY po.OrderDate DESC");
+            }
+        }
+        // In Repository.cs
+
+        public MonthLock GetMonthLock(DateTime monthYear)
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.QueryFirstOrDefault<MonthLock>(
+                    "SELECT * FROM MonthLocks WHERE MonthYear = @MonthYear AND IsLocked = 1",
+                    new { MonthYear = new DateTime(monthYear.Year, monthYear.Month, 1) });
+            }
+        }
+
+        public void SaveMonthLock(MonthLock monthLock)
+        {
+            using (var conn = CreateConnection())
+            {
+                // Normalize to 1st of the month
+                monthLock.MonthYear = new DateTime(monthLock.MonthYear.Year, monthLock.MonthYear.Month, 1);
+
+                int exists = conn.ExecuteScalar<int>(
+                    "SELECT COUNT(1) FROM MonthLocks WHERE MonthYear = @MonthYear",
+                    new { monthLock.MonthYear });
+
+                if (exists > 0)
+                {
+                    conn.Execute(@"
+                UPDATE MonthLocks
+                SET IsLocked       = @IsLocked,
+                    LockedByUserId = @LockedByUserId,
+                    LockedAt       = @LockedAt
+                WHERE MonthYear = @MonthYear", monthLock);
+                }
+                else
+                {
+                    conn.Execute(@"
+                INSERT INTO MonthLocks (MonthYear, IsLocked, LockedByUserId, LockedAt)
+                VALUES (@MonthYear, @IsLocked, @LockedByUserId, @LockedAt)", monthLock);
+                }
+            }
+        }
+
+        public void SaveUnlockRequest(UnlockRequest request)
+        {
+            using (var conn = CreateConnection())
+            {
+                request.MonthYear = new DateTime(request.MonthYear.Year, request.MonthYear.Month, 1);
+
+                conn.Execute(@"
+            INSERT INTO UnlockRequests (MonthYear, RequestedByUserId, RequestedAt, Status)
+            VALUES (@MonthYear, @RequestedByUserId, @RequestedAt, @Status)", request);
             }
         }
     }

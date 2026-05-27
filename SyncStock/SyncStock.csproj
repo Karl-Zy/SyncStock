@@ -101,11 +101,13 @@
     <Compile Include="Models\AuditorReviewItemDto.cs" />
     <Compile Include="Models\Models[Receiving]\ConfirmedItems.cs" />
     <Compile Include="Models\Models[Receiving]\PendingIncomingItem.cs" />
+    <Compile Include="Models\MonthLock.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\PurchaseOrderBrief.cs" />
     <Compile Include="Models\PurchaseOrderItem.cs" />
     <Compile Include="Models\PurchaseOrders.cs" />
     <Compile Include="Models\ReportItem.cs" />
+    <Compile Include="Models\UnlockRequest.cs" />
     <Compile Include="Models\WorkflowStatus.cs" />
     <Compile Include="PrintForm\PendingReport.cs">
       <SubType>Component</SubType>
