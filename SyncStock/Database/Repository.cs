@@ -120,7 +120,8 @@ namespace SyncStock.Database
                 Priority,
                 Remarks,
                 AttachmentPath,
-                POType
+                POType,
+                OrderMode
             )
             VALUES
             (
@@ -132,7 +133,8 @@ namespace SyncStock.Database
                 @Priority,
                 @Remarks,
                 @AttachmentPath,
-                @POType
+                @POType,
+                @OrderMode
             );
 
             SELECT CAST(SCOPE_IDENTITY() as int);",
@@ -785,6 +787,8 @@ namespace SyncStock.Database
                 ORDER BY 1 DESC");
             }
         }
+
+
 
 
 

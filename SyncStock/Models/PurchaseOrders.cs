@@ -25,6 +25,7 @@ namespace SyncStock.Models
         public string AttachmentPath { get; set; }
        
         public string POType { get; set; }
+        public string OrderMode { get; set; }
 
     }
 }
