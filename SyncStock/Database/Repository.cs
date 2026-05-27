@@ -297,6 +297,18 @@ namespace SyncStock.Database
 
         public void AddConfirmedItem(ConfirmedItems item)
         {
+            string query = @"
+                    INSERT INTO ConfirmedItems (
+                        PONumber, ItemName, DateReceived, IsCapitalizable,
+                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
+                        ReceivedAmount, Remarks, Status,
+                        AttachmentData, AttachmentFileName
+                    ) VALUES (
+                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
+                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
+                        @ReceivedAmount, @Remarks, @Status,
+                        @AttachmentData, @AttachmentFileName
+                    );";
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
