@@ -211,6 +211,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\AuditorReviewUC.resx">
       <DependentUpon>AuditorReviewUC.cs</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuditorReviewUC1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserControl\DashBoardUC.resx">
       <DependentUpon>DashBoardUC.cs</DependentUpon>

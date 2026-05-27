@@ -60,8 +60,11 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.ExecuteScalar<int>(
-                    "INSERT INTO Items (ItemName) VALUES (@ItemName); SELECT SCOPE_IDENTITY();",
+                return conn.ExecuteScalar<int>(@"
+            INSERT INTO Items (ItemName)
+            VALUES (@ItemName);
+
+            SELECT CAST(SCOPE_IDENTITY() as int);",
                     new { ItemName = itemName });
             }
         }
@@ -107,15 +110,33 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.ExecuteScalar<int>(@"
-            INSERT INTO PurchaseOrders 
-                (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath, POType) 
-            VALUES 
-                (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath, @POType);
-            SELECT SCOPE_IDENTITY();", order);
-                return conn.ExecuteScalar<int>(@"
-                    INSERT INTO PurchaseOrders (InvoiceNumber, PONumber, DepartmentID, OrderDate, Status, Priority, Remarks, AttachmentPath) 
-                    VALUES (@InvoiceNumber, @PONumber, @DepartmentID, @OrderDate, @Status, @Priority, @Remarks, @AttachmentPath);
-                    SELECT SCOPE_IDENTITY();", order);
+            INSERT INTO PurchaseOrders
+            (
+                InvoiceNumber,
+                PONumber,
+                DepartmentID,
+                OrderDate,
+                Status,
+                Priority,
+                Remarks,
+                AttachmentPath,
+                POType
+            )
+            VALUES
+            (
+                @InvoiceNumber,
+                @PONumber,
+                @DepartmentID,
+                @OrderDate,
+                @Status,
+                @Priority,
+                @Remarks,
+                @AttachmentPath,
+                @POType
+            );
+
+            SELECT CAST(SCOPE_IDENTITY() as int);",
+                    order);
             }
         }
 
@@ -132,10 +153,16 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-            SELECT poi.PurchaseOrderItemID AS PurchaseOrderItemID, poi.PurchaseOrderID, poi.ItemID,
-                   poi.Quantity, poi.UnitPrice, i.ItemName
+            SELECT 
+                poi.PurchaseOrderItemID,
+                poi.PurchaseOrderID,
+                poi.ItemID,
+                poi.Quantity,
+                poi.UnitPrice,
+                i.ItemName
             FROM PurchaseOrderItems poi
-            INNER JOIN Items i ON poi.ItemID = i.ItemID
+            INNER JOIN Items i 
+                ON poi.ItemID = i.ItemID
             WHERE poi.PurchaseOrderID = @PurchaseOrderID",
                     new { PurchaseOrderID = purchaseOrderId });
             }
@@ -424,8 +451,7 @@ namespace SyncStock.Database
             ON poi.ItemID = i.ItemID
 
         INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID
-        ";
+            ON po.DepartmentID = d.DepartmentID";
 
                 using (var cmd = new SqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())

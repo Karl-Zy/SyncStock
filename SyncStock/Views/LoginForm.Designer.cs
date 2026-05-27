@@ -22,9 +22,6 @@
             this.BtnRfidTab = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.PnlCard)).BeginInit();
             this.PnlCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -111,9 +108,6 @@
             this.Text = "SyncStock Login";
             ((System.ComponentModel.ISupportInitialize)(this.PnlCard)).EndInit();
             this.PnlCard.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,7 +119,5 @@
         private DevExpress.XtraEditors.SimpleButton BtnEmailTab;
         private RfidLoginUC rfidLoginUC;
         private EmailLoginUC emailLoginUC;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }
