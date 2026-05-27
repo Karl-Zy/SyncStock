@@ -18,8 +18,8 @@
             this.lblSubtitle = new DevExpress.XtraEditors.LabelControl();
             this.BtnSimulate = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.rfidAnimationTimer = new System.Windows.Forms.Timer(this.components);
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.rfidAnimationTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -29,9 +29,9 @@
             // 
             this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Appearance.Options.UseFont = true;
-            this.lblTitle.Location = new System.Drawing.Point(161, 93);
+            this.lblTitle.Location = new System.Drawing.Point(120, 93);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(136, 30);
+            this.lblTitle.Size = new System.Drawing.Size(110, 23);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Ready to Scan";
             // 
@@ -39,9 +39,9 @@
             // 
             this.lblSubtitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.lblSubtitle.Appearance.Options.UseFont = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(179, 122);
+            this.lblSubtitle.Location = new System.Drawing.Point(138, 122);
             this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(81, 21);
+            this.lblSubtitle.Size = new System.Drawing.Size(70, 17);
             this.lblSubtitle.TabIndex = 2;
             this.lblSubtitle.Text = "Tap ID Card";
             // 
@@ -51,7 +51,7 @@
             this.BtnSimulate.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnSimulate.Appearance.Options.UseBackColor = true;
             this.BtnSimulate.Appearance.Options.UseFont = true;
-            this.BtnSimulate.Location = new System.Drawing.Point(143, 217);
+            this.BtnSimulate.Location = new System.Drawing.Point(94, 168);
             this.BtnSimulate.Name = "BtnSimulate";
             this.BtnSimulate.Size = new System.Drawing.Size(175, 53);
             this.BtnSimulate.TabIndex = 3;
@@ -62,16 +62,10 @@
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl1.Controls.Add(this.pictureEdit1);
-            this.panelControl1.Location = new System.Drawing.Point(179, 12);
+            this.panelControl1.Location = new System.Drawing.Point(130, 12);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(93, 75);
             this.panelControl1.TabIndex = 4;
-            // 
-            // rfidAnimationTimer
-            // 
-            this.rfidAnimationTimer.Enabled = true;
-            this.rfidAnimationTimer.Interval = 40;
-            this.rfidAnimationTimer.Tick += new System.EventHandler(this.rfidAnimationTimer_Tick_1);
             // 
             // pictureEdit1
             // 
@@ -83,6 +77,12 @@
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Size = new System.Drawing.Size(53, 38);
             this.pictureEdit1.TabIndex = 0;
+            // 
+            // rfidAnimationTimer
+            // 
+            this.rfidAnimationTimer.Enabled = true;
+            this.rfidAnimationTimer.Interval = 40;
+            this.rfidAnimationTimer.Tick += new System.EventHandler(this.rfidAnimationTimer_Tick_1);
             // 
             // RfidLoginUC
             // 

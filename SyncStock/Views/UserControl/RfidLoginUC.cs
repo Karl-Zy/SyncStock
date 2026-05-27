@@ -21,7 +21,6 @@ namespace SyncStock.Views
             InitializeComponent();
 
             panelControl1.Appearance.BackColor = Color.FromArgb(225, 245, 234);
-
             panelControl1.Appearance.Options.UseBackColor = true;
 
             MakeCircular(panelControl1);
@@ -160,8 +159,6 @@ namespace SyncStock.Views
         }
 
         private bool moveDown = true;
-
-       
 
         private void rfidAnimationTimer_Tick_1(object sender, EventArgs e)
         {
