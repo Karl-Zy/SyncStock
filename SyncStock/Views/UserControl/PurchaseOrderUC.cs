@@ -1,22 +1,18 @@
-﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using SyncStock.Database;
 using SyncStock.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors.Controls;
 
 namespace SyncStock.Views.UserControl
 {
     public partial class PurchaseOrderUC : DevExpress.XtraEditors.XtraUserControl
     {
-        private Repository _repo = new Repository();
+        private readonly Repository _repo = new Repository();
+        private List<Departments> _departments = new List<Departments>();
 
         private int _opoPurchaseOrderId = 0;
         private int _gpoPurchaseOrderId = 0;
@@ -34,12 +30,12 @@ namespace SyncStock.Views.UserControl
 
         private void LoadDepartments()
         {
-            var departments = _repo.GetAllDepartments();
+            _departments = _repo.GetAllDepartments().ToList();
 
             opoReqDepartmentCB.Properties.Items.Clear();
             gpoReqDepartmentCB.Properties.Items.Clear();
 
-            foreach (var dept in departments)
+            foreach (var dept in _departments)
             {
                 opoReqDepartmentCB.Properties.Items.Add(dept.DepartmentName);
                 gpoReqDepartmentCB.Properties.Items.Add(dept.DepartmentName);
@@ -269,7 +265,7 @@ namespace SyncStock.Views.UserControl
                 // SAVE ITEM
                 int itemId = _repo.AddItem(opoItemNameTE.Text.Trim());
 
-                PurchaseOrderItem poItem = new PurchaseOrderItem
+                var poItem = new PurchaseOrderItem
                 {
                     PurchaseOrderID = purchaseOrderId,
                     ItemID = itemId,
@@ -524,13 +520,15 @@ namespace SyncStock.Views.UserControl
                     return;
                 }
 
+                var first = cartItems.First();
+
                 PurchaseOrders order = new PurchaseOrders
                 {
-                    InvoiceNumber = gpoAddItemToOrderInvoiceNumberTextEdit.Text.Trim(),
-                    PONumber = gpoPurchaseOrderNumberTxtEdit.Text.Trim(),
-                    OrderDate = gpoPurchaseOrderDate.DateTime,
+                    InvoiceNumber = first.InvoiceNumber,
+                    PONumber = first.PONumber,
+                    OrderDate = first.OrderDate,
                     DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
-                    Status = "Pending",
+                    Status = WorkflowStatus.Pending,
                     Priority = "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
                     AttachmentPath = "",

@@ -679,7 +679,7 @@
             this.panelControl12.Controls.Add(this.labelControl31);
             this.panelControl12.Location = new System.Drawing.Point(16, 16);
             this.panelControl12.Name = "panelControl12";
-            this.panelControl12.Size = new System.Drawing.Size(1381, 61);
+            this.panelControl12.Size = new System.Drawing.Size(1381, 68);
             this.panelControl12.TabIndex = 6;
             // 
             // pictureEdit7
@@ -693,7 +693,7 @@
             this.pictureEdit7.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit7.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit7.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit7.Size = new System.Drawing.Size(39, 31);
+            this.pictureEdit7.Size = new System.Drawing.Size(39, 38);
             this.pictureEdit7.TabIndex = 11;
             // 
             // labelControl30
@@ -722,10 +722,10 @@
             // 
             // ApprovedASAPOrdersGC
             // 
-            this.ApprovedASAPOrdersGC.Location = new System.Drawing.Point(16, 83);
+            this.ApprovedASAPOrdersGC.Location = new System.Drawing.Point(16, 90);
             this.ApprovedASAPOrdersGC.MainView = this.ApprovedASAPOrdersGV;
             this.ApprovedASAPOrdersGC.Name = "ApprovedASAPOrdersGC";
-            this.ApprovedASAPOrdersGC.Size = new System.Drawing.Size(1381, 215);
+            this.ApprovedASAPOrdersGC.Size = new System.Drawing.Size(1381, 208);
             this.ApprovedASAPOrdersGC.TabIndex = 4;
             this.ApprovedASAPOrdersGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ApprovedASAPOrdersGV});
@@ -811,9 +811,9 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.ApprovedASAPOrdersGC;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 67);
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 74);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(1387, 221);
+            this.layoutControlItem12.Size = new System.Drawing.Size(1387, 214);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
@@ -822,7 +822,7 @@
             this.layoutControlItem20.Control = this.panelControl12;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(1387, 67);
+            this.layoutControlItem20.Size = new System.Drawing.Size(1387, 74);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
