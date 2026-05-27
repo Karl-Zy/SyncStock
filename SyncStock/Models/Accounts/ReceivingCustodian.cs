@@ -10,7 +10,7 @@ namespace SyncStock.Models.Accounts
     internal class ReceivingCustodian : User
     {
         public string AccountType { get; set; } = "Receiving Custodian";
-        public ReceivingCustodian(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName)
+        public ReceivingCustodian(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName, "Receiving")
         {
             AccountType = accountType;
         }

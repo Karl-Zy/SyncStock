@@ -10,7 +10,7 @@ namespace SyncStock.Models.Accounts
     public  class AssetManager : User
     {
         public string AccountType { get; set; } = "Asset Manager";
-        public AssetManager(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName)
+        public AssetManager(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName, "Asset")
         {
             AccountType = accountType;
         }

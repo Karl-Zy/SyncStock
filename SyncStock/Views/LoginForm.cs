@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using SyncStock.Database;
 using SyncStock.Models.Accounts;
+using SyncStock.Views.UserControl;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -57,8 +58,46 @@ namespace SyncStock.Views
                     "admin",
                     "123",
                     "Asset",
-                    "Manager");
+                    "Manager",
+                    "Admin");
 
+                FinishLogin(user);
+            }
+            else if (credentials.UserName == "receiving" &&
+                     credentials.Password == "123")
+            {
+                User user = new User(
+                     "Sean",
+                     "Sean123",
+                     "Sean",
+                     "Pait",
+                     "Receiving");
+                FinishLogin(user);
+
+
+            }
+            else if (credentials.UserName == "purchaser" &&
+                     credentials.Password == "123")
+            {
+                User user = new User(
+                     "Jane",
+                     "Jane123",
+                     "Jane",
+                     "Smith",
+                     "Purchaser");
+                FinishLogin(user);
+
+                
+            }
+            else if (credentials.UserName == "asset" &&
+                     credentials.Password == "123")
+            {
+                User user = new User(
+                     "Bob",
+                     "Bob123",
+                     "Bob",
+                     "Johnson",
+                     "Asset");
                 FinishLogin(user);
             }
             else
@@ -76,10 +115,11 @@ namespace SyncStock.Views
             if (uid == "04:83:20:01:9B:0C:03")
             {
                 User user = new User(
-                    "Sean",
-                    "Sean123",
-                    "Sean",
-                    "Pait")
+                     "Sean",
+                     "Sean123",
+                     "Sean",
+                     "Pait",
+                     "Receiving")
                 {
                     RfidUID = uid
                 };

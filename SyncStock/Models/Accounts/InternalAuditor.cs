@@ -10,7 +10,7 @@ namespace SyncStock.Models.Accounts
     internal class InternalAuditor : User
     {
         public string AccountType { get; set; } = "Internal Auditor";
-        public InternalAuditor(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName)
+        public InternalAuditor(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName, "Auditor")
         {
             AccountType = accountType;
         }   

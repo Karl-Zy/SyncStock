@@ -1,43 +1,86 @@
 ﻿using DevExpress.XtraEditors;
 using SyncStock.Views.UserControl;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SyncStock.Models.Accounts;
 
 namespace SyncStock
 {
-    public partial class MainForm : DevExpress.XtraEditors.XtraForm
+    public partial class MainForm : XtraForm
     {
-        private readonly Models.Accounts.User _currentUser;
+        private readonly User _currentUser;
 
-        // Combine the parameter into the actual constructor block
         public MainForm(User user)
         {
             InitializeComponent();
+
             _currentUser = user;
+
             this.Text = $"SyncStock - Welcome {_currentUser.FirstName}";
 
-            // Loading initial dashboard
+            // HIDE ALL MENUS FIRST
+            dashBoard.Visible = false;
+            purchaseOrder.Visible = false;
+            reveivingCustodian.Visible = false;
+            auditorReview.Visible = false;
+            reports.Visible = false;
+
+            // =========================
+            // ROLE-BASED ACCESS
+            // =========================
+
+            // ADMIN ACCESS
+            if (_currentUser.Role == "Admin")
+            {
+                dashBoard.Visible = true;
+                purchaseOrder.Visible = true;
+                reveivingCustodian.Visible = true;
+                auditorReview.Visible = true;
+                reports.Visible = true;
+            }
+
+            // PURCHASER ACCESS
+            else if (_currentUser.Role == "Purchaser")
+            {
+                dashBoard.Visible = true;
+                purchaseOrder.Visible = true;
+            }
+
+            // RECEIVING ACCESS
+            else if (_currentUser.Role == "Receiving")
+            {
+                dashBoard.Visible = true;
+                reveivingCustodian.Visible = true;
+            }
+
+            // ASSET ACCESS
+            else if (_currentUser.Role == "Asset")
+            {
+                dashBoard.Visible = true;
+                auditorReview.Visible = true;
+                reports.Visible = true;
+            }
+
+            // LOAD DASHBOARD
             DashBoardUC dashboard = new DashBoardUC();
+
             dashboard.Dock = DockStyle.Fill;
+
             mainPanel.Controls.Clear();
+
             mainPanel.Controls.Add(dashboard);
 
+            // FORM SETTINGS
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.MaximizeBox = false;
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            // important
+            // FULLSCREEN WORK AREA
             this.Bounds = Screen.PrimaryScreen.WorkingArea;
-
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
 
@@ -45,9 +88,11 @@ namespace SyncStock
 
         private void LoadControl(UserControl control)
         {
-            this.mainPanel.Controls.Clear();
+            mainPanel.Controls.Clear();
+
             control.Dock = DockStyle.Fill;
-            this.mainPanel.Controls.Add(control);
+
+            mainPanel.Controls.Add(control);
         }
 
         private void dashBoard_Click(object sender, EventArgs e)
