@@ -306,11 +306,11 @@ namespace SyncStock.Views.UserControl
             opoItemsInOrderGC.DataSource = items;
             opoItemsInOrderGV.PopulateColumns();
 
-            if (ItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
+            if (opoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
             {
-                ItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-                ItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-                ItemsInOrderGV.Columns["ItemID"].Visible = false;
+                opoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
+                opoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
+                opoItemsInOrderGV.Columns["ItemID"].Visible = false;
             }
 
             int totalItems = items.Sum(x => x.Quantity);
@@ -520,12 +520,14 @@ namespace SyncStock.Views.UserControl
                     return;
                 }
 
+                var first = cartItems.First();
+
                 PurchaseOrders order = new PurchaseOrders
                 {
                     InvoiceNumber = first.InvoiceNumber,
                     PONumber = first.PONumber,
                     OrderDate = first.OrderDate,
-                    DepartmentID = GetSelectedDepartmentId(gpoReqDepartmentCB),
+                    DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
                     Status = WorkflowStatus.Pending,
                     Priority = "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
