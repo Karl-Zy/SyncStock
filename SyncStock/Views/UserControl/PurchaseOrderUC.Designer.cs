@@ -1737,7 +1737,7 @@
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.Name = "layoutControl5";
             this.layoutControl5.Root = this.layoutControlGroup7;
-            this.layoutControl5.Size = new System.Drawing.Size(1479, 1134);
+            this.layoutControl5.Size = new System.Drawing.Size(1496, 1134);
             this.layoutControl5.TabIndex = 0;
             this.layoutControl5.Text = "layoutControl5";
             // 
@@ -2123,7 +2123,7 @@
             this.gpoPictureAttachmentBtn.Location = new System.Drawing.Point(559, 118);
             this.gpoPictureAttachmentBtn.Name = "gpoPictureAttachmentBtn";
             this.gpoPictureAttachmentBtn.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.gpoPictureAttachmentBtn.Size = new System.Drawing.Size(116, 38);
+            this.gpoPictureAttachmentBtn.Size = new System.Drawing.Size(117, 38);
             this.gpoPictureAttachmentBtn.StyleController = this.layoutControl8;
             this.gpoPictureAttachmentBtn.TabIndex = 7;
             this.gpoPictureAttachmentBtn.Text = "Select Files";
@@ -2335,7 +2335,7 @@
             this.layoutControlItem5,
             this.layoutControlItem6});
             this.layoutControlGroup7.Name = "Root";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(1479, 1134);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(1496, 1134);
             this.layoutControlGroup7.TextVisible = false;
             // 
             // layoutControlItem34

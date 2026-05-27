@@ -41,9 +41,9 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.totalMonthlyCostLBL = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.FilterDateBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.FilterBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.PrintSummaryButton = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.ReportGC = new DevExpress.XtraGrid.GridControl();
             this.ReportGV = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -70,9 +70,8 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FilterDateBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportGC)).BeginInit();
@@ -211,64 +210,71 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.comboBoxEdit1);
-            this.panelControl3.Controls.Add(this.dateEdit1);
-            this.panelControl3.Controls.Add(this.simpleButton1);
+            this.panelControl3.Controls.Add(this.FilterDateBox);
+            this.panelControl3.Controls.Add(this.FilterBox);
+            this.panelControl3.Controls.Add(this.PrintSummaryButton);
             this.panelControl3.Location = new System.Drawing.Point(16, 204);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(1861, 56);
             this.panelControl3.TabIndex = 5;
             // 
-            // comboBoxEdit1
+            // FilterDateBox
             // 
-            this.comboBoxEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxEdit1.EditValue = "Sort";
-            this.comboBoxEdit1.Location = new System.Drawing.Point(1190, 4);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.AutoHeight = false;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.FilterDateBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterDateBox.EditValue = "SORT BY DATE INTERVAL";
+            this.FilterDateBox.Location = new System.Drawing.Point(1451, 4);
+            this.FilterDateBox.Name = "FilterDateBox";
+            this.FilterDateBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilterDateBox.Properties.Appearance.Options.UseFont = true;
+            this.FilterDateBox.Properties.AutoHeight = false;
+            this.FilterDateBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.Items.AddRange(new object[] {
-            "Sort by Date Received ",
-            "Sort by Quantity",
-            "Sort by Price"});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit1.Size = new System.Drawing.Size(233, 48);
-            this.comboBoxEdit1.TabIndex = 2;
+            this.FilterDateBox.Properties.Items.AddRange(new object[] {
+            "Sort by Monthly",
+            "Sort by Quarterly",
+            "Sort by Yearly"});
+            this.FilterDateBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.FilterDateBox.Size = new System.Drawing.Size(233, 48);
+            this.FilterDateBox.TabIndex = 3;
             // 
-            // dateEdit1
+            // FilterBox
             // 
-            this.dateEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(1430, 3);
-            this.dateEdit1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.AutoHeight = false;
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.FilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterBox.EditValue = "SORT BY CATEGORY";
+            this.FilterBox.Location = new System.Drawing.Point(1190, 4);
+            this.FilterBox.Name = "FilterBox";
+            this.FilterBox.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilterBox.Properties.Appearance.Options.UseFont = true;
+            this.FilterBox.Properties.AutoHeight = false;
+            this.FilterBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.ContextImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dateEdit1.Properties.ContextImageOptions.SvgImage")));
-            this.dateEdit1.Size = new System.Drawing.Size(276, 48);
-            this.dateEdit1.TabIndex = 1;
+            this.FilterBox.Properties.Items.AddRange(new object[] {
+            "Purchased Orders",
+            "Received Orders",
+            "Capitalized Orders",
+            "Online Orders",
+            "Reconciliation"});
+            this.FilterBox.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.FilterBox.Size = new System.Drawing.Size(233, 48);
+            this.FilterBox.TabIndex = 2;
+            this.FilterBox.SelectedIndexChanged += new System.EventHandler(this.FilterBox_SelectedIndexChanged);
             // 
-            // simpleButton1
+            // PrintSummaryButton
             // 
-            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseBackColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(1714, 3);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(141, 48);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "PRINT";
+            this.PrintSummaryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PrintSummaryButton.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
+            this.PrintSummaryButton.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrintSummaryButton.Appearance.Options.UseBackColor = true;
+            this.PrintSummaryButton.Appearance.Options.UseFont = true;
+            this.PrintSummaryButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("PrintSummaryButton.ImageOptions.SvgImage")));
+            this.PrintSummaryButton.Location = new System.Drawing.Point(1714, 3);
+            this.PrintSummaryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.PrintSummaryButton.Name = "PrintSummaryButton";
+            this.PrintSummaryButton.Size = new System.Drawing.Size(141, 48);
+            this.PrintSummaryButton.TabIndex = 0;
+            this.PrintSummaryButton.Text = "PRINT";
+            this.PrintSummaryButton.Click += new System.EventHandler(this.PrintSummaryButton_Click);
             // 
             // panelControl1
             // 
@@ -305,6 +311,7 @@
             this.ReportGV.OptionsEditForm.PopupEditFormWidth = 1200;
             this.ReportGV.OptionsFind.AlwaysVisible = true;
             this.ReportGV.OptionsView.ShowGroupPanel = false;
+            this.ReportGV.PreviewFieldName = "Remarks";
             // 
             // panelControl7
             // 
@@ -432,9 +439,8 @@
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FilterDateBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReportGC)).EndInit();
@@ -475,12 +481,12 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl totalMonthlyCostLBL;
         private DevExpress.XtraEditors.LabelControl totalMonthlyItemsLBL;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.SimpleButton PrintSummaryButton;
         private DevExpress.XtraGrid.GridControl ReportGC;
         private DevExpress.XtraGrid.Views.Grid.GridView ReportGV;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit FilterBox;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.ComboBoxEdit FilterDateBox;
     }
 }
