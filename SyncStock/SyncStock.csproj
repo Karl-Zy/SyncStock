@@ -110,9 +110,7 @@
     <Compile Include="Models\ReportItem.cs" />
     <Compile Include="Models\UnlockRequest.cs" />
     <Compile Include="Models\WorkflowStatus.cs" />
-    <Compile Include="PrintForm\PendingReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PrintForm\ReceivedReport.cs" />
     <Compile Include="PrintForm\ReceivedReport.Designer.cs">
       <DependentUpon>ReceivedReport.cs</DependentUpon>
     </Compile>
