@@ -53,7 +53,6 @@
             this.AssetCategoryChart = new DevExpress.XtraCharts.ChartControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.NumberOfApprovedOrders = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
             this.SumOfApprovedOrders = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit5 = new DevExpress.XtraEditors.PictureEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -230,7 +229,7 @@
             this.layoutControl1.Controls.Add(this.panelControl2);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layoutControl1.Location = new System.Drawing.Point(0, -268);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
@@ -377,9 +376,9 @@
             this.labelControl9.Location = new System.Drawing.Point(11, 4);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(119, 17);
+            this.labelControl9.Size = new System.Drawing.Size(112, 17);
             this.labelControl9.TabIndex = 4;
-            this.labelControl9.Text = "Approved Orders";
+            this.labelControl9.Text = "Received Orders";
             // 
             // dataLayoutControl1
             // 
@@ -471,7 +470,6 @@
             this.panelControl9.Appearance.Options.UseBackColor = true;
             this.panelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl9.Controls.Add(this.NumberOfApprovedOrders);
-            this.panelControl9.Controls.Add(this.labelControl25);
             this.panelControl9.Controls.Add(this.SumOfApprovedOrders);
             this.panelControl9.Controls.Add(this.pictureEdit5);
             this.panelControl9.Controls.Add(this.labelControl16);
@@ -494,19 +492,6 @@
             this.NumberOfApprovedOrders.Size = new System.Drawing.Size(100, 14);
             this.NumberOfApprovedOrders.TabIndex = 9;
             this.NumberOfApprovedOrders.Text = "3 approved orders";
-            // 
-            // labelControl25
-            // 
-            this.labelControl25.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl25.Appearance.Font = new System.Drawing.Font("Tahoma", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl25.Appearance.Options.UseFont = true;
-            this.labelControl25.Location = new System.Drawing.Point(1063, 6);
-            this.labelControl25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(17, 36);
-            this.labelControl25.TabIndex = 9;
-            this.labelControl25.Text = "₱";
             // 
             // SumOfApprovedOrders
             // 
@@ -1110,7 +1095,6 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(297, 92);
             this.panelControl3.TabIndex = 0;
-            this.panelControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl3_Paint);
             // 
             // panelControl13
             // 
@@ -1597,7 +1581,6 @@
         private DevExpress.XtraEditors.LabelControl DepartmentsLBL;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.LabelControl NumberOfApprovedOrders;
-        private DevExpress.XtraEditors.LabelControl labelControl25;
         private DevExpress.XtraEditors.LabelControl SumOfApprovedOrders;
         private DevExpress.XtraCharts.ChartControl chartControl1;
         private DevExpress.XtraEditors.PanelControl panelControl10;

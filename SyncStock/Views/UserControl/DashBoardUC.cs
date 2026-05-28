@@ -1,22 +1,21 @@
-﻿using DevExpress.XtraEditors;
+﻿
+using DevExpress.XtraCharts;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
 using SyncStock.Database;
+using SyncStock.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SyncStock.Views.UserControl
 {
-    public partial class DashBoardUC : DevExpress.XtraEditors.XtraUserControl
+    public partial class DashBoardUC : XtraUserControl
     {
         private Repository _repo = new Repository();
+
         public DashBoardUC()
         {
             InitializeComponent();
@@ -25,40 +24,353 @@ namespace SyncStock.Views.UserControl
             ApprovedASAPOrdersGV.OptionsBehavior.Editable = false;
 
             this.Load += DashBoardUC_Load;
+
             MakeCircularPanel(panelControl13);
             MakeCircularPanel(panelControl14);
-            MakeCircularPanel(panelControl16);
             MakeCircularPanel(panelControl15);
+            MakeCircularPanel(panelControl16);
 
-           
+     
         }
 
         private void DashBoardUC_Load(object sender, EventArgs e)
         {
-            LoadData(); 
+            LoadDashboard();
+            pendingOrdersLBL.Text =
+                "₱" +
+                _repo.GetPendingOrderSummary()
+                .Sum(x => x.TotalAmount)
+                .ToString("N2");
         }
+
         private void MakeCircularPanel(PanelControl panel)
         {
             GraphicsPath path = new GraphicsPath();
+
             path.AddEllipse(0, 0, panel.Width, panel.Height);
+
             panel.Region = new Region(path);
         }
 
-        private void panelControl3_Paint(object sender, PaintEventArgs e)
+        private void LoadDashboard()
         {
-
+            LoadCards();
+            LoadPendingOrders();
+            LoadASAPOrders();
+            LoadMonthlyChart();
+            LoadAssetCategoryChart();
         }
 
-        private void LoadData()
-        {
-            PendingOrdersNum.Text = _repo.GetPendingOrdersCount().ToString();
-            ApproveAsapNum.Text = _repo.GetASAPOrders().Count.ToString();
+        // =========================================
+        // DASHBOARD CARDS
+        // =========================================
 
-            PendingOrdersGC.DataSource = _repo.GetPendingPurchaseOrders().ToList();
-                //ApprovedASAPOrdersGC.DataSource = _repo.GetASAPOrders().ToList();
-            var items = _repo.GetAllPurchaseOrderItems().ToList();
-            decimal totalAmount = items.Sum(x => x.TotalPrice);
-            pendingOrdersLBL.Text = "₱" + totalAmount.ToString("N2");
+        private void LoadCards()
+        {
+            // ================================
+            // TOP CARDS
+            // ================================
+
+            PendingOrdersNum.Text =
+                _repo.GetPendingOrdersCount().ToString();
+
+            approvedOrdersLBL.Text =
+                "₱" + _repo.GetReceivedOrdersAmount().ToString("N2");
+
+            ApproveAsapNum.Text =
+                _repo.GetASAPOrders().Count.ToString();
+
+            approvedAsapLBL.Text =
+                "₱" + _repo.GetASAPOrdersAmount().ToString("N2");
+
+            ApprovedOrdersNum.Text =
+                _repo.GetReceivedOrdersCount().ToString();
+
+            TotalApprovedValueNum.Text =
+                "₱" + _repo.GetOverallPurchaseValue().ToString("N2");
+
+            totalApprovedValueLBL.Text =
+                "₱" + _repo.GetOverallPurchaseValue().ToString("N2");
+
+            // ================================
+            // APPROVED PURCHASE SUMMARY
+            // ================================
+
+            SumOfApprovedOrders.Text =
+                "₱" + _repo.GetTotalApprovedValue().ToString("N2");
+
+            NumberOfApprovedOrders.Text =
+                _repo.GetApprovedOrdersCount() + " Approved Orders";
+
+            // ================================
+            // LOWER SUMMARY
+            // ================================
+
+            TotalItemsLBL.Text =
+                _repo.GetItemsCount().ToString();
+
+            DepartmentsLBL.Text =
+                _repo.GetDepartmentsCount().ToString();
+
+            AverageOrderLBL.Text =
+                "₱" + _repo.GetAverageOrderValue().ToString("N2");
+        }
+
+        // =========================================
+        // PENDING ORDERS GRID
+        // =========================================
+
+        private void LoadPendingOrders()
+        {
+            PendingOrdersGC.DataSource =
+                _repo.GetPendingOrderSummary().ToList();
+
+            PendingOrdersGV.Columns.Clear();
+
+            PendingOrdersGV.PopulateColumns();
+
+            // =====================================
+            // GRID STYLE
+            // =====================================
+
+            PendingOrdersGV.OptionsView.EnableAppearanceOddRow = true;
+            PendingOrdersGV.OptionsView.EnableAppearanceEvenRow = true;
+
+            PendingOrdersGV.Appearance.OddRow.BackColor =
+                Color.FromArgb(250, 244, 235);
+
+            PendingOrdersGV.Appearance.EvenRow.BackColor =
+                Color.FromArgb(255, 250, 245);
+
+            PendingOrdersGV.Appearance.FocusedRow.BackColor =
+                Color.FromArgb(240, 224, 200);
+
+            PendingOrdersGV.Appearance.FocusedRow.ForeColor =
+                Color.FromArgb(30, 30, 30);
+
+            PendingOrdersGV.Appearance.HideSelectionRow.BackColor =
+                Color.FromArgb(248, 242, 231);
+
+            PendingOrdersGV.RowHeight = 32;
+
+            PendingOrdersGV.OptionsView.ShowGroupPanel = false;
+
+            PendingOrdersGV.OptionsView.ColumnAutoWidth = true;
+
+            PendingOrdersGV.OptionsSelection.EnableAppearanceFocusedCell = false;
+
+            PendingOrdersGV.OptionsView.RowAutoHeight = false;
+
+            // =====================================
+            // HIDE IDS
+            // =====================================
+
+            if (PendingOrdersGV.Columns["PurchaseOrderID"] != null)
+                PendingOrdersGV.Columns["PurchaseOrderID"].Visible = false;
+
+            if (PendingOrdersGV.Columns["DepartmentID"] != null)
+                PendingOrdersGV.Columns["DepartmentID"].Visible = false;
+
+            // =====================================
+            // COLUMN CAPTIONS
+            // =====================================
+
+            if (PendingOrdersGV.Columns["InvoiceNumber"] != null)
+                PendingOrdersGV.Columns["InvoiceNumber"].Caption =
+                    "Invoice Number";
+
+            if (PendingOrdersGV.Columns["PONumber"] != null)
+                PendingOrdersGV.Columns["PONumber"].Caption =
+                    "Purchase Order Number";
+
+            if (PendingOrdersGV.Columns["DepartmentName"] != null)
+                PendingOrdersGV.Columns["DepartmentName"].Caption =
+                    "Department";
+
+            if (PendingOrdersGV.Columns["OrderDate"] != null)
+                PendingOrdersGV.Columns["OrderDate"].Caption =
+                    "Purchase Order Date";
+
+            if (PendingOrdersGV.Columns["Status"] != null)
+                PendingOrdersGV.Columns["Status"].Caption =
+                    "PO Status";
+
+            if (PendingOrdersGV.Columns["Priority"] != null)
+                PendingOrdersGV.Columns["Priority"].Caption =
+                    "Priority Level";
+
+            if (PendingOrdersGV.Columns["POType"] != null)
+                PendingOrdersGV.Columns["POType"].Caption =
+                    "PO Type";
+
+            if (PendingOrdersGV.Columns["OrderMode"] != null)
+                PendingOrdersGV.Columns["OrderMode"].Caption =
+                    "Order Mode";
+
+            if (PendingOrdersGV.Columns["TotalItems"] != null)
+                PendingOrdersGV.Columns["TotalItems"].Caption =
+                    "Total Items";
+
+            if (PendingOrdersGV.Columns["TotalAmount"] != null)
+                PendingOrdersGV.Columns["TotalAmount"].Caption =
+                    "Total Amount";
+
+            // =====================================
+            // ALIGNMENT
+            // =====================================
+
+            foreach (GridColumn col in PendingOrdersGV.Columns)
+            {
+                col.AppearanceHeader.TextOptions.HAlignment =
+                    DevExpress.Utils.HorzAlignment.Center;
+
+                col.AppearanceHeader.Font =
+                    new Font("Segoe UI", 9f, FontStyle.Bold);
+
+                col.AppearanceCell.TextOptions.HAlignment =
+                    DevExpress.Utils.HorzAlignment.Center;
+            }
+
+            // =====================================
+            // MONEY FORMAT
+            // =====================================
+
+            if (PendingOrdersGV.Columns["TotalAmount"] != null)
+            {
+                PendingOrdersGV.Columns["TotalAmount"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+
+                PendingOrdersGV.Columns["TotalAmount"].DisplayFormat.FormatString =
+                    "₱{0:N2}";
+            }
+
+            // =====================================
+            // DATE FORMAT
+            // =====================================
+
+            if (PendingOrdersGV.Columns["OrderDate"] != null)
+            {
+                PendingOrdersGV.Columns["OrderDate"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.DateTime;
+
+                PendingOrdersGV.Columns["OrderDate"].DisplayFormat.FormatString =
+                    "MMMM dd, yyyy";
+            }
+
+            PendingOrdersGV.BestFitColumns();
+        }
+
+        // =========================================
+        // ASAP ORDERS GRID
+        // =========================================
+
+        private void LoadASAPOrders()
+        {
+            ApprovedASAPOrdersGC.DataSource =
+                _repo.GetASAPOrders().ToList();
+
+            ApprovedASAPOrdersGV.Columns.Clear();
+
+            ApprovedASAPOrdersGV.PopulateColumns();
+
+            // =====================================
+            // GRID STYLE
+            // =====================================
+
+            ApprovedASAPOrdersGV.OptionsView.EnableAppearanceOddRow = true;
+            ApprovedASAPOrdersGV.OptionsView.EnableAppearanceEvenRow = true;
+
+            ApprovedASAPOrdersGV.Appearance.OddRow.BackColor =
+                Color.FromArgb(223, 242, 223);
+
+            ApprovedASAPOrdersGV.Appearance.EvenRow.BackColor =
+                Color.FromArgb(240, 250, 240);
+
+            ApprovedASAPOrdersGV.Appearance.FocusedRow.BackColor =
+                Color.FromArgb(83, 237, 126);
+
+            ApprovedASAPOrdersGV.Appearance.FocusedRow.ForeColor =
+                Color.FromArgb(30, 30, 30);
+
+            ApprovedASAPOrdersGV.Appearance.HideSelectionRow.BackColor =
+                Color.FromArgb(198, 239, 206);
+
+            ApprovedASAPOrdersGV.RowHeight = 32;
+
+            ApprovedASAPOrdersGV.OptionsView.ShowGroupPanel = false;
+
+            ApprovedASAPOrdersGV.OptionsView.ColumnAutoWidth = true;
+
+            ApprovedASAPOrdersGV.OptionsSelection.EnableAppearanceFocusedCell = false;
+
+            ApprovedASAPOrdersGV.OptionsView.RowAutoHeight = false;
+
+            // =====================================
+            // ALIGNMENT
+            // =====================================
+
+            foreach (GridColumn col in ApprovedASAPOrdersGV.Columns)
+            {
+                col.AppearanceHeader.TextOptions.HAlignment =
+                    DevExpress.Utils.HorzAlignment.Center;
+
+                col.AppearanceHeader.Font =
+                    new Font("Segoe UI", 9f, FontStyle.Bold);
+
+                col.AppearanceCell.TextOptions.HAlignment =
+                    DevExpress.Utils.HorzAlignment.Center;
+            }
+
+            ApprovedASAPOrdersGV.BestFitColumns();
+        }
+
+        // =========================================
+        // MONTHLY CHART
+        // =========================================
+
+        private void LoadMonthlyChart()
+        {
+            chartControl1.Series.Clear();
+
+            Series series =
+                new Series("Purchases", ViewType.Bar);
+
+            var data = _repo.GetMonthlyPurchaseSummary();
+
+            foreach (var item in data)
+            {
+                series.Points.Add(
+                    new SeriesPoint(
+                        item.Month,
+                        Convert.ToDecimal(item.TotalAmount)));
+            }
+
+            chartControl1.Series.Add(series);
+        }
+
+        // =========================================
+        // PIE CHART
+        // =========================================
+
+        private void LoadAssetCategoryChart()
+        {
+            AssetCategoryChart.Series.Clear();
+
+            Series series =
+                new Series("Assets", ViewType.Pie);
+
+            var data = _repo.GetAssetCategorySummary();
+
+            foreach (var item in data)
+            {
+                series.Points.Add(
+                    new SeriesPoint(
+                        item.Category,
+                        Convert.ToInt32(item.Total)));
+            }
+
+            AssetCategoryChart.Series.Add(series);
         }
     }
 }
+
