@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUC));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
@@ -41,9 +41,11 @@
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.totalMonthlyCostLBL = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.SecondFilterBox = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.PeriodTypeBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.FilterBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.PrintSummaryButton = new DevExpress.XtraEditors.SimpleButton();
+            this.YearBox = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.ReportGC = new DevExpress.XtraGrid.GridControl();
             this.ReportGV = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -70,9 +72,10 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondFilterBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PeriodTypeBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportGC)).BeginInit();
@@ -211,34 +214,51 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.dateEdit1);
+            this.panelControl3.Controls.Add(this.SecondFilterBox);
+            this.panelControl3.Controls.Add(this.PeriodTypeBox);
             this.panelControl3.Controls.Add(this.FilterBox);
             this.panelControl3.Controls.Add(this.PrintSummaryButton);
+            this.panelControl3.Controls.Add(this.YearBox);
             this.panelControl3.Location = new System.Drawing.Point(16, 204);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(1861, 56);
             this.panelControl3.TabIndex = 5;
             // 
-            // dateEdit1
+            // SecondFilterBox
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(1523, 15);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SecondFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondFilterBox.Location = new System.Drawing.Point(1046, 3);
+            this.SecondFilterBox.Name = "SecondFilterBox";
+            this.SecondFilterBox.Properties.AutoHeight = false;
+            this.SecondFilterBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SecondFilterBox.Properties.DisplayFormat.FormatString = "MMMM yyyy";
+            this.SecondFilterBox.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.SecondFilterBox.Properties.EditFormat.FormatString = "MMMM yyyy";
+            this.SecondFilterBox.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.SecondFilterBox.Size = new System.Drawing.Size(198, 48);
+            this.SecondFilterBox.TabIndex = 4;
+            this.SecondFilterBox.SelectedIndexChanged += new System.EventHandler(this.SecondFilterBox_SelectedIndexChanged_1);
+            // 
+            // PeriodTypeBox
+            // 
+            this.PeriodTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PeriodTypeBox.Location = new System.Drawing.Point(1270, 3);
+            this.PeriodTypeBox.Name = "PeriodTypeBox";
+            this.PeriodTypeBox.Properties.AutoHeight = false;
+            this.PeriodTypeBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateEdit1.Properties.DisplayFormat.FormatString = "MMMM yyyy";
-            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.EditFormat.FormatString = "MMMM yyyy";
-            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.MaskSettings.Set("mask", "Y");
-            this.dateEdit1.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
-            this.dateEdit1.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateEdit1.Size = new System.Drawing.Size(100, 28);
-            this.dateEdit1.TabIndex = 1;
+            this.PeriodTypeBox.Properties.DisplayFormat.FormatString = "MMMM yyyy";
+            this.PeriodTypeBox.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.PeriodTypeBox.Properties.EditFormat.FormatString = "MMMM yyyy";
+            this.PeriodTypeBox.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.PeriodTypeBox.Properties.Items.AddRange(new object[] {
+            "Monthly",
+            "Quarterly"});
+            this.PeriodTypeBox.Size = new System.Drawing.Size(198, 48);
+            this.PeriodTypeBox.TabIndex = 3;
+            this.PeriodTypeBox.SelectedIndexChanged += new System.EventHandler(this.PeriodTypeBox_SelectedIndexChanged_1);
             // 
             // FilterBox
             // 
@@ -276,6 +296,22 @@
             this.PrintSummaryButton.Text = "PRINT";
             this.PrintSummaryButton.Click += new System.EventHandler(this.PrintSummaryButton_Click);
             // 
+            // YearBox
+            // 
+            this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.YearBox.Location = new System.Drawing.Point(1491, 3);
+            this.YearBox.Name = "YearBox";
+            this.YearBox.Properties.AutoHeight = false;
+            this.YearBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.YearBox.Properties.DisplayFormat.FormatString = "MMMM yyyy";
+            this.YearBox.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.YearBox.Properties.EditFormat.FormatString = "MMMM yyyy";
+            this.YearBox.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.YearBox.Size = new System.Drawing.Size(198, 48);
+            this.YearBox.TabIndex = 1;
+            this.YearBox.SelectedIndexChanged += new System.EventHandler(this.YearBox_SelectedIndexChanged_1);
+            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.ReportGC);
@@ -290,9 +326,9 @@
             // 
             this.ReportGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportGC.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.ReportGC.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.ReportGC.Location = new System.Drawing.Point(2, 60);
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
@@ -439,9 +475,10 @@
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondFilterBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PeriodTypeBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FilterBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ReportGC)).EndInit();
@@ -488,6 +525,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.ComboBoxEdit FilterBox;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit YearBox;
+        private DevExpress.XtraEditors.ComboBoxEdit SecondFilterBox;
+        private DevExpress.XtraEditors.ComboBoxEdit PeriodTypeBox;
     }
 }
