@@ -18,6 +18,8 @@ namespace SyncStock.Models
         public string Capitalizable { get; set; }
         public string Department { get; set; }
         public string Status { get; set; }
+        public string POType { get; set; }
+        public string OrderMode { get; set; }
 
 
     }

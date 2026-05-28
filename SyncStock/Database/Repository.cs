@@ -306,25 +306,33 @@ namespace SyncStock.Database
                 conn.Execute(@"
         INSERT INTO ConfirmedItems
         (
-            PurchaseOrderItemID,
+            PONumber,
+            ItemName,
             DateReceived,
             IsCapitalizable,
+            ExpectedQuantity,
             ReceivedQuantity,
+            ExpectedAmount,
             ReceivedAmount,
-            AttachmentPath,
             Remarks,
-            Status
+            Status,
+            AttachmentData,
+            AttachmentFileName
         )
         VALUES
         (
-            @PurchaseOrderItemID,
+            @PONumber,
+            @ItemName,
             @DateReceived,
             @IsCapitalizable,
+            @ExpectedQuantity,
             @ReceivedQuantity,
+            @ExpectedAmount,
             @ReceivedAmount,
-            @AttachmentPath,
             @Remarks,
-            @Status
+            @Status,
+            @AttachmentData,
+            @AttachmentFileName
         )", item);
             }
         }
@@ -515,7 +523,6 @@ namespace SyncStock.Database
             {
                 string query = @"
         SELECT
-            poi.PurchaseOrderItemID,
             po.PONumber,
             i.ItemName,
             po.InvoiceNumber,
@@ -534,18 +541,22 @@ namespace SyncStock.Database
 
             d.DepartmentName AS Department,
 
-            ci.Status
+            ci.Status,
+
+            po.POType,
+            po.OrderMode
 
         FROM ConfirmedItems ci
 
-        INNER JOIN PurchaseOrderItems poi
-            ON ci.PurchaseOrderItemID = poi.PurchaseOrderItemID
-
         INNER JOIN PurchaseOrders po
-            ON poi.PurchaseOrderID = po.PurchaseOrderID
+            ON ci.PONumber = po.PONumber
+
+        INNER JOIN PurchaseOrderItems poi
+            ON po.PurchaseOrderID = poi.PurchaseOrderID
 
         INNER JOIN Items i
             ON poi.ItemID = i.ItemID
+            AND i.ItemName = ci.ItemName
 
         INNER JOIN Departments d
             ON po.DepartmentID = d.DepartmentID

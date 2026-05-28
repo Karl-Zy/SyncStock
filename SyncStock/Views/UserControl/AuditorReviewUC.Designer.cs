@@ -71,6 +71,8 @@
             this.colCapitalizable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOrderType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOrderMode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -87,8 +89,6 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.colOrderType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOrderMode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CmbDate.Properties)).BeginInit();
@@ -604,6 +604,20 @@
             this.colStatus.VisibleIndex = 9;
             this.colStatus.Width = 131;
             // 
+            // colOrderType
+            // 
+            this.colOrderType.Caption = "Order Type";
+            this.colOrderType.Name = "colOrderType";
+            this.colOrderType.Visible = true;
+            this.colOrderType.VisibleIndex = 10;
+            // 
+            // colOrderMode
+            // 
+            this.colOrderMode.Caption = "Order Mode";
+            this.colOrderMode.Name = "colOrderMode";
+            this.colOrderMode.Visible = true;
+            this.colOrderMode.VisibleIndex = 11;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -777,20 +791,6 @@
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
             this.xtraScrollableControl1.Size = new System.Drawing.Size(0, 0);
             this.xtraScrollableControl1.TabIndex = 5;
-            // 
-            // colOrderType
-            // 
-            this.colOrderType.Caption = "Order Type";
-            this.colOrderType.Name = "colOrderType";
-            this.colOrderType.Visible = true;
-            this.colOrderType.VisibleIndex = 10;
-            // 
-            // colOrderMode
-            // 
-            this.colOrderMode.Caption = "Order Mode";
-            this.colOrderMode.Name = "colOrderMode";
-            this.colOrderMode.Visible = true;
-            this.colOrderMode.VisibleIndex = 11;
             // 
             // AuditorReviewUC
             // 

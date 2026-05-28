@@ -112,7 +112,7 @@ namespace SyncStock
 
         private void auditorReview_Click(object sender, EventArgs e)
         {
-            LoadControl(new AuditorReviewUC());
+            LoadControl(new AuditorReviewUC(_currentUser));
         }
 
         private void reports_Click(object sender, EventArgs e)
