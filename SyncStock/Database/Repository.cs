@@ -765,7 +765,14 @@ SELECT
     po.POType,
     po.OrderMode,
 
-    '' AS Remarks
+    '' AS Remarks,
+
+-- ADD THESE PLACEHOLDERS
+poi.Quantity AS ExpectedQuantity,
+poi.TotalPrice AS ExpectedAmount,
+0 AS ReceivedQuantity,
+0 AS ReceivedAmount,
+CAST(0 AS BIT) AS IsCapitalizable
 
 FROM PurchaseOrders po
 
@@ -814,14 +821,21 @@ SELECT
 
     d.DepartmentName AS Department,
 
-    'Active' AS Status,
+    ci.Status AS Status,
 
     po.Priority,
 
     po.POType,
     po.OrderMode,
 
-    ci.Remarks
+    ci.Remarks,
+
+    -- ADD THESE
+    ci.ExpectedQuantity,
+    ci.ExpectedAmount,
+    ci.ReceivedQuantity,
+    ci.ReceivedAmount,
+    ci.IsCapitalizable
 
 FROM ConfirmedItems ci
 
@@ -1089,9 +1103,12 @@ ORDER BY DateReceived DESC";
                 string query = @"
 UPDATE ConfirmedItems
 SET
+    DateReceived = @DateReceived,
+    IsCapitalizable = @IsCapitalizable,
     ReceivedQuantity = @ReceivedQuantity,
     ReceivedAmount = @ReceivedAmount,
     Remarks = @Remarks,
+    Status = @Status,
     AttachmentData = @AttachmentData,
     AttachmentFileName = @AttachmentFileName
 WHERE ConfirmedItemID = @ConfirmedItemID";
@@ -1099,7 +1116,9 @@ WHERE ConfirmedItemID = @ConfirmedItemID";
                 conn.Execute(query, new
                 {
                     ConfirmedItemID = confirmedItemId,
-
+                    item.DateReceived,
+                    item.IsCapitalizable,
+                    item.Status,
                     item.ReceivedQuantity,
                     item.ReceivedAmount,
                     item.Remarks,

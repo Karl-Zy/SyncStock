@@ -99,8 +99,7 @@ namespace SyncStock.Views.UserControl
             SumOfApprovedOrders.Text =
                 "₱" + _repo.GetTotalApprovedValue().ToString("N2");
 
-            NumberOfApprovedOrders.Text =
-                _repo.GetApprovedOrdersCount() + " Approved Orders";
+            
 
             // ================================
             // LOWER SUMMARY
@@ -595,6 +594,11 @@ namespace SyncStock.Views.UserControl
             // =====================================
 
             AssetCategoryChart.Series.Add(series);
+        }
+
+        private void labelControl13_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

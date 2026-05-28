@@ -93,6 +93,16 @@ namespace SyncStock.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ChatGPT_Image_May_10__2026__10_53_22_AM {
+            get {
+                object obj = ResourceManager.GetObject("ChatGPT Image May 10, 2026, 10_53_22 AM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_May_10__2026__10_59_09_AM {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image May 10, 2026, 10_59_09 AM", resourceCulture);

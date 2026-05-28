@@ -279,6 +279,9 @@
   <ItemGroup>
     <Folder Include="Uploaded Proofs\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChatGPT Image May 10, 2026, 10_53_22 AM.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
