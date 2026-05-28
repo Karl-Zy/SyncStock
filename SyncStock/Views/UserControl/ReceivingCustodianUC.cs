@@ -353,13 +353,23 @@ namespace SyncStock.Views.UserControl
                 {
                     PONumber = purePoNumber,
                     ItemName = txteditItemName.Text,
+
                     DateReceived = Convert.ToDateTime(dateEdit.EditValue),
+
                     IsCapitalizable = chckboxAsset.Checked,
+
                     ExpectedQuantity = Convert.ToInt32(txteditExpectedQuan.Text),
                     ReceivedQuantity = Convert.ToInt32(spneditReceivedQuan.EditValue),
+
                     ExpectedAmount = Convert.ToDecimal(txteditExpectedAmount.Text),
                     ReceivedAmount = parsedReceivedAmount,
+
                     Remarks = txteditRemarks.Text,
+
+                    Status = chckboxAsset.Checked
+    ? WorkflowStatus.Active
+    : WorkflowStatus.Received,
+
                     AttachmentData = _uploadedFileBytes,
                     AttachmentFileName = _uploadedFileName
                 };

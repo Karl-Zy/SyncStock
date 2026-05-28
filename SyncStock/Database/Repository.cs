@@ -3,6 +3,7 @@ using SyncStock.Models;
 using SyncStock.Models.Accounts;
 using SyncStock.Models.Item;
 using SyncStock.Models.Models_Receiving_;
+using SyncStock.Models.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -476,17 +477,36 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-            INSERT INTO ConfirmedItems (
-                PONumber, ItemName, DateReceived, IsCapitalizable,
-                ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
-                ReceivedAmount, Remarks, Status,
-                AttachmentData, AttachmentFileName
-            ) VALUES (
-                @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
-                @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
-                @ReceivedAmount, @Remarks, @Status,
-                @AttachmentData, @AttachmentFileName
-            );", item);
+        INSERT INTO ConfirmedItems
+        (
+            PONumber,
+            ItemName,
+            DateReceived,
+            IsCapitalizable,
+            ExpectedQuantity,
+            ReceivedQuantity,
+            ExpectedAmount,
+            ReceivedAmount,
+            Remarks,
+            Status,
+            AttachmentData,
+            AttachmentFileName
+        )
+        VALUES
+        (
+            @PONumber,
+            @ItemName,
+            @DateReceived,
+            @IsCapitalizable,
+            @ExpectedQuantity,
+            @ReceivedQuantity,
+            @ExpectedAmount,
+            @ReceivedAmount,
+            @Remarks,
+            @Status,
+            @AttachmentData,
+            @AttachmentFileName
+        )", item);
             }
         }
 
@@ -575,64 +595,149 @@ namespace SyncStock.Database
             }
         }
 
+        public IEnumerable<CapitalizedOrder> GetAllCapitalizedOrder()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<CapitalizedOrder>(@"
+                  SELECT
+                        ConfirmedItemID,
+                        PONumber,
+                        ItemName,
+                        DateReceived,
+                        IsCapitalizable,
+                        ExpectedQuantity,
+                        ReceivedQuantity,
+                        ExpectedAmount,
+                        ReceivedAmount,
+                        Remarks,
+                        Status
+                  FROM ConfirmedItems
+                  WHERE IsCapitalizable = 1
+                  ORDER BY  DateReceived DESC");
+            }
+        }
+
+        public void MarkAsCapitalizable(int confirmedItemId, bool isCapitalizable)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"UPDATE ConfirmedItems
+                              SET IsCapitalizable = @IsCapitalizable
+                              WHERE ConfirmedItemID = @ConfirmedItemID",
+                              new { ConfirmedItemID = confirmedItemId, IsCapitalizable = isCapitalizable });
+            }
+        }
+
+        public IEnumerable<ReceivedItemReports> GetAllReceivedOrders()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<ReceivedItemReports>(@"
+            SELECT 
+                ConfirmedItemID,
+                PONumber,
+                ItemName,
+                DateReceived,
+                ExpectedQuantity,
+                ReceivedQuantity,
+                ExpectedAmount,
+                ReceivedAmount,
+                Remarks,
+                Status
+            FROM ConfirmedItems
+            WHERE IsCapitalizable = 0
+            ORDER BY DateReceived DESC");
+            }
+        }
+
+        public IEnumerable<Reconciliation> GetReconciliationItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<Reconciliation>(@"
+            SELECT
+                po.PONumber,
+                d.DepartmentName,
+                po.OrderDate,
+                po.Priority,
+                po.Status           AS POStatus,
+                i.ItemName,
+                poi.Quantity        AS OrderedQuantity,
+                poi.UnitPrice,
+                poi.TotalPrice      AS OrderedAmount,
+                ci.DateReceived,
+                ci.ExpectedQuantity,
+                ci.ReceivedQuantity,
+                ci.ExpectedAmount,
+                ci.ReceivedAmount,
+                ci.Status           AS ReceivingStatus,
+                ci.Remarks,
+                ci.AttachmentData,
+                ci.AttachmentFileName
+            FROM PurchaseOrders po
+            INNER JOIN Departments d          ON po.DepartmentID = d.DepartmentID
+            INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            INNER JOIN Items i                ON poi.ItemID = i.ItemID
+            LEFT  JOIN ConfirmedItems ci      ON ci.PONumber = po.PONumber
+                                             AND ci.ItemName = i.ItemName
+            ORDER BY po.OrderDate DESC, i.ItemName"
+                ).ToList();
+            }
+        }
+
         #endregion
 
         #region Auditor Review
 
         public List<AuditorReviewItemDto> GetAuditorReviewItems()
         {
-            var items = new List<AuditorReviewItemDto>();
-
             using (var conn = CreateConnection())
             {
-                conn.Open();
-
                 string query = @"
-            SELECT
-                ci.ConfirmedItemID,
-                ci.PONumber,
-                ci.ItemName,
-                po.InvoiceNumber,
-                ci.ExpectedAmount   / NULLIF(ci.ExpectedQuantity, 0) AS UnitPrice,
-                ci.ReceivedQuantity AS Quantity,
-                ci.ReceivedAmount   AS TotalAmount,
-                ci.DateReceived,
-                CASE
-                    WHEN ci.IsCapitalizable = 1 THEN 'Yes'
-                    ELSE 'No'
-                END AS Capitalizable,
-                d.DepartmentName    AS Department,
-                ci.Status
-            FROM ConfirmedItems ci
-            INNER JOIN PurchaseOrders po
-                ON ci.PONumber = po.PONumber
-            INNER JOIN Departments d
-                ON po.DepartmentID = d.DepartmentID";
+        SELECT
+            po.PONumber,
+            i.ItemName,
+            po.InvoiceNumber,
 
-                using (var cmd = new SqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        items.Add(new AuditorReviewItemDto
-                        {
-                            PurchaseOrderItemID = Convert.ToInt32(reader["ConfirmedItemID"]),
-                            PONumber = reader["PONumber"].ToString(),
-                            ItemName = reader["ItemName"].ToString(),
-                            InvoiceNumber = reader["InvoiceNumber"].ToString(),
-                            UnitPrice = Convert.ToDecimal(reader["UnitPrice"]),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            TotalAmount = Convert.ToDecimal(reader["TotalAmount"]),
-                            DateReceived = Convert.ToDateTime(reader["DateReceived"]),
-                            Capitalizable = reader["Capitalizable"].ToString(),
-                            Department = reader["Department"].ToString(),
-                            Status = reader["Status"].ToString()
-                        });
-                    }
-                }
+            poi.UnitPrice,
+
+            ci.ReceivedQuantity AS Quantity,
+            ci.ReceivedAmount AS TotalAmount,
+
+            ci.DateReceived,
+
+            CASE
+                WHEN ci.IsCapitalizable = 1 THEN 'Yes'
+                ELSE 'No'
+            END AS Capitalizable,
+
+            d.DepartmentName AS Department,
+
+            ci.Status,
+
+            po.POType,
+            po.OrderMode
+
+        FROM ConfirmedItems ci
+
+        INNER JOIN PurchaseOrders po
+            ON ci.PONumber = po.PONumber
+
+        INNER JOIN PurchaseOrderItems poi
+            ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+        INNER JOIN Items i
+            ON poi.ItemID = i.ItemID
+            AND i.ItemName = ci.ItemName
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        ORDER BY ci.DateReceived DESC";
+
+                return conn.Query<AuditorReviewItemDto>(query).ToList();
             }
-
-            return items;
         }
 
         #endregion
@@ -868,99 +973,6 @@ namespace SyncStock.Database
             }
         }
 
-        //public IEnumerable<CapitalizedOrder> GetAllCapitalizedOrder() 
-        //{
-        //    using (var conn = CreateConnection()) 
-        //    {
-        //        return conn.Query<CapitalizedOrder>(@"
-        //          SELECT
-        //                ConfirmedItemID,
-        //                PONumber,
-        //                ItemName,
-        //                DateReceived,
-        //                IsCapitalizable,
-        //                ExpectedQuantity,
-        //                ReceivedQuantity,
-        //                ExpectedAmount,
-        //                ReceivedAmount,
-        //                Remarks,
-        //                Status
-        //          FROM ConfirmedItems
-        //          WHERE IsCapitalizable = 1
-        //          ORDER BY  DateReceived DESC");
-        //    }
-        //}
-
-        //public void MarkAsCapitalizable(int confirmedItemId, bool isCapitalizable)
-        //{
-        //    using (var conn = CreateConnection())
-        //    {
-        //        conn.Execute(@"UPDATE ConfirmedItems
-        //                      SET IsCapitalizable = @IsCapitalizable
-        //                      WHERE ConfirmedItemID = @ConfirmedItemID",
-        //                      new { ConfirmedItemID = confirmedItemId, IsCapitalizable = isCapitalizable });
-        //    }
-        //}
-
-        //public IEnumerable<ReceivingReports> GetAllReceivedOrders()
-        //{
-        //    using (var conn = CreateConnection())
-        //    {
-        //        return conn.Query<ReceivingReports>(@"
-        //    SELECT 
-        //        ConfirmedItemID,
-        //        PONumber,
-        //        ItemName,
-        //        DateReceived,
-        //        ExpectedQuantity,
-        //        ReceivedQuantity,
-        //        ExpectedAmount,
-        //        ReceivedAmount,
-        //        Remarks,
-        //        Status
-        //    FROM ConfirmedItems
-        //    WHERE IsCapitalizable = 0
-        //    ORDER BY DateReceived DESC");
-        //    }
-        //}
-
-        //public IEnumerable<ReconcilationItem> GetReconciliationItems()
-        //{
-        //    using (var conn = CreateConnection())
-        //    {
-        //        return conn.Query<ReconcilationItem>(@"
-        //    SELECT
-        //        po.PONumber,
-        //        d.DepartmentName,
-        //        po.OrderDate,
-        //        po.Priority,
-        //        po.Status           AS POStatus,
-        //        i.ItemName,
-        //        poi.Quantity        AS OrderedQuantity,
-        //        poi.UnitPrice,
-        //        poi.TotalPrice      AS OrderedAmount,
-        //        ci.DateReceived,
-        //        ci.ExpectedQuantity,
-        //        ci.ReceivedQuantity,
-        //        ci.ExpectedAmount,
-        //        ci.ReceivedAmount,
-        //        ci.Status           AS ReceivingStatus,
-        //        ci.Remarks,
-        //        ci.AttachmentData,
-        //        ci.AttachmentFileName
-        //    FROM PurchaseOrders po
-        //    INNER JOIN Departments d          ON po.DepartmentID = d.DepartmentID
-        //    INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-        //    INNER JOIN Items i                ON poi.ItemID = i.ItemID
-        //    LEFT  JOIN ConfirmedItems ci      ON ci.PONumber = po.PONumber
-        //                                     AND ci.ItemName = i.ItemName
-        //    ORDER BY po.OrderDate DESC, i.ItemName"
-        //        ).ToList();
-        //    }
-        //}
-
-
-
 
         public IEnumerable<int> GetDistinctYear()
         {
@@ -970,7 +982,7 @@ namespace SyncStock.Database
                 SELECT DISTINCT YEAR(OrderDate) FROM PurchaseOrders
                 UNION
                 SELECT DISTINCT YEAR(DateReceived) FROM ConfirmedItems
-                ORDER BY 1 DESC");
+                ORDER BY 1 DESC").ToList();
             }
         }
 

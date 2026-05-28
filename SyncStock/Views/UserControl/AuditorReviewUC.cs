@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock.Views.UserControl
 {
@@ -17,10 +18,11 @@ namespace SyncStock.Views.UserControl
         private const string AllDepartmentsLabel = "All Departments";
         private const string AllStatusesLabel = "All Statuses";
         private const string AllMonthsLabel = "All Months";
-        private string CurrentUserRole { get; set; } = "Auditor"; // placeholder
-        private string CurrentUserId { get; set; } = "user-001"; // placeholder
-        private bool CanLockDirectly =>
-    string.Equals(CurrentUserRole, "Admin", StringComparison.OrdinalIgnoreCase);
+        private string CurrentUserRole { get; set; }
+        private string CurrentUserId { get; set; }
+
+        private AuditorReviewItemDto _selectedItem;
+        private bool CanLockDirectly => string.Equals(CurrentUserRole, "Admin", StringComparison.OrdinalIgnoreCase);
 
         // Tracks whether the currently selected month is locked.
         private bool _selectedMonthIsLocked = false;
@@ -35,11 +37,20 @@ namespace SyncStock.Views.UserControl
         private readonly Repository _repo = new Repository();
         private List<AuditorReviewItemDto> _reviewItems = new List<AuditorReviewItemDto>();
 
+        private readonly User _currentUser;
         public AuditorReviewUC()
         {
             InitializeComponent();
+        }
+        public AuditorReviewUC(User currentUser)
+        {
+            InitializeComponent();
 
-            // Designer only runs InitializeComponent — avoid DB calls and runtime-only grid setup.
+            _currentUser = currentUser;
+
+            CurrentUserRole = _currentUser.Role;
+            CurrentUserId = _currentUser.UserName;
+
             if (IsDesignTime())
                 return;
 
@@ -54,6 +65,7 @@ namespace SyncStock.Views.UserControl
             ReviewItemGV.OptionsBehavior.Editable = false;
             ReviewItemGV.OptionsView.ShowAutoFilterRow = false;
 
+
             ConfigureSearchControl();
             ConfigureGridColumns();
             LoadFilterDepartments();
@@ -62,7 +74,7 @@ namespace SyncStock.Views.UserControl
             LoadFilterMonths();     // uses _reviewItems which is now populated
             LoadReviewItems();
             LoadFilterMonths();
-
+            ReviewItemGV.FocusedRowChanged += ReviewItemGV_FocusedRowChanged;
             CmbFilterDepartment.SelectedIndexChanged += FilterChanged;
             CmbFilterList.SelectedIndexChanged += FilterChanged;
             CmbDate.SelectedIndexChanged += FilterChanged;
@@ -93,6 +105,8 @@ namespace SyncStock.Views.UserControl
             colCapitalizable.FieldName = nameof(AuditorReviewItemDto.Capitalizable);
             colDepartment.FieldName = nameof(AuditorReviewItemDto.Department);
             colStatus.FieldName = nameof(AuditorReviewItemDto.Status);
+            colOrderType.FieldName = nameof(AuditorReviewItemDto.POType);
+            colOrderMode.FieldName = nameof(AuditorReviewItemDto.OrderMode);
 
             colUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             colUnitPrice.DisplayFormat.FormatString = "N2";
@@ -331,7 +345,10 @@ namespace SyncStock.Views.UserControl
             ApplyFiltersAndRefresh();
             RefreshLockButtonState();   // update Lock/Unlock button after every filter change
         }
-
+        private void ReviewItemGV_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+            _selectedItem = ReviewItemGV.GetRow(e.FocusedRowHandle) as AuditorReviewItemDto;
+        }
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
             if (e.Column.FieldName == nameof(AuditorReviewItemDto.Status))
@@ -522,6 +539,7 @@ namespace SyncStock.Views.UserControl
 
             // ── Admin: unlock directly ────────────────────────────────────────────
             if (CanLockDirectly)
+                return;
             {
                 var confirm = XtraMessageBox.Show(
                     $"Unlock {selectedMonth:MMMM yyyy}?\n\nThis will allow changes to this month again.",
@@ -594,36 +612,35 @@ namespace SyncStock.Views.UserControl
         /// </summary>
         private void RefreshLockButtonState()
         {
-            bool monthSelected = CmbDate.SelectedIndex > 0 &&
-                !string.Equals(CmbDate.Text, AllMonthsLabel, StringComparison.OrdinalIgnoreCase);
-
-            // Hide both buttons when "All Months" is selected — locking needs a specific month.
-            BtnLock.Visible = monthSelected;
-            BtnReqUnlock.Visible = monthSelected;
+            bool monthSelected =
+                CmbDate.SelectedIndex > 0 &&
+                !string.Equals(
+                    CmbDate.Text,
+                    AllMonthsLabel,
+                    StringComparison.OrdinalIgnoreCase);
 
             if (!monthSelected)
-                return;
-
-            if (!TryParseSelectedMonth(out DateTime selectedMonth))
-                return;
-
-            var lockRecord = _repo.GetMonthLock(selectedMonth);
-            _selectedMonthIsLocked = lockRecord != null && lockRecord.IsLocked;
-
-            if (_selectedMonthIsLocked)
             {
-                // Month is locked → show Unlock (or Request Unlock)
                 BtnLock.Visible = false;
-                BtnReqUnlock.Visible = true;
-                BtnReqUnlock.Text = CanLockDirectly ? "Unlock Month" : "Request Unlock";
+                BtnReqUnlock.Visible = false;
+                return;
             }
+
+            // ── ADMIN ─────────────────────────────
+            if (CanLockDirectly)
+            {
+                BtnLock.Visible = true;
+                BtnLock.Text = "Lock Period";
+
+                BtnReqUnlock.Visible = false;
+            }
+            // ── AUDITOR / NON-ADMIN ───────────────
             else
             {
-                // Month is unlocked → show Lock button only to Admin, or also to others
-                // (everyone sees Lock — non-admins will be blocked with a message on click)
-                BtnLock.Visible = true;
-                BtnLock.Text = "Lock Month";
-                BtnReqUnlock.Visible = false;
+                BtnLock.Visible = false;
+
+                BtnReqUnlock.Visible = true;
+                BtnReqUnlock.Text = "Request Unlock";
             }
         }
 
@@ -635,6 +652,33 @@ namespace SyncStock.Views.UserControl
                 System.Globalization.CultureInfo.InvariantCulture,
                 System.Globalization.DateTimeStyles.None,
                 out result);
+        }
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            if (_selectedItem == null)
+            {
+                XtraMessageBox.Show(
+                    "Please select an item first.",
+                    "No Selected Item",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            string details =
+                $"PO Number: {_selectedItem.PONumber}\n\n" +
+                $"Item Name: {_selectedItem.ItemName}\n\n" +
+                $"Department: {_selectedItem.Department}\n\n" +
+                $"Quantity: {_selectedItem.Quantity}\n\n" +
+                $"Total Amount: ₱{_selectedItem.TotalAmount:N2}\n\n" +
+                $"Status: {_selectedItem.Status}";
+
+            XtraMessageBox.Show(
+                details,
+                "Edit Selected Item",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }
