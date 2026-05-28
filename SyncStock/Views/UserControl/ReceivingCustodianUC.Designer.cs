@@ -243,7 +243,7 @@
             this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl.Properties.NullValuePrompt = "Enter PO Number or Item Name...";
+            this.searchControl.Properties.NullValuePrompt = "Enter PO Number, Item Name or Order Type...";
             this.searchControl.Size = new System.Drawing.Size(480, 28);
             this.searchControl.StyleController = this.dlcPendingIncoming;
             this.searchControl.TabIndex = 6;

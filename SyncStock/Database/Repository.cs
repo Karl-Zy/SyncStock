@@ -10,7 +10,6 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace SyncStock.Database
 {
@@ -280,72 +279,53 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PendingIncomingItem>(@"
-                    SELECT 
-                        po.PONumber,
-                        d.DepartmentName AS Department,
-                        i.ItemName,
-                        poi.Quantity AS Quantity,
-                        (poi.Quantity * poi.UnitPrice) AS Amount,
-                        po.OrderDate AS DateOrdered,
-                        po.Status
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID
-                    WHERE po.Status = @Status",
+            SELECT 
+                po.PONumber,
+                d.DepartmentName  AS Department,
+                i.ItemName,
+                poi.Quantity      AS Quantity,
+                (poi.Quantity * poi.UnitPrice) AS Amount,
+                po.OrderDate      AS DateOrdered,
+                po.Status,
+                po.POType,
+                po.OrderMode
+            FROM PurchaseOrders po
+            INNER JOIN Departments d          ON po.DepartmentID   = d.DepartmentID
+            INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            INNER JOIN Items i                ON poi.ItemID         = i.ItemID
+            WHERE po.Status = @Status",
                     new { Status = WorkflowStatus.Pending });
             }
         }
 
         public void AddConfirmedItem(ConfirmedItems item)
         {
-            string query = @"
-                    INSERT INTO ConfirmedItems (
-                        PONumber, ItemName, DateReceived, IsCapitalizable,
-                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
-                        ReceivedAmount, Remarks, Status,
-                        AttachmentData, AttachmentFileName
-                    ) VALUES (
-                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
-                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
-                        @ReceivedAmount, @Remarks, @Status,
-                        @AttachmentData, @AttachmentFileName
-                    );";
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
             INSERT INTO ConfirmedItems (
-                PurchaseOrderItemID,
-                DateReceived,
-                IsCapitalizable,
-                ReceivedQuantity,
-                ReceivedAmount,
-                AttachmentPath,
-                Remarks,
-                Status
-            )
-            VALUES (
-                @PurchaseOrderItemID,
-                @DateReceived,
-                @IsCapitalizable,
-                @ReceivedQuantity,
-                @ReceivedAmount,
-                @AttachmentPath,
-                @Remarks,
-                @Status
+                PONumber, ItemName, DateReceived, IsCapitalizable,
+                ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
+                ReceivedAmount, Remarks, Status,
+                AttachmentData, AttachmentFileName
+            ) VALUES (
+                @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
+                @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
+                @ReceivedAmount, @Remarks, @Status,
+                @AttachmentData, @AttachmentFileName
             );", item);
             }
         }
 
-        public void UpdatePurchaseOrderStatus(string poNumber, string newStatus)
+        public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
         {
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-                    UPDATE PurchaseOrders
-                    SET Status = @newStatus
-                    WHERE PONumber = @poNumber",
-                    new { poNumber, newStatus });
+            UPDATE PurchaseOrders
+            SET Status = @newStatus
+            WHERE PONumber = @poNumber",
+                    new { poNumber, itemName, newStatus });
             }
         }
 
@@ -435,37 +415,26 @@ namespace SyncStock.Database
                 conn.Open();
 
                 string query = @"
-        SELECT
-            poi.PurchaseOrderItemID,
-            po.PONumber,
-            i.ItemName,
-            po.InvoiceNumber,
-            poi.UnitPrice,
-            ci.ReceivedQuantity AS Quantity,
-            ci.ReceivedAmount AS TotalAmount,
-            ci.DateReceived,
-
-            CASE
-                WHEN ci.IsCapitalizable = 1 THEN 'Yes'
-                ELSE 'No'
-            END AS Capitalizable,
-
-            d.DepartmentName AS Department,
-            ci.Status
-
-        FROM ConfirmedItems ci
-
-        INNER JOIN PurchaseOrderItems poi
-            ON ci.PurchaseOrderItemID = poi.PurchaseOrderItemID
-
-        INNER JOIN PurchaseOrders po
-            ON poi.PurchaseOrderID = po.PurchaseOrderID
-
-        INNER JOIN Items i
-            ON poi.ItemID = i.ItemID
-
-        INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID";
+            SELECT
+                ci.ConfirmedItemID,
+                ci.PONumber,
+                ci.ItemName,
+                po.InvoiceNumber,
+                ci.ExpectedAmount   / NULLIF(ci.ExpectedQuantity, 0) AS UnitPrice,
+                ci.ReceivedQuantity AS Quantity,
+                ci.ReceivedAmount   AS TotalAmount,
+                ci.DateReceived,
+                CASE
+                    WHEN ci.IsCapitalizable = 1 THEN 'Yes'
+                    ELSE 'No'
+                END AS Capitalizable,
+                d.DepartmentName    AS Department,
+                ci.Status
+            FROM ConfirmedItems ci
+            INNER JOIN PurchaseOrders po
+                ON ci.PONumber = po.PONumber
+            INNER JOIN Departments d
+                ON po.DepartmentID = d.DepartmentID";
 
                 using (var cmd = new SqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -474,7 +443,7 @@ namespace SyncStock.Database
                     {
                         items.Add(new AuditorReviewItemDto
                         {
-                            PurchaseOrderItemID = Convert.ToInt32(reader["PurchaseOrderItemID"]),
+                            PurchaseOrderItemID = Convert.ToInt32(reader["ConfirmedItemID"]),
                             PONumber = reader["PONumber"].ToString(),
                             ItemName = reader["ItemName"].ToString(),
                             InvoiceNumber = reader["InvoiceNumber"].ToString(),

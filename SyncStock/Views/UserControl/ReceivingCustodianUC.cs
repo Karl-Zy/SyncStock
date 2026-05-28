@@ -21,7 +21,6 @@ namespace SyncStock.Views.UserControl
         private byte[] _uploadedFileBytes = null;
         private string _uploadedFileName = null;
 
-        // Allowed file types for attachment uploads
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
 
         public ReceivingCustodianUC()
@@ -46,21 +45,17 @@ namespace SyncStock.Views.UserControl
 
         private void ApplyGridStyling()
         {
-            // Alternating row colors — FIXED: use Appearance.OddRow / Appearance.EvenRow
             gvItemsView.OptionsView.EnableAppearanceOddRow = true;
             gvItemsView.OptionsView.EnableAppearanceEvenRow = true;
             gvItemsView.Appearance.OddRow.BackColor = Color.FromArgb(245, 250, 248);
             gvItemsView.Appearance.EvenRow.BackColor = Color.White;
 
-            // Selected row — teal to match app theme
-            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(144, 238, 144);  // light green
-            gvItemsView.Appearance.FocusedRow.ForeColor = Color.FromArgb(30, 30, 30);     // dark text for readability
-            gvItemsView.Appearance.HideSelectionRow.BackColor = Color.FromArgb(198, 239, 206);  // even lighter green
+            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(83, 237, 126);
+            gvItemsView.Appearance.FocusedRow.ForeColor = Color.FromArgb(30, 30, 30);
+            gvItemsView.Appearance.HideSelectionRow.BackColor = Color.FromArgb(198, 239, 206);
 
-            // Row height — more breathing room
             gvItemsView.RowHeight = 32;
 
-            // Cleaner look
             gvItemsView.OptionsView.ShowGroupPanel = false;
             gvItemsView.OptionsView.ColumnAutoWidth = true;
             gvItemsView.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -70,11 +65,9 @@ namespace SyncStock.Views.UserControl
         {
             foreach (DevExpress.XtraGrid.Columns.GridColumn col in gvItemsView.Columns)
             {
-                // Bold centered headers
                 col.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
                 col.AppearanceHeader.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
 
-                // Right-align number columns, center everything else
                 if (col.FieldName == "Amount" || col.FieldName == "Quantity" ||
                     col.FieldName == "ItemID" || col.FieldName == "PurchaseOrderID")
                     col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -82,13 +75,38 @@ namespace SyncStock.Views.UserControl
                     col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             }
 
-            // Format Amount column as currency
+            // Format Amount as currency
             var amountCol = gvItemsView.Columns["Amount"];
             if (amountCol != null)
             {
                 amountCol.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 amountCol.DisplayFormat.FormatString = "₱{0:N2}";
                 amountCol.Width = 120;
+            }
+
+            // Hide raw POType and OrderMode — show friendly computed columns instead
+            var poTypeCol = gvItemsView.Columns["POType"];
+            if (poTypeCol != null)
+                poTypeCol.Visible = false;
+
+            var orderModeCol = gvItemsView.Columns["OrderMode"];
+            if (orderModeCol != null)
+                orderModeCol.Visible = false;
+
+            // "Order Mode" column — Single Order / Grouped Order
+            var orderModeDisplayCol = gvItemsView.Columns["OrderModeDisplay"];
+            if (orderModeDisplayCol != null)
+            {
+                orderModeDisplayCol.Caption = "Order Mode";
+                orderModeDisplayCol.Width = 120;
+            }
+
+            // "Order Type" column — Local / Online
+            var orderTypeCol = gvItemsView.Columns["OrderType"];
+            if (orderTypeCol != null)
+            {
+                orderTypeCol.Caption = "Order Type";
+                orderTypeCol.Width = 100;
             }
         }
 
@@ -102,8 +120,6 @@ namespace SyncStock.Views.UserControl
             {
                 var incomingItems = _repo.GetPendingIncomingItemsDetails();
                 gcItems.DataSource = incomingItems;
-
-                // Apply alignment AFTER data is bound (columns exist now)
                 ApplyColumnAlignment();
             }
             catch (Exception ex)
@@ -134,21 +150,17 @@ namespace SyncStock.Views.UserControl
                     object qty = gvItemsView.GetRowCellValue(rowHandle, "Quantity");
                     object amount = gvItemsView.GetRowCellValue(rowHandle, "Amount");
 
-                    // Dynamic Header Labels Update
                     lblReceivingReport.Text = $"Receiving Report From: {department}";
                     lblPONumber.Text = $"PO Number: {poNumber}";
 
-                    // Display Data inside Read-Only Form Fields
                     txteditItemName.Text = itemName;
                     txteditExpectedQuan.Text = qty?.ToString();
 
-                    // Format Expected Amount cleanly with commas/decimals
                     if (amount != null && decimal.TryParse(amount.ToString(), out decimal parsedAmount))
                         txteditExpectedAmount.Text = string.Format("{0:N2}", parsedAmount);
                     else
                         txteditExpectedAmount.Text = "0.00";
 
-                    // Leave User-Input fields open/ready for custodian input
                     dateEdit.EditValue = DateTime.Today;
                     spneditReceivedQuan.EditValue = qty;
                     txteditReceivedAmount.Text = "";
@@ -161,6 +173,46 @@ namespace SyncStock.Views.UserControl
                 }
             }
         }
+
+        // ─────────────────────────────────────────────
+        // SEARCH — PO Number, Item Name, Order Type
+        // ─────────────────────────────────────────────
+
+        private void searchControl_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = searchControl.Text?.Trim().ToLower() ?? string.Empty;
+            var allItems = _repo.GetPendingIncomingItemsDetails();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                gcItems.DataSource = allItems.ToList();
+                ApplyColumnAlignment();
+                return;
+            }
+
+            string[] keywords = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            gcItems.DataSource = allItems.Where(x =>
+            {
+                string po = x.PONumber?.ToLower() ?? string.Empty;
+                string item = x.ItemName?.ToLower() ?? string.Empty;
+                string orderType = x.OrderType?.ToLower() ?? string.Empty;
+                string orderMode = x.OrderModeDisplay?.ToLower() ?? string.Empty;
+
+                return keywords.All(k =>
+                    po.Contains(k) ||
+                    item.Contains(k) ||
+                    orderType.Contains(k) ||
+                    orderMode.Contains(k)
+                );
+            }).ToList();
+
+            ApplyColumnAlignment();
+        }
+
+        // ─────────────────────────────────────────────
+        // FILE UPLOAD
+        // ─────────────────────────────────────────────
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
@@ -251,7 +303,6 @@ namespace SyncStock.Views.UserControl
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // Validation Guards
             if (string.IsNullOrEmpty(lblPONumber.Text) || lblPONumber.Text == "PO Number:")
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -314,7 +365,12 @@ namespace SyncStock.Views.UserControl
                 };
 
                 _repo.AddConfirmedItem(confirmationPayload);
-                _repo.UpdatePurchaseOrderStatus(purePoNumber, WorkflowStatus.Received);
+
+                // ✅ Fixed — passes itemName so only THIS item's PO status updates
+                _repo.UpdatePurchaseOrderItemStatus(
+                    purePoNumber,
+                    txteditItemName.Text,
+                    WorkflowStatus.Received);
 
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Asset inventory ledger updated and item confirmed successfully!",
@@ -342,39 +398,22 @@ namespace SyncStock.Views.UserControl
 
         private void ClearReceivingForm()
         {
-            // Reset layout title block structures back to raw defaults
             lblReceivingReport.Text = "Receiving Report From:";
             lblPONumber.Text = "PO Number:";
 
-            // Reset uneditable visual labels
             txteditItemName.Text = "";
             txteditExpectedQuan.Text = "";
             txteditExpectedAmount.Text = "0.00";
 
-            // Clear user interaction elements safely
             dateEdit.EditValue = null;
             chckboxAsset.Checked = false;
             spneditReceivedQuan.EditValue = 0;
             txteditReceivedAmount.Text = "";
             txteditRemarks.Text = "";
 
-            // Reset upload state completely
             _uploadedFileBytes = null;
             _uploadedFileName = null;
             lblUploadGuide.Text = "or drop file here";
-        }
-
-        private void searchControl_TextChanged(object sender, EventArgs e)
-        {
-            string searchText = searchControl.Text.ToLower();
-            var allItems = _repo.GetPendingIncomingItemsDetails();
-
-            gcItems.DataSource = allItems
-                .Where(x => x.ItemName.ToLower().Contains(searchText) ||
-                            x.PONumber.ToLower().Contains(searchText))
-                .ToList();
-
-            ApplyColumnAlignment();
         }
     }
 }
