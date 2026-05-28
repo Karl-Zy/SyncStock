@@ -380,16 +380,28 @@ namespace SyncStock.Views.UserControl
             ApplyFiltersAndRefresh();
             RefreshLockButtonState();   // update Lock/Unlock button after every filter change
         }
-        private void ReviewItemGV_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        private void ReviewItemGV_FocusedRowChanged(
+    object sender,
+    FocusedRowChangedEventArgs e)
         {
             _selectedItem =
-       ReviewItemGV.GetRow(e.FocusedRowHandle)
-       as AuditorReviewItemDto;
+                ReviewItemGV.GetRow(e.FocusedRowHandle)
+                as AuditorReviewItemDto;
 
             bool hasSelection = _selectedItem != null;
 
-            BtnEdit.Enabled = hasSelection;
-            BtnRemarks.Enabled = hasSelection;
+            bool canEdit =
+                hasSelection &&
+                !string.Equals(
+                    _selectedItem.Status,
+                    "Pending Review",
+                    StringComparison.OrdinalIgnoreCase);
+
+            BtnEdit.Enabled = canEdit;
+
+            BtnRemarks.Enabled =
+                canEdit &&
+                !string.IsNullOrWhiteSpace(_selectedItem.Remarks);
         }
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {

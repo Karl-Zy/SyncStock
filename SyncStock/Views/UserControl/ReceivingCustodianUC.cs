@@ -427,6 +427,12 @@ namespace SyncStock.Views.UserControl
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            if (_isEditMode)
+            {
+                this.FindForm()?.Close();
+                return;
+            }
+
             ClearReceivingForm();
         }
 
@@ -451,6 +457,7 @@ namespace SyncStock.Views.UserControl
         }
         public void LoadEditItem(AuditorReviewItemDto item)
         {
+
             _isEditMode = true;
             _editingConfirmedItemId =
     item.ConfirmedItemID;
@@ -479,9 +486,12 @@ namespace SyncStock.Views.UserControl
 
             txteditReceivedAmount.Text =
                 item.ReceivedAmount.ToString("N2");
+            dateEdit.EditValue = item.DateReceived;
 
             txteditRemarks.Text =
                 item.Remarks;
+
+            chckboxAsset.Checked = item.IsCapitalizable;
 
             // LOCK NON-EDITABLE FIELDS
             txteditItemName.Enabled = false;
@@ -496,6 +506,7 @@ namespace SyncStock.Views.UserControl
 
             // OPTIONAL
             btnConfirm.Text = "Update Item";
+
         }
     }
 }

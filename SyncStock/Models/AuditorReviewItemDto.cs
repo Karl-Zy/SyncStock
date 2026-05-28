@@ -35,5 +35,7 @@ namespace SyncStock.Models
 
         public string Priority { get; set; }
 
+        public bool IsCapitalizable { get; set; }
+
     }
 }
