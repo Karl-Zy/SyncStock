@@ -422,6 +422,18 @@ namespace SyncStock.Database
             }
         }
 
+        public IEnumerable<PurchaseOrders> GetPurchaseOrderBrief()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrders>(@"
+            SELECT po.*, d.DepartmentName
+            FROM PurchaseOrders po
+            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
+            ORDER BY po.OrderDate DESC");
+            }
+        }
+
         public IEnumerable<CapitalizedOrder> GetAllCapitalizedOrder()
         {
             using (var conn = CreateConnection())
@@ -692,17 +704,7 @@ namespace SyncStock.Database
                     ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
-        public IEnumerable<PurchaseOrders> GetPurchaseOrderBrief()
-        {
-            using (var conn = CreateConnection())
-            {
-                return conn.Query<PurchaseOrders>(@"
-            SELECT po.*, d.DepartmentName
-            FROM PurchaseOrders po
-            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-            ORDER BY po.OrderDate DESC");
-            }
-        }
+       
         // In Repository.cs
 
         public MonthLock GetMonthLock(DateTime monthYear)
