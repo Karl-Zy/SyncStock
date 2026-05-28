@@ -280,7 +280,7 @@ namespace SyncStock.Views.UserControl
                 if (e.Column.FieldName == "OrderMode")
                 {
                     if (e.Value?.ToString() == "Single")
-                        e.DisplayText = "Single";
+                        e.DisplayText = "Individual";
 
                     else if (e.Value?.ToString() == "Grouped")
                         e.DisplayText = "Group";
@@ -479,7 +479,7 @@ namespace SyncStock.Views.UserControl
                 if (e.Column.FieldName == "OrderMode")
                 {
                     if (e.Value?.ToString() == "Single")
-                        e.DisplayText = "Single";
+                        e.DisplayText = "Individual";
 
                     else if (e.Value?.ToString() == "Grouped")
                         e.DisplayText = "Group";
