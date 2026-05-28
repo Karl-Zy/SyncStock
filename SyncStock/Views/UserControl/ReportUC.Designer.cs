@@ -282,16 +282,16 @@
             // 
             // PrintSummaryButton
             // 
-            this.PrintSummaryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PrintSummaryButton.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
             this.PrintSummaryButton.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrintSummaryButton.Appearance.Options.UseBackColor = true;
             this.PrintSummaryButton.Appearance.Options.UseFont = true;
+            this.PrintSummaryButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.PrintSummaryButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("PrintSummaryButton.ImageOptions.SvgImage")));
-            this.PrintSummaryButton.Location = new System.Drawing.Point(1714, 3);
+            this.PrintSummaryButton.Location = new System.Drawing.Point(1718, 2);
             this.PrintSummaryButton.Margin = new System.Windows.Forms.Padding(4);
             this.PrintSummaryButton.Name = "PrintSummaryButton";
-            this.PrintSummaryButton.Size = new System.Drawing.Size(141, 48);
+            this.PrintSummaryButton.Size = new System.Drawing.Size(141, 52);
             this.PrintSummaryButton.TabIndex = 0;
             this.PrintSummaryButton.Text = "PRINT";
             this.PrintSummaryButton.Click += new System.EventHandler(this.PrintSummaryButton_Click);

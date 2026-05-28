@@ -11,7 +11,6 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 namespace SyncStock.Database
 {
@@ -121,7 +120,8 @@ namespace SyncStock.Database
                 Priority,
                 Remarks,
                 AttachmentPath,
-                POType
+                POType,
+                OrderMode
             )
             VALUES
             (
@@ -133,7 +133,8 @@ namespace SyncStock.Database
                 @Priority,
                 @Remarks,
                 @AttachmentPath,
-                @POType
+                @POType,
+                @OrderMode
             );
 
             SELECT CAST(SCOPE_IDENTITY() as int);",
@@ -279,72 +280,64 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PendingIncomingItem>(@"
-                    SELECT 
-                        po.PONumber,
-                        d.DepartmentName AS Department,
-                        i.ItemName,
-                        poi.Quantity AS Quantity,
-                        (poi.Quantity * poi.UnitPrice) AS Amount,
-                        po.OrderDate AS DateOrdered,
-                        po.Status
-                    FROM PurchaseOrders po
-                    INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID
-                    WHERE po.Status = @Status",
+            SELECT 
+                po.PONumber,
+                d.DepartmentName  AS Department,
+                i.ItemName,
+                poi.Quantity      AS Quantity,
+                (poi.Quantity * poi.UnitPrice) AS Amount,
+                po.OrderDate      AS DateOrdered,
+                po.Status,
+                po.POType,
+                po.OrderMode
+            FROM PurchaseOrders po
+            INNER JOIN Departments d          ON po.DepartmentID   = d.DepartmentID
+            INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
+            INNER JOIN Items i                ON poi.ItemID         = i.ItemID
+            WHERE po.Status = @Status",
                     new { Status = WorkflowStatus.Pending });
             }
         }
 
         public void AddConfirmedItem(ConfirmedItems item)
         {
-            string query = @"
-                    INSERT INTO ConfirmedItems (
-                        PONumber, ItemName, DateReceived, IsCapitalizable,
-                        ExpectedQuantity, ReceivedQuantity, ExpectedAmount,
-                        ReceivedAmount, Remarks, Status,
-                        AttachmentData, AttachmentFileName
-                    ) VALUES (
-                        @PONumber, @ItemName, @DateReceived, @IsCapitalizable,
-                        @ExpectedQuantity, @ReceivedQuantity, @ExpectedAmount,
-                        @ReceivedAmount, @Remarks, @Status,
-                        @AttachmentData, @AttachmentFileName
-                    );";
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-            INSERT INTO ConfirmedItems (
-                PurchaseOrderItemID,
-                DateReceived,
-                IsCapitalizable,
-                ReceivedQuantity,
-                ReceivedAmount,
-                AttachmentPath,
-                Remarks,
-                Status
-            )
-            VALUES (
-                @PurchaseOrderItemID,
-                @DateReceived,
-                @IsCapitalizable,
-                @ReceivedQuantity,
-                @ReceivedAmount,
-                @AttachmentPath,
-                @Remarks,
-                @Status
-            );", item);
+        INSERT INTO ConfirmedItems
+        (
+            PurchaseOrderItemID,
+            DateReceived,
+            IsCapitalizable,
+            ReceivedQuantity,
+            ReceivedAmount,
+            AttachmentPath,
+            Remarks,
+            Status
+        )
+        VALUES
+        (
+            @PurchaseOrderItemID,
+            @DateReceived,
+            @IsCapitalizable,
+            @ReceivedQuantity,
+            @ReceivedAmount,
+            @AttachmentPath,
+            @Remarks,
+            @Status
+        )", item);
             }
         }
 
-        public void UpdatePurchaseOrderStatus(string poNumber, string newStatus)
+        public void UpdatePurchaseOrderItemStatus(string poNumber, string itemName, string newStatus)
         {
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-                    UPDATE PurchaseOrders
-                    SET Status = @newStatus
-                    WHERE PONumber = @poNumber",
-                    new { poNumber, newStatus });
+            UPDATE PurchaseOrders
+            SET Status = @newStatus
+            WHERE PONumber = @poNumber",
+                    new { poNumber, itemName, newStatus });
             }
         }
 
@@ -518,21 +511,20 @@ namespace SyncStock.Database
 
         public List<AuditorReviewItemDto> GetAuditorReviewItems()
         {
-            var items = new List<AuditorReviewItemDto>();
-
             using (var conn = CreateConnection())
             {
-                conn.Open();
-
                 string query = @"
         SELECT
             poi.PurchaseOrderItemID,
             po.PONumber,
             i.ItemName,
             po.InvoiceNumber,
+
             poi.UnitPrice,
+
             ci.ReceivedQuantity AS Quantity,
             ci.ReceivedAmount AS TotalAmount,
+
             ci.DateReceived,
 
             CASE
@@ -541,6 +533,7 @@ namespace SyncStock.Database
             END AS Capitalizable,
 
             d.DepartmentName AS Department,
+
             ci.Status
 
         FROM ConfirmedItems ci
@@ -555,32 +548,12 @@ namespace SyncStock.Database
             ON poi.ItemID = i.ItemID
 
         INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID";
+            ON po.DepartmentID = d.DepartmentID
 
-                using (var cmd = new SqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        items.Add(new AuditorReviewItemDto
-                        {
-                            PurchaseOrderItemID = Convert.ToInt32(reader["PurchaseOrderItemID"]),
-                            PONumber = reader["PONumber"].ToString(),
-                            ItemName = reader["ItemName"].ToString(),
-                            InvoiceNumber = reader["InvoiceNumber"].ToString(),
-                            UnitPrice = Convert.ToDecimal(reader["UnitPrice"]),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            TotalAmount = Convert.ToDecimal(reader["TotalAmount"]),
-                            DateReceived = Convert.ToDateTime(reader["DateReceived"]),
-                            Capitalizable = reader["Capitalizable"].ToString(),
-                            Department = reader["Department"].ToString(),
-                            Status = reader["Status"].ToString()
-                        });
-                    }
-                }
+        ORDER BY ci.DateReceived DESC";
+
+                return conn.Query<AuditorReviewItemDto>(query).ToList();
             }
-
-            return items;
         }
 
         #endregion
@@ -784,6 +757,8 @@ namespace SyncStock.Database
                 ORDER BY 1 DESC").ToList();
             }
         }
+
+
 
 
 

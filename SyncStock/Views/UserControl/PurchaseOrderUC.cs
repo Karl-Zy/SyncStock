@@ -75,7 +75,8 @@ namespace SyncStock.Views.UserControl
                     Priority = "Normal",
                     Remarks = opoRemarksTE.Text,
                     AttachmentPath = "",
-                    POType = "OPO"
+                    POType = "OPO",
+                    OrderMode = "Grouped"
                 };
 
                 // SAVE PURCHASE ORDER
@@ -256,7 +257,8 @@ namespace SyncStock.Views.UserControl
                     Priority = "Normal",
                     Remarks = opoRemarksTE.Text,
                     AttachmentPath = "",
-                    POType = "OPO"
+                    POType = "OPO",
+                    OrderMode = "Single"
                 };
 
                 // SAVE PURCHASE ORDER
@@ -532,7 +534,8 @@ namespace SyncStock.Views.UserControl
                     Priority = "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
                     AttachmentPath = "",
-                    POType = "GPO"
+                    POType = "GPO",
+                    OrderMode = "Grouped"
                 };
 
                 _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
@@ -623,7 +626,8 @@ namespace SyncStock.Views.UserControl
                     Priority = "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
                     AttachmentPath = "",
-                    POType = "GPO"
+                    POType = "GPO",
+                    OrderMode = "Single"
                 };
 
                 _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
