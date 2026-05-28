@@ -21,12 +21,41 @@ namespace SyncStock.Views.UserControl
         public PurchaseOrderUC()
         {
             InitializeComponent();
+
             LoadDepartments();
             LoadOPOPurchaseOrderItems();
             LoadGPOPurchaseOrderItems();
 
-            opoReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
-            gpoReqDepartmentCB.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            opoReqDepartmentCB.Properties.TextEditStyle =
+                TextEditStyles.DisableTextEditor;
+
+            gpoReqDepartmentCB.Properties.TextEditStyle =
+                TextEditStyles.DisableTextEditor;
+
+            // OPO CART GRID
+            opoItemsInCartGV.OptionsBehavior.Editable = false;
+            opoItemsInCartGV.OptionsBehavior.ReadOnly = true;
+
+            // OPO ORDER GRID
+            opoItemsInOrderGV.OptionsBehavior.Editable = false;
+            opoItemsInOrderGV.OptionsBehavior.ReadOnly = true;
+
+            // GPO CART GRID
+            gpoItemsInCartGV.OptionsBehavior.Editable = false;
+            gpoItemsInCartGV.OptionsBehavior.ReadOnly = true;
+
+            // GPO ORDER GRID
+            gpoItemsInOrderGV.OptionsBehavior.Editable = false;
+            gpoItemsInOrderGV.OptionsBehavior.ReadOnly = true;
+
+            opoItemsInCartGV.OptionsSelection.EnableAppearanceFocusedCell = false;
+            opoItemsInOrderGV.OptionsSelection.EnableAppearanceFocusedCell = false;
+
+            opoItemsInCartGV.FocusRectStyle =
+                DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
+
+            opoItemsInOrderGV.FocusRectStyle =
+                DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
         }
 
         private void LoadDepartments()

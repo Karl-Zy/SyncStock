@@ -136,6 +136,12 @@ namespace SyncStock.Views.UserControl
             PendingOrdersGV.OptionsView.EnableAppearanceOddRow = true;
             PendingOrdersGV.OptionsView.EnableAppearanceEvenRow = true;
 
+            PendingOrdersGV.HorzScrollVisibility =
+                DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+
+            PendingOrdersGV.VertScrollVisibility =
+                DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+
             PendingOrdersGV.Appearance.OddRow.BackColor =
                 Color.FromArgb(250, 244, 235);
 
@@ -155,7 +161,7 @@ namespace SyncStock.Views.UserControl
 
             PendingOrdersGV.OptionsView.ShowGroupPanel = false;
 
-            PendingOrdersGV.OptionsView.ColumnAutoWidth = true;
+            PendingOrdersGV.OptionsView.ColumnAutoWidth = false;
 
             PendingOrdersGV.OptionsSelection.EnableAppearanceFocusedCell = false;
 
@@ -271,9 +277,40 @@ namespace SyncStock.Views.UserControl
                     else if (e.Value?.ToString() == "GPO")
                         e.DisplayText = "LOCAL";
                 }
+
+                if (e.Column.FieldName == "OrderMode")
+                {
+                    if (e.Value?.ToString() == "Single")
+                        e.DisplayText = "Single";
+
+                    else if (e.Value?.ToString() == "Grouped")
+                        e.DisplayText = "Group";
+                }
             };
 
-            PendingOrdersGV.BestFitColumns();
+            // =====================================
+            // COLUMN WIDTHS
+            // =====================================
+
+            PendingOrdersGV.Columns["InvoiceNumber"].Width = 140;
+
+            PendingOrdersGV.Columns["PONumber"].Width = 190;
+
+            PendingOrdersGV.Columns["DepartmentName"].Width = 250;
+
+            PendingOrdersGV.Columns["OrderDate"].Width = 170;
+
+            PendingOrdersGV.Columns["Status"].Width = 120;
+
+            PendingOrdersGV.Columns["Priority"].Width = 170;
+
+            PendingOrdersGV.Columns["POType"].Width = 120;
+
+            PendingOrdersGV.Columns["OrderMode"].Width = 120;
+
+            PendingOrdersGV.Columns["TotalItems"].Width = 120;
+
+            PendingOrdersGV.Columns["TotalAmount"].Width = 150;
         }
 
 
@@ -298,6 +335,12 @@ namespace SyncStock.Views.UserControl
             ApprovedASAPOrdersGV.OptionsView.EnableAppearanceOddRow = true;
             ApprovedASAPOrdersGV.OptionsView.EnableAppearanceEvenRow = true;
 
+            ApprovedASAPOrdersGV.HorzScrollVisibility =
+                DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+
+            ApprovedASAPOrdersGV.VertScrollVisibility =
+                DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+
             ApprovedASAPOrdersGV.Appearance.OddRow.BackColor =
                 Color.FromArgb(223, 242, 223);
 
@@ -317,7 +360,7 @@ namespace SyncStock.Views.UserControl
 
             ApprovedASAPOrdersGV.OptionsView.ShowGroupPanel = false;
 
-            ApprovedASAPOrdersGV.OptionsView.ColumnAutoWidth = true;
+            ApprovedASAPOrdersGV.OptionsView.ColumnAutoWidth = false;
 
             ApprovedASAPOrdersGV.OptionsSelection.EnableAppearanceFocusedCell = false;
 
@@ -433,9 +476,40 @@ namespace SyncStock.Views.UserControl
                     else if (e.Value?.ToString() == "GPO")
                         e.DisplayText = "LOCAL";
                 }
+
+                if (e.Column.FieldName == "OrderMode")
+                {
+                    if (e.Value?.ToString() == "Single")
+                        e.DisplayText = "Single";
+
+                    else if (e.Value?.ToString() == "Grouped")
+                        e.DisplayText = "Group";
+                }
             };
 
-            ApprovedASAPOrdersGV.BestFitColumns();
+            // =====================================
+            // COLUMN WIDTHS
+            // =====================================
+
+            ApprovedASAPOrdersGV.Columns["InvoiceNumber"].Width = 140;
+
+            ApprovedASAPOrdersGV.Columns["PONumber"].Width = 190;
+
+            ApprovedASAPOrdersGV.Columns["DepartmentName"].Width = 250;
+
+            ApprovedASAPOrdersGV.Columns["OrderDate"].Width = 170;
+
+            ApprovedASAPOrdersGV.Columns["Status"].Width = 120;
+
+            ApprovedASAPOrdersGV.Columns["Priority"].Width = 170;
+
+            ApprovedASAPOrdersGV.Columns["POType"].Width = 120;
+
+            ApprovedASAPOrdersGV.Columns["OrderMode"].Width = 120;
+
+            ApprovedASAPOrdersGV.Columns["TotalItems"].Width = 120;
+
+            ApprovedASAPOrdersGV.Columns["TotalAmount"].Width = 150;
         }
 
         // =========================================
@@ -470,11 +544,14 @@ namespace SyncStock.Views.UserControl
         {
             AssetCategoryChart.Series.Clear();
 
+            // CREATE PIE SERIES
             Series series =
                 new Series("Assets", ViewType.Pie);
 
+            // GET DATA
             var data = _repo.GetAssetCategorySummary();
 
+            // ADD PIE SLICES
             foreach (var item in data)
             {
                 series.Points.Add(
@@ -482,6 +559,40 @@ namespace SyncStock.Views.UserControl
                         item.Category,
                         Convert.ToInt32(item.Total)));
             }
+
+            // =====================================
+            // PIE LABELS
+            // =====================================
+
+            // SHOW PERCENTAGE ON PIE
+            series.Label.TextPattern = "{VP:p0}";
+
+            // SHOW CATEGORY NAMES IN LEGEND
+            series.LegendTextPattern = "{A}";
+
+            // ENABLE LABELS
+            series.LabelsVisibility =
+                DevExpress.Utils.DefaultBoolean.True;
+
+            // =====================================
+            // LEGEND SETTINGS
+            // =====================================
+
+            AssetCategoryChart.Legend.Visibility =
+                DevExpress.Utils.DefaultBoolean.True;
+
+            AssetCategoryChart.Legend.AlignmentHorizontal =
+                LegendAlignmentHorizontal.Right;
+
+            AssetCategoryChart.Legend.AlignmentVertical =
+                LegendAlignmentVertical.TopOutside;
+
+            AssetCategoryChart.Legend.Direction =
+                LegendDirection.LeftToRight;
+
+            // =====================================
+            // ADD SERIES
+            // =====================================
 
             AssetCategoryChart.Series.Add(series);
         }
