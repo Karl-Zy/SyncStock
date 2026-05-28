@@ -13,6 +13,8 @@ namespace SyncStock.Models
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
         public string Remarks { get; set; }
+        public string OrderType { get; set; }
+        public string OrderMode { get; set; }
 
     }
 }
