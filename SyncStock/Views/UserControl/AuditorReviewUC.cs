@@ -18,10 +18,18 @@ namespace SyncStock.Views.UserControl
         private const string AllDepartmentsLabel = "All Departments";
         private const string AllStatusesLabel = "All Statuses";
         private const string AllMonthsLabel = "All Months";
+
+
+        private AuditorReviewItemDto _selectedItem;
+
         private string CurrentUserRole { get; set; }
         private string CurrentUserId { get; set; }
 
-        private AuditorReviewItemDto _selectedItem;
+        private bool IsAdmin =>
+    string.Equals(
+        CurrentUserRole,
+        "Admin",
+        StringComparison.OrdinalIgnoreCase);
         private bool CanLockDirectly => string.Equals(CurrentUserRole, "Admin", StringComparison.OrdinalIgnoreCase);
 
 
@@ -380,16 +388,31 @@ namespace SyncStock.Views.UserControl
             ApplyFiltersAndRefresh();
             RefreshLockButtonState();   // update Lock/Unlock button after every filter change
         }
-        private void ReviewItemGV_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        private void ReviewItemGV_FocusedRowChanged(
+    object sender,
+    FocusedRowChangedEventArgs e)
         {
             _selectedItem =
-       ReviewItemGV.GetRow(e.FocusedRowHandle)
-       as AuditorReviewItemDto;
+                ReviewItemGV.GetRow(e.FocusedRowHandle)
+                as AuditorReviewItemDto;
 
             bool hasSelection = _selectedItem != null;
 
-            BtnEdit.Enabled = hasSelection;
-            BtnRemarks.Enabled = hasSelection;
+            bool canEdit =
+                hasSelection &&
+                !string.Equals(
+                    _selectedItem.Status,
+                    "Pending Review",
+                    StringComparison.OrdinalIgnoreCase);
+
+            BtnEdit.Enabled =
+    canEdit &&
+    IsAdmin;
+
+            BtnRemarks.Enabled =
+                canEdit &&
+                IsAdmin &&
+                !string.IsNullOrWhiteSpace(_selectedItem.Remarks);
         }
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
@@ -434,12 +457,18 @@ namespace SyncStock.Views.UserControl
             }
 
             if (string.Equals(status, "Pending Review", StringComparison.OrdinalIgnoreCase)
-    || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase)
-    || string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
+    || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
             {
                 label = PillPendingReview;
                 bgColor = Color.FromArgb(255, 243, 200);
                 textColor = Color.FromArgb(160, 100, 0);
+                return true;
+            }
+            if (string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
+            {
+                label = "Approved";
+                bgColor = Color.FromArgb(220, 247, 220);
+                textColor = Color.FromArgb(30, 120, 30);
                 return true;
             }
 
@@ -697,6 +726,16 @@ namespace SyncStock.Views.UserControl
         }
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin)
+            {
+                XtraMessageBox.Show(
+                    "Only administrators can edit approved receiving reports.",
+                    "Access Denied",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
             if (_selectedItem == null)
                 return;
 
