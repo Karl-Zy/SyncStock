@@ -21,6 +21,18 @@ namespace SyncStock.Models
         public string POType { get; set; }
         public string OrderMode { get; set; }
 
+        public string Remarks { get; set; }
+
+        public int ExpectedQuantity { get; set; }
+
+        public decimal ExpectedAmount { get; set; }
+
+        public int ReceivedQuantity { get; set; }
+
+        public decimal ReceivedAmount { get; set; }
+
+        public int ConfirmedItemID { get; set; }
+
 
     }
 }

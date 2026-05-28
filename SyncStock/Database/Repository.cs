@@ -522,46 +522,55 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 string query = @"
-        SELECT
-            po.PONumber,
-            i.ItemName,
-            po.InvoiceNumber,
+SELECT
+ ci.ConfirmedItemID,
+    po.PONumber,
+    i.ItemName,
+    po.InvoiceNumber,
 
-            poi.UnitPrice,
+    poi.UnitPrice,
 
-            ci.ReceivedQuantity AS Quantity,
-            ci.ReceivedAmount AS TotalAmount,
+    ci.ReceivedQuantity AS Quantity,
+    ci.ReceivedAmount AS TotalAmount,
 
-            ci.DateReceived,
+    ci.ExpectedQuantity,
+    ci.ExpectedAmount,
 
-            CASE
-                WHEN ci.IsCapitalizable = 1 THEN 'Yes'
-                ELSE 'No'
-            END AS Capitalizable,
+    ci.ReceivedQuantity,
+    ci.ReceivedAmount,
 
-            d.DepartmentName AS Department,
+    ci.Remarks,
 
-            ci.Status,
+    ci.DateReceived,
 
-            po.POType,
-            po.OrderMode
+    CASE
+        WHEN ci.IsCapitalizable = 1 THEN 'Yes'
+        ELSE 'No'
+    END AS Capitalizable,
 
-        FROM ConfirmedItems ci
+    d.DepartmentName AS Department,
 
-        INNER JOIN PurchaseOrders po
-            ON ci.PONumber = po.PONumber
+    ci.Status,
 
-        INNER JOIN PurchaseOrderItems poi
-            ON po.PurchaseOrderID = poi.PurchaseOrderID
+    po.POType,
+    po.OrderMode
 
-        INNER JOIN Items i
-            ON poi.ItemID = i.ItemID
-            AND i.ItemName = ci.ItemName
+FROM ConfirmedItems ci
 
-        INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID
+INNER JOIN PurchaseOrders po
+    ON ci.PONumber = po.PONumber
 
-        ORDER BY ci.DateReceived DESC";
+INNER JOIN PurchaseOrderItems poi
+    ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+INNER JOIN Items i
+    ON poi.ItemID = i.ItemID
+    AND i.ItemName = ci.ItemName
+
+INNER JOIN Departments d
+    ON po.DepartmentID = d.DepartmentID
+
+ORDER BY ci.DateReceived DESC";
 
                 return conn.Query<AuditorReviewItemDto>(query).ToList();
             }
@@ -769,7 +778,34 @@ namespace SyncStock.Database
             }
         }
 
+        public void UpdateConfirmedItem(
+    int confirmedItemId,
+    ConfirmedItems item)
+        {
+            using (var conn = CreateConnection())
+            {
+                string query = @"
+UPDATE ConfirmedItems
+SET
+    ReceivedQuantity = @ReceivedQuantity,
+    ReceivedAmount = @ReceivedAmount,
+    Remarks = @Remarks,
+    AttachmentData = @AttachmentData,
+    AttachmentFileName = @AttachmentFileName
+WHERE ConfirmedItemID = @ConfirmedItemID";
 
+                conn.Execute(query, new
+                {
+                    ConfirmedItemID = confirmedItemId,
+
+                    item.ReceivedQuantity,
+                    item.ReceivedAmount,
+                    item.Remarks,
+                    item.AttachmentData,
+                    item.AttachmentFileName
+                });
+            }
+        }
 
 
 

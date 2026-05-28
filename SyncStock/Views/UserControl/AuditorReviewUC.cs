@@ -24,14 +24,12 @@ namespace SyncStock.Views.UserControl
         private AuditorReviewItemDto _selectedItem;
         private bool CanLockDirectly => string.Equals(CurrentUserRole, "Admin", StringComparison.OrdinalIgnoreCase);
 
-        // Tracks whether the currently selected month is locked.
-        private bool _selectedMonthIsLocked = false;
 
         // Pill labels shown in the grid (not raw Yes/No or DB status strings).
         private const string PillCapitalizable = "Capitalizable";
         private const string PillNonCapitalizable = "Expenses";
-        private const string PillActive = "Active";
-        private const string PillPendingReview = "Pending Review";
+        private const string PillActive = "Approved";
+        private const string PillPendingReview = "To be Approved";
         private const string PillApproved = "Approved";
 
         private readonly Repository _repo = new Repository();
@@ -83,8 +81,45 @@ namespace SyncStock.Views.UserControl
             CmbFilterList.SelectedIndexChanged += FilterChanged;
             CmbDate.SelectedIndexChanged += FilterChanged;
             ScFilter.EditValueChanged += FilterChanged;
+            ReviewItemGV.FocusRectStyle =
+            DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
 
-            RefreshLockButtonState(); // ← add this
+            ReviewItemGV.OptionsSelection.EnableAppearanceFocusedCell = false;
+
+            ReviewItemGV.OptionsSelection.MultiSelect = false;
+            BtnEdit.Enabled = false;
+            BtnRemarks.Enabled = false;
+            ReviewItemGV.CustomUnboundColumnData +=
+    ReviewItemGV_CustomUnboundColumnData;
+            RefreshLockButtonState(); // ← add this.
+        }
+        private void ReviewItemGV_CustomUnboundColumnData(
+    object sender,
+    DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        {
+            if (!e.IsGetData)
+                return;
+
+            var item = e.Row as AuditorReviewItemDto;
+
+            if (item == null)
+                return;
+
+            if (e.Column == colOrderType)
+            {
+                e.Value =
+                    item.POType == "GPO"
+                    ? "LOCAL"
+                    : "ONLINE";
+            }
+
+            if (e.Column == colOrderMode)
+            {
+                e.Value =
+                    item.OrderMode == "Group"
+                    ? "GROUP"
+                    : "SINGLE";
+            }
         }
 
         private void ConfigureSearchControl()
@@ -105,8 +140,8 @@ namespace SyncStock.Views.UserControl
             colCapitalizable.FieldName = nameof(AuditorReviewItemDto.Capitalizable);
             colDepartment.FieldName = nameof(AuditorReviewItemDto.Department);
             colStatus.FieldName = nameof(AuditorReviewItemDto.Status);
-            colOrderType.FieldName = nameof(AuditorReviewItemDto.POType);
-            colOrderMode.FieldName = nameof(AuditorReviewItemDto.OrderMode);
+            colOrderType.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            colOrderMode.UnboundType = DevExpress.Data.UnboundColumnType.String;
 
             colUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             colUnitPrice.DisplayFormat.FormatString = "N2";
@@ -347,7 +382,14 @@ namespace SyncStock.Views.UserControl
         }
         private void ReviewItemGV_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            _selectedItem = ReviewItemGV.GetRow(e.FocusedRowHandle) as AuditorReviewItemDto;
+            _selectedItem =
+       ReviewItemGV.GetRow(e.FocusedRowHandle)
+       as AuditorReviewItemDto;
+
+            bool hasSelection = _selectedItem != null;
+
+            BtnEdit.Enabled = hasSelection;
+            BtnRemarks.Enabled = hasSelection;
         }
         private void ReviewItemGV_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
         {
@@ -539,7 +581,6 @@ namespace SyncStock.Views.UserControl
 
             // ── Admin: unlock directly ────────────────────────────────────────────
             if (CanLockDirectly)
-                return;
             {
                 var confirm = XtraMessageBox.Show(
                     $"Unlock {selectedMonth:MMMM yyyy}?\n\nThis will allow changes to this month again.",
@@ -656,27 +697,39 @@ namespace SyncStock.Views.UserControl
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             if (_selectedItem == null)
-            {
-                XtraMessageBox.Show(
-                    "Please select an item first.",
-                    "No Selected Item",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
                 return;
-            }
 
-            string details =
-                $"PO Number: {_selectedItem.PONumber}\n\n" +
-                $"Item Name: {_selectedItem.ItemName}\n\n" +
-                $"Department: {_selectedItem.Department}\n\n" +
-                $"Quantity: {_selectedItem.Quantity}\n\n" +
-                $"Total Amount: ₱{_selectedItem.TotalAmount:N2}\n\n" +
-                $"Status: {_selectedItem.Status}";
+            ReceivingCustodianUC receivingUC =
+                new ReceivingCustodianUC();
+
+            receivingUC.LoadEditItem(
+                _selectedItem);
+
+            Form editForm = new Form();
+
+            editForm.Text = "Edit Received Item";
+            editForm.WindowState = FormWindowState.Maximized;
+
+            receivingUC.Dock = DockStyle.Fill;
+
+            editForm.Controls.Add(receivingUC);
+
+            editForm.ShowDialog();
+
+            LoadReviewItems();
+        }
+
+        private void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            if (_selectedItem == null)
+                return;
 
             XtraMessageBox.Show(
-                details,
-                "Edit Selected Item",
+                string.IsNullOrWhiteSpace(_selectedItem.Remarks)
+                    ? "No remarks available."
+                    : _selectedItem.Remarks,
+
+                "Item Remarks",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }

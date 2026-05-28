@@ -20,6 +20,8 @@ namespace SyncStock.Views.UserControl
         private readonly Repository _repo = new Repository();
         private byte[] _uploadedFileBytes = null;
         private string _uploadedFileName = null;
+        private bool _isEditMode = false;
+        private int _editingConfirmedItemId = 0;
 
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
 
@@ -35,7 +37,11 @@ namespace SyncStock.Views.UserControl
             if (!DesignMode)
             {
                 ApplyGridStyling();
-                LoadDataFromRepository();
+
+                if (!_isEditMode)
+                {
+                    LoadDataFromRepository();
+                }
             }
         }
 
@@ -374,7 +380,25 @@ namespace SyncStock.Views.UserControl
                     AttachmentFileName = _uploadedFileName
                 };
 
-                _repo.AddConfirmedItem(confirmationPayload);
+                if (_isEditMode)
+                {
+                    _repo.UpdateConfirmedItem(
+                        _editingConfirmedItemId,
+                        confirmationPayload);
+                    XtraMessageBox.Show(
+    "Item updated successfully!",
+    "Success",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information);
+
+                    this.FindForm()?.Close();
+                    return;
+                }
+                else
+                {
+                    _repo.AddConfirmedItem(
+                        confirmationPayload);
+                }
 
                 // ✅ Fixed — passes itemName so only THIS item's PO status updates
                 _repo.UpdatePurchaseOrderItemStatus(
@@ -424,6 +448,54 @@ namespace SyncStock.Views.UserControl
             _uploadedFileBytes = null;
             _uploadedFileName = null;
             lblUploadGuide.Text = "or drop file here";
+        }
+        public void LoadEditItem(AuditorReviewItemDto item)
+        {
+            _isEditMode = true;
+            _editingConfirmedItemId =
+    item.ConfirmedItemID;
+
+            // HIDE TOP SECTION
+            gcItems.Visible = false;
+            searchControl.Visible = false;
+
+            lblReceivingReport.Text =
+                $"Editing Item From: {item.Department}";
+
+            lblPONumber.Text =
+                $"PO Number: {item.PONumber}";
+
+            txteditItemName.Text =
+                item.ItemName;
+
+            txteditExpectedQuan.Text =
+                item.ExpectedQuantity.ToString();
+
+            txteditExpectedAmount.Text =
+                item.ExpectedAmount.ToString("N2");
+
+            spneditReceivedQuan.EditValue =
+                item.ReceivedQuantity;
+
+            txteditReceivedAmount.Text =
+                item.ReceivedAmount.ToString("N2");
+
+            txteditRemarks.Text =
+                item.Remarks;
+
+            // LOCK NON-EDITABLE FIELDS
+            txteditItemName.Enabled = false;
+            txteditExpectedQuan.Enabled = false;
+            txteditExpectedAmount.Enabled = false;
+
+            // EDITABLE FIELDS
+            spneditReceivedQuan.Enabled = true;
+            txteditReceivedAmount.Enabled = true;
+            txteditRemarks.Enabled = true;
+            btnUpload.Enabled = true;
+
+            // OPTIONAL
+            btnConfirm.Text = "Update Item";
         }
     }
 }
