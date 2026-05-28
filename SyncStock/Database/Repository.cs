@@ -599,11 +599,10 @@ namespace SyncStock.Database
             FROM PurchaseOrders po
             INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
             LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-            WHERE po.Status = @Status
-              AND MONTH(po.OrderDate) = MONTH(GETDATE())
-              AND YEAR(po.OrderDate) = YEAR(GETDATE())
+            WHERE po.Status = @Status 
+            -- Date filters removed to show all-time totals
             GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
-                    new { Status = WorkflowStatus.Approved });
+            new { Status = WorkflowStatus.Approved });
             }
         }
 
@@ -628,20 +627,46 @@ namespace SyncStock.Database
             {
                 return conn.Query<CapitalizedOrder>(@"
                   SELECT
-                        ConfirmedItemID,
-                        PONumber,
-                        ItemName,
-                        DateReceived,
-                        IsCapitalizable,
-                        ExpectedQuantity,
-                        ReceivedQuantity,
-                        ExpectedAmount,
-                        ReceivedAmount,
-                        Remarks,
-                        Status
-                  FROM ConfirmedItems
+                        ci.ConfirmedItemID,
+                        ci.PONumber,
+                        ci.ItemName,
+                        ci.DateReceived,
+                        ci.IsCapitalizable,
+                        ci.ExpectedQuantity,
+                        ci.ReceivedQuantity,
+                        ci.ExpectedAmount,
+                        ci.ReceivedAmount,
+                        ci.Remarks,
+                        po.POType,
+                        po.OrderMode
+                  FROM ConfirmedItems ci
+                  INNER JOIN PurchaseOrders po ON ci.PONumber = po.PONumber
                   WHERE IsCapitalizable = 1
                   ORDER BY  DateReceived DESC");
+            }
+        }
+
+        public IEnumerable<PurchaseOrderBrief> GetPurchaseOrderBrief()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderBrief>(@"
+            SELECT 
+                po.PONumber,
+                po.OrderDate,
+                po.POType,
+                po.OrderMode,
+                SUM(poi.Quantity)                    AS Quantity,
+                SUM(poi.Quantity * poi.UnitPrice)    AS TotalPrice
+            FROM PurchaseOrders po
+            INNER JOIN PurchaseOrderItems poi 
+                ON po.PurchaseOrderID = poi.PurchaseOrderID
+            GROUP BY
+                po.PONumber,
+                po.OrderDate,
+                po.POType,
+                po.OrderMode
+            ORDER BY po.OrderDate DESC");
             }
         }
 
@@ -662,19 +687,22 @@ namespace SyncStock.Database
             {
                 return conn.Query<ReceivedItemReports>(@"
             SELECT 
-                ConfirmedItemID,
-                PONumber,
-                ItemName,
-                DateReceived,
-                ExpectedQuantity,
-                ReceivedQuantity,
-                ExpectedAmount,
-                ReceivedAmount,
-                Remarks,
-                Status
-            FROM ConfirmedItems
-            WHERE IsCapitalizable = 0
-            ORDER BY DateReceived DESC");
+                ci.ConfirmedItemID,
+                ci.PONumber,
+                ci.ItemName,
+                ci.DateReceived,
+                ci.ExpectedQuantity,
+                ci.ReceivedQuantity,
+                ci.ExpectedAmount,
+                ci.ReceivedAmount,
+                ci.Remarks,
+                po.POType,        
+                po.OrderMode  
+            FROM ConfirmedItems ci
+            INNER JOIN PurchaseOrders po  
+              ON ci.PONumber = po.PONumber
+            WHERE ci.IsCapitalizable = 0
+            ORDER BY ci.DateReceived DESC");
             }
         }
 
@@ -688,7 +716,6 @@ namespace SyncStock.Database
                 d.DepartmentName,
                 po.OrderDate,
                 po.Priority,
-                po.Status           AS POStatus,
                 i.ItemName,
                 poi.Quantity        AS OrderedQuantity,
                 poi.UnitPrice,
@@ -698,8 +725,9 @@ namespace SyncStock.Database
                 ci.ReceivedQuantity,
                 ci.ExpectedAmount,
                 ci.ReceivedAmount,
-                ci.Status           AS ReceivingStatus,
                 ci.Remarks,
+                po.POType,
+                po.OrderMode,
                 ci.AttachmentData,
                 ci.AttachmentFileName
             FROM PurchaseOrders po
@@ -710,6 +738,21 @@ namespace SyncStock.Database
                                              AND ci.ItemName = i.ItemName
             ORDER BY po.OrderDate DESC, i.ItemName"
                 ).ToList();
+            }
+        }
+
+        public decimal GetCurrentMonthApprovedCost()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+            FROM PurchaseOrderItems poi
+            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.Status = @Status
+              AND MONTH(po.OrderDate) = MONTH(GETDATE())
+              AND YEAR(po.OrderDate)  = YEAR(GETDATE())",
+                    new { Status = WorkflowStatus.Approved });
             }
         }
 
@@ -936,17 +979,7 @@ namespace SyncStock.Database
         ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
-        public IEnumerable<PurchaseOrders> GetPurchaseOrderBrief()
-        {
-            using (var conn = CreateConnection())
-            {
-                return conn.Query<PurchaseOrders>(@"
-            SELECT po.*, d.DepartmentName
-            FROM PurchaseOrders po
-            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-            ORDER BY po.OrderDate DESC");
-            }
-        }
+       
         // In Repository.cs
 
         public MonthLock GetMonthLock(DateTime monthYear)

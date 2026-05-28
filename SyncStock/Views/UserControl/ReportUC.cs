@@ -6,6 +6,7 @@ using SyncStock.Models;
 using SyncStock.Models.Reports;
 using SyncStock.PrintForm;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,7 @@ namespace SyncStock.Views.UserControl
     public partial class ReportUC : DevExpress.XtraEditors.XtraUserControl
     {
         Repository _repo = new Repository();
+        private IList _CurrentFilteredData;
         public ReportUC()
         {
             InitializeComponent();
@@ -35,30 +37,30 @@ namespace SyncStock.Views.UserControl
 
         private void LoadData()
         {
-            var items = _repo.GetAllReportItems().ToList();
-            var orders = _repo.GetAllApprovedMonthlyCost().ToList();
-            var totalItems = _repo.GetAllApprovedTotalItems();
-
             PeriodTypeBox.Enabled = false;
             SecondFilterBox.Enabled = false;
 
             var years = _repo.GetDistinctYear().ToList();
             foreach (var year in years)
-            {
                 YearBox.Properties.Items.Add(year.ToString());
-            }
 
-            if (orders == null || orders.Count() == 0)
-            {
-                totalMonthlyCostLBL.Text = "0";
-                totalMonthlyItemsLBL.Text = "0";
+            // Default: show received orders
+            var receivedItems = _repo.GetAllReceivedOrders().ToList();
 
-                return;
-            }
+            var now = DateTime.Now;
+            decimal totalCost = receivedItems
+                .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
+                .Sum(i => i.ReceivedAmount);
 
-            totalMonthlyCostLBL.Text = orders.Sum(o => o.TotalAmount).ToString("N2");
+            int totalItems = receivedItems
+                .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
+                .Sum(i => i.ReceivedQuantity);
+
+            totalMonthlyCostLBL.Text = totalCost.ToString("N2");
             totalMonthlyItemsLBL.Text = totalItems.ToString();
-            ReportGC.DataSource = items;
+
+            _CurrentFilteredData = receivedItems;
+            ReportGC.DataSource = receivedItems;
         }
 
         private void ReportGC_Click(object sender, EventArgs e)
@@ -70,12 +72,44 @@ namespace SyncStock.Views.UserControl
         {
             try
             {
-                var report = new CapitalizedReport();
+                if (_CurrentFilteredData == null)
+                {
+                    MessageBox.Show("No data to print. Please select a report type first.",
+                                    "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                XtraReport report = null;
+
+                switch (FilterBox.Text)
+                {
+                    case "Purchased Orders":
+                        report = new PurchaseReport(_CurrentFilteredData.Cast<PurchaseOrderBrief>());
+                        break;
+
+                    case "Received Orders":
+                        report = new ReceivedReport(_CurrentFilteredData.Cast<ReceivedItemReports>());
+                        break;
+
+                    case "Capitalized Orders":
+                        report = new CapitalizedReport(_CurrentFilteredData.Cast<CapitalizedOrder>());
+                        break;
+
+                    case "Reconciliation":
+                        report = new ReconciliationReport(_CurrentFilteredData.Cast<Reconciliation>());
+                        break;
+
+                    default:
+                        MessageBox.Show("Please select a report type first.",
+                                        "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                }
+
                 report.ShowPreviewDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error Initializing Report: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
@@ -83,24 +117,52 @@ namespace SyncStock.Views.UserControl
         {
             ReportGC.DataSource = null;
             ReportGV.Columns.Clear();
+            _CurrentFilteredData = null;
 
             switch (FilterBox.Text)
             {
                 case "Purchased Orders":
-                    ReportGC.DataSource = _repo.GetPurchaseOrderBrief().ToList();
+                    _CurrentFilteredData = _repo.GetPurchaseOrderBrief().ToList();
+                    ReportGC.DataSource = _CurrentFilteredData;
+                    YearBox.Clear();
+                    PeriodTypeBox.Clear();
+                    PeriodTypeBox.Enabled = false;
+                    SecondFilterBox.Clear();
+                    YearBox.Text = "SELECT YEAR";
+                    PeriodTypeBox.Text = "SELECT PERIOD TYPE";
                     break;
 
                 case "Received Orders":
-                    ReportGC.DataSource = _repo.GetAllReceivedOrders().ToList();
+                    _CurrentFilteredData = _repo.GetAllReceivedOrders().ToList();
+                    ReportGC.DataSource = _CurrentFilteredData;
+                    YearBox.Clear();
+                    PeriodTypeBox.Clear();
+                    PeriodTypeBox.Enabled = false;
+                    SecondFilterBox.Clear();
+                    YearBox.Text = "SELECT YEAR";
+                    PeriodTypeBox.Text = "SELECT PERIOD TYPE";
                     break;
 
                 case "Capitalized Orders":
-                    ReportGC.DataSource = _repo.GetAllCapitalizedOrder().ToList();
+                    _CurrentFilteredData = _repo.GetAllCapitalizedOrder().ToList();
+                    ReportGC.DataSource = _CurrentFilteredData;
+                    YearBox.Clear();
+                    PeriodTypeBox.Clear();
+                    PeriodTypeBox.Enabled = false;
+                    SecondFilterBox.Clear();
+                    YearBox.Text = "SELECT YEAR";
+                    PeriodTypeBox.Text = "SELECT PERIOD TYPE";
                     break;
 
                 case "Reconciliation":
-                    var data = _repo.GetReconciliationItems().ToList();
-                    ReportGC.DataSource = data;
+                    _CurrentFilteredData = _repo.GetReconciliationItems().ToList();
+                    ReportGC.DataSource = _CurrentFilteredData;
+                    YearBox.Clear();
+                    PeriodTypeBox.Clear();
+                    PeriodTypeBox.Enabled = false;
+                    SecondFilterBox.Clear();
+                    YearBox.Text = "SELECT YEAR";
+                    PeriodTypeBox.Text = "SELECT PERIOD TYPE";
 
                     if (ReportGV.Columns["AttachmentData"] != null)
                         ReportGV.Columns["AttachmentData"].Visible = false;
@@ -201,6 +263,7 @@ namespace SyncStock.Views.UserControl
                     for (int month = 1; month <= 12; month++)
                         SecondFilterBox.Properties.Items.Add(new DateTime(year, month, 1).ToString("MMMM"));
                     SecondFilterBox.Enabled = true;
+                    SecondFilterBox.Text = "Select Month";
                     break;
 
                 case 1: //index sa quarterly sa period type box
@@ -209,6 +272,7 @@ namespace SyncStock.Views.UserControl
                     SecondFilterBox.Properties.Items.Add("Q3");
                     SecondFilterBox.Properties.Items.Add("Q4");
                     SecondFilterBox.Enabled = true;
+                    SecondFilterBox.Text = "Select Quarter";
                     break;
 
                 default:
