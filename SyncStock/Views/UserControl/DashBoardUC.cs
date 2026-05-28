@@ -257,8 +257,26 @@ namespace SyncStock.Views.UserControl
                     "MMMM dd, yyyy";
             }
 
+            // =====================================
+            // DISPLAY TEXT
+            // =====================================
+
+            PendingOrdersGV.CustomColumnDisplayText += (s, e) =>
+            {
+                if (e.Column.FieldName == "POType")
+                {
+                    if (e.Value?.ToString() == "OPO")
+                        e.DisplayText = "ONLINE";
+
+                    else if (e.Value?.ToString() == "GPO")
+                        e.DisplayText = "LOCAL";
+                }
+            };
+
             PendingOrdersGV.BestFitColumns();
         }
+
+
 
         // =========================================
         // ASAP ORDERS GRID
@@ -306,6 +324,60 @@ namespace SyncStock.Views.UserControl
             ApprovedASAPOrdersGV.OptionsView.RowAutoHeight = false;
 
             // =====================================
+            // HIDE IDS
+            // =====================================
+
+            if (ApprovedASAPOrdersGV.Columns["PurchaseOrderID"] != null)
+                ApprovedASAPOrdersGV.Columns["PurchaseOrderID"].Visible = false;
+
+            if (ApprovedASAPOrdersGV.Columns["DepartmentID"] != null)
+                ApprovedASAPOrdersGV.Columns["DepartmentID"].Visible = false;
+
+            // =====================================
+            // COLUMN CAPTIONS
+            // =====================================
+
+            if (ApprovedASAPOrdersGV.Columns["InvoiceNumber"] != null)
+                ApprovedASAPOrdersGV.Columns["InvoiceNumber"].Caption =
+                    "Invoice Number";
+
+            if (ApprovedASAPOrdersGV.Columns["PONumber"] != null)
+                ApprovedASAPOrdersGV.Columns["PONumber"].Caption =
+                    "Purchase Order Number";
+
+            if (ApprovedASAPOrdersGV.Columns["DepartmentName"] != null)
+                ApprovedASAPOrdersGV.Columns["DepartmentName"].Caption =
+                    "Department";
+
+            if (ApprovedASAPOrdersGV.Columns["OrderDate"] != null)
+                ApprovedASAPOrdersGV.Columns["OrderDate"].Caption =
+                    "Purchase Order Date";
+
+            if (ApprovedASAPOrdersGV.Columns["Status"] != null)
+                ApprovedASAPOrdersGV.Columns["Status"].Caption =
+                    "PO Status";
+
+            if (ApprovedASAPOrdersGV.Columns["Priority"] != null)
+                ApprovedASAPOrdersGV.Columns["Priority"].Caption =
+                    "Priority Level";
+
+            if (ApprovedASAPOrdersGV.Columns["POType"] != null)
+                ApprovedASAPOrdersGV.Columns["POType"].Caption =
+                    "PO Type";
+
+            if (ApprovedASAPOrdersGV.Columns["OrderMode"] != null)
+                ApprovedASAPOrdersGV.Columns["OrderMode"].Caption =
+                    "Order Mode";
+
+            if (ApprovedASAPOrdersGV.Columns["TotalItems"] != null)
+                ApprovedASAPOrdersGV.Columns["TotalItems"].Caption =
+                    "Total Items";
+
+            if (ApprovedASAPOrdersGV.Columns["TotalAmount"] != null)
+                ApprovedASAPOrdersGV.Columns["TotalAmount"].Caption =
+                    "Total Amount";
+
+            // =====================================
             // ALIGNMENT
             // =====================================
 
@@ -320,6 +392,48 @@ namespace SyncStock.Views.UserControl
                 col.AppearanceCell.TextOptions.HAlignment =
                     DevExpress.Utils.HorzAlignment.Center;
             }
+
+            // =====================================
+            // MONEY FORMAT
+            // =====================================
+
+            if (ApprovedASAPOrdersGV.Columns["TotalAmount"] != null)
+            {
+                ApprovedASAPOrdersGV.Columns["TotalAmount"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+
+                ApprovedASAPOrdersGV.Columns["TotalAmount"].DisplayFormat.FormatString =
+                    "₱{0:N2}";
+            }
+
+            // =====================================
+            // DATE FORMAT
+            // =====================================
+
+            if (ApprovedASAPOrdersGV.Columns["OrderDate"] != null)
+            {
+                ApprovedASAPOrdersGV.Columns["OrderDate"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.DateTime;
+
+                ApprovedASAPOrdersGV.Columns["OrderDate"].DisplayFormat.FormatString =
+                    "MMMM dd, yyyy";
+            }
+
+            // =====================================
+            // DISPLAY TEXT
+            // =====================================
+
+            ApprovedASAPOrdersGV.CustomColumnDisplayText += (s, e) =>
+            {
+                if (e.Column.FieldName == "POType")
+                {
+                    if (e.Value?.ToString() == "OPO")
+                        e.DisplayText = "ONLINE";
+
+                    else if (e.Value?.ToString() == "GPO")
+                        e.DisplayText = "LOCAL";
+                }
+            };
 
             ApprovedASAPOrdersGV.BestFitColumns();
         }

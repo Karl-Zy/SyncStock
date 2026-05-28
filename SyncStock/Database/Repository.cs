@@ -218,19 +218,46 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.Query<PurchaseOrders>
-                    (@" SELECT po.PurchaseOrderID,
-                        po.InvoiceNumber,
-                        po.PONumber,
-                        po.DepartmentID,
-                        d.DepartmentName,
-                        po.OrderDate,
-                        po.Status,
-                        po.Priority,
-                        po.POType, 
-                        po.OrderMode
-                        FROM PurchaseOrders 
-                        po INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID WHERE po.Priority = 'ASAP Department' ORDER BY po.OrderDate DESC").ToList();
+                return conn.Query<PurchaseOrders>(
+                @"SELECT
+            po.PurchaseOrderID,
+            po.InvoiceNumber,
+            po.PONumber,
+            po.DepartmentID,
+            d.DepartmentName,
+            po.OrderDate,
+            po.Status,
+            po.Priority,
+            po.POType,
+            po.OrderMode,
+
+            COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+
+            SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+
+        FROM PurchaseOrders po
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        INNER JOIN PurchaseOrderItems poi
+            ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+        WHERE po.Priority = 'ASAP Department'
+
+        GROUP BY
+            po.PurchaseOrderID,
+            po.InvoiceNumber,
+            po.PONumber,
+            po.DepartmentID,
+            d.DepartmentName,
+            po.OrderDate,
+            po.Status,
+            po.Priority,
+            po.POType,
+            po.OrderMode
+
+        ORDER BY po.OrderDate DESC").ToList();
             }
         }
 
