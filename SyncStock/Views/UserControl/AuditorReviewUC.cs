@@ -170,7 +170,7 @@ namespace SyncStock.Views.UserControl
         {
             CmbFilterList.Properties.Items.Clear();
             CmbFilterList.Properties.Items.Add(AllStatusesLabel);
-            CmbFilterList.Properties.Items.Add(WorkflowStatus.Received);
+            CmbFilterList.Properties.Items.Add("Pending Review");
             CmbFilterList.Properties.Items.Add(WorkflowStatus.Active);
 
             CmbFilterList.Properties.TextEditStyle =
@@ -347,7 +347,7 @@ namespace SyncStock.Views.UserControl
             string.Equals(item.Capitalizable, "Yes", StringComparison.OrdinalIgnoreCase);
 
         private static bool IsPendingReview(AuditorReviewItemDto item) =>
-            string.Equals(item.Status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase);
+            string.Equals(item.Status, "Pending Review", StringComparison.OrdinalIgnoreCase);
 
         private void UpdateStatistics(IReadOnlyList<AuditorReviewItemDto> items, int totalQuantity)
         {
@@ -433,8 +433,9 @@ namespace SyncStock.Views.UserControl
                 return true;
             }
 
-            if (string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase)
-                || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(status, "Pending Review", StringComparison.OrdinalIgnoreCase)
+    || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase)
+    || string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
             {
                 label = PillPendingReview;
                 bgColor = Color.FromArgb(255, 243, 200);

@@ -100,7 +100,9 @@ namespace SyncStock.Views.UserControl
                     InvoiceNumber = opoInvoiceNumTE.Text.Trim(),
                     PONumber = opopoNumberTE.Text.Trim(),
                     OrderDate = opopurchaseDate.DateTime,
-                    DepartmentID = opoReqDepartmentCB.SelectedIndex + 1,
+                    DepartmentID = _departments
+    .First(x => x.DepartmentName == opoReqDepartmentCB.Text)
+    .DepartmentID,
                     Status = "Pending",
                     
                     Priority = opoReqDepartmentCB.Text == "ASAP Department"
@@ -287,7 +289,9 @@ namespace SyncStock.Views.UserControl
                     InvoiceNumber = opoInvoiceNumTE.Text.Trim(),
                     PONumber = opopoNumberTE.Text.Trim(),
                     OrderDate = opopurchaseDate.DateTime,
-                    DepartmentID = opoReqDepartmentCB.SelectedIndex + 1,
+                    DepartmentID = _departments
+    .First(x => x.DepartmentName == opoReqDepartmentCB.Text)
+    .DepartmentID,
                     Status = "Pending",
                     Priority = opoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = opoRemarksTE.Text,
@@ -569,7 +573,9 @@ namespace SyncStock.Views.UserControl
                     InvoiceNumber = first.InvoiceNumber,
                     PONumber = first.PONumber,
                     OrderDate = first.OrderDate,
-                    DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
+                    DepartmentID = _departments
+    .First(x => x.DepartmentName == gpoReqDepartmentCB.Text)
+    .DepartmentID,
                     Status = WorkflowStatus.Pending,
                     Priority = gpoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
@@ -661,7 +667,9 @@ namespace SyncStock.Views.UserControl
                     InvoiceNumber = gpoAddItemToOrderInvoiceNumberTextEdit.Text.Trim(),
                     PONumber = gpoPurchaseOrderNumberTxtEdit.Text.Trim(),
                     OrderDate = gpoPurchaseOrderDate.DateTime,
-                    DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
+                    DepartmentID = _departments
+    .First(x => x.DepartmentName == gpoReqDepartmentCB.Text)
+    .DepartmentID,
                     Status = "Pending",
                     Priority = gpoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,

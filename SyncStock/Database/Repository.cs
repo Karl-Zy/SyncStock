@@ -735,8 +735,67 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 string query = @"
+
+-- =========================================
+-- PENDING PURCHASES
+-- =========================================
+
 SELECT
- ci.ConfirmedItemID,
+    0 AS ConfirmedItemID,
+
+    po.PONumber,
+    i.ItemName,
+    po.InvoiceNumber,
+
+    poi.UnitPrice,
+
+    poi.Quantity AS Quantity,
+    poi.TotalPrice AS TotalAmount,
+
+    po.OrderDate AS DateReceived,
+
+    'No' AS Capitalizable,
+
+    d.DepartmentName AS Department,
+
+    'Pending Review' AS Status,
+
+    po.Priority,
+
+    po.POType,
+    po.OrderMode,
+
+    '' AS Remarks
+
+FROM PurchaseOrders po
+
+INNER JOIN PurchaseOrderItems poi
+    ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+INNER JOIN Items i
+    ON poi.ItemID = i.ItemID
+
+INNER JOIN Departments d
+    ON po.DepartmentID = d.DepartmentID
+
+WHERE NOT EXISTS
+(
+    SELECT 1
+    FROM ConfirmedItems ci
+    WHERE ci.PONumber = po.PONumber
+    AND ci.ItemName = i.ItemName
+)
+
+
+UNION ALL
+
+-- =========================================
+-- CONFIRMED / ACTIVE ITEMS
+-- =========================================
+
+SELECT
+    ci.ConfirmedItemID,
+
     po.PONumber,
     i.ItemName,
     po.InvoiceNumber,
@@ -745,14 +804,6 @@ SELECT
 
     ci.ReceivedQuantity AS Quantity,
     ci.ReceivedAmount AS TotalAmount,
-
-    ci.ExpectedQuantity,
-    ci.ExpectedAmount,
-
-    ci.ReceivedQuantity,
-    ci.ReceivedAmount,
-
-    ci.Remarks,
 
     ci.DateReceived,
 
@@ -763,10 +814,14 @@ SELECT
 
     d.DepartmentName AS Department,
 
-    ci.Status,
+    'Active' AS Status,
+
+    po.Priority,
 
     po.POType,
-    po.OrderMode
+    po.OrderMode,
+
+    ci.Remarks
 
 FROM ConfirmedItems ci
 
@@ -783,7 +838,7 @@ INNER JOIN Items i
 INNER JOIN Departments d
     ON po.DepartmentID = d.DepartmentID
 
-ORDER BY ci.DateReceived DESC";
+ORDER BY DateReceived DESC";
 
                 return conn.Query<AuditorReviewItemDto>(query).ToList();
             }

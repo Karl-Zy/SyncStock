@@ -33,6 +33,7 @@ namespace SyncStock.Models
 
         public int ConfirmedItemID { get; set; }
 
+        public string Priority { get; set; }
 
     }
 }
