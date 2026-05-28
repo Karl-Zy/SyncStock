@@ -17,6 +17,7 @@ namespace SyncStock.Views.UserControl
         private int _opoPurchaseOrderId = 0;
         private int _gpoPurchaseOrderId = 0;
 
+
         public PurchaseOrderUC()
         {
             InitializeComponent();
@@ -72,7 +73,12 @@ namespace SyncStock.Views.UserControl
                     OrderDate = opopurchaseDate.DateTime,
                     DepartmentID = opoReqDepartmentCB.SelectedIndex + 1,
                     Status = "Pending",
-                    Priority = "Normal",
+                    
+                    Priority = opoReqDepartmentCB.Text == "ASAP Department"
+                        ? "ASAP Department"
+                        : "Normal",
+
+
                     Remarks = opoRemarksTE.Text,
                     AttachmentPath = "",
                     POType = "OPO",
@@ -254,7 +260,7 @@ namespace SyncStock.Views.UserControl
                     OrderDate = opopurchaseDate.DateTime,
                     DepartmentID = opoReqDepartmentCB.SelectedIndex + 1,
                     Status = "Pending",
-                    Priority = "Normal",
+                    Priority = opoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = opoRemarksTE.Text,
                     AttachmentPath = "",
                     POType = "OPO",
@@ -303,23 +309,28 @@ namespace SyncStock.Views.UserControl
         private void LoadOPOPurchaseOrderItems()
         {
             var items = _repo.GetAllOPOPurchaseOrderItems().ToList();
-
             opoItemsInOrderGC.DataSource = null;
-            opoItemsInOrderGC.DataSource = items;
+            opoItemsInOrderGC.DataSource = items; 
             opoItemsInOrderGV.PopulateColumns();
-
-            if (opoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
-            {
-                opoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-                opoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-                opoItemsInOrderGV.Columns["ItemID"].Visible = false;
-            }
-
-            int totalItems = items.Sum(x => x.Quantity);
+           
+           if (opoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null) opoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
+            if (opoItemsInOrderGV.Columns["PurchaseOrderID"] != null) opoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
+            if (opoItemsInOrderGV.Columns["ItemID"] != null) opoItemsInOrderGV.Columns["ItemID"].Visible = false;
+             if (opoItemsInOrderGV.Columns["PONumber"] != null) opoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
+            if (opoItemsInOrderGV.Columns["OrderDate"] != null) opoItemsInOrderGV.Columns["OrderDate"].Caption = "Purchase Order Date";
+            if (opoItemsInOrderGV.Columns["InvoiceNumber"] != null) opoItemsInOrderGV.Columns["InvoiceNumber"].Caption = "Invoice Number"; 
+            if (opoItemsInOrderGV.Columns["ItemName"] != null) opoItemsInOrderGV.Columns["ItemName"].Caption = "Item Name";
+            if (opoItemsInOrderGV.Columns["UnitPrice"] != null) opoItemsInOrderGV.Columns["UnitPrice"].Caption = "Unit Price"; 
+            if (opoItemsInOrderGV.Columns["TotalPrice"] != null) opoItemsInOrderGV.Columns["TotalPrice"].Caption = "Total Price"; 
+            if (opoItemsInOrderGV.Columns["Remarks"] != null) opoItemsInOrderGV.Columns["Remarks"].Caption = "Remarks";
+           if (opoItemsInOrderGV.Columns["UnitPrice"] != null) { opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric; opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "c2"; }
+            if (opoItemsInOrderGV.Columns["TotalPrice"] != null) { opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric; opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "c2"; }
+           if (opoItemsInOrderGV.Columns["OrderDate"] != null) { opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime; opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy"; } 
+           opoItemsInOrderGV.BestFitColumns();
+            int totalItems = items.Count; 
             decimal totalAmount = items.Sum(x => x.TotalPrice);
-
-            opoioTotalAmountLBL.Text = totalAmount.ToString("N2");
-            opoTotalItemsLBL.Text = totalItems.ToString();
+            opoTotalItemsLBL.Text = totalItems.ToString(); 
+            opoioTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
         }
 
         private void CalculateOPOTotal()
@@ -531,7 +542,7 @@ namespace SyncStock.Views.UserControl
                     OrderDate = first.OrderDate,
                     DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
                     Status = WorkflowStatus.Pending,
-                    Priority = "Normal",
+                    Priority = gpoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
                     AttachmentPath = "",
                     POType = "GPO",
@@ -623,7 +634,7 @@ namespace SyncStock.Views.UserControl
                     OrderDate = gpoPurchaseOrderDate.DateTime,
                     DepartmentID = gpoReqDepartmentCB.SelectedIndex + 1,
                     Status = "Pending",
-                    Priority = "Normal",
+                    Priority = gpoReqDepartmentCB.Text == "ASAP Department" ? "ASAP Department" : "Normal",
                     Remarks = gpoRemarksTxtEdit.Text,
                     AttachmentPath = "",
                     POType = "GPO",
@@ -679,14 +690,28 @@ namespace SyncStock.Views.UserControl
             gpoItemsInOrderGV.PopulateColumns();
 
             if (gpoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
-            {
                 gpoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-                gpoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-                gpoItemsInOrderGV.Columns["ItemID"].Visible = false;
-            }
 
-            decimal totalAmount = items.Sum(x => x.TotalPrice);
+            if (gpoItemsInOrderGV.Columns["PurchaseOrderID"] != null) gpoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
+            if (gpoItemsInOrderGV.Columns["ItemID"] != null) gpoItemsInOrderGV.Columns["ItemID"].Visible = false;
+            if (gpoItemsInOrderGV.Columns["PONumber"] != null) gpoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
+            if (gpoItemsInOrderGV.Columns["OrderDate"] != null) gpoItemsInOrderGV.Columns["OrderDate"].Caption = "Purchase Order Date"; 
+            if (gpoItemsInOrderGV.Columns["InvoiceNumber"] != null) gpoItemsInOrderGV.Columns["InvoiceNumber"].Caption = "Invoice Number"; 
+            if (gpoItemsInOrderGV.Columns["ItemName"] != null) gpoItemsInOrderGV.Columns["ItemName"].Caption = "Item Name";
+            if (gpoItemsInOrderGV.Columns["UnitPrice"] != null) gpoItemsInOrderGV.Columns["UnitPrice"].Caption = "Unit Price"; 
+            if (gpoItemsInOrderGV.Columns["TotalPrice"] != null) gpoItemsInOrderGV.Columns["TotalPrice"].Caption = "Total Price";
+            if (gpoItemsInOrderGV.Columns["Remarks"] != null) gpoItemsInOrderGV.Columns["Remarks"].Caption = "Remarks"; 
+           if (gpoItemsInOrderGV.Columns["UnitPrice"] != null) { gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric; 
+                gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "c2"; }
+            if (gpoItemsInOrderGV.Columns["TotalPrice"] != null) { gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "c2"; } 
+            if (gpoItemsInOrderGV.Columns["OrderDate"] != null) { gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy"; }
+            gpoItemsInOrderGV.BestFitColumns(); 
+            int totalItems = items.Count; decimal totalAmount = items.Sum(x => x.TotalPrice);
+            gpoItemsInCartTotalItemsLBL.Text = totalItems.ToString();
             gpoTotalAmountLbl.Text = "₱" + totalAmount.ToString("N2");
+
         }
 
         private void CalculateGPOTotal()

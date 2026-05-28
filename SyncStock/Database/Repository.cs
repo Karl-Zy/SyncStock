@@ -218,12 +218,46 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.Query<PurchaseOrders>(@"
-                    SELECT po.*, d.DepartmentName
-                    FROM PurchaseOrders po
-                    JOIN Departments d ON po.DepartmentID = d.DepartmentID
-                    WHERE po.Priority IN ('ASAP Department', 'ASAP')
-                    ORDER BY po.OrderDate DESC").ToList();
+                return conn.Query<PurchaseOrders>(
+                @"SELECT
+            po.PurchaseOrderID,
+            po.InvoiceNumber,
+            po.PONumber,
+            po.DepartmentID,
+            d.DepartmentName,
+            po.OrderDate,
+            po.Status,
+            po.Priority,
+            po.POType,
+            po.OrderMode,
+
+            COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+
+            SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+
+        FROM PurchaseOrders po
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        INNER JOIN PurchaseOrderItems poi
+            ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+        WHERE po.Priority = 'ASAP Department'
+
+        GROUP BY
+            po.PurchaseOrderID,
+            po.InvoiceNumber,
+            po.PONumber,
+            po.DepartmentID,
+            d.DepartmentName,
+            po.OrderDate,
+            po.Status,
+            po.Priority,
+            po.POType,
+            po.OrderMode
+
+        ORDER BY po.OrderDate DESC").ToList();
             }
         }
 
@@ -255,22 +289,188 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.Query<PendingOrderSummary>(@"
-            SELECT po.PONumber,
-                   d.DepartmentName,
-                   po.OrderDate,
-                   po.Priority,
-                   po.Status,
-                   COUNT(poi.PurchaseOrderItemID) AS TotalItems,
-                   SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
-            FROM PurchaseOrders po
-            INNER JOIN Departments d ON po.DepartmentID = d.DepartmentID
-            LEFT JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
-            WHERE po.Status = @Status
-            GROUP BY po.PONumber, d.DepartmentName, po.OrderDate, po.Priority, po.Status",
-                    new { Status = WorkflowStatus.Pending });
+        SELECT 
+            po.PurchaseOrderID,
+            
+            ISNULL(po.InvoiceNumber, '') AS InvoiceNumber,
+
+            ISNULL(po.PONumber, '') AS PONumber,
+
+            po.DepartmentID,
+
+            ISNULL(d.DepartmentName, '') AS DepartmentName,
+
+            po.OrderDate,
+
+            ISNULL(po.Status, '') AS Status,
+
+            ISNULL(po.Priority, '') AS Priority,
+
+            ISNULL(po.POType, '') AS POType,
+
+            ISNULL(po.OrderMode, '') AS OrderMode,
+
+            COUNT(poi.PurchaseOrderItemID) AS TotalItems,
+
+            ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0) AS TotalAmount
+
+        FROM PurchaseOrders po
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        LEFT JOIN PurchaseOrderItems poi
+            ON po.PurchaseOrderID = poi.PurchaseOrderID
+
+        WHERE po.Status = 'Pending'
+
+        GROUP BY
+            po.PurchaseOrderID,
+            po.InvoiceNumber,
+            po.PONumber,
+            po.DepartmentID,
+            d.DepartmentName,
+            po.OrderDate,
+            po.Status,
+            po.Priority,
+            po.POType,
+            po.OrderMode
+
+        ORDER BY po.OrderDate DESC");
             }
         }
 
+        public int GetApprovedOrdersCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>(
+                    "SELECT COUNT(*) FROM PurchaseOrders WHERE Status = @Status",
+                    new { Status = WorkflowStatus.Approved });
+            }
+        }
+
+        public decimal GetTotalApprovedValue()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+            FROM PurchaseOrderItems poi
+            INNER JOIN PurchaseOrders po
+                ON poi.PurchaseOrderID = po.PurchaseOrderID
+            WHERE po.Status = @Status",
+                    new { Status = WorkflowStatus.Approved });
+            }
+
+        }
+
+        public int GetItemsCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>(
+                    "SELECT COUNT(*) FROM Items");
+            }
+        }
+
+        public int GetDepartmentsCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>(
+                    "SELECT COUNT(*) FROM Departments");
+            }
+        }
+
+        public decimal GetAverageOrderValue()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(AVG(OrderTotal), 0)
+            FROM
+            (
+                SELECT
+                    SUM(poi.Quantity * poi.UnitPrice) AS OrderTotal
+                FROM PurchaseOrders po
+                INNER JOIN PurchaseOrderItems poi
+                    ON po.PurchaseOrderID = poi.PurchaseOrderID
+                GROUP BY po.PurchaseOrderID
+            ) x");
+            }
+        }
+
+        public IEnumerable<dynamic> GetMonthlyPurchaseSummary()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query(@"
+            SELECT
+                DATENAME(MONTH, po.OrderDate) AS [Month],
+                MONTH(po.OrderDate) AS MonthNumber,
+                SUM(poi.Quantity * poi.UnitPrice) AS TotalAmount
+            FROM PurchaseOrders po
+            INNER JOIN PurchaseOrderItems poi
+                ON po.PurchaseOrderID = poi.PurchaseOrderID
+            GROUP BY
+                DATENAME(MONTH, po.OrderDate),
+                MONTH(po.OrderDate)
+            ORDER BY MonthNumber");
+            }
+        }
+
+        public IEnumerable<dynamic> GetAssetCategorySummary()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query(@"
+            SELECT
+                CASE
+                    WHEN IsCapitalizable = 1
+                        THEN 'Capitalizable'
+                    ELSE 'Non-Capitalizable'
+                END AS Category,
+                COUNT(*) AS Total
+            FROM ConfirmedItems
+            GROUP BY IsCapitalizable");
+            }
+        }
+
+        public decimal GetPendingOrdersAmount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+            FROM PurchaseOrders po
+            INNER JOIN PurchaseOrderItems poi
+                ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = 'Pending'");
+            }
+        }
+
+        public decimal GetASAPOrdersAmount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>
+                    (@" SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+                    FROM PurchaseOrders po 
+                    INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID 
+                    WHERE po.Priority = 'ASAP Department'");
+            }
+        }
+
+        public decimal GetOverallPurchaseValue()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+            FROM PurchaseOrderItems poi");
+            }
+        }
         #endregion
 
         #region Receiving Custodian
@@ -672,45 +872,89 @@ ORDER BY ci.DateReceived DESC";
                 cmd.ExecuteNonQuery();
             }
         }
-        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
-        {
-            using (var conn = CreateConnection())
-            {
-                return conn.Query<PurchaseOrderItem>(@"
-            SELECT 
-                poi.PurchaseOrderItemID,
-                poi.PurchaseOrderID,
-                poi.ItemID,
-                i.ItemName,
-                poi.Quantity,
-                poi.UnitPrice,
-                (poi.Quantity * poi.UnitPrice) AS TotalPrice
-            FROM PurchaseOrderItems poi
-            INNER JOIN Items i ON poi.ItemID = i.ItemID
-            INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
-            WHERE po.POType = 'GPO'
-            ORDER BY poi.PurchaseOrderItemID DESC");
-            }
-        }
-
         public IEnumerable<PurchaseOrderItem> GetAllOPOPurchaseOrderItems()
         {
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-                    SELECT 
-                        poi.PurchaseOrderItemID,
-                        poi.PurchaseOrderID,
-                        poi.ItemID,
-                        i.ItemName,
-                        poi.Quantity,
-                        poi.UnitPrice,
-                        (poi.Quantity * poi.UnitPrice) AS TotalPrice
-                    FROM PurchaseOrderItems poi
-                    INNER JOIN Items i ON poi.ItemID = i.ItemID
-                    INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
-                    WHERE po.POType = 'OPO'
-                    ORDER BY poi.PurchaseOrderItemID DESC");
+        SELECT 
+            poi.PurchaseOrderItemID,
+            poi.PurchaseOrderID,
+            poi.ItemID,
+
+            po.PONumber,
+            po.InvoiceNumber,
+            po.OrderDate,
+            po.Remarks,
+            po.Priority,
+            po.POType,
+            po.OrderMode,
+
+            d.DepartmentName,
+
+            i.ItemName,
+
+            poi.Quantity,
+            poi.UnitPrice,
+            (poi.Quantity * poi.UnitPrice) AS TotalPrice
+
+        FROM PurchaseOrderItems poi
+
+        INNER JOIN PurchaseOrders po
+            ON poi.PurchaseOrderID = po.PurchaseOrderID
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        INNER JOIN Items i
+            ON poi.ItemID = i.ItemID
+
+        WHERE po.POType = 'OPO'
+
+        ORDER BY poi.PurchaseOrderItemID DESC");
+            }
+        }
+
+        public IEnumerable<PurchaseOrderItem> GetAllGPOPurchaseOrderItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<PurchaseOrderItem>(@"
+        SELECT 
+            poi.PurchaseOrderItemID,
+            poi.PurchaseOrderID,
+            poi.ItemID,
+
+            po.PONumber,
+            po.InvoiceNumber,
+            po.OrderDate,
+            po.Remarks,
+            po.Priority,
+            po.POType,
+            po.OrderMode,
+
+            d.DepartmentName,
+
+            i.ItemName,
+
+            poi.Quantity,
+            poi.UnitPrice,
+            (poi.Quantity * poi.UnitPrice) AS TotalPrice
+
+        FROM PurchaseOrderItems poi
+
+        INNER JOIN PurchaseOrders po
+            ON poi.PurchaseOrderID = po.PurchaseOrderID
+
+        INNER JOIN Departments d
+            ON po.DepartmentID = d.DepartmentID
+
+        INNER JOIN Items i
+            ON poi.ItemID = i.ItemID
+
+        WHERE po.POType = 'GPO'
+
+        ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
        
@@ -809,6 +1053,30 @@ WHERE ConfirmedItemID = @ConfirmedItemID";
             }
         }
 
+        public int GetReceivedOrdersCount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<int>(@"
+            SELECT COUNT(*)
+            FROM PurchaseOrders
+            WHERE Status = @Status",
+                    new { Status = WorkflowStatus.Received });
+            }
+        }
+        public decimal GetReceivedOrdersAmount()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.ExecuteScalar<decimal>(@"
+            SELECT ISNULL(SUM(poi.Quantity * poi.UnitPrice), 0)
+            FROM PurchaseOrders po
+            INNER JOIN PurchaseOrderItems poi
+                ON po.PurchaseOrderID = poi.PurchaseOrderID
+            WHERE po.Status = @Status",
+                    new { Status = WorkflowStatus.Received });
+            }
+        }
 
 
 
