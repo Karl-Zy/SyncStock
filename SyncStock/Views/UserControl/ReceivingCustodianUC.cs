@@ -1,4 +1,32 @@
-﻿using DevExpress.XtraEditors;
+﻿// ============================================================
+//  ReceivingCustodianUC.cs
+//  Purpose : User control for the Receiving Custodian workflow.
+//            Allows custodians to view pending PO items, fill in
+//            actual received quantities/amounts, attach proof-of-
+//            delivery files, and commit the confirmation to the DB.
+//
+//  4 Pillars of OOP used in this file
+//  -----------------------------------
+//  1. ENCAPSULATION  – Private fields (_repo, _uploadedFileBytes,
+//                      etc.) hide internal state from the outside.
+//                      All mutation goes through controlled methods.
+//
+//  2. INHERITANCE    – This class inherits from
+//                      DevExpress.XtraEditors.XtraUserControl,
+//                      reusing the entire WinForms user-control
+//                      lifecycle (OnLoad, events, rendering) without
+//                      re-implementing it.
+//
+//  3. ABSTRACTION    – Complex database operations are hidden behind
+//                      the Repository pattern (_repo).  Callers only
+//                      know *what* methods do, not *how* they do it.
+//
+//  4. POLYMORPHISM   – OnLoad overrides the base class virtual method,
+//                      changing its behaviour for this specific control
+//                      while keeping the same method signature.
+// ============================================================
+
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -15,118 +43,81 @@ using System.Windows.Forms;
 
 namespace SyncStock.Views.UserControl
 {
+    // INHERITANCE 
+    // XtraUserControl kay ang DevExpress base class sa tanan custom user controls
+    // Sa pag inherit ana kay ang themes ug skins
     public partial class ReceivingCustodianUC : DevExpress.XtraEditors.XtraUserControl
     {
+        // ENCAPSULATION 
+        // Dli ni makita sa mga external classes, ug dili nila ma access directly.
+        // Ang access sa database kay controlled ra sa mga methods sa ubos, dili diretso.
+
+
+        // ABSTRACTION
+        // Kani ang tig-kuhag data sa database (Repository).
+        // dli na kailangan refer sa mga SQL queries diri, kay ang Repository na ang bahala ana.
         private readonly Repository _repo = new Repository();
+
+        // Dinhi gi-save ang sulod sa gi-upload nga resibo. 
+        // "null" (walay sulod) ni kung wala pay gi-pili.
         private byte[] _uploadedFileBytes = null;
+
+        // Ang mismong ngalan sa file nga gi-upload (e.g. "receipt.pdf").
         private string _uploadedFileName = null;
         private bool _isEditMode = false;
         private int _editingConfirmedItemId = 0;
 
+        // Gi-remind ani kung unsa ang gi-type sa search box 
+        // para ma-highlight ang text inig display sa screen.
+        private string _currentSearchText = string.Empty;
+
+        // Listahan sa mga file format nga pwede i-upload (.jpg, .png, .pdf).
+        // Gi-check ni sa button ug sa drag-and-drop.
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
+
 
         public ReceivingCustodianUC()
         {
             InitializeComponent();
         }
 
+
+        // POLYMORPHISM
+        // Ang 'OnLoad' kay gikan sa original nga WinForms (Control).
+        // Gi-override nato ni para mo-andar ang atoang settings inig sugod sa screen,
+        // dayun gina-tawag gihapon ang base.OnLoad para dili maguba ang system.
+
+        // Ang 'DesignMode' guard kay para dili mo-error o mo-andar ang 
+        // database inig open sa Visual Studio Designer panel.
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             if (!DesignMode)
             {
-                ApplyGridStyling();
-
-                if (!_isEditMode)
-                {
-                    LoadDataFromRepository();
-                }
+                ApplyGridStyling();       // Visual enhancement sa grid
+                LoadDataFromRepository(); // Kwaon ang data gikan repository
+                txteditReceivedAmount.Leave += txteditReceivedAmount_Leave; // Visual Enhancement: auto-format sa amount field inig human edit
+                txteditReceivedAmount.Enter += txteditReceivedAmount_Enter;
             }
         }
 
-        // ─────────────────────────────────────────────
-        // GRID STYLING
-        // ─────────────────────────────────────────────
-
-        private void ApplyGridStyling()
-        {
-            gvItemsView.OptionsView.EnableAppearanceOddRow = true;
-            gvItemsView.OptionsView.EnableAppearanceEvenRow = true;
-            gvItemsView.Appearance.OddRow.BackColor = Color.FromArgb(245, 250, 248);
-            gvItemsView.Appearance.EvenRow.BackColor = Color.White;
-
-            gvItemsView.Appearance.FocusedRow.BackColor = Color.FromArgb(83, 237, 126);
-            gvItemsView.Appearance.FocusedRow.ForeColor = Color.FromArgb(30, 30, 30);
-            gvItemsView.Appearance.HideSelectionRow.BackColor = Color.FromArgb(198, 239, 206);
-
-            gvItemsView.RowHeight = 32;
-
-            gvItemsView.OptionsView.ShowGroupPanel = false;
-            gvItemsView.OptionsView.ColumnAutoWidth = true;
-            gvItemsView.OptionsSelection.EnableAppearanceFocusedCell = false;
-        }
-
-        private void ApplyColumnAlignment()
-        {
-            foreach (DevExpress.XtraGrid.Columns.GridColumn col in gvItemsView.Columns)
-            {
-                col.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-                col.AppearanceHeader.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
-
-                if (col.FieldName == "Amount" || col.FieldName == "Quantity" ||
-                    col.FieldName == "ItemID" || col.FieldName == "PurchaseOrderID")
-                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-                else
-                    col.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            }
-
-            // Format Amount as currency
-            var amountCol = gvItemsView.Columns["Amount"];
-            if (amountCol != null)
-            {
-                amountCol.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                amountCol.DisplayFormat.FormatString = "₱{0:N2}";
-                amountCol.Width = 120;
-            }
-
-            // Hide raw POType and OrderMode — show friendly computed columns instead
-            var poTypeCol = gvItemsView.Columns["POType"];
-            if (poTypeCol != null)
-                poTypeCol.Visible = false;
-
-            var orderModeCol = gvItemsView.Columns["OrderMode"];
-            if (orderModeCol != null)
-                orderModeCol.Visible = false;
-
-            // "Order Mode" column — Single Order / Grouped Order
-            var orderModeDisplayCol = gvItemsView.Columns["OrderModeDisplay"];
-            if (orderModeDisplayCol != null)
-            {
-                orderModeDisplayCol.Caption = "Order Mode";
-                orderModeDisplayCol.Width = 120;
-            }
-
-            // "Order Type" column — Local / Online
-            var orderTypeCol = gvItemsView.Columns["OrderType"];
-            if (orderTypeCol != null)
-            {
-                orderTypeCol.Caption = "Order Type";
-                orderTypeCol.Width = 100;
-            }
-        }
-
-        // ─────────────────────────────────────────────
-        // DATA LOADING
-        // ─────────────────────────────────────────────
-
+        // LoadDataFromRepository
+        // Gi-kuha ani ang tanang 'pending incoming PO items' gikan sa database
+        // ug gi-bira padung sa grid control (gcItems).
+        // 
+        // Gi-format sab og balik ang mga columns pagkahuman og butang sa data
+        // kay limpyohan ug i-reset man gud sa DevExpress ang column settings 
+        // inig change sa DataSource.
         private void LoadDataFromRepository()
         {
             try
             {
+                // ABSTRACTION
+                // igo ra ta magkuha sa data
                 var incomingItems = _repo.GetPendingIncomingItemsDetails();
                 gcItems.DataSource = incomingItems;
-                ApplyColumnAlignment();
+                ApplyColumnAlignment(); // re apply ang headers ug widths
             }
             catch (Exception ex)
             {
@@ -138,90 +129,123 @@ namespace SyncStock.Views.UserControl
             }
         }
 
-        // ─────────────────────────────────────────────
-        // GRID ROW SELECTION
-        // ─────────────────────────────────────────────
-
+        // gvItemsView_FocusedRowChanged (Grid row-selection event)
+        // mag run ni kada click sa user og laing row sa grid view.
+        // Basahon ani ang cell values sa gi-pili nga row, dayon i-populate 
+        // sa ubos nga section "Receiving Form" fields para ma-review sa custodian 
+        // ang expected values before nila i-input ang actual data.
         private void gvItemsView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             int rowHandle = e.FocusedRowHandle;
 
+            // Gi check sa 'IsValidRowHandle' para dili ma-apil ang mga header rows 
+            // o katong mga empty-grid states—kay i-represent man gud na sa DevExpress 
+            // gamit ang mga negative sentinel values, so kailangan jud i-filter.
             if (gvItemsView.IsValidRowHandle(rowHandle))
             {
                 try
                 {
+                    // Mag-bira sa mga field values gikan sa gi-pili nga grid row.
                     string poNumber = gvItemsView.GetRowCellValue(rowHandle, "PONumber")?.ToString();
                     string department = gvItemsView.GetRowCellValue(rowHandle, "Department")?.ToString();
                     string itemName = gvItemsView.GetRowCellValue(rowHandle, "ItemName")?.ToString();
                     object qty = gvItemsView.GetRowCellValue(rowHandle, "Quantity");
                     object amount = gvItemsView.GetRowCellValue(rowHandle, "Amount");
 
+                    // I-update ang mga informational labels sa pinakababaw sa form.
                     lblReceivingReport.Text = $"Receiving Report From: {department}";
                     lblPONumber.Text = $"PO Number: {poNumber}";
 
+                    // I-populate ang read-only "Expected" fields para ma-compare sa custodian
+                    // kung unsa ang gi-order versus sa unsa jud ang ni-abot.
                     txteditItemName.Text = itemName;
                     txteditExpectedQuan.Text = qty?.ToString();
 
+                    // I-format ang expected amount into a 2-decimal number.
+                    // Kung mo-fail ang pag-parse, i-default lang og "0.00" para dili blank tan-awon.
                     if (amount != null && decimal.TryParse(amount.ToString(), out decimal parsedAmount))
                         txteditExpectedAmount.Text = string.Format("{0:N2}", parsedAmount);
                     else
                         txteditExpectedAmount.Text = "0.00";
 
-                    dateEdit.EditValue = DateTime.Today;
-                    spneditReceivedQuan.EditValue = qty;
-                    txteditReceivedAmount.Text = "";
+                    // Pre-fillan og mga sensible defaults ang mga editable "Received" fields.
+                    dateEdit.EditValue = DateTime.Today;            // I-default lang sa date karon.
+                    spneditReceivedQuan.EditValue = qty;            // I-default sa expected quantity.
+                    txteditReceivedAmount.Text = "";                // Kailangan jud ni i-type sa custodian.
                     txteditRemarks.Text = "";
                     chckboxAsset.Checked = false;
                 }
                 catch (Exception ex)
                 {
+                    // Non-critical: I-log lang sa debug output imbis nga mang-disturbo ta sa user gamit ang pop-up.
                     System.Diagnostics.Debug.WriteLine($"Error assigning grid values to form: {ex.Message}");
                 }
             }
         }
 
-        // ─────────────────────────────────────────────
-        // SEARCH — PO Number, Item Name, Order Type
-        // ─────────────────────────────────────────────
-
+        // searchControl_TextChanged  (Live-search event)
+        // Mo-fire ni kada keystroke o liso sa text sa search box.
+        // Mo-filter ni sa mga grid rows client-side (no extra DB calls jud 
+        // kada pindot sa key) pinaagi sa pag-match sa tanang space-separated keywords 
+        // batok sa PO number, item name, order type, order mode, ug department.
+        // Mo-trigger sad ni og grid repaint para ma-update ang mga highlighted matches.
         private void searchControl_TextChanged(object sender, EventArgs e)
         {
-            string searchText = searchControl.Text?.Trim().ToLower() ?? string.Empty;
+            _currentSearchText = searchControl.Text?.Trim() ?? string.Empty;
+            string searchLower = _currentSearchText.ToLower();
+
+            // Mag-bira permi og fresh copy gikan sa repo para non-destructive ang pag-filter
+            // (meaning, walay data nga permanently ma-remove o mawala).
             var allItems = _repo.GetPendingIncomingItemsDetails();
 
-            if (string.IsNullOrWhiteSpace(searchText))
+            // Kung empty ang search box, i-restore lang ang full list dayon mo-exit early.
+            if (string.IsNullOrWhiteSpace(searchLower))
             {
                 gcItems.DataSource = allItems.ToList();
                 ApplyColumnAlignment();
+                gvItemsView.RefreshData();
                 return;
             }
 
-            string[] keywords = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            // I-split into individual words para ang "Laptop Office" mo-match gihapon sa mga rows
+            // nga naay sulod sa duha ka mga pulong maski asa dapit (AND logic via keywords.All).
+            string[] keywords = searchLower.Split(
+                new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
+            // I-apply na ang multi-keyword filter across tanang searchable columns.
             gcItems.DataSource = allItems.Where(x =>
             {
                 string po = x.PONumber?.ToLower() ?? string.Empty;
                 string item = x.ItemName?.ToLower() ?? string.Empty;
                 string orderType = x.OrderType?.ToLower() ?? string.Empty;
                 string orderMode = x.OrderModeDisplay?.ToLower() ?? string.Empty;
+                string dept = x.Department?.ToLower() ?? string.Empty;
 
+                // Makalubot lang ang row kung ang kada keyword makit-an sa maski usa lang ka column.
                 return keywords.All(k =>
                     po.Contains(k) ||
                     item.Contains(k) ||
                     orderType.Contains(k) ||
-                    orderMode.Contains(k)
+                    orderMode.Contains(k) ||
+                    dept.Contains(k)
                 );
             }).ToList();
 
             ApplyColumnAlignment();
+            gvItemsView.RefreshData();
         }
 
-        // ─────────────────────────────────────────────
-        // FILE UPLOAD
-        // ─────────────────────────────────────────────
+        // ===========================================================
+        // BUTTON HANDLERS
+        // ===========================================================
 
+        // btnUpload_Click  (Upload button – file dialog)
+        // Mo-open ni og file-open dialog nga restricted lang jud para sa image ug PDF types.
+        // Kung mag-select ang user og valid nga file, basahon ni padung sa memory as
+        // a byte array para ma-apil ra puhon inig save sa DB record.
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            // I-configure ang dialog gamit ang mga friendly filter labels.
             openFileDialogReceipt.Title = "Select Proof of Delivery Receipt or Photo";
             openFileDialogReceipt.Filter = "Image & PDF Files|*.jpg;*.jpeg;*.png;*.pdf|All Files|*.*";
             openFileDialogReceipt.FilterIndex = 1;
@@ -234,6 +258,8 @@ namespace SyncStock.Views.UserControl
                     string selectedFilePath = openFileDialogReceipt.FileName;
                     string fileExtension = System.IO.Path.GetExtension(selectedFilePath).ToLower();
 
+                    // ENCAPSULATION: Gi-keep sulod sa kani nga method ang validation 
+                    // para ang tibuok class makasiguro nga permi ra clean data ang madawat.
                     if (!_allowedExtensions.Contains(fileExtension))
                     {
                         DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -244,8 +270,11 @@ namespace SyncStock.Views.UserControl
                         return;
                     }
 
+                    // Basahon ang tibuok file padung sa memory, dayon i-save sa mga private fields.
                     _uploadedFileBytes = System.IO.File.ReadAllBytes(selectedFilePath);
                     _uploadedFileName = System.IO.Path.GetFileName(selectedFilePath);
+
+                    // I-inform ang user kung unsa nga file ang naka-queue na para i-upload.
                     lblUploadGuide.Text = $"Selected: {_uploadedFileName}";
                 }
                 catch (Exception ex)
@@ -259,14 +288,23 @@ namespace SyncStock.Views.UserControl
             }
         }
 
+        // btnUpload_DragEnter  (Drag-and-drop: enter zone)
+        // I-change ani ang cursor feedback ngadto sa "Copy" basta mag-drag 
+        // og file ang user ibabaw sa upload button, aron mo-signal nga valid 
+        // ug pwede ra jud kaayo i-drop dinhi.
         private void btnUpload_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.Copy;
+                e.Effect = DragDropEffects.Copy;  // Mo-display sa "+" cursor icon.
             else
-                e.Effect = DragDropEffects.None;
+                e.Effect = DragDropEffects.None;  // Mo-display sa "blocked" cursor icon.
         }
 
+        // btnUpload_DragDrop  (Drag-and-drop: file released)
+        // Mo-handle ni basta i-buhat na og drop ang file didto sa ibabaw sa upload button.
+        // Mo-execute gihapon ni og same extension validation parehas sa file dialog handler
+        // sa dili pa basahon ang file padung sa shared byte-array fields.
+        // Ang pinakaunang gi-drop nga file ra ang gamiton kung daghan ang gi-sabay og drop.
         private void btnUpload_DragDrop(object sender, DragEventArgs e)
         {
             try
@@ -275,9 +313,10 @@ namespace SyncStock.Views.UserControl
 
                 if (files != null && files.Length > 0)
                 {
-                    string droppedFilePath = files[0];
+                    string droppedFilePath = files[0]; // Ang pinakaunang file ra jud ang i-process nato.
                     string fileExtension = System.IO.Path.GetExtension(droppedFilePath).ToLower();
 
+                    // Same validation gihapon sa btnUpload_Click para permi consistent.
                     if (!_allowedExtensions.Contains(fileExtension))
                     {
                         DevExpress.XtraEditors.XtraMessageBox.Show(
@@ -303,67 +342,81 @@ namespace SyncStock.Views.UserControl
             }
         }
 
-        // ─────────────────────────────────────────────
-        // CONFIRM / CANCEL
-        // ─────────────────────────────────────────────
-
+        // btnConfirm_Click  (Confirm / Submit button)
+        // Kani ang core submission handler. Mo-run ni og multi-step validation 
+        // chain, dayon mo-build og ConfirmedItems payload para i-save diretso 
+        // sa database pinaagi sa atong repository.
+        //
+        // Validation order:
+        //   1. Kailangan naay gi-pili nga grid row (dapat naay PO number).
+        //   2. Kailangan naay sulod ang Date Received.
+        //   3. Ang Received Quantity kailangan jud > 0.
+        //   4. Ang Received Amount kailangan valid ug non-negative decimal.
+        //
+        // On success:
+        //   - Mo-insert og bag-ong confirmed-item record.
+        //   - I-update ang status sa PO line-item ngadto sa "Received".
+        //   - I-clear ang form dayon i-refresh ang grid para updated.
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            // --- Validation Step 1: Siguraduhon nga naay gi-pili nga row sa grid ---
             if (string.IsNullOrEmpty(lblPONumber.Text) || lblPONumber.Text == "PO Number:")
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Validation Error: Please select a pending item from the table before confirming.",
-                    "Missing Selection",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // --- Validation Step 2: Kailangan jud naay sulod ang Date Received ---
             if (dateEdit.EditValue == null || string.IsNullOrWhiteSpace(dateEdit.Text))
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Validation Error: 'Date Received' is required.",
-                    "Missing Date",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    "Missing Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dateEdit.Focus();
                 return;
             }
-            if (spneditReceivedQuan.EditValue == null || Convert.ToInt32(spneditReceivedQuan.EditValue) <= 0)
+
+            // --- Validation Step 3: Dapat mas dako sa 0 ang Received Quantity ---
+            if (spneditReceivedQuan.EditValue == null ||
+                Convert.ToInt32(spneditReceivedQuan.EditValue) <= 0)
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Validation Error: 'Received Quantity' must be greater than 0.",
-                    "Invalid Quantity",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 spneditReceivedQuan.Focus();
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txteditReceivedAmount.Text) ||
-                !decimal.TryParse(txteditReceivedAmount.Text, out decimal parsedReceivedAmount) ||
+
+            // --- Validation Step 4: Ang Received Amount kailangan valid ug dili negative decimal ---
+            string rawAmount = txteditReceivedAmount.Text.Replace("₱", "").Replace(",", "").Trim();
+            if (string.IsNullOrWhiteSpace(rawAmount) ||
+                !decimal.TryParse(rawAmount, out decimal parsedReceivedAmount) ||
                 parsedReceivedAmount < 0)
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Validation Error: Please enter a valid, non-negative 'Received Amount'.",
-                    "Invalid Amount",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txteditReceivedAmount.Focus();
                 return;
             }
 
             try
             {
+                // I-strip o tangtangon ang "PO Number:" prefix nga gi-add lang para sa display.
                 string purePoNumber = lblPONumber.Text.Replace("PO Number:", "").Trim();
 
+                // I-build ang data transfer object (DTO) nga i-save sa repository padung database.
+                // ABSTRACTION: Plain model class ra ang ConfirmedItems;
+                // ang repo ray nakahibalo sa SQL, wala kay labot ani nga handler.
                 var confirmationPayload = new ConfirmedItems
                 {
                     PONumber = purePoNumber,
                     ItemName = txteditItemName.Text,
 
                     DateReceived = Convert.ToDateTime(dateEdit.EditValue),
-
                     IsCapitalizable = chckboxAsset.Checked,
-
                     ExpectedQuantity = Convert.ToInt32(txteditExpectedQuan.Text),
                     ReceivedQuantity = Convert.ToInt32(spneditReceivedQuan.EditValue),
 
@@ -371,47 +424,24 @@ namespace SyncStock.Views.UserControl
                     ReceivedAmount = parsedReceivedAmount,
 
                     Remarks = txteditRemarks.Text,
-
-                    Status = chckboxAsset.Checked
-    ? WorkflowStatus.Active
-    : WorkflowStatus.Received,
-
                     AttachmentData = _uploadedFileBytes,
                     AttachmentFileName = _uploadedFileName
                 };
 
-                if (_isEditMode)
-                {
-                    _repo.UpdateConfirmedItem(
-                        _editingConfirmedItemId,
-                        confirmationPayload);
-                    XtraMessageBox.Show(
-    "Item updated successfully!",
-    "Success",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Information);
-
-                    this.FindForm()?.Close();
-                    return;
-                }
-                else
-                {
-                    _repo.AddConfirmedItem(
-                        confirmationPayload);
-                }
+                _repo.AddConfirmedItem(confirmationPayload);
 
                 // ✅ Fixed — passes itemName so only THIS item's PO status updates
                 _repo.UpdatePurchaseOrderItemStatus(
                     purePoNumber,
                     txteditItemName.Text,
-                    WorkflowStatus.Received);
+                    WorkflowStatus.Received);  // Enum value nga nag-represent sa "Received" stage.
 
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Asset inventory ledger updated and item confirmed successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // I-reset ang form dayon i-reload ang grid para makuha na ang 
+                // bag-ong gi-confirm nga item gikan sa "pending" list.
                 ClearReceivingForm();
                 LoadDataFromRepository();
             }
@@ -419,12 +449,13 @@ namespace SyncStock.Views.UserControl
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     $"Inventory database submission failed: {ex.Message}",
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // btnCancel_Click  (Cancel button)
+        // Mo-discard ni sa mga unsaved inputs pinaagi sa pag-reset 
+        // sa tanang form fields ngadto sa ilang default o empty states.
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (_isEditMode)
@@ -436,21 +467,35 @@ namespace SyncStock.Views.UserControl
             ClearReceivingForm();
         }
 
+        // ===========================================================
+        // VISUAL / HELPER METHODS
+        // ===========================================================
+
+        // ClearReceivingForm
+        // Mo-reset ni sa kada editable control sa right-hand panel 
+        // balik sa ilang default state. Gi-call ni right after sa successful 
+        // submission ug basta mo-cancel ang user.
+        // Mo-clear sad ni sa in-memory file attachment fields para dili 
+        // ma-accidentally carry over ang previous upload.
         private void ClearReceivingForm()
         {
+            // I-reset ang mga informational labels.
             lblReceivingReport.Text = "Receiving Report From:";
             lblPONumber.Text = "PO Number:";
 
+            // I-clear ang mga expected-value display fields.
             txteditItemName.Text = "";
             txteditExpectedQuan.Text = "";
             txteditExpectedAmount.Text = "0.00";
 
+            // I-reset ang tanang "Received" input controls ngadto sa ilang default values.
             dateEdit.EditValue = null;
             chckboxAsset.Checked = false;
             spneditReceivedQuan.EditValue = 0;
             txteditReceivedAmount.Text = "";
             txteditRemarks.Text = "";
 
+            // I-discard o tangtangon ang maski unsa nga previously selected attachment.
             _uploadedFileBytes = null;
             _uploadedFileName = null;
             lblUploadGuide.Text = "or drop file here";
@@ -663,157 +708,6 @@ namespace SyncStock.Views.UserControl
                 txteditReceivedAmount.Text = string.Format("₱{0:N2}", value);
         }
 
-       
-
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(lblPONumber.Text) || lblPONumber.Text == "PO Number:")
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "Validation Error: Please select a pending item from the table before confirming.",
-                    "Missing Selection",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
-            if (dateEdit.EditValue == null || string.IsNullOrWhiteSpace(dateEdit.Text))
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "Validation Error: 'Date Received' is required.",
-                    "Missing Date",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                dateEdit.Focus();
-                return;
-            }
-            if (spneditReceivedQuan.EditValue == null || Convert.ToInt32(spneditReceivedQuan.EditValue) <= 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "Validation Error: 'Received Quantity' must be greater than 0.",
-                    "Invalid Quantity",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                spneditReceivedQuan.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txteditReceivedAmount.Text) ||
-                !decimal.TryParse(txteditReceivedAmount.Text, out decimal parsedReceivedAmount) ||
-                parsedReceivedAmount < 0)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "Validation Error: Please enter a valid, non-negative 'Received Amount'.",
-                    "Invalid Amount",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                txteditReceivedAmount.Focus();
-                return;
-            }
-
-            try
-            {
-                string purePoNumber = lblPONumber.Text.Replace("PO Number:", "").Trim();
-
-                var confirmationPayload = new ConfirmedItems
-                {
-                    PONumber = purePoNumber,
-                    ItemName = txteditItemName.Text,
-
-                    DateReceived = Convert.ToDateTime(dateEdit.EditValue),
-
-                    IsCapitalizable = chckboxAsset.Checked,
-
-                    ExpectedQuantity = Convert.ToInt32(txteditExpectedQuan.Text),
-                    ReceivedQuantity = Convert.ToInt32(spneditReceivedQuan.EditValue),
-
-                    ExpectedAmount = Convert.ToDecimal(txteditExpectedAmount.Text),
-                    ReceivedAmount = parsedReceivedAmount,
-
-                    Remarks = txteditRemarks.Text,
-
-                    Status = chckboxAsset.Checked
-    ? WorkflowStatus.Active
-    : WorkflowStatus.Received,
-
-                    AttachmentData = _uploadedFileBytes,
-                    AttachmentFileName = _uploadedFileName
-                };
-
-                if (_isEditMode)
-                {
-                    _repo.UpdateConfirmedItem(
-                        _editingConfirmedItemId,
-                        confirmationPayload);
-                    XtraMessageBox.Show(
-    "Item updated successfully!",
-    "Success",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Information);
-
-                    this.FindForm()?.Close();
-                    return;
-                }
-                else
-                {
-                    _repo.AddConfirmedItem(
-                        confirmationPayload);
-                }
-
-                // ✅ Fixed — passes itemName so only THIS item's PO status updates
-                _repo.UpdatePurchaseOrderItemStatus(
-                    purePoNumber,
-                    txteditItemName.Text,
-                    WorkflowStatus.Received);
-
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    "Asset inventory ledger updated and item confirmed successfully!",
-                    "Success",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                ClearReceivingForm();
-                LoadDataFromRepository();
-            }
-            catch (Exception ex)
-            {
-                DevExpress.XtraEditors.XtraMessageBox.Show(
-                    $"Inventory database submission failed: {ex.Message}",
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            if (_isEditMode)
-            {
-                this.FindForm()?.Close();
-                return;
-            }
-
-            ClearReceivingForm();
-        }
-
-        private void ClearReceivingForm()
-        {
-            lblReceivingReport.Text = "Receiving Report From:";
-            lblPONumber.Text = "PO Number:";
-
-            txteditItemName.Text = "";
-            txteditExpectedQuan.Text = "";
-            txteditExpectedAmount.Text = "0.00";
-
-            dateEdit.EditValue = null;
-            chckboxAsset.Checked = false;
-            spneditReceivedQuan.EditValue = 0;
-            txteditReceivedAmount.Text = "";
-            txteditRemarks.Text = "";
-
-            _uploadedFileBytes = null;
-            _uploadedFileName = null;
-            lblUploadGuide.Text = "or drop file here";
-        }
-
         public void LoadEditItem(AuditorReviewItemDto item)
         {
 
@@ -862,7 +756,7 @@ namespace SyncStock.Views.UserControl
             txteditReceivedAmount.Enabled = true;
             txteditRemarks.Enabled = true;
             btnUpload.Enabled = true;
-             
+
             // OPTIONAL
             btnConfirm.Text = "Update Item";
 

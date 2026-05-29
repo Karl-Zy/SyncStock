@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceivingCustodianUC));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceivingCustodianUC));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -92,7 +92,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.pendingIncomingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialogReceipt = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.scrlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).BeginInit();
@@ -151,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlControl
@@ -187,8 +185,7 @@
             // 
             this.lblSubtitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtitle.Appearance.Options.UseFont = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(18, 60);
-            this.lblSubtitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblSubtitle.Location = new System.Drawing.Point(16, 57);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(354, 19);
             this.lblSubtitle.StyleController = this.lcMainContainer;
@@ -197,12 +194,12 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Appearance.Options.UseFont = true;
-            this.lblTitle.Location = new System.Drawing.Point(18, 20);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblTitle.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftBottom;
+            this.lblTitle.Location = new System.Drawing.Point(16, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(318, 32);
+            this.lblTitle.Size = new System.Drawing.Size(326, 35);
             this.lblTitle.StyleController = this.lcMainContainer;
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Receiving - Asset Custodian";
@@ -210,10 +207,9 @@
             // pnlPendingIncoming
             // 
             this.pnlPendingIncoming.Controls.Add(this.dlcPendingIncoming);
-            this.pnlPendingIncoming.Location = new System.Drawing.Point(18, 87);
-            this.pnlPendingIncoming.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlPendingIncoming.Location = new System.Drawing.Point(16, 76);
             this.pnlPendingIncoming.Name = "pnlPendingIncoming";
-            this.pnlPendingIncoming.Size = new System.Drawing.Size(2654, 711);
+            this.pnlPendingIncoming.Size = new System.Drawing.Size(1466, 460);
             this.pnlPendingIncoming.TabIndex = 4;
             // 
             // dlcPendingIncoming
@@ -229,7 +225,7 @@
             this.dlcPendingIncoming.Name = "dlcPendingIncoming";
             this.dlcPendingIncoming.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(504, 319, 650, 400);
             this.dlcPendingIncoming.Root = this.lcgPendingIncoming;
-            this.dlcPendingIncoming.Size = new System.Drawing.Size(2650, 707);
+            this.dlcPendingIncoming.Size = new System.Drawing.Size(1462, 456);
             this.dlcPendingIncoming.TabIndex = 1;
             this.dlcPendingIncoming.Text = "dataLayoutControl2";
             // 
@@ -251,8 +247,8 @@
             this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl.Properties.NullValuePrompt = "Enter PO Number, Item Name or Order Type...";
-            this.searchControl.Size = new System.Drawing.Size(881, 34);
+            this.searchControl.Properties.NullValuePrompt = "Filter incoming items...";
+            this.searchControl.Size = new System.Drawing.Size(480, 28);
             this.searchControl.StyleController = this.dlcPendingIncoming;
             this.searchControl.TabIndex = 6;
             this.searchControl.TextChanged += new System.EventHandler(this.searchControl_TextChanged);
@@ -264,7 +260,7 @@
             this.gcItems.MainView = this.gvItemsView;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcItems.Name = "gcItems";
-            this.gcItems.Size = new System.Drawing.Size(2614, 552);
+            this.gcItems.Size = new System.Drawing.Size(1430, 335);
             this.gcItems.TabIndex = 5;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemsView});
@@ -305,7 +301,7 @@
             this.emptySpacePending,
             this.layoutControlItem5});
             this.lcgPendingIncoming.Name = "Root";
-            this.lcgPendingIncoming.Size = new System.Drawing.Size(2650, 707);
+            this.lcgPendingIncoming.Size = new System.Drawing.Size(1462, 456);
             this.lcgPendingIncoming.TextVisible = false;
             // 
             // lciGrid
@@ -313,7 +309,7 @@
             this.lciGrid.Control = this.gcItems;
             this.lciGrid.Location = new System.Drawing.Point(0, 115);
             this.lciGrid.Name = "lciGrid";
-            this.lciGrid.Size = new System.Drawing.Size(2620, 560);
+            this.lciGrid.Size = new System.Drawing.Size(1436, 341);
             this.lciGrid.TextSize = new System.Drawing.Size(0, 0);
             this.lciGrid.TextVisible = false;
             // 
@@ -361,10 +357,9 @@
             // pnlReceivingReport
             // 
             this.pnlReceivingReport.Controls.Add(this.dlcReceivingReport);
-            this.pnlReceivingReport.Location = new System.Drawing.Point(18, 664);
-            this.pnlReceivingReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlReceivingReport.Location = new System.Drawing.Point(16, 542);
             this.pnlReceivingReport.Name = "pnlReceivingReport";
-            this.pnlReceivingReport.Size = new System.Drawing.Size(2654, 786);
+            this.pnlReceivingReport.Size = new System.Drawing.Size(1466, 508);
             this.pnlReceivingReport.TabIndex = 0;
             // 
             // dlcReceivingReport
@@ -384,9 +379,9 @@
             this.dlcReceivingReport.Location = new System.Drawing.Point(2, 2);
             this.dlcReceivingReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dlcReceivingReport.Name = "dlcReceivingReport";
-            this.dlcReceivingReport.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(620, 368, 650, 400);
+            this.dlcReceivingReport.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(633, 368, 650, 400);
             this.dlcReceivingReport.Root = this.lcgReceivingReport;
-            this.dlcReceivingReport.Size = new System.Drawing.Size(2650, 782);
+            this.dlcReceivingReport.Size = new System.Drawing.Size(1462, 504);
             this.dlcReceivingReport.TabIndex = 0;
             this.dlcReceivingReport.Text = "dataLayoutControl1";
             // 
@@ -482,6 +477,8 @@
             this.txteditReceivedAmount.Size = new System.Drawing.Size(1304, 34);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
+            this.txteditReceivedAmount.Enter += new System.EventHandler(this.txteditReceivedAmount_Enter);
+            this.txteditReceivedAmount.Leave += new System.EventHandler(this.txteditReceivedAmount_Leave);
             // 
             // btnUpload
             // 
@@ -506,7 +503,7 @@
             this.txteditRemarks.Location = new System.Drawing.Point(18, 447);
             this.txteditRemarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditRemarks.Name = "txteditRemarks";
-            this.txteditRemarks.Size = new System.Drawing.Size(2614, 273);
+            this.txteditRemarks.Size = new System.Drawing.Size(1430, 110);
             this.txteditRemarks.StyleController = this.dlcReceivingReport;
             this.txteditRemarks.TabIndex = 12;
             // 
@@ -516,10 +513,9 @@
             this.btnConfirm.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.Appearance.Options.UseBackColor = true;
             this.btnConfirm.Appearance.Options.UseFont = true;
-            this.btnConfirm.Location = new System.Drawing.Point(1967, 728);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(1091, 460);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(665, 34);
+            this.btnConfirm.Size = new System.Drawing.Size(355, 28);
             this.btnConfirm.StyleController = this.dlcReceivingReport;
             this.btnConfirm.TabIndex = 13;
             this.btnConfirm.Text = "✓ Confirm Receipt";
@@ -529,10 +525,9 @@
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(1328, 728);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Location = new System.Drawing.Point(734, 460);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(633, 34);
+            this.btnCancel.Size = new System.Drawing.Size(351, 28);
             this.btnCancel.StyleController = this.dlcReceivingReport;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
@@ -563,7 +558,7 @@
             this.lblPONumber,
             this.emptyspaceReceiving4});
             this.lcgReceivingReport.Name = "Root";
-            this.lcgReceivingReport.Size = new System.Drawing.Size(2650, 782);
+            this.lcgReceivingReport.Size = new System.Drawing.Size(1462, 504);
             this.lcgReceivingReport.TextVisible = false;
             // 
             // lblDateReceived
@@ -690,7 +685,7 @@
             this.lblRemarks.Control = this.txteditRemarks;
             this.lblRemarks.Location = new System.Drawing.Point(0, 399);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(2620, 309);
+            this.lblRemarks.Size = new System.Drawing.Size(1436, 139);
             this.lblRemarks.Text = "Remarks";
             this.lblRemarks.TextLocation = DevExpress.Utils.Locations.Top;
             this.lblRemarks.TextSize = new System.Drawing.Size(319, 21);
@@ -698,25 +693,25 @@
             // lblCancel
             // 
             this.lblCancel.Control = this.btnCancel;
-            this.lblCancel.Location = new System.Drawing.Point(1310, 708);
+            this.lblCancel.Location = new System.Drawing.Point(718, 444);
             this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(639, 42);
+            this.lblCancel.Size = new System.Drawing.Size(357, 34);
             this.lblCancel.TextSize = new System.Drawing.Size(0, 0);
             this.lblCancel.TextVisible = false;
             // 
             // lblConfirm
             // 
             this.lblConfirm.Control = this.btnConfirm;
-            this.lblConfirm.Location = new System.Drawing.Point(1949, 708);
+            this.lblConfirm.Location = new System.Drawing.Point(1075, 444);
             this.lblConfirm.Name = "lblConfirm";
-            this.lblConfirm.Size = new System.Drawing.Size(671, 42);
+            this.lblConfirm.Size = new System.Drawing.Size(361, 34);
             this.lblConfirm.TextSize = new System.Drawing.Size(0, 0);
             this.lblConfirm.TextVisible = false;
             // 
             // emptyspaceReceiving3
             // 
             this.emptyspaceReceiving3.AllowHotTrack = false;
-            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 708);
+            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 444);
             this.emptyspaceReceiving3.Name = "emptyspaceReceiving3";
             this.emptyspaceReceiving3.Size = new System.Drawing.Size(1310, 42);
             this.emptyspaceReceiving3.TextSize = new System.Drawing.Size(0, 0);
@@ -796,18 +791,18 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.pnlPendingIncoming;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 67);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(2129, 577);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1472, 466);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.pnlReceivingReport;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 644);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 526);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(2129, 637);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1472, 514);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -816,22 +811,18 @@
             this.layoutControlItem3.Control = this.lblTitle;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(2129, 40);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1472, 41);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.lblSubtitle;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 40);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 41);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(2129, 27);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
-            // 
-            // pendingIncomingItemBindingSource
-            // 
-            this.pendingIncomingItemBindingSource.DataSource = typeof(SyncStock.Models.Models_Receiving_.PendingIncomingItem);
             // 
             // openFileDialogReceipt
             // 
@@ -901,7 +892,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pendingIncomingItemBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -961,7 +951,6 @@
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingGuide;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpacePending;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving4;
-        private System.Windows.Forms.BindingSource pendingIncomingItemBindingSource;
         private DevExpress.XtraEditors.XtraOpenFileDialog openFileDialogReceipt;
         private DevExpress.XtraEditors.SearchControl searchControl;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
