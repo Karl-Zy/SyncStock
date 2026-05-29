@@ -961,12 +961,12 @@ namespace SyncStock.Views.UserControl
 
             receivingUC.LoadEditItem(_selectedItem);
 
-            // Ibukas ang edit form sa maximized window
+            // Iopen ang edit form sa maximized window
             Form editForm = new Form();
             editForm.Text = "Edit Received Item";
             editForm.WindowState = FormWindowState.Maximized;
 
-            // I-dock ang user control para mapuno ang form
+            // I-dock ang user control para ma fill ang form
             receivingUC.Dock = DockStyle.Fill;
             editForm.Controls.Add(receivingUC);
 
