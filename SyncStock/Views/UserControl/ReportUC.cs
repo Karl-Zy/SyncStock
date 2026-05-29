@@ -40,6 +40,8 @@ namespace SyncStock.Views.UserControl
             PeriodTypeBox.Enabled = false;
             SecondFilterBox.Enabled = false;
 
+            // Kuhaon ang tanan distinct nga years gikan sa database
+            // ug i-add sa YearBox dropdown para ma-select sa user
             var years = _repo.GetDistinctYear().ToList();
             foreach (var year in years)
                 YearBox.Properties.Items.Add(year.ToString());
@@ -48,18 +50,21 @@ namespace SyncStock.Views.UserControl
             var receivedItems = _repo.GetAllReceivedOrders().ToList();
 
             var now = DateTime.Now;
+            // I-filter ang received items para sa current bulan ug tuig,
+            // ug i-sum ang ReceivedAmount para makuha ang total cost
             decimal totalCost = receivedItems
                 .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
                 .Sum(i => i.ReceivedAmount);
-
+            //same ra sa total cost pero i-sum ang ReceivedQuantity para makuha ang total items
             int totalItems = receivedItems
                 .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
                 .Sum(i => i.ReceivedQuantity);
-
+            // I-display ang total cost ug total items sa labels
             totalMonthlyCostLBL.Text = totalCost.ToString("N2");
             totalMonthlyItemsLBL.Text = totalItems.ToString();
-
+            // I-assign ang filtered list sa class-level variable para magamit sa printing
             _CurrentFilteredData = receivedItems;
+            //default nga i-display ang received orders sa grid
             ReportGC.DataSource = receivedItems;
         }
 
@@ -78,14 +83,14 @@ namespace SyncStock.Views.UserControl
                                     "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                //declaration sa XtraReport variable nga mag-hold sa specific report instance depende sa user selection
                 XtraReport report = null;
 
                 switch (FilterBox.Text)
                 {
-                    case "Purchased Orders":
-                        report = new PurchaseReport(_CurrentFilteredData.Cast<PurchaseOrderBrief>());
-                        break;
+                    case "Purchased Orders":       
+                        report = new PurchaseReport(_CurrentFilteredData.Cast<PurchaseOrderBrief>()); // Gi-convert/gi-cast para mahibaw-an ang exact nga type
+                        break;                                                                        // karon nahibaw-an na nga "List of PurchaseOrderBrief" siya
 
                     case "Received Orders":
                         report = new ReceivedReport(_CurrentFilteredData.Cast<ReceivedItemReports>());
@@ -122,7 +127,9 @@ namespace SyncStock.Views.UserControl
             switch (FilterBox.Text)
             {
                 case "Purchased Orders":
+                    // Kuhaon ang tanan nga Purchase Orders gikan sa database
                     _CurrentFilteredData = _repo.GetPurchaseOrderBrief().ToList();
+                    // I-display ang data sa grid
                     ReportGC.DataSource = _CurrentFilteredData;
                     YearBox.Clear();
                     PeriodTypeBox.Clear();
@@ -164,9 +171,13 @@ namespace SyncStock.Views.UserControl
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
 
+                    // I-hide ang AttachmentData column kay binary data siya,
+                    // dili pwede ipakita direkta sa grid
                     if (ReportGV.Columns["AttachmentData"] != null)
                         ReportGV.Columns["AttachmentData"].Visible = false;
 
+                    // Kung wala pay AttachmentPreview column,
+                    // i-add ang custom button column para ma-view ang image
                     if (ReportGV.Columns["AttachmentPreview"] == null)
                         AddAttachmentImageColumn();
                     break;
@@ -189,7 +200,7 @@ namespace SyncStock.Views.UserControl
             btnEdit.ButtonClick += AttachmentButtonEdit_ButtonClick;
 
             ReportGC.RepositoryItems.Add(btnEdit);
-
+            //nag add og new column sa grid nga "AttachmentPreview" nga nag-display og button para makita ang image, gamit ang btnEdit nga gi-define sa taas
             var imgCol = new DevExpress.XtraGrid.Columns.GridColumn
             {
                 FieldName = "AttachmentData",
@@ -206,7 +217,8 @@ namespace SyncStock.Views.UserControl
         private void AttachmentButtonEdit_ButtonClick(object sender,
     DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            // Get the focused row's data
+            // Kuhaon ang data sa row nga currently focused/gipili sa user
+            // Gi-cast as Reconciliation para ma-access ang iyang properties
             var row = ReportGV.GetFocusedRow() as Reconciliation;
 
             if (row == null || row.AttachmentData == null || row.AttachmentData.Length == 0)
@@ -222,10 +234,13 @@ namespace SyncStock.Views.UserControl
         private void ShowImagePreview(byte[] imageData, string fileName)
         {
             try
-            {
+            {                                                           // I-convert ang binary data (byte[]) ngadto sa MemoryStream
+                                                                        // para mabasa sa Image.FromStream()
+                                                                        // "using" para auto-close ang stream human magamit
                 using (var ms = new System.IO.MemoryStream(imageData))
-                {
-                    var image = Image.FromStream(ms);
+                {           
+                    var image = Image.FromStream(ms);                // I-convert ang MemoryStream ngadto sa Image object
+                                                                     // para mapakita sa PictureBox
 
                     // Build a lightweight popup form
                     var previewForm = new Form
@@ -289,29 +304,45 @@ namespace SyncStock.Views.UserControl
             if (PeriodTypeBox.SelectedIndex != -1 && string.IsNullOrEmpty(SecondFilterBox.Text))
             {
                 int y = int.Parse(YearBox.Text);
+
+                // I-check kung unsang date column ang gamiton base sa report type
+                // Received ug Capitalized = "DateReceived"
+                // Purchased ug Reconciliation = "OrderDate"
                 string col = (FilterBox.Text == "Received Orders" || FilterBox.Text == "Capitalized Orders")
                     ? "DateReceived" : "OrderDate";
+
+                // I-filter ang grid para sa tibuok year lang
+                // Pananglitan: 01/01/2026 hangtod 12/31/2026
                 ReportGV.ActiveFilterString =
                     $"[{col}] >= #{new DateTime(y, 1, 1):MM/dd/yyyy}# AND [{col}] <= #{new DateTime(y, 12, 31):MM/dd/yyyy}#";
                 return;
             }
 
+            // Kung naa'y napili nga year, month/quarter,
+            // i-parse ang year gikan sa YearBox
             int year = int.Parse(YearBox.Text);
             DateTime start, end;
 
+            // I-check pud ang date column base sa report type
             string DateColumn = (FilterBox.Text == "Received Orders" || FilterBox.Text == "Capitalized Orders")
                 ? "DateReceived" : "OrderDate";
 
             switch (PeriodTypeBox.SelectedIndex)
             {
                 case 0: // Monthly
+                        // I-parse ang bulan gikan sa SecondFilterBox
+                        // Pananglitan: "January" -> 1, "February" -> 2, etc
                     int month = DateTime.ParseExact(SecondFilterBox.Text, "MMMM",
                                 System.Globalization.CultureInfo.InvariantCulture).Month;
+
+                    // I-set ang start sa unang adlaw sa bulan
+                    // ug end sa katapusang adlaw sa bulan
                     start = new DateTime(year, month, 1);
                     end = new DateTime(year, month, DateTime.DaysInMonth(year, month));
                     break;
 
                 case 1: // Quarterly
+                        // I-set ang start ug end month base sa quarter nga napili
                     int startMonth, endMonth;
                     switch (SecondFilterBox.Text)
                     {
@@ -329,7 +360,9 @@ namespace SyncStock.Views.UserControl
                     ReportGV.ActiveFilterString = string.Empty;
                     return;
             }
-
+            // I-apply ang final filter sa grid base sa
+            // napili nga date column, start date, ug end date
+            // Pananglitan: [DateReceived] >= #01/01/2026# AND [DateReceived] <= #03/31/2026#
             ReportGV.ActiveFilterString =
                 $"[{DateColumn}] >= #{start:MM/dd/yyyy}# AND [{DateColumn}] <= #{end:MM/dd/yyyy}#";
         }

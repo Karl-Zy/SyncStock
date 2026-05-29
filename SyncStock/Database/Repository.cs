@@ -668,7 +668,7 @@ namespace SyncStock.Database
                 po.OrderMode
             ORDER BY po.OrderDate DESC");
             }
-        }
+        }   
 
         public void MarkAsCapitalizable(int confirmedItemId, bool isCapitalizable)
         {
