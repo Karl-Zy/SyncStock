@@ -94,6 +94,7 @@
             this.ClientSize = new System.Drawing.Size(827, 453);
             this.Controls.Add(this.PnlCard);
             this.Controls.Add(this.pictureEdit1);
+            this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("LoginForm.IconOptions.SvgImage")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SyncStock Login";
