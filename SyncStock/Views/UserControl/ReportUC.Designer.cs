@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUC));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
@@ -129,13 +129,15 @@
             // 
             // totalMonthlyItemsLBL
             // 
-            this.totalMonthlyItemsLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalMonthlyItemsLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalMonthlyItemsLBL.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.totalMonthlyItemsLBL.Appearance.Options.UseFont = true;
-            this.totalMonthlyItemsLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.totalMonthlyItemsLBL.Location = new System.Drawing.Point(240, 32);
+            this.totalMonthlyItemsLBL.Appearance.Options.UseForeColor = true;
+            this.totalMonthlyItemsLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.totalMonthlyItemsLBL.Location = new System.Drawing.Point(421, 38);
             this.totalMonthlyItemsLBL.Margin = new System.Windows.Forms.Padding(4);
             this.totalMonthlyItemsLBL.Name = "totalMonthlyItemsLBL";
-            this.totalMonthlyItemsLBL.Size = new System.Drawing.Size(31, 42);
+            this.totalMonthlyItemsLBL.Size = new System.Drawing.Size(18, 45);
             this.totalMonthlyItemsLBL.TabIndex = 1;
             this.totalMonthlyItemsLBL.Text = "1";
             // 
@@ -153,16 +155,16 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl2.ImageOptions.SvgImage")));
             this.labelControl2.Location = new System.Drawing.Point(0, 4);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(231, 32);
+            this.labelControl2.Size = new System.Drawing.Size(280, 32);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "            TOTAL ITEMS FOR THE MONTH OF ";
+            this.labelControl2.Text = "            TOTAL MONTHLY ITEMS";
             // 
             // panelControl6
             // 
@@ -179,16 +181,16 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl1.ImageOptions.SvgImage")));
             this.labelControl1.Location = new System.Drawing.Point(8, 4);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(226, 32);
+            this.labelControl1.Size = new System.Drawing.Size(277, 32);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "            TOTAL COST FOR THE MONTH OF ";
+            this.labelControl1.Text = "            TOTAL MONTHLY COST ";
             // 
             // panelControl4
             // 
@@ -201,13 +203,15 @@
             // 
             // totalMonthlyCostLBL
             // 
-            this.totalMonthlyCostLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalMonthlyCostLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalMonthlyCostLBL.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.totalMonthlyCostLBL.Appearance.Options.UseFont = true;
-            this.totalMonthlyCostLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.totalMonthlyCostLBL.Location = new System.Drawing.Point(286, 32);
+            this.totalMonthlyCostLBL.Appearance.Options.UseForeColor = true;
+            this.totalMonthlyCostLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
+            this.totalMonthlyCostLBL.Location = new System.Drawing.Point(386, 44);
             this.totalMonthlyCostLBL.Margin = new System.Windows.Forms.Padding(4);
             this.totalMonthlyCostLBL.Name = "totalMonthlyCostLBL";
-            this.totalMonthlyCostLBL.Size = new System.Drawing.Size(22, 42);
+            this.totalMonthlyCostLBL.Size = new System.Drawing.Size(18, 45);
             this.totalMonthlyCostLBL.TabIndex = 0;
             this.totalMonthlyCostLBL.Text = "1";
             this.totalMonthlyCostLBL.Click += new System.EventHandler(this.labelControl4_Click);
@@ -244,6 +248,7 @@
             // PeriodTypeBox
             // 
             this.PeriodTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PeriodTypeBox.EditValue = "SELECT PERIOD";
             this.PeriodTypeBox.Location = new System.Drawing.Point(1270, 3);
             this.PeriodTypeBox.Name = "PeriodTypeBox";
             this.PeriodTypeBox.Properties.AutoHeight = false;
@@ -299,6 +304,7 @@
             // YearBox
             // 
             this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.YearBox.EditValue = "SELECT YEAR";
             this.YearBox.Location = new System.Drawing.Point(1491, 3);
             this.YearBox.Name = "YearBox";
             this.YearBox.Properties.AutoHeight = false;
@@ -326,9 +332,9 @@
             // 
             this.ReportGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportGC.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.ReportGC.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.ReportGC.Location = new System.Drawing.Point(2, 60);
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
@@ -465,6 +471,7 @@
             this.dataLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
             this.panelControl9.ResumeLayout(false);
+            this.panelControl9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl8)).EndInit();
             this.panelControl8.ResumeLayout(false);
             this.panelControl8.PerformLayout();
@@ -473,6 +480,7 @@
             this.panelControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
+            this.panelControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SecondFilterBox.Properties)).EndInit();

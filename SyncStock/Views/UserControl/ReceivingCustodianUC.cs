@@ -1,32 +1,4 @@
-﻿// ============================================================
-//  ReceivingCustodianUC.cs
-//  Purpose : User control for the Receiving Custodian workflow.
-//            Allows custodians to view pending PO items, fill in
-//            actual received quantities/amounts, attach proof-of-
-//            delivery files, and commit the confirmation to the DB.
-//
-//  4 Pillars of OOP used in this file
-//  -----------------------------------
-//  1. ENCAPSULATION  – Private fields (_repo, _uploadedFileBytes,
-//                      etc.) hide internal state from the outside.
-//                      All mutation goes through controlled methods.
-//
-//  2. INHERITANCE    – This class inherits from
-//                      DevExpress.XtraEditors.XtraUserControl,
-//                      reusing the entire WinForms user-control
-//                      lifecycle (OnLoad, events, rendering) without
-//                      re-implementing it.
-//
-//  3. ABSTRACTION    – Complex database operations are hidden behind
-//                      the Repository pattern (_repo).  Callers only
-//                      know *what* methods do, not *how* they do it.
-//
-//  4. POLYMORPHISM   – OnLoad overrides the base class virtual method,
-//                      changing its behaviour for this specific control
-//                      while keeping the same method signature.
-// ============================================================
-
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -609,21 +581,6 @@ namespace SyncStock.Views.UserControl
                 amountCol.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                 amountCol.DisplayFormat.FormatString = "₱{0:N2}"; // e.g. ₱1,234.56
             }
-        }
-
-        // SetColumn  (Helper utility – dili pa kaayo gi-call externally karon)
-        // Convenience wrapper para mapahigayon nga visible ang usa ka column
-        // ug mo-set sa iyang caption, width, ug position sa usa ra ka tawag.
-        // Mapuslanon kaayo ni kung mag-configure og tagsa-tagsa nga columns gawas 
-        // sa bulk ApplyColumnAlignment flow.
-        private void SetColumn(string fieldName, string caption, int width, int visibleIndex)
-        {
-            var col = gvItemsView.Columns[fieldName];
-            if (col == null) return;
-            col.Caption = caption;
-            col.Width = width;
-            col.Visible = true;
-            col.VisibleIndex = visibleIndex;
         }
 
         // gvItemsView_CustomDrawCell  (Grid custom paint event)

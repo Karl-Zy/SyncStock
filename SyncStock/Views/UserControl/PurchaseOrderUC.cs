@@ -1,4 +1,3 @@
-
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using SyncStock.Database;
@@ -61,6 +60,8 @@ namespace SyncStock.Views.UserControl
             // gi-set ang opo order grid nga read only
             opoItemsInOrderGV.OptionsBehavior.ReadOnly = true;
 
+
+
             // gi-set ang gpo cart grid nga dili ma-edit
             gpoItemsInCartGV.OptionsBehavior.Editable = false;
 
@@ -72,6 +73,8 @@ namespace SyncStock.Views.UserControl
 
             // gi-set ang gpo order grid nga read only
             gpoItemsInOrderGV.OptionsBehavior.ReadOnly = true;
+
+
 
             // gi-disable ang highlighted cell appearance sa opo cart grid
             opoItemsInCartGV.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -178,7 +181,7 @@ namespace SyncStock.Views.UserControl
                 _opoPurchaseOrderId = _repo.AddPurchaseOrder(order);
 
                 // gi-loop ang matag cart item para i-save isip purchase order items
-                foreach (var cart in cartItems)
+                foreach (var cart in cartItems.ToList())
                 {
                     // gi-add ang item sa items table ug gi-kuha ang item id
                     int itemId = _repo.AddItem(cart.ItemName);
@@ -333,13 +336,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column sa grid base sa data
                 opoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column kung naa
-                if (opoItemsInCartGV.Columns["CartItemID"] != null)
-                    opoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column kung naa
-                if (opoItemsInCartGV.Columns["CreatedAt"] != null)
-                    opoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa cart grid gamit ang field name
+                HideInternalColumns(opoItemsInCartGV);
 
                 // gi-calculate ang total quantity sa tanan nga cart items
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -517,18 +515,6 @@ namespace SyncStock.Views.UserControl
             // gi-populate ang mga column base sa data
             opoItemsInOrderGV.PopulateColumns();
 
-            // gi-hide ang purchase order item id column kung naa
-            if (opoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
-                opoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-
-            // gi-hide ang purchase order id column kung naa
-            if (opoItemsInOrderGV.Columns["PurchaseOrderID"] != null)
-                opoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-
-            // gi-hide ang item id column kung naa
-            if (opoItemsInOrderGV.Columns["ItemID"] != null)
-                opoItemsInOrderGV.Columns["ItemID"].Visible = false;
-
             // gi-rename ang po number column
             if (opoItemsInOrderGV.Columns["PONumber"] != null)
                 opoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
@@ -578,8 +564,26 @@ namespace SyncStock.Views.UserControl
                 opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy";
             }
 
-            // gi-auto-fit ang lapad sa matag column base sa sulod
-            opoItemsInOrderGV.BestFitColumns();
+            // IMPORTANTE: gi-hide ang internal columns gamit ang field name BEFORE mag-BestFit
+            // para dili ma-include ang hidden columns sa auto-fit calculation
+            HideInternalColumns(opoItemsInOrderGV);
+
+            // gi-snapshot ang VisibleColumns sa usa ka list BEFORE mag-iterate
+            // para malikayan ang "Collection was modified" error nga mahitabo
+            // kung ang DevExpress nag-modify sa columns collection sa panahon sa enumeration
+            var opoVisibleCols = opoItemsInOrderGV.VisibleColumns
+                .Cast<DevExpress.XtraGrid.Columns.GridColumn>()
+                .ToList();
+
+            // gi-auto-fit ang lapad sa matag VISIBLE column lang base sa sulod
+            foreach (var col in opoVisibleCols)
+            {
+                col.BestFit();
+            }
+
+            // gi-refresh ang grid para mawala ang empty spaces
+            opoItemsInOrderGV.LayoutChanged();
+            opoItemsInOrderGV.RefreshData();
 
             // gi-count ang total nga bilang sa items
             int totalItems = items.Count;
@@ -659,13 +663,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column
                 opoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column
-                if (opoItemsInCartGV.Columns["CartItemID"] != null)
-                    opoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column
-                if (opoItemsInCartGV.Columns["CreatedAt"] != null)
-                    opoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa cart grid gamit ang field name
+                HideInternalColumns(opoItemsInCartGV);
 
                 // gi-calculate ang updated total items
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -743,13 +742,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column
                 opoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column
-                if (opoItemsInCartGV.Columns["CartItemID"] != null)
-                    opoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column
-                if (opoItemsInCartGV.Columns["CreatedAt"] != null)
-                    opoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa cart grid gamit ang field name
+                HideInternalColumns(opoItemsInCartGV);
 
                 // gi-calculate ang updated total items
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -846,13 +840,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column
                 gpoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column
-                if (gpoItemsInCartGV.Columns["CartItemID"] != null)
-                    gpoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column
-                if (gpoItemsInCartGV.Columns["CreatedAt"] != null)
-                    gpoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa gpo cart grid gamit ang field name
+                HideInternalColumns(gpoItemsInCartGV);
 
                 // gi-calculate ang total quantity sa gpo cart
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -943,7 +932,7 @@ namespace SyncStock.Views.UserControl
                 _gpoPurchaseOrderId = _repo.AddPurchaseOrder(order);
 
                 // gi-loop ang matag cart item para i-save isip purchase order items
-                foreach (var cart in cartItems)
+                foreach (var cart in cartItems.ToList())
                 {
                     // gi-add ang item sa items table ug gi-kuha ang item id
                     int itemId = _repo.AddItem(cart.ItemName);
@@ -1168,18 +1157,6 @@ namespace SyncStock.Views.UserControl
             // gi-populate ang mga column base sa data
             gpoItemsInOrderGV.PopulateColumns();
 
-            // gi-hide ang purchase order item id column
-            if (gpoItemsInOrderGV.Columns["PurchaseOrderItemID"] != null)
-                gpoItemsInOrderGV.Columns["PurchaseOrderItemID"].Visible = false;
-
-            // gi-hide ang purchase order id column
-            if (gpoItemsInOrderGV.Columns["PurchaseOrderID"] != null)
-                gpoItemsInOrderGV.Columns["PurchaseOrderID"].Visible = false;
-
-            // gi-hide ang item id column
-            if (gpoItemsInOrderGV.Columns["ItemID"] != null)
-                gpoItemsInOrderGV.Columns["ItemID"].Visible = false;
-
             // gi-rename ang po number column
             if (gpoItemsInOrderGV.Columns["PONumber"] != null)
                 gpoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
@@ -1229,8 +1206,26 @@ namespace SyncStock.Views.UserControl
                 gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy";
             }
 
-            // gi-auto-fit ang lapad sa matag column
-            gpoItemsInOrderGV.BestFitColumns();
+            // IMPORTANTE: gi-hide ang internal columns gamit ang field name BEFORE mag-BestFit
+            // para dili ma-include ang hidden columns sa auto-fit calculation
+            HideInternalColumns(gpoItemsInOrderGV);
+
+            // gi-snapshot ang VisibleColumns sa usa ka list BEFORE mag-iterate
+            // para malikayan ang "Collection was modified" error nga mahitabo
+            // kung ang DevExpress nag-modify sa columns collection sa panahon sa enumeration
+            var gpoVisibleCols = gpoItemsInOrderGV.VisibleColumns
+                .Cast<DevExpress.XtraGrid.Columns.GridColumn>()
+                .ToList();
+
+            // gi-auto-fit ang lapad sa matag VISIBLE column lang base sa sulod
+            foreach (var col in gpoVisibleCols)
+            {
+                col.BestFit();
+            }
+
+            // gi-refresh ang layout
+            gpoItemsInOrderGV.LayoutChanged();
+            gpoItemsInOrderGV.RefreshData();
 
             // gi-count ang total nga bilang sa items
             int totalItems = items.Count;
@@ -1239,7 +1234,7 @@ namespace SyncStock.Views.UserControl
             decimal totalAmount = items.Sum(x => x.TotalPrice);
 
             // gi-update ang gpo total items label
-            gpoItemsInCartTotalItemsLBL.Text = totalItems.ToString();
+            gpoTotalAmountTotalItems.Text = totalItems.ToString();
 
             // gi-update ang gpo total amount label nga may peso sign
             gpoTotalAmountLbl.Text = "₱" + totalAmount.ToString("N2");
@@ -1310,13 +1305,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column
                 gpoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column
-                if (gpoItemsInCartGV.Columns["CartItemID"] != null)
-                    gpoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column
-                if (gpoItemsInCartGV.Columns["CreatedAt"] != null)
-                    gpoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa gpo cart grid gamit ang field name
+                HideInternalColumns(gpoItemsInCartGV);
 
                 // gi-calculate ang updated total quantity
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -1394,13 +1384,8 @@ namespace SyncStock.Views.UserControl
                 // gi-populate ang mga column
                 gpoItemsInCartGV.PopulateColumns();
 
-                // gi-hide ang cart item id column
-                if (gpoItemsInCartGV.Columns["CartItemID"] != null)
-                    gpoItemsInCartGV.Columns["CartItemID"].Visible = false;
-
-                // gi-hide ang created at column
-                if (gpoItemsInCartGV.Columns["CreatedAt"] != null)
-                    gpoItemsInCartGV.Columns["CreatedAt"].Visible = false;
+                // gi-hide ang internal columns sa gpo cart grid gamit ang field name
+                HideInternalColumns(gpoItemsInCartGV);
 
                 // gi-calculate ang updated total quantity
                 int totalItems = cartItems.Sum(x => x.Quantity);
@@ -1422,6 +1407,50 @@ namespace SyncStock.Views.UserControl
                 // gi-ipakita ang error message kung adunay problema
                 XtraMessageBox.Show(ex.Message);
             }
+        }
+
+        // method para i-hide ang mga internal/id columns sa bisan unsang grid view
+        // gi-check base sa field name (dili caption) para mapugngan ang DevExpress
+        // auto-caption mismatch nga naghimo sa columns nga makita gihapon
+        private void HideInternalColumns(DevExpress.XtraGrid.Views.Grid.GridView view)
+        {
+            // lista sa mga field name sa internal columns nga dili ipakita sa user
+            // gi-check ang field name direkta kay ang DevExpress nag-auto-generate
+            // ug nag-space insert sa captions (e.g. PurchaseOrderItemID -> "Purchase Order Item ID")
+            // mao nga dili pwede gamiton ang caption para mag-check
+            string[] hiddenFieldNames =
+            {
+                "CartItemID",
+                "PurchaseOrderItemID",
+                "PurchaseOrderID",
+                "ItemID"
+            };
+
+            // gi-snapshot ang columns sa usa ka list BEFORE mag-iterate
+            // para malikayan ang "Collection was modified; enumeration operation may not execute"
+            // nga error nga mahitabo kung ang DevExpress nag-modify sa collection
+            // sa panahon nga gi-loop kini (labi na pag gi-set ang Visible = false)
+            var allColumns = view.Columns
+                .Cast<DevExpress.XtraGrid.Columns.GridColumn>()
+                .ToList();
+
+            // gi-loop ang tanan nga columns gamit ang snapshot (dili ang live collection)
+            foreach (var col in allColumns)
+            {
+                // gi-check kung ang field name sa column naa sa lista sa hidden columns                                                                                                                                                                                                                                                                                                                                    
+                if (hiddenFieldNames.Contains(col.FieldName))
+                {
+                    // gi-hide ang column para dili makita sa user
+                    col.Visible = false;
+
+                    // gi-remove sa customization form para dili ma-restore sa user
+                    col.OptionsColumn.ShowInCustomizationForm = false;
+                }
+            }
+
+            // NOTA: wala na'y LayoutChanged/RefreshData dinhi para malikayan ang
+            // "Collection was modified" error. Ang caller (Load methods) mao na
+            // ang mag-refresh sa grid pagkahuman sa tanan nga column operations.
         }
 
         // empty event handler, walay gibuhat

@@ -59,6 +59,9 @@ namespace SyncStock.Views.UserControl
                 _repo.GetPendingOrderSummary()
                 .Sum(x => x.TotalAmount)
                 .ToString("N2");
+
+            SumOfReceivedOrders.Text =
+        $"₱{_repo.GetReceivedOrdersAmount():N2}";
         }
 
         // method para himuon nga bilog ang usa ka panel gamit ang graphics path
@@ -137,7 +140,7 @@ namespace SyncStock.Views.UserControl
             // ================================
 
             // gi-display ang total value sa approved orders
-            SumOfApprovedOrders.Text =
+            SumOfReceivedOrders.Text =
                 "₱" + _repo.GetTotalApprovedValue().ToString("N2");
 
             // ================================
