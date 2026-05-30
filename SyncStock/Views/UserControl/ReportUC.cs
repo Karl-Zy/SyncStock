@@ -49,6 +49,8 @@ namespace SyncStock.Views.UserControl
             // Default: show received orders
             var receivedItems = _repo.GetAllReceivedOrders().ToList();
 
+            FilterBox.SelectedIndex = 1;
+
             var now = DateTime.Now;
             // I-filter ang received items para sa current bulan ug tuig,
             // ug i-sum ang ReceivedAmount para makuha ang total cost
@@ -137,6 +139,7 @@ namespace SyncStock.Views.UserControl
                     SecondFilterBox.Clear();
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
+                    GridCaption.Text = "      INVENTORY PURCHASE ORDERS";
                     break;
 
                 case "Received Orders":
@@ -148,6 +151,7 @@ namespace SyncStock.Views.UserControl
                     SecondFilterBox.Clear();
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
+                    GridCaption.Text = "      INVENTORY RECEIVED ORDERS";
                     break;
 
                 case "Capitalized Orders":
@@ -159,6 +163,7 @@ namespace SyncStock.Views.UserControl
                     SecondFilterBox.Clear();
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
+                    GridCaption.Text = "      INVENTORY CAPITALIZED ORDERS";
                     break;
 
                 case "Reconciliation":
@@ -170,6 +175,7 @@ namespace SyncStock.Views.UserControl
                     SecondFilterBox.Clear();
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
+                    GridCaption.Text = "      INVENTORY RECONCILIATION";
 
                     // I-hide ang AttachmentData column kay binary data siya,
                     // dili pwede ipakita direkta sa grid
