@@ -60,7 +60,7 @@ namespace SyncStock.Views.UserControl
                 .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
                 .Sum(i => i.ReceivedQuantity);
             // I-display ang total cost ug total items sa labels
-            totalMonthlyCostLBL.Text = totalCost.ToString("N2");
+            totalMonthlyCostLBL.Text = "₱" +totalCost.ToString("N2");
             totalMonthlyItemsLBL.Text = totalItems.ToString();
             // I-assign ang filtered list sa class-level variable para magamit sa printing
             _CurrentFilteredData = receivedItems;

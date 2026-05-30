@@ -4,6 +4,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Views.Theme;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -11,10 +12,10 @@ using System.Linq;
 using System.Windows.Forms;
 
 // namespace nga naglangkob sa dashboard user control
-namespace SyncStock.Views.UserControl
+namespace SyncStock.Views.UserControl 
 {
     // klase nga mao ang dashboard user control, nag-extend sa XtraUserControl
-    public partial class DashBoardUC : XtraUserControl
+    public partial class DashBoardUC : XtraUserControl, IThemeable
     {
         // gi-instansya ang repository para sa database operations
         private Repository _repo = new Repository();
@@ -45,6 +46,18 @@ namespace SyncStock.Views.UserControl
 
             // gi-apply ang circular shape sa panel 16
             MakeCircularPanel(panelControl16);
+        }
+
+        public void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+            {
+                this.BackColor = Color.FromArgb(30, 30, 30);
+            }
+            else
+            {
+                this.BackColor = Color.White;
+            }
         }
 
         // event handler pag-load sa dashboard user control

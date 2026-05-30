@@ -1,8 +1,10 @@
 ﻿using DevExpress.XtraEditors;
+using SyncStock.Models.Accounts;
+using SyncStock.Views;
+using SyncStock.Views.Theme;
 using SyncStock.Views.UserControl;
 using System;
 using System.Windows.Forms;
-using SyncStock.Models.Accounts;
 
 namespace SyncStock
 {
@@ -10,6 +12,7 @@ namespace SyncStock
     {
         private readonly User _currentUser;
 
+        public bool LogoutRequested { get; private set; }
         public MainForm(User user)
         {
             InitializeComponent();
@@ -81,10 +84,7 @@ namespace SyncStock
             this.Bounds = Screen.PrimaryScreen.WorkingArea;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void LoadControl(UserControl control)
         {
@@ -119,5 +119,74 @@ namespace SyncStock
         {
             LoadControl(new ReportUC());
         }
+
+        private void darkMode_Click(object sender, EventArgs e)
+        {
+            ThemeManager.SetTheme(
+       ThemeMode.Dark
+   );
+
+            ThemeService.SaveTheme(
+                ThemeMode.Dark
+            );
+
+            darkMode.Visible = false;
+            lightMode.Visible = true;
+        }
+
+        private void lightMode_Click(object sender, EventArgs e)
+        {
+            ThemeManager.SetTheme(
+        ThemeMode.Light
+    );
+
+            ThemeService.SaveTheme(
+                ThemeMode.Light
+            );
+
+            darkMode.Visible = true;
+            lightMode.Visible = false;
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+            ThemeMode savedTheme =
+   ThemeService.LoadTheme();
+
+            ThemeManager.SetTheme(savedTheme);
+
+            if (savedTheme == ThemeMode.Dark)
+            {
+                darkMode.Visible = false;
+                lightMode.Visible = true;
+            }
+            else
+            {
+                darkMode.Visible = true;
+                lightMode.Visible = false;
+            }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            DialogResult result =
+           XtraMessageBox.Show(
+               "Are you sure you want to logout?",
+               "Logout",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question
+           );
+
+            if (result == DialogResult.Yes)
+            {
+                LogoutRequested = true;
+
+                this.Close();
+            }
+        }
+
+       
+
+
     }
 }

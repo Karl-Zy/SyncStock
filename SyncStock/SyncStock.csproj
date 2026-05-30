@@ -157,6 +157,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Theme\IThemeable.cs" />
+    <Compile Include="Views\Theme\ThemeManager.cs" />
+    <Compile Include="Views\Theme\ThemeMode.cs" />
+    <Compile Include="Views\Theme\ThemeService.cs" />
+    <Compile Include="Views\Theme\ThemeType\DarkMode.cs" />
+    <Compile Include="Views\Theme\ThemeType\LightMode.cs" />
     <Compile Include="Views\UserControl\AuditorReviewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
