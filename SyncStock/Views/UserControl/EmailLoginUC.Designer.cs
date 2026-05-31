@@ -43,6 +43,7 @@
             this.BtnLogin.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnLogin.Appearance.Options.UseBackColor = true;
             this.BtnLogin.Appearance.Options.UseFont = true;
+            this.BtnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnLogin.Location = new System.Drawing.Point(24, 185);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(340, 40);

@@ -14,11 +14,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.PnlCard = new DevExpress.XtraEditors.PanelControl();
-            this.emailLoginUC = new SyncStock.Views.EmailLoginUC();
-            this.rfidLoginUC = new SyncStock.Views.RfidLoginUC();
             this.BtnEmailTab = new DevExpress.XtraEditors.SimpleButton();
             this.BtnRfidTab = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.emailLoginUC = new SyncStock.Views.EmailLoginUC();
+            this.rfidLoginUC = new SyncStock.Views.RfidLoginUC();
             ((System.ComponentModel.ISupportInitialize)(this.PnlCard)).BeginInit();
             this.PnlCard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -36,37 +36,24 @@
             this.PnlCard.Size = new System.Drawing.Size(390, 309);
             this.PnlCard.TabIndex = 3;
             // 
-            // emailLoginUC
-            // 
-            this.emailLoginUC.Location = new System.Drawing.Point(5, 44);
-            this.emailLoginUC.Name = "emailLoginUC";
-            this.emailLoginUC.Size = new System.Drawing.Size(379, 259);
-            this.emailLoginUC.TabIndex = 3;
-            this.emailLoginUC.Visible = false;
-            // 
-            // rfidLoginUC
-            // 
-            this.rfidLoginUC.Location = new System.Drawing.Point(6, 45);
-            this.rfidLoginUC.Name = "rfidLoginUC";
-            this.rfidLoginUC.Size = new System.Drawing.Size(379, 259);
-            this.rfidLoginUC.TabIndex = 2;
-            // 
             // BtnEmailTab
             // 
             this.BtnEmailTab.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEmailTab.Appearance.Options.UseFont = true;
+            this.BtnEmailTab.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnEmailTab.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnEmailTab.ImageOptions.SvgImage")));
             this.BtnEmailTab.Location = new System.Drawing.Point(206, 5);
             this.BtnEmailTab.Name = "BtnEmailTab";
             this.BtnEmailTab.Size = new System.Drawing.Size(179, 33);
             this.BtnEmailTab.TabIndex = 1;
-            this.BtnEmailTab.Text = "Email & Password";
+            this.BtnEmailTab.Text = "User & Password";
             this.BtnEmailTab.Click += new System.EventHandler(this.BtnEmailTab_Click);
             // 
             // BtnRfidTab
             // 
             this.BtnRfidTab.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRfidTab.Appearance.Options.UseFont = true;
+            this.BtnRfidTab.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnRfidTab.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnRfidTab.ImageOptions.SvgImage")));
             this.BtnRfidTab.Location = new System.Drawing.Point(5, 5);
             this.BtnRfidTab.Name = "BtnRfidTab";
@@ -86,6 +73,21 @@
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(827, 453);
             this.pictureEdit1.TabIndex = 4;
+            // 
+            // emailLoginUC
+            // 
+            this.emailLoginUC.Location = new System.Drawing.Point(5, 44);
+            this.emailLoginUC.Name = "emailLoginUC";
+            this.emailLoginUC.Size = new System.Drawing.Size(379, 259);
+            this.emailLoginUC.TabIndex = 3;
+            this.emailLoginUC.Visible = false;
+            // 
+            // rfidLoginUC
+            // 
+            this.rfidLoginUC.Location = new System.Drawing.Point(6, 45);
+            this.rfidLoginUC.Name = "rfidLoginUC";
+            this.rfidLoginUC.Size = new System.Drawing.Size(379, 259);
+            this.rfidLoginUC.TabIndex = 2;
             // 
             // LoginForm
             // 

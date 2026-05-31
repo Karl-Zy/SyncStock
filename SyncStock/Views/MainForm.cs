@@ -93,6 +93,11 @@ namespace SyncStock
             control.Dock = DockStyle.Fill;
 
             mainPanel.Controls.Add(control);
+
+            // REAPPLY CURRENT THEME
+            ThemeManager.SetTheme(
+                ThemeManager.CurrentMode
+            );
         }
 
         private void dashBoard_Click(object sender, EventArgs e)
@@ -120,52 +125,7 @@ namespace SyncStock
             LoadControl(new ReportUC());
         }
 
-        private void darkMode_Click(object sender, EventArgs e)
-        {
-            ThemeManager.SetTheme(
-       ThemeMode.Dark
-   );
-
-            ThemeService.SaveTheme(
-                ThemeMode.Dark
-            );
-
-            darkMode.Visible = false;
-            lightMode.Visible = true;
-        }
-
-        private void lightMode_Click(object sender, EventArgs e)
-        {
-            ThemeManager.SetTheme(
-        ThemeMode.Light
-    );
-
-            ThemeService.SaveTheme(
-                ThemeMode.Light
-            );
-
-            darkMode.Visible = true;
-            lightMode.Visible = false;
-        }
-
-        private void MainForm_Load_1(object sender, EventArgs e)
-        {
-            ThemeMode savedTheme =
-   ThemeService.LoadTheme();
-
-            ThemeManager.SetTheme(savedTheme);
-
-            if (savedTheme == ThemeMode.Dark)
-            {
-                darkMode.Visible = false;
-                lightMode.Visible = true;
-            }
-            else
-            {
-                darkMode.Visible = true;
-                lightMode.Visible = false;
-            }
-        }
+       
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {

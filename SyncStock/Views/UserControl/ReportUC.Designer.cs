@@ -59,6 +59,11 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -89,6 +94,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -103,6 +112,7 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.panelControl2);
             this.dataLayoutControl1.Controls.Add(this.panelControl9);
             this.dataLayoutControl1.Controls.Add(this.panelControl8);
             this.dataLayoutControl1.Controls.Add(this.panelControl6);
@@ -121,10 +131,10 @@
             // panelControl9
             // 
             this.panelControl9.Controls.Add(this.totalMonthlyItemsLBL);
-            this.panelControl9.Location = new System.Drawing.Point(959, 73);
+            this.panelControl9.Location = new System.Drawing.Point(959, 138);
             this.panelControl9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl9.Name = "panelControl9";
-            this.panelControl9.Size = new System.Drawing.Size(918, 125);
+            this.panelControl9.Size = new System.Drawing.Size(918, 64);
             this.panelControl9.TabIndex = 8;
             // 
             // totalMonthlyItemsLBL
@@ -134,7 +144,7 @@
             this.totalMonthlyItemsLBL.Appearance.Options.UseFont = true;
             this.totalMonthlyItemsLBL.Appearance.Options.UseForeColor = true;
             this.totalMonthlyItemsLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.totalMonthlyItemsLBL.Location = new System.Drawing.Point(421, 38);
+            this.totalMonthlyItemsLBL.Location = new System.Drawing.Point(443, 6);
             this.totalMonthlyItemsLBL.Margin = new System.Windows.Forms.Padding(4);
             this.totalMonthlyItemsLBL.Name = "totalMonthlyItemsLBL";
             this.totalMonthlyItemsLBL.Size = new System.Drawing.Size(18, 45);
@@ -147,10 +157,10 @@
             this.panelControl8.Appearance.Options.UseBackColor = true;
             this.panelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl8.Controls.Add(this.labelControl2);
-            this.panelControl8.Location = new System.Drawing.Point(959, 16);
+            this.panelControl8.Location = new System.Drawing.Point(959, 91);
             this.panelControl8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl8.Name = "panelControl8";
-            this.panelControl8.Size = new System.Drawing.Size(918, 51);
+            this.panelControl8.Size = new System.Drawing.Size(918, 41);
             this.panelControl8.TabIndex = 7;
             // 
             // labelControl2
@@ -173,10 +183,10 @@
             this.panelControl6.Appearance.Options.UseForeColor = true;
             this.panelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl6.Controls.Add(this.labelControl1);
-            this.panelControl6.Location = new System.Drawing.Point(16, 16);
+            this.panelControl6.Location = new System.Drawing.Point(16, 91);
             this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(937, 51);
+            this.panelControl6.Size = new System.Drawing.Size(937, 41);
             this.panelControl6.TabIndex = 0;
             // 
             // labelControl1
@@ -195,10 +205,10 @@
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.totalMonthlyCostLBL);
-            this.panelControl4.Location = new System.Drawing.Point(16, 73);
+            this.panelControl4.Location = new System.Drawing.Point(16, 138);
             this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(937, 125);
+            this.panelControl4.Size = new System.Drawing.Size(937, 64);
             this.panelControl4.TabIndex = 6;
             // 
             // totalMonthlyCostLBL
@@ -208,7 +218,7 @@
             this.totalMonthlyCostLBL.Appearance.Options.UseFont = true;
             this.totalMonthlyCostLBL.Appearance.Options.UseForeColor = true;
             this.totalMonthlyCostLBL.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Horizontal;
-            this.totalMonthlyCostLBL.Location = new System.Drawing.Point(386, 44);
+            this.totalMonthlyCostLBL.Location = new System.Drawing.Point(385, 6);
             this.totalMonthlyCostLBL.Margin = new System.Windows.Forms.Padding(4);
             this.totalMonthlyCostLBL.Name = "totalMonthlyCostLBL";
             this.totalMonthlyCostLBL.Size = new System.Drawing.Size(18, 45);
@@ -223,7 +233,7 @@
             this.panelControl3.Controls.Add(this.FilterBox);
             this.panelControl3.Controls.Add(this.PrintSummaryButton);
             this.panelControl3.Controls.Add(this.YearBox);
-            this.panelControl3.Location = new System.Drawing.Point(16, 204);
+            this.panelControl3.Location = new System.Drawing.Point(16, 208);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(1861, 56);
@@ -232,7 +242,7 @@
             // SecondFilterBox
             // 
             this.SecondFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SecondFilterBox.Location = new System.Drawing.Point(1046, 3);
+            this.SecondFilterBox.Location = new System.Drawing.Point(655, 3);
             this.SecondFilterBox.Name = "SecondFilterBox";
             this.SecondFilterBox.Properties.AutoHeight = false;
             this.SecondFilterBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -249,7 +259,7 @@
             // 
             this.PeriodTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PeriodTypeBox.EditValue = "SELECT PERIOD";
-            this.PeriodTypeBox.Location = new System.Drawing.Point(1270, 3);
+            this.PeriodTypeBox.Location = new System.Drawing.Point(451, 3);
             this.PeriodTypeBox.Name = "PeriodTypeBox";
             this.PeriodTypeBox.Properties.AutoHeight = false;
             this.PeriodTypeBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -305,7 +315,7 @@
             // 
             this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.YearBox.EditValue = "SELECT YEAR";
-            this.YearBox.Location = new System.Drawing.Point(1491, 3);
+            this.YearBox.Location = new System.Drawing.Point(247, 3);
             this.YearBox.Name = "YearBox";
             this.YearBox.Properties.AutoHeight = false;
             this.YearBox.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -322,10 +332,10 @@
             // 
             this.panelControl1.Controls.Add(this.ReportGC);
             this.panelControl1.Controls.Add(this.panelControl7);
-            this.panelControl1.Location = new System.Drawing.Point(16, 266);
+            this.panelControl1.Location = new System.Drawing.Point(16, 270);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1861, 713);
+            this.panelControl1.Size = new System.Drawing.Size(1861, 709);
             this.panelControl1.TabIndex = 4;
             // 
             // ReportGC
@@ -339,7 +349,7 @@
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
             this.ReportGC.Name = "ReportGC";
-            this.ReportGC.Size = new System.Drawing.Size(1857, 651);
+            this.ReportGC.Size = new System.Drawing.Size(1857, 647);
             this.ReportGC.TabIndex = 1;
             this.ReportGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ReportGV});
@@ -391,7 +401,8 @@
             this.layoutControlItem4,
             this.layoutControlItem6,
             this.layoutControlItem8,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1893, 995);
             this.Root.TextVisible = false;
@@ -399,16 +410,16 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.panelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 250);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 254);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1867, 719);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1867, 715);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.panelControl3;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 188);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 192);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(1867, 62);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -417,36 +428,36 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.panelControl4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 57);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 122);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(943, 131);
+            this.layoutControlItem4.Size = new System.Drawing.Size(943, 70);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.panelControl6;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 75);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(943, 57);
+            this.layoutControlItem6.Size = new System.Drawing.Size(943, 47);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.panelControl8;
-            this.layoutControlItem8.Location = new System.Drawing.Point(943, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(943, 75);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(924, 57);
+            this.layoutControlItem8.Size = new System.Drawing.Size(924, 47);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.panelControl9;
-            this.layoutControlItem9.Location = new System.Drawing.Point(943, 57);
+            this.layoutControlItem9.Location = new System.Drawing.Point(943, 122);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(924, 131);
+            this.layoutControlItem9.Size = new System.Drawing.Size(924, 70);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -458,6 +469,61 @@
             this.gridColumn10.MinWidth = 30;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Width = 223;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.pictureEdit1);
+            this.panelControl2.Controls.Add(this.labelControl14);
+            this.panelControl2.Controls.Add(this.labelControl13);
+            this.panelControl2.Location = new System.Drawing.Point(16, 16);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1861, 69);
+            this.panelControl2.TabIndex = 9;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.panelControl2;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(1867, 75);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Location = new System.Drawing.Point(144, 4);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(157, 32);
+            this.labelControl13.TabIndex = 5;
+            this.labelControl13.Text = "Asset Reports";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Location = new System.Drawing.Point(144, 40);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(250, 13);
+            this.labelControl14.TabIndex = 6;
+            this.labelControl14.Text = "Generate and analyze asset management reports";
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
+            this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.NullText = " ";
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Size = new System.Drawing.Size(138, 69);
+            this.pictureEdit1.TabIndex = 7;
             // 
             // ReportUC
             // 
@@ -501,6 +567,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -536,5 +607,10 @@
         private DevExpress.XtraEditors.ComboBoxEdit YearBox;
         private DevExpress.XtraEditors.ComboBoxEdit SecondFilterBox;
         private DevExpress.XtraEditors.ComboBoxEdit PeriodTypeBox;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
     }
 }

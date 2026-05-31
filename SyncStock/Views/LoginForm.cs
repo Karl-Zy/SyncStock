@@ -24,6 +24,7 @@ namespace SyncStock.Views
 
             ShowRfid();
 
+            this.AcceptButton = emailLoginUC.LoginButton;
             this.Load += LoginForm_Load;
         }
 

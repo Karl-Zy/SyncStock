@@ -13,7 +13,7 @@ namespace SyncStock.Views
             InitializeComponent();
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        public void BtnLogin_Click(object sender, EventArgs e)
         {
             string userName = txtEmail.Text.Trim();
             string password = txtPassword.Text;
@@ -26,6 +26,11 @@ namespace SyncStock.Views
             }
 
             LoginRequested?.Invoke(this, (userName, password));
+        }
+
+        public SimpleButton LoginButton
+        {
+            get { return BtnLogin; }
         }
     }
 }

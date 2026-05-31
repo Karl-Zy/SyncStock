@@ -47,8 +47,16 @@ namespace SyncStock.Views.UserControl
             layoutControl11.HideCustomizationForm();
             layoutControl12.AllowCustomization = false;
             layoutControl12.HideCustomizationForm();
-            
 
+            
+            gpoAddItemToOrderQuantitySpinEdit.Properties.IsFloatValue = false;
+            gpoAddItemToOrderQuantitySpinEdit.Properties.Mask.EditMask = "n0";
+            gpoAddItemToOrderQuantitySpinEdit.Properties.MinValue = 0;
+            gpoAddItemToOrderQuantitySpinEdit.EditValue = 0;
+            opoQuantitySE.Properties.IsFloatValue = false;
+            opoQuantitySE.Properties.Mask.EditMask = "n0";
+            opoQuantitySE.Properties.MinValue = 0;
+            opoQuantitySE.EditValue = 0;
             // gi-load ang lista sa mga departamento
             LoadDepartments();
 
@@ -1476,5 +1484,21 @@ namespace SyncStock.Views.UserControl
 
         // empty event handler, walay gibuhat
         private void textEdit5_EditValueChanged(object sender, EventArgs e) { }
+
+        private void gpoAddItemToOrderQuantitySpinEdit_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+            if (Convert.ToDecimal(e.NewValue) < 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void opoQuantitySE_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+            if (Convert.ToDecimal(e.NewValue) < 0)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

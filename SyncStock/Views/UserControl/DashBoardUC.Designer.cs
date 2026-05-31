@@ -233,7 +233,7 @@
             this.layoutControl1.Controls.Add(this.panelControl2);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Location = new System.Drawing.Point(0, -403);
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
@@ -451,10 +451,10 @@
             this.labelControl27.Appearance.Options.UseFont = true;
             this.labelControl27.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftTop;
             this.labelControl27.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl27.ImageOptions.SvgImage")));
-            this.labelControl27.Location = new System.Drawing.Point(634, 865);
+            this.labelControl27.Location = new System.Drawing.Point(688, 865);
             this.labelControl27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(920, 36);
+            this.labelControl27.Size = new System.Drawing.Size(866, 36);
             this.labelControl27.StyleController = this.dataLayoutControl1;
             this.labelControl27.TabIndex = 2;
             this.labelControl27.Text = "Assets by Category";
@@ -475,18 +475,19 @@
             this.labelControl26.Location = new System.Drawing.Point(16, 865);
             this.labelControl26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(612, 36);
+            this.labelControl26.Size = new System.Drawing.Size(666, 36);
             this.labelControl26.StyleController = this.dataLayoutControl1;
             this.labelControl26.TabIndex = 1;
-            this.labelControl26.Text = " Monthly Asset Acquisition Trend                                         ";
+            this.labelControl26.Text = " Monthly Asset Acquisition Trend                                                 " +
+    " ";
             // 
             // panelControl10
             // 
             this.panelControl10.Controls.Add(this.AssetCategoryChart);
-            this.panelControl10.Location = new System.Drawing.Point(634, 907);
+            this.panelControl10.Location = new System.Drawing.Point(688, 907);
             this.panelControl10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl10.Name = "panelControl10";
-            this.panelControl10.Size = new System.Drawing.Size(920, 206);
+            this.panelControl10.Size = new System.Drawing.Size(866, 206);
             this.panelControl10.TabIndex = 11;
             // 
             // AssetCategoryChart
@@ -502,7 +503,7 @@
             series1.View = pieSeriesView1;
             this.AssetCategoryChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
-            this.AssetCategoryChart.Size = new System.Drawing.Size(916, 202);
+            this.AssetCategoryChart.Size = new System.Drawing.Size(862, 202);
             this.AssetCategoryChart.TabIndex = 0;
             // 
             // panelControl9
@@ -602,7 +603,7 @@
             this.AssetAcqChart.Location = new System.Drawing.Point(16, 907);
             this.AssetAcqChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AssetAcqChart.Name = "AssetAcqChart";
-            this.AssetAcqChart.Size = new System.Drawing.Size(612, 206);
+            this.AssetAcqChart.Size = new System.Drawing.Size(666, 206);
             this.AssetAcqChart.TabIndex = 8;
             // 
             // chartControl1
@@ -620,7 +621,7 @@
             series2.SeriesID = 0;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series2};
-            this.chartControl1.Size = new System.Drawing.Size(608, 202);
+            this.chartControl1.Size = new System.Drawing.Size(662, 202);
             this.chartControl1.TabIndex = 0;
             // 
             // panelControl6
@@ -1051,9 +1052,9 @@
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.panelControl10;
-            this.layoutControlItem18.Location = new System.Drawing.Point(618, 891);
+            this.layoutControlItem18.Location = new System.Drawing.Point(672, 891);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(926, 212);
+            this.layoutControlItem18.Size = new System.Drawing.Size(872, 212);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
             // 
@@ -1062,17 +1063,17 @@
             this.layoutControlItem21.Control = this.labelControl26;
             this.layoutControlItem21.Location = new System.Drawing.Point(0, 849);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(618, 42);
+            this.layoutControlItem21.Size = new System.Drawing.Size(672, 42);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.labelControl27;
-            this.layoutControlItem22.Location = new System.Drawing.Point(618, 849);
+            this.layoutControlItem22.Location = new System.Drawing.Point(672, 849);
             this.layoutControlItem22.MinSize = new System.Drawing.Size(253, 42);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(926, 42);
+            this.layoutControlItem22.Size = new System.Drawing.Size(872, 42);
             this.layoutControlItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
@@ -1082,7 +1083,7 @@
             this.layoutControlItem15.Control = this.AssetAcqChart;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 891);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(618, 212);
+            this.layoutControlItem15.Size = new System.Drawing.Size(672, 212);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 

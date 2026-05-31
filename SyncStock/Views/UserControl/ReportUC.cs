@@ -26,6 +26,9 @@ namespace SyncStock.Views.UserControl
         {
             InitializeComponent();
 
+            ReportGV.OptionsBehavior.Editable = false;
+            ReportGV.OptionsBehavior.ReadOnly = true;
+
             LoadData();
         }
 

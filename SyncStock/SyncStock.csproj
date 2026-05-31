@@ -169,6 +169,11 @@
     <Compile Include="Views\UserControl\AuditorReviewUC.Designer.cs">
       <DependentUpon>AuditorReviewUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControl\AuditorReviewUC1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuditorReviewUC.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControl\DashBoardUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
