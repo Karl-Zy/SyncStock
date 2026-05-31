@@ -31,6 +31,24 @@ namespace SyncStock.Views.UserControl
             // gi-initialize ang mga components sa form
             InitializeComponent();
 
+            layoutControl5.AllowCustomization = false;
+            layoutControl5.HideCustomizationForm();
+            layoutControl6.AllowCustomization = false;
+            layoutControl6.HideCustomizationForm();
+            layoutControl7.AllowCustomization = false;
+            layoutControl7.HideCustomizationForm();
+            layoutControl8.AllowCustomization = false;
+            layoutControl8.HideCustomizationForm();
+            layoutControl9.AllowCustomization = false;
+            layoutControl9.HideCustomizationForm();
+            layoutControl10.AllowCustomization = false;
+            layoutControl10.HideCustomizationForm();
+            layoutControl11.AllowCustomization = false;
+            layoutControl11.HideCustomizationForm();
+            layoutControl12.AllowCustomization = false;
+            layoutControl12.HideCustomizationForm();
+            
+
             // gi-load ang lista sa mga departamento
             LoadDepartments();
 

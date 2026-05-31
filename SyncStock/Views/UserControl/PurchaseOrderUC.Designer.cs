@@ -191,7 +191,6 @@
             this.simpleLabelItem6 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -1732,7 +1731,6 @@
             this.layoutControl5.Controls.Add(this.panelControl8);
             this.layoutControl5.Controls.Add(this.panelControl9);
             this.layoutControl5.Controls.Add(this.panelControl10);
-            this.layoutControl5.Controls.Add(this.simpleButton2);
             this.layoutControl5.Dock = System.Windows.Forms.DockStyle.Top;
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.Name = "layoutControl5";
@@ -2306,20 +2304,6 @@
             this.emptySpaceItem8.Size = new System.Drawing.Size(10, 13);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(14, 676);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.simpleButton2.Size = new System.Drawing.Size(723, 37);
-            this.simpleButton2.StyleController = this.layoutControl5;
-            this.simpleButton2.TabIndex = 13;
-            this.simpleButton2.Text = "Add to Cart";
-            // 
             // layoutControlGroup7
             // 
             this.layoutControlGroup7.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -2789,7 +2773,6 @@
         private DevExpress.XtraEditors.SimpleButton opoEditCartItemBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton gpoDeleteCartITemBTN;
         private DevExpress.XtraEditors.SimpleButton gpoEditCartItemBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;

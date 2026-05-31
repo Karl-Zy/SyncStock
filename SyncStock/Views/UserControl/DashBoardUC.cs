@@ -2,6 +2,7 @@
 using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraLayout;
 using SyncStock.Database;
 using SyncStock.Models;
 using SyncStock.Views.Theme;
@@ -25,6 +26,17 @@ namespace SyncStock.Views.UserControl
         {
             // gi-initialize ang mga components sa form
             InitializeComponent();
+
+            layoutControl1.AllowCustomization = false;
+            layoutControl1.HideCustomizationForm();
+            layoutControl2.AllowCustomization = false;
+            layoutControl2.HideCustomizationForm();
+            layoutControl3.AllowCustomization = false;
+            layoutControl3.HideCustomizationForm();
+            layoutControl4.AllowCustomization = false;
+            layoutControl4.HideCustomizationForm();
+            
+
 
             // gi-set ang pending orders grid nga dili ma-edit
             PendingOrdersGV.OptionsBehavior.Editable = false;
