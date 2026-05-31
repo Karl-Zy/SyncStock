@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUC));
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -54,7 +54,7 @@
             this.ReportGC = new DevExpress.XtraGrid.GridControl();
             this.ReportGV = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl7 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.GridCaption = new DevExpress.XtraEditors.LabelControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -388,14 +388,14 @@
             // 
             this.ReportGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportGC.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.ReportGC.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.ReportGC.Location = new System.Drawing.Point(2, 60);
+            gridLevelNode2});
+            this.ReportGC.Location = new System.Drawing.Point(2, 52);
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
             this.ReportGC.Name = "ReportGC";
-            this.ReportGC.Size = new System.Drawing.Size(1857, 647);
+            this.ReportGC.Size = new System.Drawing.Size(1857, 655);
             this.ReportGC.TabIndex = 1;
             this.ReportGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ReportGV});
@@ -416,26 +416,26 @@
             this.panelControl7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(253)))), ((int)(((byte)(244)))));
             this.panelControl7.Appearance.Options.UseBackColor = true;
             this.panelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl7.Controls.Add(this.labelControl7);
+            this.panelControl7.Controls.Add(this.GridCaption);
             this.panelControl7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl7.Location = new System.Drawing.Point(2, 2);
             this.panelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(1857, 58);
+            this.panelControl7.Size = new System.Drawing.Size(1857, 50);
             this.panelControl7.TabIndex = 0;
             // 
-            // labelControl7
+            // GridCaption
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelControl7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl7.ImageOptions.SvgImage")));
-            this.labelControl7.Location = new System.Drawing.Point(4, 4);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(232, 32);
-            this.labelControl7.TabIndex = 0;
-            this.labelControl7.Text = "         INVENTORY SUMMARY REPORT";
+            this.GridCaption.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridCaption.Appearance.Options.UseFont = true;
+            this.GridCaption.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.GridCaption.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl7.ImageOptions.SvgImage")));
+            this.GridCaption.Location = new System.Drawing.Point(4, 10);
+            this.GridCaption.Margin = new System.Windows.Forms.Padding(4);
+            this.GridCaption.Name = "GridCaption";
+            this.GridCaption.Size = new System.Drawing.Size(424, 32);
+            this.GridCaption.TabIndex = 0;
+            this.GridCaption.Text = "        INVENTORY SUMMARY REPORT";
             // 
             // Root
             // 
@@ -601,7 +601,7 @@
         private DevExpress.XtraEditors.SimpleButton PrintSummaryButton;
         private DevExpress.XtraGrid.GridControl ReportGC;
         private DevExpress.XtraGrid.Views.Grid.GridView ReportGV;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl GridCaption;
         private DevExpress.XtraEditors.ComboBoxEdit FilterBox;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.ComboBoxEdit YearBox;
