@@ -32,6 +32,10 @@
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.totalMonthlyItemsLBL = new DevExpress.XtraEditors.LabelControl();
             this.panelControl8 = new DevExpress.XtraEditors.PanelControl();
@@ -58,15 +62,14 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
             this.panelControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl8)).BeginInit();
@@ -94,10 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -127,6 +127,52 @@
             this.dataLayoutControl1.Size = new System.Drawing.Size(1893, 995);
             this.dataLayoutControl1.TabIndex = 0;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.pictureEdit1);
+            this.panelControl2.Controls.Add(this.labelControl14);
+            this.panelControl2.Controls.Add(this.labelControl13);
+            this.panelControl2.Location = new System.Drawing.Point(16, 16);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1861, 69);
+            this.panelControl2.TabIndex = 9;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
+            this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.NullText = " ";
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Size = new System.Drawing.Size(138, 69);
+            this.pictureEdit1.TabIndex = 7;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Location = new System.Drawing.Point(144, 40);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(250, 13);
+            this.labelControl14.TabIndex = 6;
+            this.labelControl14.Text = "Generate and analyze asset management reports";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Location = new System.Drawing.Point(144, 4);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(157, 32);
+            this.labelControl13.TabIndex = 5;
+            this.labelControl13.Text = "Asset Reports";
             // 
             // panelControl9
             // 
@@ -241,7 +287,7 @@
             // 
             // SecondFilterBox
             // 
-            this.SecondFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SecondFilterBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SecondFilterBox.Location = new System.Drawing.Point(655, 3);
             this.SecondFilterBox.Name = "SecondFilterBox";
             this.SecondFilterBox.Properties.AutoHeight = false;
@@ -257,7 +303,7 @@
             // 
             // PeriodTypeBox
             // 
-            this.PeriodTypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PeriodTypeBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.PeriodTypeBox.EditValue = "SELECT PERIOD";
             this.PeriodTypeBox.Location = new System.Drawing.Point(451, 3);
             this.PeriodTypeBox.Name = "PeriodTypeBox";
@@ -313,7 +359,7 @@
             // 
             // YearBox
             // 
-            this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.YearBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.YearBox.EditValue = "SELECT YEAR";
             this.YearBox.Location = new System.Drawing.Point(247, 3);
             this.YearBox.Name = "YearBox";
@@ -461,25 +507,6 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // gridColumn10
-            // 
-            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn10.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn10.Caption = "Department";
-            this.gridColumn10.MinWidth = 30;
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Width = 223;
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.pictureEdit1);
-            this.panelControl2.Controls.Add(this.labelControl14);
-            this.panelControl2.Controls.Add(this.labelControl13);
-            this.panelControl2.Location = new System.Drawing.Point(16, 16);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1861, 69);
-            this.panelControl2.TabIndex = 9;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl2;
@@ -489,41 +516,14 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // labelControl13
+            // gridColumn10
             // 
-            this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(144, 4);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(157, 32);
-            this.labelControl13.TabIndex = 5;
-            this.labelControl13.Text = "Asset Reports";
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(144, 40);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(250, 13);
-            this.labelControl14.TabIndex = 6;
-            this.labelControl14.Text = "Generate and analyze asset management reports";
-            // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
-            this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.NullText = " ";
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Size = new System.Drawing.Size(138, 69);
-            this.pictureEdit1.TabIndex = 7;
+            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn10.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn10.Caption = "Department";
+            this.gridColumn10.MinWidth = 30;
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Width = 223;
             // 
             // ReportUC
             // 
@@ -535,6 +535,10 @@
             this.xtraScrollableControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
             this.panelControl9.ResumeLayout(false);
             this.panelControl9.PerformLayout();
@@ -567,11 +571,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
