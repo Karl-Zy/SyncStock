@@ -2,8 +2,10 @@
 using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraLayout;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Views.Theme;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -11,10 +13,10 @@ using System.Linq;
 using System.Windows.Forms;
 
 // namespace nga naglangkob sa dashboard user control
-namespace SyncStock.Views.UserControl
+namespace SyncStock.Views.UserControl 
 {
     // klase nga mao ang dashboard user control, nag-extend sa XtraUserControl
-    public partial class DashBoardUC : XtraUserControl
+    public partial class DashBoardUC : XtraUserControl, IThemeable
     {
         // gi-instansya ang repository para sa database operations
         private Repository _repo = new Repository();
@@ -24,6 +26,17 @@ namespace SyncStock.Views.UserControl
         {
             // gi-initialize ang mga components sa form
             InitializeComponent();
+
+            layoutControl1.AllowCustomization = false;
+            layoutControl1.HideCustomizationForm();
+            layoutControl2.AllowCustomization = false;
+            layoutControl2.HideCustomizationForm();
+            layoutControl3.AllowCustomization = false;
+            layoutControl3.HideCustomizationForm();
+            layoutControl4.AllowCustomization = false;
+            layoutControl4.HideCustomizationForm();
+            
+
 
             // gi-set ang pending orders grid nga dili ma-edit
             PendingOrdersGV.OptionsBehavior.Editable = false;
@@ -47,6 +60,18 @@ namespace SyncStock.Views.UserControl
             MakeCircularPanel(panelControl16);
         }
 
+        public void ApplyTheme(bool darkMode)
+        {
+            if (darkMode)
+            {
+                this.BackColor = Color.FromArgb(30, 30, 30);
+            }
+            else
+            {
+                this.BackColor = Color.White;
+            }
+        }
+
         // event handler pag-load sa dashboard user control
         private void DashBoardUC_Load(object sender, EventArgs e)
         {
@@ -59,6 +84,9 @@ namespace SyncStock.Views.UserControl
                 _repo.GetPendingOrderSummary()
                 .Sum(x => x.TotalAmount)
                 .ToString("N2");
+
+            SumOfReceivedOrders.Text =
+        $"₱{_repo.GetReceivedOrdersAmount():N2}";
         }
 
         // method para himuon nga bilog ang usa ka panel gamit ang graphics path
@@ -137,7 +165,7 @@ namespace SyncStock.Views.UserControl
             // ================================
 
             // gi-display ang total value sa approved orders
-            SumOfApprovedOrders.Text =
+            SumOfReceivedOrders.Text =
                 "₱" + _repo.GetTotalApprovedValue().ToString("N2");
 
             // ================================

@@ -51,6 +51,7 @@
             this.BtnSimulate.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnSimulate.Appearance.Options.UseBackColor = true;
             this.BtnSimulate.Appearance.Options.UseFont = true;
+            this.BtnSimulate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnSimulate.Location = new System.Drawing.Point(94, 168);
             this.BtnSimulate.Name = "BtnSimulate";
             this.BtnSimulate.Size = new System.Drawing.Size(175, 53);
