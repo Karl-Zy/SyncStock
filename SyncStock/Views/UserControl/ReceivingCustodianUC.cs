@@ -53,7 +53,13 @@ namespace SyncStock.Views.UserControl
                 spneditReceivedQuan.EditValueChanged += (s, me) => UpdateRequiredLabels();
                 txteditReceivedAmount.EditValueChanged += (s, me) => UpdateRequiredLabels();
                 txteditReceivedAmount.Leave += (s, me) => UpdateRequiredLabels();
-                gvItemsView.RowClick += (s, me) => _userClickedRow = true;
+                gvItemsView.RowClick += (s, me) =>
+                {
+                    _userClickedRow = true;
+                    if (gvItemsView.FocusedRowHandle == me.RowHandle)
+                        gvItemsView_FocusedRowChanged(null,
+                            new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs(me.RowHandle, me.RowHandle));
+                };
                 lblDateReceived.AllowHtmlStringInCaption = true;
                 lblReceivedQuan.AllowHtmlStringInCaption = true;
                 lblReceivedAmount.AllowHtmlStringInCaption = true;
@@ -110,6 +116,9 @@ namespace SyncStock.Views.UserControl
                 var incomingItems = _repo.GetPendingIncomingItemsDetails();
                 gcItems.DataSource = incomingItems;
                 ApplyColumnAlignment();
+
+                _userClickedRow = true;
+                gvItemsView.FocusedRowHandle = 0;
             }
             catch (Exception ex)
             {
