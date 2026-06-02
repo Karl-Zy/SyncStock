@@ -10,6 +10,7 @@ namespace SyncStock.Models.Reports
     {
         public int ConfirmedItemID { get; set; }
         public string PONumber { get; set; }
+        public string InvoiceNumber { get; set; }
         public string ItemName { get; set; }
         public bool IsCapitalizable { get; set; }
         public int ExpectedQuantity { get; set; }

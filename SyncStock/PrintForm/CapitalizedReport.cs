@@ -14,8 +14,14 @@ namespace SyncStock.PrintForm
     {
         Repository _repository = new Repository();
 
+        public CapitalizedReport()
+        {
+            InitializeComponent();
+        }
+
         public CapitalizedReport(IEnumerable<CapitalizedOrder> data)
         {
+
             InitializeComponent();
             this.objectDataSource1.DataSource = null;
             this.DataSource = data.ToList();

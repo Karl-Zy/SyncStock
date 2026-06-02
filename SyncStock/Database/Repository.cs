@@ -17,6 +17,8 @@ namespace SyncStock.Database
     // Repository class — nag-handle sa tanan nga database operations sa sistema (OOP: Single Responsibility Principle)
     public class Repository
     {
+        public Repository() { }
+
         // Nag-create og SqlConnection pinaagi sa DatabaseHelper para dili mag-hardcode sa connection string sa matag method
         private SqlConnection CreateConnection() => DatabaseHelper.GetConnection();
 
@@ -677,6 +679,7 @@ namespace SyncStock.Database
                   SELECT
                         ci.ConfirmedItemID,
                         ci.PONumber,
+                        po.InvoiceNumber,
                         ci.ItemName,
                         ci.DateReceived,
                         ci.IsCapitalizable,
@@ -702,7 +705,7 @@ namespace SyncStock.Database
                 return conn.Query<PurchaseOrderBrief>(@"
         SELECT 
             po.PONumber,
-
+            po.InvoiceNumber,
             
             -- because ReportUC filter uses [OrderDate]
             po.OrderDate AS OrderDate,
@@ -722,6 +725,7 @@ namespace SyncStock.Database
 
         GROUP BY
             po.PONumber,
+            po.InvoiceNumber,
             po.OrderDate,
             po.POType,
             po.OrderMode
@@ -751,6 +755,7 @@ namespace SyncStock.Database
             SELECT 
                 ci.ConfirmedItemID,
                 ci.PONumber,
+                po.InvoiceNumber,
                 ci.ItemName,
                 ci.DateReceived,
                 ci.ExpectedQuantity,
@@ -776,6 +781,7 @@ namespace SyncStock.Database
                 return conn.Query<Reconciliation>(@"
             SELECT
                 po.PONumber,
+                po.InvoiceNumber,   
                 d.DepartmentName,
                 po.OrderDate,
                 po.Priority,
