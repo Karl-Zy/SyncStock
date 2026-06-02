@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -340,12 +340,24 @@ namespace SyncStock.Views.UserControl
                 return;
             }
 
-            // --- Validation Step 2: Kailangan jud naay sulod ang Date Received ---
+            // --- Validation Step 2: Date Received ---
             if (dateEdit.EditValue == null || string.IsNullOrWhiteSpace(dateEdit.Text))
             {
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Validation Error: 'Date Received' is required.",
                     "Missing Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dateEdit.Focus();
+                return;
+            }
+
+            // --- Check if the selected date falls in a locked month ---
+            DateTime receivedDate = Convert.ToDateTime(dateEdit.EditValue);
+            var monthLock = _repo.GetMonthLock(receivedDate);
+            if (monthLock != null && monthLock.IsLocked)
+            {
+                DevExpress.XtraEditors.XtraMessageBox.Show(
+                    $"Validation Error: The month of {receivedDate:MMMM yyyy} is locked. No transactions or changes are allowed.",
+                    "Month Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dateEdit.Focus();
                 return;
             }
@@ -389,6 +401,7 @@ namespace SyncStock.Views.UserControl
 
                     DateReceived = Convert.ToDateTime(dateEdit.EditValue),
                     IsCapitalizable = chckboxAsset.Checked,
+                    Status = chckboxAsset.Checked ? WorkflowStatus.Active : WorkflowStatus.Received,
                     ExpectedQuantity = Convert.ToInt32(txteditExpectedQuan.Text),
                     ReceivedQuantity = Convert.ToInt32(spneditReceivedQuan.EditValue),
 
@@ -427,10 +440,17 @@ namespace SyncStock.Views.UserControl
                     "Asset inventory ledger updated and item confirmed successfully!",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // I-reset ang form dayon i-reload ang grid para makuha na ang 
-                // bag-ong gi-confirm nga item gikan sa "pending" list.
-                ClearReceivingForm();
-                LoadDataFromRepository();
+                if (_isEditMode)
+                {
+                    this.FindForm()?.Close();
+                }
+                else
+                {
+                    // I-reset ang form dayon i-reload ang grid para makuha na ang 
+                    // bag-ong gi-confirm nga item gikan sa "pending" list.
+                    ClearReceivingForm();
+                    LoadDataFromRepository();
+                }
             }
             catch (Exception ex)
             {
