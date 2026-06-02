@@ -477,7 +477,7 @@
             this.txteditReceivedAmount.Size = new System.Drawing.Size(1304, 34);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
-            this.txteditReceivedAmount.Enter += new System.EventHandler(this.txteditReceivedAmount_Enter);
+            
             this.txteditReceivedAmount.Leave += new System.EventHandler(this.txteditReceivedAmount_Leave);
             // 
             // btnUpload
@@ -531,7 +531,7 @@
             this.btnCancel.StyleController = this.dlcReceivingReport;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            
             // 
             // lcgReceivingReport
             // 

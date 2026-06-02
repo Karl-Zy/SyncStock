@@ -1057,41 +1057,42 @@ ORDER BY DateReceived DESC";
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-        SELECT 
-            poi.PurchaseOrderItemID,
-            poi.PurchaseOrderID,
-            poi.ItemID,
+    SELECT 
+        poi.PurchaseOrderItemID,
+        poi.PurchaseOrderID,
+        poi.ItemID,
 
-            po.PONumber,
-            po.InvoiceNumber,
-            po.OrderDate,
-            po.Remarks,
-            po.Priority,
-            po.POType,
-            po.OrderMode,
+        po.PONumber,
+        po.InvoiceNumber,
+        po.OrderDate,
+        po.Remarks,
+        po.Priority,
+        po.POType,
+        po.OrderMode,
 
-            d.DepartmentName,
+        d.DepartmentName,
 
-            i.ItemName,
+        i.ItemName,
 
-            poi.Quantity,
-            poi.UnitPrice,
-            (poi.Quantity * poi.UnitPrice) AS TotalPrice
+        poi.Quantity,
+        poi.UnitPrice,
+        (poi.Quantity * poi.UnitPrice) AS TotalPrice
 
-        FROM PurchaseOrderItems poi
+    FROM PurchaseOrderItems poi
 
-        INNER JOIN PurchaseOrders po
-            ON poi.PurchaseOrderID = po.PurchaseOrderID
+    INNER JOIN PurchaseOrders po
+        ON poi.PurchaseOrderID = po.PurchaseOrderID
 
-        INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID
+    INNER JOIN Departments d
+        ON po.DepartmentID = d.DepartmentID
 
-        INNER JOIN Items i
-            ON poi.ItemID = i.ItemID
+    INNER JOIN Items i
+        ON poi.ItemID = i.ItemID
 
-        WHERE po.POType = 'OPO'
+    WHERE po.POType = 'OPO'
+    AND po.Status <> 'Received'
 
-        ORDER BY poi.PurchaseOrderItemID DESC");
+    ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
 
@@ -1101,41 +1102,42 @@ ORDER BY DateReceived DESC";
             using (var conn = CreateConnection())
             {
                 return conn.Query<PurchaseOrderItem>(@"
-        SELECT 
-            poi.PurchaseOrderItemID,
-            poi.PurchaseOrderID,
-            poi.ItemID,
+    SELECT 
+        poi.PurchaseOrderItemID,
+        poi.PurchaseOrderID,
+        poi.ItemID,
 
-            po.PONumber,
-            po.InvoiceNumber,
-            po.OrderDate,
-            po.Remarks,
-            po.Priority,
-            po.POType,
-            po.OrderMode,
+        po.PONumber,
+        po.InvoiceNumber,
+        po.OrderDate,
+        po.Remarks,
+        po.Priority,
+        po.POType,
+        po.OrderMode,
 
-            d.DepartmentName,
+        d.DepartmentName,
 
-            i.ItemName,
+        i.ItemName,
 
-            poi.Quantity,
-            poi.UnitPrice,
-            (poi.Quantity * poi.UnitPrice) AS TotalPrice
+        poi.Quantity,
+        poi.UnitPrice,
+        (poi.Quantity * poi.UnitPrice) AS TotalPrice
 
-        FROM PurchaseOrderItems poi
+    FROM PurchaseOrderItems poi
 
-        INNER JOIN PurchaseOrders po
-            ON poi.PurchaseOrderID = po.PurchaseOrderID
+    INNER JOIN PurchaseOrders po
+        ON poi.PurchaseOrderID = po.PurchaseOrderID
 
-        INNER JOIN Departments d
-            ON po.DepartmentID = d.DepartmentID
+    INNER JOIN Departments d
+        ON po.DepartmentID = d.DepartmentID
 
-        INNER JOIN Items i
-            ON poi.ItemID = i.ItemID
+    INNER JOIN Items i
+        ON poi.ItemID = i.ItemID
 
-        WHERE po.POType = 'GPO'
+    WHERE po.POType = 'GPO'
+    AND po.Status <> 'Received'
 
-        ORDER BY poi.PurchaseOrderItemID DESC");
+    ORDER BY poi.PurchaseOrderItemID DESC");
             }
         }
 
