@@ -600,42 +600,50 @@ namespace SyncStock.Views.UserControl
 
         // Ibalik ang label, background color, ug text color para sa status pill
         // Mubalik ug FALSE kung ang status wala sa listahan
-        private static bool TryGetStatusPill(string status, out string label, out Color bgColor, out Color textColor)
+        private static bool TryGetStatusPill(
+    string status,
+    out string label,
+    out Color bgColor,
+    out Color textColor)
         {
             label = null;
             bgColor = Color.Empty;
             textColor = Color.Empty;
 
-            // "Active" status: berde ang pill
-            if (string.Equals(status, WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrWhiteSpace(status))
             {
-                label = PillActive;
+                label = "Unknown";
+                bgColor = Color.LightGray;
+                textColor = Color.Black;
+                return true;
+            }
+
+            status = status.Trim();
+
+            if (
+                status.Equals(WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals(WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("Approved", StringComparison.OrdinalIgnoreCase))
+            {
+                label = "Approved";
                 bgColor = Color.FromArgb(220, 247, 220);
                 textColor = Color.FromArgb(30, 120, 30);
                 return true;
             }
 
-            // "Approved" status: berde usab ang pill
-            if (string.Equals(status, WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase))
+            if (
+                status.Equals(WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("Pending Review", StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("To be Approved", StringComparison.OrdinalIgnoreCase))
             {
-                label = PillApproved;
-                bgColor = Color.FromArgb(220, 247, 220);
-                textColor = Color.FromArgb(30, 120, 30);
-                return true;
-            }
-
-            // "Pending Review" o "Pending" status: dalag ang pill
-            if (string.Equals(status, "Pending Review", StringComparison.OrdinalIgnoreCase)
-                || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
-            {
-                label = PillPendingReview;
+                label = "To be Approved";
                 bgColor = Color.FromArgb(255, 243, 200);
                 textColor = Color.FromArgb(160, 100, 0);
                 return true;
             }
 
-            // "Received" status: berde usab, gipakita as "Approved"
-            if (string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
+            if (
+                status.Equals(WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
             {
                 label = "Approved";
                 bgColor = Color.FromArgb(220, 247, 220);

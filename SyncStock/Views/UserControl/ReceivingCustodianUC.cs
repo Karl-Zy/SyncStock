@@ -400,7 +400,22 @@ namespace SyncStock.Views.UserControl
                     AttachmentFileName = _uploadedFileName
                 };
 
-                _repo.AddConfirmedItem(confirmationPayload);
+                if (_isEditMode)
+                {
+                    _repo.UpdateConfirmedItem(
+                        _editingConfirmedItemId,
+                        confirmationPayload);
+                }
+                else
+                {
+                    _repo.AddConfirmedItem(
+                        confirmationPayload);
+
+                    _repo.UpdatePurchaseOrderItemStatus(
+                        purePoNumber,
+                        txteditItemName.Text,
+                        WorkflowStatus.Received);
+                }
 
                 // ✅ Fixed — passes itemName so only THIS item's PO status updates
                 _repo.UpdatePurchaseOrderItemStatus(
