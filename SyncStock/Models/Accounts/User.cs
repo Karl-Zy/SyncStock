@@ -1,48 +1,61 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace SyncStock.Models.Accounts
 {
-    public class User   
+    public class User
     {
         public int Id { get; set; }
+
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
+
         public string UserName { get; set; }
+
+        public string Role { get; set; }
 
         public string RfidUID { get; set; }
 
         private string _password;
 
-        public User(){}
-        
-        public User(string userName, string password, string firstName, string lastName)
+        public User() { }
+
+        // MAIN CONSTRUCTOR
+        public User(
+            string userName,
+            string password,
+            string firstName,
+            string lastName,
+            string role)
         {
             UserName = userName;
+
             Password = password;
+
             FirstName = firstName;
+
             LastName = lastName;
+
+            Role = role;
         }
+
         public string Password
         {
             get { return _password; }
+
             set
             {
-                // We only check if it is null or empty. 
-                // We don't tell the user how long it needs to be.
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Invalid input.");
                 }
+
                 _password = value;
             }
         }
 
+        // LOGIN CONSTRUCTOR
         public User(string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(userName))
@@ -51,6 +64,7 @@ namespace SyncStock.Models.Accounts
             }
 
             UserName = userName;
+
             Password = password;
         }
 
@@ -58,7 +72,5 @@ namespace SyncStock.Models.Accounts
         {
             XtraMessageBox.Show($"Welcome!");
         }
-
-
     }
 }

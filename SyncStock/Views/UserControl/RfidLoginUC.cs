@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace SyncStock.Views
 {
@@ -18,6 +19,11 @@ namespace SyncStock.Views
         public RfidLoginUC()
         {
             InitializeComponent();
+
+            panelControl1.Appearance.BackColor = Color.FromArgb(225, 245, 234);
+            panelControl1.Appearance.Options.UseBackColor = true;
+
+            MakeCircular(panelControl1);
         }
 
         private void BtnSimulate_Click(object sender, EventArgs e)
@@ -140,6 +146,35 @@ namespace SyncStock.Views
                 this.Invoke((MethodInvoker)(() =>
                     XtraMessageBox.Show(ex.Message, "Reader Error")));
                 return null;
+            }
+        }
+
+        private void MakeCircular(Control control)
+        {
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddEllipse(0, 0, control.Width, control.Height);
+
+            control.Region = new Region(path);
+        }
+
+        private bool moveDown = true;
+
+        private void rfidAnimationTimer_Tick_1(object sender, EventArgs e)
+        {
+            if (moveDown)
+            {
+                pictureEdit1.Top += 1;
+
+                if (pictureEdit1.Top >= 25)
+                    moveDown = false;
+            }
+            else
+            {
+                pictureEdit1.Top -= 1;
+
+                if (pictureEdit1.Top <= 15)
+                    moveDown = true;
             }
         }
     }

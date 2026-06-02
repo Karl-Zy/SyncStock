@@ -10,7 +10,7 @@ namespace SyncStock.Models.Accounts
     internal class Purchaser : User
     {
         public string AccountType { get; set; } = "Purchaser";
-        public Purchaser(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName)
+        public Purchaser(string userName, string password, string firstName, string lastName, string accountType) : base(userName, password, firstName, lastName, "Purchaser")
         {
             AccountType = accountType;
         }

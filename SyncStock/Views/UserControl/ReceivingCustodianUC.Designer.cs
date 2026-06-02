@@ -28,41 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceivingCustodianUC));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.scrlControl = new DevExpress.XtraEditors.XtraScrollableControl();
             this.lcMainContainer = new DevExpress.XtraLayout.LayoutControl();
             this.lblSubtitle = new DevExpress.XtraEditors.LabelControl();
             this.lblTitle = new DevExpress.XtraEditors.LabelControl();
             this.pnlPendingIncoming = new DevExpress.XtraEditors.PanelControl();
             this.dlcPendingIncoming = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.searchControl = new DevExpress.XtraEditors.SearchControl();
             this.gcItems = new DevExpress.XtraGrid.GridControl();
             this.gvItemsView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcolPONumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolPurchaser = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolDepartment = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolItemName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolDateOrdered = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcolStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridSearch = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridSearchView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.lblSearchStatus = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcgPendingIncoming = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lciGrid = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lciSearch = new DevExpress.XtraLayout.LayoutControlItem();
             this.lblPendingIncoming = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblPendingGuide = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpacePending = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.pnlReceivingReport = new DevExpress.XtraEditors.PanelControl();
             this.dlcReceivingReport = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.dateEdit = new DevExpress.XtraEditors.DateEdit();
@@ -95,6 +84,7 @@
             this.lblUploadGuide = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblReceivingReport = new DevExpress.XtraLayout.SimpleLabelItem();
             this.lblPONumber = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.emptyspaceReceiving4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -102,7 +92,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptyspaceReceiving4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.openFileDialogReceipt = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.scrlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).BeginInit();
             this.lcMainContainer.SuspendLayout();
@@ -110,16 +100,16 @@
             this.pnlPendingIncoming.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlcPendingIncoming)).BeginInit();
             this.dlcPendingIncoming.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSearchStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingIncoming)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingGuide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpacePending)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlReceivingReport)).BeginInit();
             this.pnlReceivingReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dlcReceivingReport)).BeginInit();
@@ -152,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblUploadGuide)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblReceivingReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPONumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -159,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlControl
@@ -167,8 +157,9 @@
             this.scrlControl.Controls.Add(this.lcMainContainer);
             this.scrlControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scrlControl.Location = new System.Drawing.Point(0, 0);
+            this.scrlControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scrlControl.Name = "scrlControl";
-            this.scrlControl.Size = new System.Drawing.Size(1498, 1066);
+            this.scrlControl.Size = new System.Drawing.Size(1748, 1312);
             this.scrlControl.TabIndex = 0;
             // 
             // lcMainContainer
@@ -177,15 +168,16 @@
             this.lcMainContainer.Controls.Add(this.lblTitle);
             this.lcMainContainer.Controls.Add(this.pnlPendingIncoming);
             this.lcMainContainer.Controls.Add(this.pnlReceivingReport);
-            this.lcMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lcMainContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.lcMainContainer.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem7,
             this.layoutControlItem8});
             this.lcMainContainer.Location = new System.Drawing.Point(0, 0);
+            this.lcMainContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lcMainContainer.Name = "lcMainContainer";
             this.lcMainContainer.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(379, 174, 650, 400);
             this.lcMainContainer.Root = this.Root;
-            this.lcMainContainer.Size = new System.Drawing.Size(1498, 1066);
+            this.lcMainContainer.Size = new System.Drawing.Size(2159, 1313);
             this.lcMainContainer.TabIndex = 0;
             this.lcMainContainer.Text = "layoutControl1";
             // 
@@ -193,20 +185,21 @@
             // 
             this.lblSubtitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtitle.Appearance.Options.UseFont = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(16, 47);
+            this.lblSubtitle.Location = new System.Drawing.Point(16, 57);
             this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(297, 13);
+            this.lblSubtitle.Size = new System.Drawing.Size(354, 19);
             this.lblSubtitle.StyleController = this.lcMainContainer;
             this.lblSubtitle.TabIndex = 1;
             this.lblSubtitle.Text = "Receive and confirm incoming items from purchase orders";
             // 
             // lblTitle
             // 
-            this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 18.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Appearance.Options.UseFont = true;
+            this.lblTitle.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftBottom;
             this.lblTitle.Location = new System.Drawing.Point(16, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(244, 25);
+            this.lblTitle.Size = new System.Drawing.Size(326, 35);
             this.lblTitle.StyleController = this.lcMainContainer;
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Receiving - Asset Custodian";
@@ -214,126 +207,88 @@
             // pnlPendingIncoming
             // 
             this.pnlPendingIncoming.Controls.Add(this.dlcPendingIncoming);
-            this.pnlPendingIncoming.Location = new System.Drawing.Point(16, 66);
+            this.pnlPendingIncoming.Location = new System.Drawing.Point(16, 76);
             this.pnlPendingIncoming.Name = "pnlPendingIncoming";
-            this.pnlPendingIncoming.Size = new System.Drawing.Size(1466, 465);
+            this.pnlPendingIncoming.Size = new System.Drawing.Size(1466, 460);
             this.pnlPendingIncoming.TabIndex = 4;
             // 
             // dlcPendingIncoming
             // 
+            this.dlcPendingIncoming.Controls.Add(this.labelControl1);
+            this.dlcPendingIncoming.Controls.Add(this.searchControl);
             this.dlcPendingIncoming.Controls.Add(this.gcItems);
-            this.dlcPendingIncoming.Controls.Add(this.gridSearch);
             this.dlcPendingIncoming.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dlcPendingIncoming.HiddenItems.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lblSearchStatus});
             this.dlcPendingIncoming.Location = new System.Drawing.Point(2, 2);
+            this.dlcPendingIncoming.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dlcPendingIncoming.Name = "dlcPendingIncoming";
             this.dlcPendingIncoming.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(504, 319, 650, 400);
             this.dlcPendingIncoming.Root = this.lcgPendingIncoming;
-            this.dlcPendingIncoming.Size = new System.Drawing.Size(1462, 461);
+            this.dlcPendingIncoming.Size = new System.Drawing.Size(1462, 456);
             this.dlcPendingIncoming.TabIndex = 1;
             this.dlcPendingIncoming.Text = "dataLayoutControl2";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(1127, 87);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(74, 16);
+            this.labelControl1.StyleController = this.dlcPendingIncoming;
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // searchControl
+            // 
+            this.searchControl.Location = new System.Drawing.Point(1751, 93);
+            this.searchControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchControl.Name = "searchControl";
+            this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Repository.ClearButton(),
+            new DevExpress.XtraEditors.Repository.SearchButton()});
+            this.searchControl.Properties.NullValuePrompt = "Filter incoming items...";
+            this.searchControl.Size = new System.Drawing.Size(480, 28);
+            this.searchControl.StyleController = this.dlcPendingIncoming;
+            this.searchControl.TabIndex = 6;
+            this.searchControl.TextChanged += new System.EventHandler(this.searchControl_TextChanged);
+            // 
             // gcItems
             // 
-            this.gcItems.Location = new System.Drawing.Point(16, 105);
+            this.gcItems.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcItems.Location = new System.Drawing.Point(18, 135);
             this.gcItems.MainView = this.gvItemsView;
+            this.gcItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcItems.Name = "gcItems";
-            this.gcItems.Size = new System.Drawing.Size(1430, 340);
+            this.gcItems.Size = new System.Drawing.Size(1430, 335);
             this.gcItems.TabIndex = 5;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemsView});
             // 
             // gvItemsView
             // 
-            this.gvItemsView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcolPONumber,
-            this.gcolPurchaser,
-            this.gcolDepartment,
-            this.gcolItemName,
-            this.gcolQuantity,
-            this.gcolAmount,
-            this.gcolDateOrdered,
-            this.gcolStatus});
+            this.gvItemsView.DetailHeight = 431;
             this.gvItemsView.GridControl = this.gcItems;
             this.gvItemsView.Name = "gvItemsView";
+            this.gvItemsView.OptionsBehavior.Editable = false;
+            this.gvItemsView.OptionsBehavior.ReadOnly = true;
+            this.gvItemsView.OptionsEditForm.PopupEditFormWidth = 933;
             this.gvItemsView.OptionsView.ShowGroupPanel = false;
             this.gvItemsView.OptionsView.ShowIndicator = false;
+            this.gvItemsView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gvItemsView_FocusedRowChanged);
             // 
-            // gcolPONumber
+            // lblSearchStatus
             // 
-            this.gcolPONumber.Caption = "PO Number";
-            this.gcolPONumber.Name = "gcolPONumber";
-            this.gcolPONumber.Visible = true;
-            this.gcolPONumber.VisibleIndex = 0;
-            // 
-            // gcolPurchaser
-            // 
-            this.gcolPurchaser.Caption = "Purchaser";
-            this.gcolPurchaser.Name = "gcolPurchaser";
-            this.gcolPurchaser.Visible = true;
-            this.gcolPurchaser.VisibleIndex = 1;
-            // 
-            // gcolDepartment
-            // 
-            this.gcolDepartment.Caption = "Department";
-            this.gcolDepartment.Name = "gcolDepartment";
-            this.gcolDepartment.Visible = true;
-            this.gcolDepartment.VisibleIndex = 2;
-            // 
-            // gcolItemName
-            // 
-            this.gcolItemName.Caption = "Item Name";
-            this.gcolItemName.Name = "gcolItemName";
-            this.gcolItemName.Visible = true;
-            this.gcolItemName.VisibleIndex = 3;
-            // 
-            // gcolQuantity
-            // 
-            this.gcolQuantity.Caption = "Quantity";
-            this.gcolQuantity.Name = "gcolQuantity";
-            this.gcolQuantity.Visible = true;
-            this.gcolQuantity.VisibleIndex = 4;
-            // 
-            // gcolAmount
-            // 
-            this.gcolAmount.Caption = "Amount";
-            this.gcolAmount.Name = "gcolAmount";
-            this.gcolAmount.Visible = true;
-            this.gcolAmount.VisibleIndex = 5;
-            // 
-            // gcolDateOrdered
-            // 
-            this.gcolDateOrdered.Caption = "Date Ordered";
-            this.gcolDateOrdered.Name = "gcolDateOrdered";
-            this.gcolDateOrdered.Visible = true;
-            this.gcolDateOrdered.VisibleIndex = 6;
-            // 
-            // gcolStatus
-            // 
-            this.gcolStatus.Caption = "Status";
-            this.gcolStatus.Name = "gcolStatus";
-            this.gcolStatus.Visible = true;
-            this.gcolStatus.VisibleIndex = 7;
-            // 
-            // gridSearch
-            // 
-            this.gridSearch.Location = new System.Drawing.Point(1051, 71);
-            this.gridSearch.Name = "gridSearch";
-            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
-            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
-            this.gridSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.gridSearch.Properties.NullText = "Search for an item or PO number...";
-            this.gridSearch.Properties.PopupView = this.gridSearchView;
-            this.gridSearch.Size = new System.Drawing.Size(395, 28);
-            this.gridSearch.StyleController = this.dlcPendingIncoming;
-            this.gridSearch.TabIndex = 4;
-            // 
-            // gridSearchView
-            // 
-            this.gridSearchView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridSearchView.Name = "gridSearchView";
-            this.gridSearchView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridSearchView.OptionsView.ShowGroupPanel = false;
+            this.lblSearchStatus.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
+            this.lblSearchStatus.AppearanceItemCaption.Options.UseForeColor = true;
+            this.lblSearchStatus.ContentVisible = false;
+            this.lblSearchStatus.Control = this.labelControl1;
+            this.lblSearchStatus.Location = new System.Drawing.Point(950, 55);
+            this.lblSearchStatus.Name = "lblSearchStatus";
+            this.lblSearchStatus.Size = new System.Drawing.Size(69, 34);
+            this.lblSearchStatus.Text = " ";
+            this.lblSearchStatus.TextSize = new System.Drawing.Size(0, 0);
+            this.lblSearchStatus.TextVisible = false;
             // 
             // lcgPendingIncoming
             // 
@@ -341,31 +296,22 @@
             this.lcgPendingIncoming.GroupBordersVisible = false;
             this.lcgPendingIncoming.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.lciGrid,
-            this.lciSearch,
             this.lblPendingIncoming,
             this.lblPendingGuide,
-            this.emptySpacePending});
-            this.lcgPendingIncoming.Name = "lcgPendingIncoming";
-            this.lcgPendingIncoming.Size = new System.Drawing.Size(1462, 461);
+            this.emptySpacePending,
+            this.layoutControlItem5});
+            this.lcgPendingIncoming.Name = "Root";
+            this.lcgPendingIncoming.Size = new System.Drawing.Size(1462, 456);
             this.lcgPendingIncoming.TextVisible = false;
             // 
             // lciGrid
             // 
             this.lciGrid.Control = this.gcItems;
-            this.lciGrid.Location = new System.Drawing.Point(0, 89);
+            this.lciGrid.Location = new System.Drawing.Point(0, 115);
             this.lciGrid.Name = "lciGrid";
-            this.lciGrid.Size = new System.Drawing.Size(1436, 346);
+            this.lciGrid.Size = new System.Drawing.Size(1436, 341);
             this.lciGrid.TextSize = new System.Drawing.Size(0, 0);
             this.lciGrid.TextVisible = false;
-            // 
-            // lciSearch
-            // 
-            this.lciSearch.Control = this.gridSearch;
-            this.lciSearch.Location = new System.Drawing.Point(1035, 55);
-            this.lciSearch.Name = "lciSearch";
-            this.lciSearch.Size = new System.Drawing.Size(401, 34);
-            this.lciSearch.TextSize = new System.Drawing.Size(0, 0);
-            this.lciSearch.TextVisible = false;
             // 
             // lblPendingIncoming
             // 
@@ -376,35 +322,44 @@
             this.lblPendingIncoming.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.lblPendingIncoming.Location = new System.Drawing.Point(0, 0);
             this.lblPendingIncoming.Name = "lblPendingIncoming";
-            this.lblPendingIncoming.Size = new System.Drawing.Size(1436, 36);
+            this.lblPendingIncoming.Size = new System.Drawing.Size(2620, 46);
             this.lblPendingIncoming.Text = "Pending Incoming Items";
-            this.lblPendingIncoming.TextSize = new System.Drawing.Size(253, 30);
+            this.lblPendingIncoming.TextSize = new System.Drawing.Size(324, 38);
             // 
             // lblPendingGuide
             // 
             this.lblPendingGuide.AllowHotTrack = false;
             this.lblPendingGuide.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPendingGuide.AppearanceItemCaption.Options.UseFont = true;
-            this.lblPendingGuide.Location = new System.Drawing.Point(0, 36);
+            this.lblPendingGuide.Location = new System.Drawing.Point(0, 46);
             this.lblPendingGuide.Name = "lblPendingGuide";
-            this.lblPendingGuide.Size = new System.Drawing.Size(1436, 19);
+            this.lblPendingGuide.Size = new System.Drawing.Size(2620, 27);
             this.lblPendingGuide.Text = "Click on an item to process receipt";
-            this.lblPendingGuide.TextSize = new System.Drawing.Size(253, 13);
+            this.lblPendingGuide.TextSize = new System.Drawing.Size(324, 19);
             // 
             // emptySpacePending
             // 
             this.emptySpacePending.AllowHotTrack = false;
-            this.emptySpacePending.Location = new System.Drawing.Point(0, 55);
+            this.emptySpacePending.Location = new System.Drawing.Point(0, 73);
             this.emptySpacePending.Name = "emptySpacePending";
-            this.emptySpacePending.Size = new System.Drawing.Size(1035, 34);
+            this.emptySpacePending.Size = new System.Drawing.Size(1733, 42);
             this.emptySpacePending.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.searchControl;
+            this.layoutControlItem5.Location = new System.Drawing.Point(1733, 73);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(887, 42);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
             // 
             // pnlReceivingReport
             // 
             this.pnlReceivingReport.Controls.Add(this.dlcReceivingReport);
-            this.pnlReceivingReport.Location = new System.Drawing.Point(16, 537);
+            this.pnlReceivingReport.Location = new System.Drawing.Point(16, 542);
             this.pnlReceivingReport.Name = "pnlReceivingReport";
-            this.pnlReceivingReport.Size = new System.Drawing.Size(1466, 513);
+            this.pnlReceivingReport.Size = new System.Drawing.Size(1466, 508);
             this.pnlReceivingReport.TabIndex = 0;
             // 
             // dlcReceivingReport
@@ -422,69 +377,75 @@
             this.dlcReceivingReport.Controls.Add(this.btnCancel);
             this.dlcReceivingReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dlcReceivingReport.Location = new System.Drawing.Point(2, 2);
+            this.dlcReceivingReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dlcReceivingReport.Name = "dlcReceivingReport";
-            this.dlcReceivingReport.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(620, 368, 650, 400);
+            this.dlcReceivingReport.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(633, 368, 650, 400);
             this.dlcReceivingReport.Root = this.lcgReceivingReport;
-            this.dlcReceivingReport.Size = new System.Drawing.Size(1462, 509);
+            this.dlcReceivingReport.Size = new System.Drawing.Size(1462, 504);
             this.dlcReceivingReport.TabIndex = 0;
             this.dlcReceivingReport.Text = "dataLayoutControl1";
             // 
             // dateEdit
             // 
             this.dateEdit.EditValue = null;
-            this.dateEdit.Location = new System.Drawing.Point(16, 90);
+            this.dateEdit.Location = new System.Drawing.Point(18, 119);
+            this.dateEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateEdit.Name = "dateEdit";
-            editorButtonImageOptions2.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions2.SvgImage")));
-            editorButtonImageOptions2.SvgImageSize = new System.Drawing.Size(20, 20);
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
             this.dateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.dateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit.Size = new System.Drawing.Size(712, 28);
+            this.dateEdit.Size = new System.Drawing.Size(1304, 34);
             this.dateEdit.StyleController = this.dlcReceivingReport;
             this.dateEdit.TabIndex = 4;
             // 
             // txteditItemName
             // 
-            this.txteditItemName.Location = new System.Drawing.Point(734, 90);
+            this.txteditItemName.Location = new System.Drawing.Point(1328, 119);
+            this.txteditItemName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditItemName.Name = "txteditItemName";
             this.txteditItemName.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditItemName.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditItemName.Properties.ReadOnly = true;
-            this.txteditItemName.Size = new System.Drawing.Size(712, 28);
+            this.txteditItemName.Size = new System.Drawing.Size(1304, 34);
             this.txteditItemName.StyleController = this.dlcReceivingReport;
             this.txteditItemName.TabIndex = 5;
             // 
             // chckboxAsset
             // 
-            this.chckboxAsset.Location = new System.Drawing.Point(16, 124);
+            this.chckboxAsset.Location = new System.Drawing.Point(18, 161);
+            this.chckboxAsset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chckboxAsset.Name = "chckboxAsset";
             this.chckboxAsset.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chckboxAsset.Properties.Appearance.Options.UseFont = true;
             this.chckboxAsset.Properties.Caption = "Capitalizable Asset";
-            this.chckboxAsset.Size = new System.Drawing.Size(712, 22);
+            this.chckboxAsset.Size = new System.Drawing.Size(1304, 26);
             this.chckboxAsset.StyleController = this.dlcReceivingReport;
             this.chckboxAsset.TabIndex = 6;
             // 
             // txteditExpectedQuan
             // 
-            this.txteditExpectedQuan.Location = new System.Drawing.Point(16, 171);
+            this.txteditExpectedQuan.Location = new System.Drawing.Point(18, 221);
+            this.txteditExpectedQuan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditExpectedQuan.Name = "txteditExpectedQuan";
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditExpectedQuan.Properties.ReadOnly = true;
-            this.txteditExpectedQuan.Size = new System.Drawing.Size(712, 28);
+            this.txteditExpectedQuan.Size = new System.Drawing.Size(1304, 34);
             this.txteditExpectedQuan.StyleController = this.dlcReceivingReport;
             this.txteditExpectedQuan.TabIndex = 7;
             // 
             // txteditExpectedAmount
             // 
-            this.txteditExpectedAmount.Location = new System.Drawing.Point(16, 224);
+            this.txteditExpectedAmount.Location = new System.Drawing.Point(18, 289);
+            this.txteditExpectedAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditExpectedAmount.Name = "txteditExpectedAmount";
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditExpectedAmount.Properties.ReadOnly = true;
-            this.txteditExpectedAmount.Size = new System.Drawing.Size(712, 28);
+            this.txteditExpectedAmount.Size = new System.Drawing.Size(1304, 34);
             this.txteditExpectedAmount.StyleController = this.dlcReceivingReport;
             this.txteditExpectedAmount.TabIndex = 8;
             // 
@@ -495,40 +456,54 @@
             0,
             0,
             0});
-            this.spneditReceivedQuan.Location = new System.Drawing.Point(734, 171);
+            this.spneditReceivedQuan.Location = new System.Drawing.Point(1328, 221);
+            this.spneditReceivedQuan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.spneditReceivedQuan.Name = "spneditReceivedQuan";
             this.spneditReceivedQuan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spneditReceivedQuan.Size = new System.Drawing.Size(712, 28);
+            this.spneditReceivedQuan.Size = new System.Drawing.Size(1304, 34);
             this.spneditReceivedQuan.StyleController = this.dlcReceivingReport;
             this.spneditReceivedQuan.TabIndex = 9;
             // 
             // txteditReceivedAmount
             // 
-            this.txteditReceivedAmount.Location = new System.Drawing.Point(734, 224);
+            this.txteditReceivedAmount.Location = new System.Drawing.Point(1328, 289);
+            this.txteditReceivedAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditReceivedAmount.Name = "txteditReceivedAmount";
-            this.txteditReceivedAmount.Size = new System.Drawing.Size(712, 28);
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txteditReceivedAmount.Properties.MaskSettings.Set("mask", "c");
+            this.txteditReceivedAmount.Properties.NullText = "₱0.00";
+            this.txteditReceivedAmount.Size = new System.Drawing.Size(1304, 34);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
+            this.txteditReceivedAmount.Enter += new System.EventHandler(this.txteditReceivedAmount_Enter);
+            this.txteditReceivedAmount.Leave += new System.EventHandler(this.txteditReceivedAmount_Leave);
             // 
             // btnUpload
             // 
+            this.btnUpload.AllowDrop = true;
             this.btnUpload.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(166)))), ((int)(((byte)(62)))));
             this.btnUpload.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Appearance.Options.UseBackColor = true;
             this.btnUpload.Appearance.Options.UseFont = true;
-            this.btnUpload.Location = new System.Drawing.Point(16, 277);
+            this.btnUpload.Location = new System.Drawing.Point(18, 358);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(351, 28);
+            this.btnUpload.Size = new System.Drawing.Size(645, 34);
             this.btnUpload.StyleController = this.dlcReceivingReport;
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "UPLOAD";
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnUpload_DragDrop);
+            this.btnUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.btnUpload_DragEnter);
             // 
             // txteditRemarks
             // 
-            this.txteditRemarks.Location = new System.Drawing.Point(16, 344);
+            this.txteditRemarks.Location = new System.Drawing.Point(18, 447);
+            this.txteditRemarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txteditRemarks.Name = "txteditRemarks";
-            this.txteditRemarks.Size = new System.Drawing.Size(1430, 115);
+            this.txteditRemarks.Size = new System.Drawing.Size(1430, 110);
             this.txteditRemarks.StyleController = this.dlcReceivingReport;
             this.txteditRemarks.TabIndex = 12;
             // 
@@ -538,23 +513,25 @@
             this.btnConfirm.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.Appearance.Options.UseBackColor = true;
             this.btnConfirm.Appearance.Options.UseFont = true;
-            this.btnConfirm.Location = new System.Drawing.Point(1084, 465);
+            this.btnConfirm.Location = new System.Drawing.Point(1091, 460);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(362, 28);
+            this.btnConfirm.Size = new System.Drawing.Size(355, 28);
             this.btnConfirm.StyleController = this.dlcReceivingReport;
             this.btnConfirm.TabIndex = 13;
             this.btnConfirm.Text = "✓ Confirm Receipt";
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(734, 465);
+            this.btnCancel.Location = new System.Drawing.Point(734, 460);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(344, 28);
+            this.btnCancel.Size = new System.Drawing.Size(351, 28);
             this.btnCancel.StyleController = this.dlcReceivingReport;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lcgReceivingReport
             // 
@@ -581,7 +558,7 @@
             this.lblPONumber,
             this.emptyspaceReceiving4});
             this.lcgReceivingReport.Name = "Root";
-            this.lcgReceivingReport.Size = new System.Drawing.Size(1462, 509);
+            this.lcgReceivingReport.Size = new System.Drawing.Size(1462, 504);
             this.lcgReceivingReport.TextVisible = false;
             // 
             // lblDateReceived
@@ -589,31 +566,31 @@
             this.lblDateReceived.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateReceived.AppearanceItemCaption.Options.UseFont = true;
             this.lblDateReceived.Control = this.dateEdit;
-            this.lblDateReceived.Location = new System.Drawing.Point(0, 55);
+            this.lblDateReceived.Location = new System.Drawing.Point(0, 73);
             this.lblDateReceived.Name = "lblDateReceived";
-            this.lblDateReceived.Size = new System.Drawing.Size(718, 53);
+            this.lblDateReceived.Size = new System.Drawing.Size(1310, 68);
             this.lblDateReceived.Text = "Date Received *";
             this.lblDateReceived.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblDateReceived.TextSize = new System.Drawing.Size(248, 13);
+            this.lblDateReceived.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblItemName
             // 
             this.lblItemName.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemName.AppearanceItemCaption.Options.UseFont = true;
             this.lblItemName.Control = this.txteditItemName;
-            this.lblItemName.Location = new System.Drawing.Point(718, 55);
+            this.lblItemName.Location = new System.Drawing.Point(1310, 73);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(718, 53);
+            this.lblItemName.Size = new System.Drawing.Size(1310, 68);
             this.lblItemName.Text = "Item Name";
             this.lblItemName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblItemName.TextSize = new System.Drawing.Size(248, 13);
+            this.lblItemName.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblAsset
             // 
             this.lblAsset.Control = this.chckboxAsset;
-            this.lblAsset.Location = new System.Drawing.Point(0, 108);
+            this.lblAsset.Location = new System.Drawing.Point(0, 141);
             this.lblAsset.Name = "lblAsset";
-            this.lblAsset.Size = new System.Drawing.Size(718, 28);
+            this.lblAsset.Size = new System.Drawing.Size(1310, 34);
             this.lblAsset.TextSize = new System.Drawing.Size(0, 0);
             this.lblAsset.TextVisible = false;
             // 
@@ -622,31 +599,31 @@
             this.lblExpQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpQuan.Control = this.txteditExpectedQuan;
-            this.lblExpQuan.Location = new System.Drawing.Point(0, 136);
+            this.lblExpQuan.Location = new System.Drawing.Point(0, 175);
             this.lblExpQuan.Name = "lblExpQuan";
-            this.lblExpQuan.Size = new System.Drawing.Size(718, 53);
+            this.lblExpQuan.Size = new System.Drawing.Size(1310, 68);
             this.lblExpQuan.Text = "Expected Quantity";
             this.lblExpQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpQuan.TextSize = new System.Drawing.Size(248, 13);
+            this.lblExpQuan.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblExpAmount
             // 
             this.lblExpAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpAmount.Control = this.txteditExpectedAmount;
-            this.lblExpAmount.Location = new System.Drawing.Point(0, 189);
+            this.lblExpAmount.Location = new System.Drawing.Point(0, 243);
             this.lblExpAmount.Name = "lblExpAmount";
-            this.lblExpAmount.Size = new System.Drawing.Size(718, 53);
+            this.lblExpAmount.Size = new System.Drawing.Size(1310, 68);
             this.lblExpAmount.Text = "Expected Amount";
             this.lblExpAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpAmount.TextSize = new System.Drawing.Size(248, 13);
+            this.lblExpAmount.TextSize = new System.Drawing.Size(319, 19);
             // 
             // emptyspaceReceiving1
             // 
             this.emptyspaceReceiving1.AllowHotTrack = false;
-            this.emptyspaceReceiving1.Location = new System.Drawing.Point(718, 108);
+            this.emptyspaceReceiving1.Location = new System.Drawing.Point(1310, 141);
             this.emptyspaceReceiving1.Name = "emptyspaceReceiving1";
-            this.emptyspaceReceiving1.Size = new System.Drawing.Size(718, 28);
+            this.emptyspaceReceiving1.Size = new System.Drawing.Size(1310, 34);
             this.emptyspaceReceiving1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblReceivedQuan
@@ -654,51 +631,51 @@
             this.lblReceivedQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedQuan.Control = this.spneditReceivedQuan;
-            this.lblReceivedQuan.Location = new System.Drawing.Point(718, 136);
+            this.lblReceivedQuan.Location = new System.Drawing.Point(1310, 175);
             this.lblReceivedQuan.Name = "lblReceivedQuan";
-            this.lblReceivedQuan.Size = new System.Drawing.Size(718, 53);
+            this.lblReceivedQuan.Size = new System.Drawing.Size(1310, 68);
             this.lblReceivedQuan.Text = "Received Quantity *";
             this.lblReceivedQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedQuan.TextSize = new System.Drawing.Size(248, 13);
+            this.lblReceivedQuan.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblReceivedAmount
             // 
             this.lblReceivedAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedAmount.Control = this.txteditReceivedAmount;
-            this.lblReceivedAmount.Location = new System.Drawing.Point(718, 189);
+            this.lblReceivedAmount.Location = new System.Drawing.Point(1310, 243);
             this.lblReceivedAmount.Name = "lblReceivedAmount";
-            this.lblReceivedAmount.Size = new System.Drawing.Size(718, 53);
+            this.lblReceivedAmount.Size = new System.Drawing.Size(1310, 68);
             this.lblReceivedAmount.Text = "Received Amount *";
             this.lblReceivedAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedAmount.TextSize = new System.Drawing.Size(248, 13);
+            this.lblReceivedAmount.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblUploadProof
             // 
             this.lblUploadProof.AllowHotTrack = false;
             this.lblUploadProof.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadProof.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadProof.Location = new System.Drawing.Point(0, 242);
+            this.lblUploadProof.Location = new System.Drawing.Point(0, 311);
             this.lblUploadProof.Name = "lblUploadProof";
-            this.lblUploadProof.Size = new System.Drawing.Size(1436, 19);
+            this.lblUploadProof.Size = new System.Drawing.Size(2620, 27);
             this.lblUploadProof.Text = "Proof of Delivery (Receipt/Photo)";
-            this.lblUploadProof.TextSize = new System.Drawing.Size(248, 13);
+            this.lblUploadProof.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblUpload
             // 
             this.lblUpload.Control = this.btnUpload;
-            this.lblUpload.Location = new System.Drawing.Point(0, 261);
+            this.lblUpload.Location = new System.Drawing.Point(0, 338);
             this.lblUpload.Name = "lblUpload";
-            this.lblUpload.Size = new System.Drawing.Size(357, 34);
+            this.lblUpload.Size = new System.Drawing.Size(651, 42);
             this.lblUpload.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpload.TextVisible = false;
             // 
             // emptyspaceReceiving2
             // 
             this.emptyspaceReceiving2.AllowHotTrack = false;
-            this.emptyspaceReceiving2.Location = new System.Drawing.Point(718, 261);
+            this.emptyspaceReceiving2.Location = new System.Drawing.Point(1310, 338);
             this.emptyspaceReceiving2.Name = "emptyspaceReceiving2";
-            this.emptyspaceReceiving2.Size = new System.Drawing.Size(718, 34);
+            this.emptyspaceReceiving2.Size = new System.Drawing.Size(1310, 42);
             this.emptyspaceReceiving2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblRemarks
@@ -706,37 +683,37 @@
             this.lblRemarks.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRemarks.AppearanceItemCaption.Options.UseFont = true;
             this.lblRemarks.Control = this.txteditRemarks;
-            this.lblRemarks.Location = new System.Drawing.Point(0, 305);
+            this.lblRemarks.Location = new System.Drawing.Point(0, 399);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(1436, 144);
+            this.lblRemarks.Size = new System.Drawing.Size(1436, 139);
             this.lblRemarks.Text = "Remarks";
             this.lblRemarks.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblRemarks.TextSize = new System.Drawing.Size(248, 17);
+            this.lblRemarks.TextSize = new System.Drawing.Size(319, 21);
             // 
             // lblCancel
             // 
             this.lblCancel.Control = this.btnCancel;
-            this.lblCancel.Location = new System.Drawing.Point(718, 449);
+            this.lblCancel.Location = new System.Drawing.Point(718, 444);
             this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(350, 34);
+            this.lblCancel.Size = new System.Drawing.Size(357, 34);
             this.lblCancel.TextSize = new System.Drawing.Size(0, 0);
             this.lblCancel.TextVisible = false;
             // 
             // lblConfirm
             // 
             this.lblConfirm.Control = this.btnConfirm;
-            this.lblConfirm.Location = new System.Drawing.Point(1068, 449);
+            this.lblConfirm.Location = new System.Drawing.Point(1075, 444);
             this.lblConfirm.Name = "lblConfirm";
-            this.lblConfirm.Size = new System.Drawing.Size(368, 34);
+            this.lblConfirm.Size = new System.Drawing.Size(361, 34);
             this.lblConfirm.TextSize = new System.Drawing.Size(0, 0);
             this.lblConfirm.TextVisible = false;
             // 
             // emptyspaceReceiving3
             // 
             this.emptyspaceReceiving3.AllowHotTrack = false;
-            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 449);
+            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 444);
             this.emptyspaceReceiving3.Name = "emptyspaceReceiving3";
-            this.emptyspaceReceiving3.Size = new System.Drawing.Size(718, 34);
+            this.emptyspaceReceiving3.Size = new System.Drawing.Size(1310, 42);
             this.emptyspaceReceiving3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblUploadGuide
@@ -744,11 +721,11 @@
             this.lblUploadGuide.AllowHotTrack = false;
             this.lblUploadGuide.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadGuide.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadGuide.Location = new System.Drawing.Point(357, 261);
+            this.lblUploadGuide.Location = new System.Drawing.Point(651, 338);
             this.lblUploadGuide.Name = "lblUploadGuide";
-            this.lblUploadGuide.Size = new System.Drawing.Size(361, 34);
+            this.lblUploadGuide.Size = new System.Drawing.Size(659, 42);
             this.lblUploadGuide.Text = "or drop file here";
-            this.lblUploadGuide.TextSize = new System.Drawing.Size(248, 13);
+            this.lblUploadGuide.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblReceivingReport
             // 
@@ -759,20 +736,28 @@
             this.lblReceivingReport.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.lblReceivingReport.Location = new System.Drawing.Point(0, 0);
             this.lblReceivingReport.Name = "lblReceivingReport";
-            this.lblReceivingReport.Size = new System.Drawing.Size(1436, 36);
+            this.lblReceivingReport.Size = new System.Drawing.Size(2620, 46);
             this.lblReceivingReport.Text = "Receiving Report From: ";
-            this.lblReceivingReport.TextSize = new System.Drawing.Size(248, 30);
+            this.lblReceivingReport.TextSize = new System.Drawing.Size(319, 38);
             // 
             // lblPONumber
             // 
             this.lblPONumber.AllowHotTrack = false;
             this.lblPONumber.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPONumber.AppearanceItemCaption.Options.UseFont = true;
-            this.lblPONumber.Location = new System.Drawing.Point(0, 36);
+            this.lblPONumber.Location = new System.Drawing.Point(0, 46);
             this.lblPONumber.Name = "lblPONumber";
-            this.lblPONumber.Size = new System.Drawing.Size(1436, 19);
+            this.lblPONumber.Size = new System.Drawing.Size(2620, 27);
             this.lblPONumber.Text = "PO Number:";
-            this.lblPONumber.TextSize = new System.Drawing.Size(248, 13);
+            this.lblPONumber.TextSize = new System.Drawing.Size(319, 19);
+            // 
+            // emptyspaceReceiving4
+            // 
+            this.emptyspaceReceiving4.AllowHotTrack = false;
+            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 380);
+            this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
+            this.emptyspaceReceiving4.Size = new System.Drawing.Size(2620, 19);
+            this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
@@ -800,24 +785,24 @@
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1498, 1066);
+            this.Root.Size = new System.Drawing.Size(2159, 1313);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.pnlPendingIncoming;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 60);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1472, 471);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1472, 466);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.pnlReceivingReport;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 521);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 526);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1472, 519);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1472, 514);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -826,34 +811,30 @@
             this.layoutControlItem3.Control = this.lblTitle;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1472, 31);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1472, 41);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.lblSubtitle;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 31);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 41);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1472, 19);
+            this.layoutControlItem4.Size = new System.Drawing.Size(2129, 27);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // emptyspaceReceiving4
+            // openFileDialogReceipt
             // 
-            this.emptyspaceReceiving4.AllowHotTrack = false;
-            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 295);
-            this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
-            this.emptyspaceReceiving4.Size = new System.Drawing.Size(1436, 10);
-            this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
+            this.openFileDialogReceipt.FileName = "openFileDialogReceipt";
             // 
             // ReceivingCustodianUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.scrlControl);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReceivingCustodianUC";
-            this.Size = new System.Drawing.Size(1498, 1066);
+            this.Size = new System.Drawing.Size(1748, 1312);
             this.scrlControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).EndInit();
             this.lcMainContainer.ResumeLayout(false);
@@ -861,16 +842,16 @@
             this.pnlPendingIncoming.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlcPendingIncoming)).EndInit();
             this.dlcPendingIncoming.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvItemsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSearchView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSearchStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcgPendingIncoming)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lciGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingIncoming)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPendingGuide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpacePending)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlReceivingReport)).EndInit();
             this.pnlReceivingReport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dlcReceivingReport)).EndInit();
@@ -903,6 +884,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblUploadGuide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblReceivingReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPONumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -910,7 +892,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptyspaceReceiving4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -930,8 +911,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.GridControl gcItems;
         private DevExpress.XtraGrid.Views.Grid.GridView gvItemsView;
-        private DevExpress.XtraEditors.SearchLookUpEdit gridSearch;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridSearchView;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraDataLayout.DataLayoutControl dlcReceivingReport;
@@ -963,24 +942,19 @@
         private DevExpress.XtraLayout.LayoutControlItem lblConfirm;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving3;
         private DevExpress.XtraLayout.SimpleLabelItem lblUploadGuide;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.SimpleLabelItem lblPONumber;
         private DevExpress.XtraLayout.SimpleLabelItem lblReceivingReport;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolPONumber;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolPurchaser;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolDepartment;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolItemName;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolQuantity;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolDateOrdered;
-        private DevExpress.XtraGrid.Columns.GridColumn gcolStatus;
         private DevExpress.XtraDataLayout.DataLayoutControl dlcPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlGroup lcgPendingIncoming;
         private DevExpress.XtraLayout.LayoutControlItem lciGrid;
-        private DevExpress.XtraLayout.LayoutControlItem lciSearch;
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingIncoming;
         private DevExpress.XtraLayout.SimpleLabelItem lblPendingGuide;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpacePending;
         private DevExpress.XtraLayout.EmptySpaceItem emptyspaceReceiving4;
+        private DevExpress.XtraEditors.XtraOpenFileDialog openFileDialogReceipt;
+        private DevExpress.XtraEditors.SearchControl searchControl;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem lblSearchStatus;
     }
 }
