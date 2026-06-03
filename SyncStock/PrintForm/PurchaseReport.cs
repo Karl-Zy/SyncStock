@@ -11,6 +11,11 @@ namespace SyncStock.PrintForm
 {
     public partial class PurchaseReport : DevExpress.XtraReports.UI.XtraReport
     {
+        public PurchaseReport()
+        {
+            InitializeComponent();
+        }
+
         public PurchaseReport(IEnumerable<PurchaseOrderBrief> data)
         {
             InitializeComponent();

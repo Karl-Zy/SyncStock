@@ -9,6 +9,7 @@ namespace SyncStock.Models
     public class PurchaseOrderBrief
     {
         public string PONumber { get; set; }
+        public string InvoiceNumber { get; set; }
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
         public string PoType { get; set; }

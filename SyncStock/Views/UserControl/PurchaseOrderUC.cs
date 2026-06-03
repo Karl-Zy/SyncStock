@@ -1,5 +1,6 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraLayout;
 using SyncStock.Database;
 using SyncStock.Models;
 using System;
@@ -48,7 +49,55 @@ namespace SyncStock.Views.UserControl
             layoutControl12.AllowCustomization = false;
             layoutControl12.HideCustomizationForm();
 
-            
+            layoutControlItem29.Text = "Requesting Department <color=Crimson>*</color>";
+            layoutControlItem29.AllowHtmlStringInCaption = true;
+
+            layoutControlItem32.Text = "Purchase Order Date <color=Crimson>*</color>";
+            layoutControlItem32.AllowHtmlStringInCaption = true;
+
+            layoutControlItem50.Text = "Purchase Order Number <color=Crimson>*</color>";
+            layoutControlItem50.AllowHtmlStringInCaption = true;
+
+            layoutControlItem21.Text = "Date <color=Crimson>*</color>";
+            layoutControlItem21.AllowHtmlStringInCaption = true;
+
+            layoutControlItem23.Text = "Invoice Number <color=Crimson>*</color>";
+            layoutControlItem23.AllowHtmlStringInCaption = true;
+
+            layoutControlItem24.Text = "Item Name <color=Crimson>*</color>";
+            layoutControlItem24.AllowHtmlStringInCaption = true;
+
+            layoutControlItem22.Text = "Unit Price <color=Crimson>*</color>";
+            layoutControlItem22.AllowHtmlStringInCaption = true;
+
+            layoutControlItem25.Text = "Quantity <color=Crimson>*</color>";
+            layoutControlItem25.AllowHtmlStringInCaption = true;
+
+            layoutControlItem49.Text = "Requesting Department <color=Crimson>*</color>";
+            layoutControlItem49.AllowHtmlStringInCaption = true;
+
+            layoutControlItem52.Text = "Purchase Order Date <color=Crimson>*</color>";
+            layoutControlItem52.AllowHtmlStringInCaption = true;
+
+            layoutControlItem50.Text = "Purchase Order Number <color=Crimson>*</color>";
+            layoutControlItem50.AllowHtmlStringInCaption = true;
+
+            layoutControlItem40.Text = "Date <color=Crimson>*</color>";
+            layoutControlItem40.AllowHtmlStringInCaption = true;
+
+            layoutControlItem42.Text = "Invoice Number <color=Crimson>*</color>";
+            layoutControlItem42.AllowHtmlStringInCaption = true;
+
+            layoutControlItem43.Text = "Item Name <color=Crimson>*</color>";
+            layoutControlItem43.AllowHtmlStringInCaption = true;
+
+            layoutControlItem41.Text = "Unit Price <color=Crimson>*</color>";
+            layoutControlItem41.AllowHtmlStringInCaption = true;
+
+            layoutControlItem44.Text = "Quantity <color=Crimson>*</color>";
+            layoutControlItem44.AllowHtmlStringInCaption = true;
+
+
             gpoAddItemToOrderQuantitySpinEdit.Properties.IsFloatValue = false;
             gpoAddItemToOrderQuantitySpinEdit.Properties.Mask.EditMask = "n0";
             gpoAddItemToOrderQuantitySpinEdit.Properties.MinValue = 0;

@@ -233,7 +233,7 @@
             this.layoutControl1.Controls.Add(this.panelControl2);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layoutControl1.Location = new System.Drawing.Point(0, -403);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
@@ -365,7 +365,7 @@
             this.panelControl15.Appearance.Options.UseBackColor = true;
             this.panelControl15.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControl15.Controls.Add(this.pictureEdit3);
-            this.panelControl15.Location = new System.Drawing.Point(244, 41);
+            this.panelControl15.Location = new System.Drawing.Point(317, 34);
             this.panelControl15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl15.Name = "panelControl15";
             this.panelControl15.Size = new System.Drawing.Size(53, 50);
