@@ -26,6 +26,7 @@ namespace SyncStock.Views.UserControl
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
         private bool _userClickedRow = false;
 
+        // <summary>
         public ReceivingCustodianUC()
         {
             InitializeComponent();
