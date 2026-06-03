@@ -439,7 +439,7 @@ namespace SyncStock.Views.UserControl
         {
             // gi-assign ang asap orders data sa grid
             ApprovedASAPOrdersGC.DataSource =
-                _repo.GetASAPOrders().ToList();
+    _repo.GetASAPOrders();
 
             // gi-clear ang mga column sa grid antes mag-populate
             ApprovedASAPOrdersGV.Columns.Clear();
@@ -645,34 +645,35 @@ namespace SyncStock.Views.UserControl
             // =====================================
 
             // gi-set ang lapad sa invoice number column
-            ApprovedASAPOrdersGV.Columns["InvoiceNumber"].Width = 140;
+            if (ApprovedASAPOrdersGV.Columns["InvoiceNumber"] != null)
+                ApprovedASAPOrdersGV.Columns["InvoiceNumber"].Width = 140;
 
-            // gi-set ang lapad sa po number column
-            ApprovedASAPOrdersGV.Columns["PONumber"].Width = 190;
+            if (ApprovedASAPOrdersGV.Columns["PONumber"] != null)
+                ApprovedASAPOrdersGV.Columns["PONumber"].Width = 190;
 
-            // gi-set ang lapad sa department name column
-            ApprovedASAPOrdersGV.Columns["DepartmentName"].Width = 250;
+            if (ApprovedASAPOrdersGV.Columns["DepartmentName"] != null)
+                ApprovedASAPOrdersGV.Columns["DepartmentName"].Width = 250;
 
-            // gi-set ang lapad sa order date column
-            ApprovedASAPOrdersGV.Columns["OrderDate"].Width = 170;
+            if (ApprovedASAPOrdersGV.Columns["OrderDate"] != null)
+                ApprovedASAPOrdersGV.Columns["OrderDate"].Width = 170;
 
-            // gi-set ang lapad sa status column
-            ApprovedASAPOrdersGV.Columns["Status"].Width = 120;
+            if (ApprovedASAPOrdersGV.Columns["Status"] != null)
+                ApprovedASAPOrdersGV.Columns["Status"].Width = 120;
 
-            // gi-set ang lapad sa priority column
-            ApprovedASAPOrdersGV.Columns["Priority"].Width = 170;
+            if (ApprovedASAPOrdersGV.Columns["Priority"] != null)
+                ApprovedASAPOrdersGV.Columns["Priority"].Width = 170;
 
-            // gi-set ang lapad sa po type column
-            ApprovedASAPOrdersGV.Columns["POType"].Width = 120;
+            if (ApprovedASAPOrdersGV.Columns["POType"] != null)
+                ApprovedASAPOrdersGV.Columns["POType"].Width = 120;
 
-            // gi-set ang lapad sa order mode column
-            ApprovedASAPOrdersGV.Columns["OrderMode"].Width = 120;
+            if (ApprovedASAPOrdersGV.Columns["OrderMode"] != null)
+                ApprovedASAPOrdersGV.Columns["OrderMode"].Width = 120;
 
-            // gi-set ang lapad sa total items column
-            ApprovedASAPOrdersGV.Columns["TotalItems"].Width = 120;
+            if (ApprovedASAPOrdersGV.Columns["TotalItems"] != null)
+                ApprovedASAPOrdersGV.Columns["TotalItems"].Width = 120;
 
-            // gi-set ang lapad sa total amount column
-            ApprovedASAPOrdersGV.Columns["TotalAmount"].Width = 150;
+            if (ApprovedASAPOrdersGV.Columns["TotalAmount"] != null)
+                ApprovedASAPOrdersGV.Columns["TotalAmount"].Width = 150;
         }
 
         // =========================================

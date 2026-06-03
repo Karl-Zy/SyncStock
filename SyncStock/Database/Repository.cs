@@ -269,7 +269,8 @@ namespace SyncStock.Database
 
             -- gi-kuha tanan nga ASAP orders bisan unsa pa ang status
             -- (Pending, Approved, Received, etc.) para makita tanan sa ASAP grid
-            WHERE po.Priority = 'ASAP Department'
+            WHERE po.Status = 'Pending'
+            AND po.Priority = 'ASAP Department'
 
             GROUP BY
                 po.PurchaseOrderID,
