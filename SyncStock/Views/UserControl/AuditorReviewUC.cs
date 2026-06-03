@@ -552,11 +552,22 @@ namespace SyncStock.Views.UserControl
 
             bool hasSelection = _selectedItem != null;
 
+            // Check if the selected item's month is locked
+            bool isItemMonthLocked = false;
+            if (_selectedItem != null)
+            {
+                var itemMonth = new DateTime(_selectedItem.DateReceived.Year, _selectedItem.DateReceived.Month, 1);
+                var lockRecord = _repo.GetMonthLock(itemMonth);
+                isItemMonthLocked = lockRecord != null && lockRecord.IsLocked;
+            }
+
             // Pwede lang i-edit ang item kung:
             // 1. May napili nga row
-            // 2. Dili "Pending Review" ang status (approved na)
+            // 2. Dili locked ang month sa item
+            // 3. Dili "Pending Review" ang status (approved na)
             bool canEdit =
                 hasSelection &&
+                !isItemMonthLocked &&
                 !string.Equals(
                     _selectedItem.Status,
                     "Pending Review",
@@ -581,7 +592,15 @@ namespace SyncStock.Views.UserControl
             // Kung Status column, i-draw ang status pill
             if (e.Column.FieldName == nameof(AuditorReviewItemDto.Status))
             {
-                if (!TryGetStatusPill(e.CellValue?.ToString(), out string label, out Color bgColor, out Color textColor))
+                var item = ReviewItemGV.GetRow(e.RowHandle) as AuditorReviewItemDto;
+                string status = e.CellValue?.ToString();
+
+                if (string.IsNullOrWhiteSpace(status) && item != null)
+                {
+                    status = item.IsCapitalizable ? WorkflowStatus.Active : WorkflowStatus.Received;
+                }
+
+                if (!TryGetStatusPill(status, out string label, out Color bgColor, out Color textColor))
                     return;
 
                 DrawBadge(e, label, bgColor, textColor);
@@ -600,42 +619,50 @@ namespace SyncStock.Views.UserControl
 
         // Ibalik ang label, background color, ug text color para sa status pill
         // Mubalik ug FALSE kung ang status wala sa listahan
-        private static bool TryGetStatusPill(string status, out string label, out Color bgColor, out Color textColor)
+        private static bool TryGetStatusPill(
+    string status,
+    out string label,
+    out Color bgColor,
+    out Color textColor)
         {
             label = null;
             bgColor = Color.Empty;
             textColor = Color.Empty;
 
-            // "Active" status: berde ang pill
-            if (string.Equals(status, WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrWhiteSpace(status))
             {
-                label = PillActive;
+                label = "Unknown";
+                bgColor = Color.LightGray;
+                textColor = Color.Black;
+                return true;
+            }
+
+            status = status.Trim();
+
+            if (
+                status.Equals(WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals(WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("Approved", StringComparison.OrdinalIgnoreCase))
+            {
+                label = "Approved";
                 bgColor = Color.FromArgb(220, 247, 220);
                 textColor = Color.FromArgb(30, 120, 30);
                 return true;
             }
 
-            // "Approved" status: berde usab ang pill
-            if (string.Equals(status, WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase))
+            if (
+                status.Equals(WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("Pending Review", StringComparison.OrdinalIgnoreCase) ||
+                status.Equals("To be Approved", StringComparison.OrdinalIgnoreCase))
             {
-                label = PillApproved;
-                bgColor = Color.FromArgb(220, 247, 220);
-                textColor = Color.FromArgb(30, 120, 30);
-                return true;
-            }
-
-            // "Pending Review" o "Pending" status: dalag ang pill
-            if (string.Equals(status, "Pending Review", StringComparison.OrdinalIgnoreCase)
-                || string.Equals(status, WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase))
-            {
-                label = PillPendingReview;
+                label = "To be Approved";
                 bgColor = Color.FromArgb(255, 243, 200);
                 textColor = Color.FromArgb(160, 100, 0);
                 return true;
             }
 
-            // "Received" status: berde usab, gipakita as "Approved"
-            if (string.Equals(status, WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
+            if (
+                status.Equals(WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
             {
                 label = "Approved";
                 bgColor = Color.FromArgb(220, 247, 220);
@@ -737,60 +764,114 @@ namespace SyncStock.Views.UserControl
         }
 
         // Gi-trigger kung gi-click ang Lock button
-        // Admin ra ang makaka-lock sa usa ka bulan
+        // Admin ra ang makaka-lock/unlock sa usa ka bulan
         private void BtnLock_Click(object sender, EventArgs e)
         {
             // Kinahanglan may pinili nga specific nga bulan
             if (!TryParseSelectedMonth(out DateTime selectedMonth))
             {
-                XtraMessageBox.Show("Please select a specific month to lock.",
-                    "Lock Month", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select a specific month.",
+                    "Lock/Unlock Month", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Admin ra ang makaka-lock; ipakita ang warning kung dili Admin
+            // Admin ra ang makaka-lock/unlock; ipakita ang warning kung dili Admin
             if (!CanLockDirectly)
             {
                 XtraMessageBox.Show(
-                    "You do not have permission to lock a month.\n" +
+                    "You do not have permission to lock or unlock a month.\n" +
                     "Use 'Request Unlock' to submit a request to an Admin.",
                     "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Mangutana sa user kung gusto ba gyud niya i-lock ang bulan
-            var confirm = XtraMessageBox.Show(
-                $"Lock {selectedMonth:MMMM yyyy}?\n\nNo changes can be made to this month once locked.",
-                "Confirm Lock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Check if already locked
+            var lockRecord = _repo.GetMonthLock(selectedMonth);
+            bool isLocked = lockRecord != null && lockRecord.IsLocked;
 
-            if (confirm != DialogResult.Yes)
-                return;
-
-            try
+            if (isLocked)
             {
-                // I-save ang lock sa database
-                _repo.SaveMonthLock(new MonthLock
+                // UNLOCK OPERATION
+                var confirm = XtraMessageBox.Show(
+                    $"Unlock {selectedMonth:MMMM yyyy}?\n\nThis will allow changes to this month again.",
+                    "Confirm Unlock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                try
                 {
-                    MonthYear = selectedMonth,
-                    IsLocked = true,
-                    LockedByUserId = CurrentUserId,
-                    LockedAt = DateTime.Now
-                });
+                    _repo.SaveMonthLock(new MonthLock
+                    {
+                        MonthYear = selectedMonth,
+                        IsLocked = false,
+                        LockedByUserId = CurrentUserId,
+                        LockedAt = DateTime.Now
+                    });
 
-                // Ipakita ang confirmation nga nalocked na ang bulan
-                XtraMessageBox.Show(
-                    $"{selectedMonth:MMMM yyyy} has been locked.",
-                    "Month Locked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show(
+                        $"{selectedMonth:MMMM yyyy} has been unlocked.",
+                        "Month Unlocked", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // I-refresh ang estado sa Lock/Unlock button
-                RefreshLockButtonState();
+                    RefreshLockButtonState();
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(
+                        $"Failed to unlock month.\n{ex.Message}",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // Ipakita ang error kung may problema sa pag-lock
-                XtraMessageBox.Show(
-                    $"Failed to lock month.\n{ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // LOCK OPERATION
+                // Prevent locking if the month is still in progress (current or future months)
+                DateTime today = DateTime.Today;
+                DateTime currentMonthStart = new DateTime(today.Year, today.Month, 1);
+
+                if (selectedMonth >= currentMonthStart)
+                {
+                    XtraMessageBox.Show(
+                        $"You cannot lock {selectedMonth:MMMM yyyy} because the month is still in progress.\n" +
+                        $"You can only lock completed months (before {currentMonthStart:MMMM yyyy}).",
+                        "Lock Month Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Mangutana sa user kung gusto ba gyud niya i-lock ang bulan
+                var confirm = XtraMessageBox.Show(
+                    $"Lock {selectedMonth:MMMM yyyy}?\n\nNo changes can be made to this month once locked.",
+                    "Confirm Lock", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                try
+                {
+                    // I-save ang lock sa database
+                    _repo.SaveMonthLock(new MonthLock
+                    {
+                        MonthYear = selectedMonth,
+                        IsLocked = true,
+                        LockedByUserId = CurrentUserId,
+                        LockedAt = DateTime.Now
+                    });
+
+                    // Ipakita ang confirmation nga nalocked na ang bulan
+                    XtraMessageBox.Show(
+                        $"{selectedMonth:MMMM yyyy} has been locked.",
+                        "Month Locked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // I-refresh ang estado sa Lock/Unlock button
+                    RefreshLockButtonState();
+                }
+                catch (Exception ex)
+                {
+                    // Ipakita ang error kung may problema sa pag-lock
+                    XtraMessageBox.Show(
+                        $"Failed to lock month.\n{ex.Message}",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -894,31 +975,43 @@ namespace SyncStock.Views.UserControl
                     AllMonthsLabel,
                     StringComparison.OrdinalIgnoreCase);
 
-            // Kung walay pinili nga bulan, itago ang duha ka button
+            // Kung walay pinili nga bulan, itago ang duha ka button ug i-enable ang grid
             if (!monthSelected)
             {
                 BtnLock.Visible = false;
                 BtnReqUnlock.Visible = false;
+                ReviewItemGC.Enabled = true;
                 return;
             }
+
+            // Check if the selected month is locked
+            bool isLocked = false;
+            if (TryParseSelectedMonth(out DateTime selectedMonth))
+            {
+                var lockRecord = _repo.GetMonthLock(selectedMonth);
+                isLocked = lockRecord != null && lockRecord.IsLocked;
+            }
+
+            // Gray out (disable) the grid to avoid clicking it if the month is locked
+            ReviewItemGC.Enabled = !isLocked;
 
             // Kung Admin, ipakita ang Lock button lang
             // Kay siya ray makaka-lock ug unlock directly
             if (CanLockDirectly)
             {
                 BtnLock.Visible = true;
-                BtnLock.Text = "Lock Period";
+                BtnLock.Text = isLocked ? "Unlock Period" : "Lock Period";
 
                 // Itago ang Request Unlock button para sa Admin
                 BtnReqUnlock.Visible = false;
             }
-            // Kung Auditor o non-Admin, ipakita ang Request Unlock button lang
+            // Kung Auditor o non-Admin, ipakita ang Request Unlock button lang kon locked
             else
             {
                 // Itago ang Lock button para sa non-Admin
                 BtnLock.Visible = false;
 
-                BtnReqUnlock.Visible = true;
+                BtnReqUnlock.Visible = isLocked;
                 BtnReqUnlock.Text = "Request Unlock";
             }
         }
@@ -961,12 +1054,12 @@ namespace SyncStock.Views.UserControl
 
             receivingUC.LoadEditItem(_selectedItem);
 
-            // Ibukas ang edit form sa maximized window
+            // Iopen ang edit form sa maximized window
             Form editForm = new Form();
             editForm.Text = "Edit Received Item";
             editForm.WindowState = FormWindowState.Maximized;
 
-            // I-dock ang user control para mapuno ang form
+            // I-dock ang user control para ma fill ang form
             receivingUC.Dock = DockStyle.Fill;
             editForm.Controls.Add(receivingUC);
 

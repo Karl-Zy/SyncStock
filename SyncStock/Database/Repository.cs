@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SyncStock.Database
 {
-    // Repository class — nag-handle sa tanan nga database operations sa sistema (OOP: Single Responsibility Principle)
+    // Repository class   nag-handle sa tanan nga database operations sa sistema (OOP: Single Responsibility Principle)
     public class Repository
     {
         public Repository() { }
@@ -922,7 +922,7 @@ SELECT
 
     d.DepartmentName AS Department,
 
-    ci.Status AS Status,
+    ISNULL(ci.Status, CASE WHEN ci.IsCapitalizable = 1 THEN 'Active' ELSE 'Received' END) AS Status,
 
     po.Priority,
 
@@ -1224,8 +1224,8 @@ SET
     ReceivedAmount = @ReceivedAmount,
     Remarks = @Remarks,
     Status = @Status,
-    AttachmentData = @AttachmentData,
-    AttachmentFileName = @AttachmentFileName
+    AttachmentData = ISNULL(@AttachmentData, AttachmentData),
+    AttachmentFileName = ISNULL(@AttachmentFileName, AttachmentFileName)
 WHERE ConfirmedItemID = @ConfirmedItemID";
 
                 conn.Execute(query, new
