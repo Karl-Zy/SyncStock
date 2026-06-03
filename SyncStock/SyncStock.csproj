@@ -98,6 +98,7 @@
     <Compile Include="Models\Accounts\InternalAuditor.cs" />
     <Compile Include="Models\Accounts\Purchaser.cs" />
     <Compile Include="Models\Accounts\ReceivingCustodian.cs" />
+    <Compile Include="Models\Accounts\SessionManager.cs" />
     <Compile Include="Models\Accounts\User.cs" />
     <Compile Include="Models\ApprovedPurchaseOrder.cs" />
     <Compile Include="Models\CartItems.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Models\Models[Receiving]\ConfirmedItems.cs" />
     <Compile Include="Models\Models[Receiving]\PendingIncomingItem.cs" />
     <Compile Include="Models\MonthLock.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\PendingOrderSummary.cs" />
     <Compile Include="Models\Reports\CapitalizedOrder.cs" />
     <Compile Include="Models\Reports\PurchaseOrderBrief.cs" />

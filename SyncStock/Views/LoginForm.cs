@@ -6,6 +6,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SyncStock;
 
 namespace SyncStock.Views
 {
@@ -140,7 +141,7 @@ namespace SyncStock.Views
         private void FinishLogin(User user)
         {
             LoggedInUser = user;
-
+            SessionManager.CurrentUser = user;
             this.DialogResult = DialogResult.OK;
 
             this.Close();

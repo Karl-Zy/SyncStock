@@ -5,11 +5,13 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraLayout;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Models.Accounts;
 using SyncStock.Views.Theme;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using SyncStock;
 using System.Windows.Forms;
 
 // namespace nga naglangkob sa dashboard user control
@@ -20,6 +22,10 @@ namespace SyncStock.Views.UserControl
     {
         // gi-instansya ang repository para sa database operations
         private Repository _repo = new Repository();
+
+        private Timer notificationTimer = new Timer();
+
+        private int lastNotificationId = 0;
 
         // constructor sa dashboard user control
         public DashBoardUC()
@@ -58,6 +64,55 @@ namespace SyncStock.Views.UserControl
 
             // gi-apply ang circular shape sa panel 16
             MakeCircularPanel(panelControl16);
+
+            StartNotificationListener();
+        }
+
+        private void StartNotificationListener()
+        {
+            // prevent purchaser/admin notifications
+            if (SessionManager.CurrentUser == null)
+                return;
+
+            if (SessionManager.CurrentUser.Role == "Purchaser" ||
+                SessionManager.CurrentUser.Role == "Admin")
+                return;
+
+            notificationTimer.Interval = 3000;
+
+            notificationTimer.Tick -= NotificationTimer_Tick;
+            notificationTimer.Tick += NotificationTimer_Tick;
+
+            notificationTimer.Start();
+        }
+
+        private void NotificationTimer_Tick(object sender, EventArgs e)
+        {
+            CheckForNewNotifications();
+        }
+
+        private void CheckForNewNotifications()
+        {
+            var notifications = _repo.GetUnreadNotifications();
+
+            if (notifications.Count > 0)
+            {
+                var latest = notifications.First();
+
+                if (latest.NotificationID > lastNotificationId)
+                {
+                    lastNotificationId = latest.NotificationID;
+
+                    XtraMessageBox.Show(
+                        latest.Message,
+                        latest.Title);
+
+                    LoadDashboard();
+
+                    _repo.MarkNotificationAsRead(
+                        latest.NotificationID);
+                }
+            }
         }
 
         public void ApplyTheme(bool darkMode)
@@ -400,34 +455,35 @@ namespace SyncStock.Views.UserControl
             // =====================================
 
             // gi-set ang lapad sa invoice number column
-            PendingOrdersGV.Columns["InvoiceNumber"].Width = 140;
+            if (PendingOrdersGV.Columns["InvoiceNumber"] != null)
+                PendingOrdersGV.Columns["InvoiceNumber"].Width = 140;
 
-            // gi-set ang lapad sa po number column
-            PendingOrdersGV.Columns["PONumber"].Width = 190;
+            if (PendingOrdersGV.Columns["PONumber"] != null)
+                PendingOrdersGV.Columns["PONumber"].Width = 190;
 
-            // gi-set ang lapad sa department name column
-            PendingOrdersGV.Columns["DepartmentName"].Width = 250;
+            if (PendingOrdersGV.Columns["DepartmentName"] != null)
+                PendingOrdersGV.Columns["DepartmentName"].Width = 250;
 
-            // gi-set ang lapad sa order date column
-            PendingOrdersGV.Columns["OrderDate"].Width = 170;
+            if (PendingOrdersGV.Columns["OrderDate"] != null)
+                PendingOrdersGV.Columns["OrderDate"].Width = 170;
 
-            // gi-set ang lapad sa status column
-            PendingOrdersGV.Columns["Status"].Width = 120;
+            if (PendingOrdersGV.Columns["Status"] != null)
+                PendingOrdersGV.Columns["Status"].Width = 120;
 
-            // gi-set ang lapad sa priority column
-            PendingOrdersGV.Columns["Priority"].Width = 170;
+            if (PendingOrdersGV.Columns["Priority"] != null)
+                PendingOrdersGV.Columns["Priority"].Width = 170;
 
-            // gi-set ang lapad sa po type column
-            PendingOrdersGV.Columns["POType"].Width = 120;
+            if (PendingOrdersGV.Columns["POType"] != null)
+                PendingOrdersGV.Columns["POType"].Width = 120;
 
-            // gi-set ang lapad sa order mode column
-            PendingOrdersGV.Columns["OrderMode"].Width = 120;
+            if (PendingOrdersGV.Columns["OrderMode"] != null)
+                PendingOrdersGV.Columns["OrderMode"].Width = 120;
 
-            // gi-set ang lapad sa total items column
-            PendingOrdersGV.Columns["TotalItems"].Width = 120;
+            if (PendingOrdersGV.Columns["TotalItems"] != null)
+                PendingOrdersGV.Columns["TotalItems"].Width = 120;
 
-            // gi-set ang lapad sa total amount column
-            PendingOrdersGV.Columns["TotalAmount"].Width = 150;
+            if (PendingOrdersGV.Columns["TotalAmount"] != null)
+                PendingOrdersGV.Columns["TotalAmount"].Width = 150;
         }
 
         // =========================================

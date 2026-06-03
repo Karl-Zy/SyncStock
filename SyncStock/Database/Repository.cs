@@ -123,36 +123,57 @@ namespace SyncStock.Database
         {
             using (var conn = CreateConnection())
             {
-                return conn.ExecuteScalar<int>(@"
-            INSERT INTO PurchaseOrders
-            (
-                InvoiceNumber,
-                PONumber,
-                DepartmentID,
-                OrderDate,
-                Status,
-                Priority,
-                Remarks,
-                AttachmentPath,
-                POType,
-                OrderMode
-            )
-            VALUES
-            (
-                @InvoiceNumber,
-                @PONumber,
-                @DepartmentID,
-                @OrderDate,
-                @Status,
-                @Priority,
-                @Remarks,
-                @AttachmentPath,
-                @POType,
-                @OrderMode
-            );
+                int newId = conn.ExecuteScalar<int>(@"
+        INSERT INTO PurchaseOrders
+        (
+            InvoiceNumber,
+            PONumber,
+            DepartmentID,
+            OrderDate,
+            Status,
+            Priority,
+            Remarks,
+            AttachmentPath,
+            POType,
+            OrderMode
+        )
+        VALUES
+        (
+            @InvoiceNumber,
+            @PONumber,
+            @DepartmentID,
+            @OrderDate,
+            @Status,
+            @Priority,
+            @Remarks,
+            @AttachmentPath,
+            @POType,
+            @OrderMode
+        );
 
-            SELECT CAST(SCOPE_IDENTITY() as int);",
-                    order);
+        SELECT CAST(SCOPE_IDENTITY() as int);",
+                order);
+
+                // =====================================
+                // NOTIFICATION
+                // =====================================
+
+                if (order.Priority == "ASAP Department")
+                {
+                    AddNotification(
+                        "New ASAP Order",
+                        $"ASAP Purchase Order Created: {order.PONumber}",
+                        "ASAP");
+                }
+                else
+                {
+                    AddNotification(
+                        "New Purchase Order",
+                        $"Purchase Order Created: {order.PONumber}",
+                        "Purchase");
+                }
+
+                return newId;
             }
         }
 
@@ -593,6 +614,14 @@ namespace SyncStock.Database
             SET Status = @newStatus
             WHERE PONumber = @poNumber",
                     new { poNumber, itemName, newStatus });
+
+                if (newStatus == "Received")
+                {
+                    AddNotification(
+                        "Order Received",
+                        $"Purchase Order {poNumber} has been received.",
+                        "Receiving");
+                }
             }
         }
 
@@ -1271,5 +1300,63 @@ WHERE ConfirmedItemID = @ConfirmedItemID";
                     new { Status = WorkflowStatus.Received });
             }
         }
+
+        #region Notifications
+
+        public void AddNotification(
+            string title,
+            string message,
+            string notificationType)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+        INSERT INTO Notifications
+        (
+            Title,
+            Message,
+            NotificationType
+        )
+        VALUES
+        (
+            @Title,
+            @Message,
+            @NotificationType
+        )",
+                new
+                {
+                    Title = title,
+                    Message = message,
+                    NotificationType = notificationType
+                });
+            }
+        }
+
+        public List<Notification> GetUnreadNotifications()
+        {
+            using (var conn = CreateConnection())
+            {
+                return conn.Query<Notification>(@"
+        SELECT *
+        FROM Notifications
+        WHERE IsRead = 0
+        ORDER BY CreatedAt DESC")
+                .ToList();
+            }
+        }
+
+        public void MarkNotificationAsRead(int notificationId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Execute(@"
+        UPDATE Notifications
+        SET IsRead = 1
+        WHERE NotificationID = @NotificationID",
+                new { NotificationID = notificationId });
+            }
+        }
+
+        #endregion
     }
 }
