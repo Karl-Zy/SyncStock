@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -24,7 +24,6 @@ namespace SyncStock.Views.UserControl
         // Dli ni makita sa mga external classes, ug dili nila ma access directly.
         // Ang access sa database kay controlled ra sa mga methods sa ubos, dili diretso.
 
-
         // ABSTRACTION
         // Kani ang tig-kuhag data sa database (Repository).
         // dli na kailangan refer sa mga SQL queries diri, kay ang Repository na ang bahala ana.
@@ -36,6 +35,7 @@ namespace SyncStock.Views.UserControl
 
         // Ang mismong ngalan sa file nga gi-upload (e.g. "receipt.pdf").
         private string _uploadedFileName = null;
+
         private bool _isEditMode = false;
         private int _editingConfirmedItemId = 0;
 
@@ -46,9 +46,9 @@ namespace SyncStock.Views.UserControl
         // Listahan sa mga file format nga pwede i-upload (.jpg, .png, .pdf).
         // Gi-check ni sa button ug sa drag-and-drop.
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
-        private bool _userClickedRow = false;
-        private bool _isEditMode = false;
-        private int _editingConfirmedItemId = 0;
+
+
+
         public ReceivingCustodianUC()
         {
             InitializeComponent();
@@ -73,6 +73,7 @@ namespace SyncStock.Views.UserControl
                 txteditReceivedAmount.GotFocus += (s, me) => BeginInvoke(new Action(() => txteditReceivedAmount.SelectAll()));
                 txteditReceivedAmount.KeyPress += txteditReceivedAmount_KeyPress;
                 txteditReceivedAmount.Leave += txteditReceivedAmount_Leave;
+                txteditReceivedAmount.Enter += txteditReceivedAmount_Enter;
                 lcMainContainer.AllowCustomization = false;
                 dlcPendingIncoming.AllowCustomization = false;
                 dlcReceivingReport.AllowCustomization = false;
@@ -87,7 +88,6 @@ namespace SyncStock.Views.UserControl
                 txteditReceivedAmount.Leave += (s, me) => UpdateRequiredLabels();
                 gvItemsView.RowClick += (s, me) =>
                 {
-                    _userClickedRow = true;
                     if (gvItemsView.FocusedRowHandle == me.RowHandle)
                         gvItemsView_FocusedRowChanged(null,
                             new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs(me.RowHandle, me.RowHandle));
@@ -457,17 +457,12 @@ namespace SyncStock.Views.UserControl
                     _repo.AddConfirmedItem(
                         confirmationPayload);
 
+                    // ✅ Fixed — passes itemName so only THIS item's PO status updates
                     _repo.UpdatePurchaseOrderItemStatus(
                         purePoNumber,
                         txteditItemName.Text,
-                        WorkflowStatus.Received);
+                        WorkflowStatus.Received);  // Enum value nga nag-represent sa "Received" stage.
                 }
-
-                // ✅ Fixed — passes itemName so only THIS item's PO status updates
-                _repo.UpdatePurchaseOrderItemStatus(
-                    purePoNumber,
-                    txteditItemName.Text,
-                    WorkflowStatus.Received);  // Enum value nga nag-represent sa "Received" stage.
 
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Asset inventory ledger updated and item confirmed successfully!",
@@ -504,14 +499,6 @@ namespace SyncStock.Views.UserControl
                 return;
             }
 
-            ClearReceivingForm();
-        }
-
-        // btnCancel_Click  (Cancel button)
-        // Mo-discard ni sa mga unsaved inputs pinaagi sa pag-reset 
-        // sa tanang form fields ngadto sa ilang default o empty states.
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
             ClearReceivingForm();
         }
 
@@ -728,7 +715,7 @@ namespace SyncStock.Views.UserControl
             e.Handled = true;
         }
 
-        // Para limpyo ang Receuved Amount field, i-strip ni ang currency symbol ug commas inig focus (enter) sa text box
+        // Para limpyo ang Received Amount field, i-strip ni ang currency symbol ug commas inig focus (enter) sa text box
         private void txteditReceivedAmount_Enter(object sender, EventArgs e)
         {
             // Strip the ₱ symbol when user clicks in to edit
@@ -737,16 +724,67 @@ namespace SyncStock.Views.UserControl
 
         private void txteditReceivedAmount_Leave(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txteditReceivedAmount.Text, out decimal value))
-                txteditReceivedAmount.Text = string.Format("₱{0:N2}", value);
+            string valueText = txteditReceivedAmount.Text
+                .Replace("₱", "")
+                .Replace(",", "")
+                .Trim();
+
+            if (decimal.TryParse(valueText, out decimal value))
+            {
+                txteditReceivedAmount.Text = $"₱{value:N2}";
+            }
+        }
+
+        private void txteditReceivedAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (e.KeyChar == '.' && txteditReceivedAmount.Text.Contains('.'))
+                e.Handled = true;
+        }
+
+        private void UpdateRequiredLabels()
+        {
+            lblDateReceived.AppearanceItemCaption.ForeColor = Color.Black;
+            lblReceivedQuan.AppearanceItemCaption.ForeColor = Color.Black;
+            lblReceivedAmount.AppearanceItemCaption.ForeColor = Color.Black;
+
+            lblDateReceived.Text = (dateEdit.EditValue == null || string.IsNullOrWhiteSpace(dateEdit.Text))
+                ? "Date Received <color=Crimson>*</color>"
+                : "Date Received";
+            lblReceivedQuan.Text = (spneditReceivedQuan.EditValue == null || Convert.ToInt32(spneditReceivedQuan.EditValue) <= 0)
+                ? "Received Quantity <color=Crimson>*</color>"
+                : "Received Quantity";
+            lblReceivedAmount.Text = string.IsNullOrWhiteSpace(txteditReceivedAmount.Text)
+                ? "Received Amount <color=Crimson>*</color>"
+                : "Received Amount";
+        }
+
+        private void ScrollForm(int delta)
+        {
+            Point current = scrlControl.AutoScrollPosition;
+            scrlControl.AutoScrollPosition = new Point(0, -current.Y + delta);
+        }
+
+        private void HookMouseWheel(Control parent)
+        {
+            foreach (Control child in parent.Controls)
+            {
+                if (child is DevExpress.XtraGrid.GridControl) continue;
+
+                child.MouseWheel += (s, me) => ScrollForm(-me.Delta);
+                HookMouseWheel(child);
+            }
         }
 
         public void LoadEditItem(AuditorReviewItemDto item)
         {
-
             _isEditMode = true;
-            _editingConfirmedItemId =
-    item.ConfirmedItemID;
+            _editingConfirmedItemId = item.ConfirmedItemID;
 
             // HIDE TOP SECTION
             gcItems.Visible = false;
@@ -772,6 +810,7 @@ namespace SyncStock.Views.UserControl
 
             txteditReceivedAmount.Text =
                 item.ReceivedAmount.ToString("N2");
+
             dateEdit.EditValue = item.DateReceived;
 
             txteditRemarks.Text =
@@ -792,7 +831,6 @@ namespace SyncStock.Views.UserControl
 
             // OPTIONAL
             btnConfirm.Text = "Update Item";
-
         }
     }
 }
