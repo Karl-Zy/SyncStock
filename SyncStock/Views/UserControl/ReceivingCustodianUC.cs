@@ -25,7 +25,8 @@ namespace SyncStock.Views.UserControl
         private string _currentSearchText = string.Empty;
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
         private bool _userClickedRow = false;
-
+        private bool _isEditMode = false;
+        private int _editingConfirmedItemId = 0;
         public ReceivingCustodianUC()
         {
             InitializeComponent();
@@ -53,7 +54,13 @@ namespace SyncStock.Views.UserControl
                 spneditReceivedQuan.EditValueChanged += (s, me) => UpdateRequiredLabels();
                 txteditReceivedAmount.EditValueChanged += (s, me) => UpdateRequiredLabels();
                 txteditReceivedAmount.Leave += (s, me) => UpdateRequiredLabels();
-                gvItemsView.RowClick += (s, me) => _userClickedRow = true;
+                gvItemsView.RowClick += (s, me) =>
+                {
+                    _userClickedRow = true;
+                    if (gvItemsView.FocusedRowHandle == me.RowHandle)
+                        gvItemsView_FocusedRowChanged(null,
+                            new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs(me.RowHandle, me.RowHandle));
+                };
                 lblDateReceived.AllowHtmlStringInCaption = true;
                 lblReceivedQuan.AllowHtmlStringInCaption = true;
                 lblReceivedAmount.AllowHtmlStringInCaption = true;
@@ -109,7 +116,7 @@ namespace SyncStock.Views.UserControl
             {
                 var incomingItems = _repo.GetPendingIncomingItemsDetails();
                 gcItems.DataSource = incomingItems;
-                ApplyColumnAlignment();
+                ApplyColumnAlignment(); // re apply ang headers ug widths
             }
             catch (Exception ex)
             {
@@ -368,7 +375,24 @@ namespace SyncStock.Views.UserControl
             }
         }
 
+        // btnCancel_Click  (Cancel button)
+        // Mo-discard ni sa mga unsaved inputs pinaagi sa pag-reset 
+        // sa tanang form fields ngadto sa ilang default o empty states.
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearReceivingForm();
+        }
 
+        // ===========================================================
+        // VISUAL / HELPER METHODS
+        // ===========================================================
+
+        // ClearReceivingForm
+        // Mo-reset ni sa kada editable control sa right-hand panel 
+        // balik sa ilang default state. Gi-call ni right after sa successful 
+        // submission ug basta mo-cancel ang user.
+        // Mo-clear sad ni sa in-memory file attachment fields para dili 
+        // ma-accidentally carry over ang previous upload.
         private void ClearReceivingForm()
         {
             lblReceivingReport.Text = "Receiving Report From:";
@@ -532,13 +556,14 @@ namespace SyncStock.Views.UserControl
 
             if (!string.IsNullOrWhiteSpace(raw) && decimal.TryParse(raw, out decimal value))
                 txteditReceivedAmount.Text = string.Format("₱{0:N2}", value);
-            else
-                txteditReceivedAmount.Text = "";
         }
 
         public void LoadEditItem(AuditorReviewItemDto item)
         {
 
+            _isEditMode = true;
+            _editingConfirmedItemId =
+    item.ConfirmedItemID;
 
             // HIDE TOP SECTION
             gcItems.Visible = false;

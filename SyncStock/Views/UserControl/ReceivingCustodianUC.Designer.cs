@@ -93,6 +93,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.openFileDialogReceipt = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.scrlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lcMainContainer)).BeginInit();
             this.lcMainContainer.SuspendLayout();
@@ -150,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // scrlControl
@@ -388,8 +390,7 @@
             // dateEdit
             // 
             this.dateEdit.EditValue = null;
-            this.dateEdit.Location = new System.Drawing.Point(18, 119);
-            this.dateEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateEdit.Location = new System.Drawing.Point(16, 106);
             this.dateEdit.Name = "dateEdit";
             editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
@@ -403,8 +404,7 @@
             // 
             // txteditItemName
             // 
-            this.txteditItemName.Location = new System.Drawing.Point(1328, 119);
-            this.txteditItemName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txteditItemName.Location = new System.Drawing.Point(734, 106);
             this.txteditItemName.Name = "txteditItemName";
             this.txteditItemName.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditItemName.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -415,10 +415,9 @@
             // 
             // chckboxAsset
             // 
-            this.chckboxAsset.Location = new System.Drawing.Point(18, 161);
-            this.chckboxAsset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chckboxAsset.Location = new System.Drawing.Point(16, 140);
             this.chckboxAsset.Name = "chckboxAsset";
-            this.chckboxAsset.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chckboxAsset.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chckboxAsset.Properties.Appearance.Options.UseFont = true;
             this.chckboxAsset.Properties.Caption = "Capitalizable Asset";
             this.chckboxAsset.Size = new System.Drawing.Size(1304, 26);
@@ -427,8 +426,7 @@
             // 
             // txteditExpectedQuan
             // 
-            this.txteditExpectedQuan.Location = new System.Drawing.Point(18, 221);
-            this.txteditExpectedQuan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txteditExpectedQuan.Location = new System.Drawing.Point(16, 189);
             this.txteditExpectedQuan.Name = "txteditExpectedQuan";
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -439,8 +437,7 @@
             // 
             // txteditExpectedAmount
             // 
-            this.txteditExpectedAmount.Location = new System.Drawing.Point(18, 289);
-            this.txteditExpectedAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txteditExpectedAmount.Location = new System.Drawing.Point(16, 244);
             this.txteditExpectedAmount.Name = "txteditExpectedAmount";
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.Options.UseBackColor = true;
@@ -452,32 +449,33 @@
             // spneditReceivedQuan
             // 
             this.spneditReceivedQuan.EditValue = new decimal(new int[] {
-            0,
+            1,
             0,
             0,
             0});
-            this.spneditReceivedQuan.Location = new System.Drawing.Point(1328, 221);
-            this.spneditReceivedQuan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.spneditReceivedQuan.Location = new System.Drawing.Point(734, 189);
             this.spneditReceivedQuan.Name = "spneditReceivedQuan";
             this.spneditReceivedQuan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spneditReceivedQuan.Size = new System.Drawing.Size(1304, 34);
+            this.spneditReceivedQuan.Properties.MaxValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spneditReceivedQuan.Size = new System.Drawing.Size(712, 28);
             this.spneditReceivedQuan.StyleController = this.dlcReceivingReport;
             this.spneditReceivedQuan.TabIndex = 9;
             // 
             // txteditReceivedAmount
             // 
-            this.txteditReceivedAmount.Location = new System.Drawing.Point(1328, 289);
-            this.txteditReceivedAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txteditReceivedAmount.EditValue = "";
+            this.txteditReceivedAmount.Location = new System.Drawing.Point(734, 244);
             this.txteditReceivedAmount.Name = "txteditReceivedAmount";
-            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txteditReceivedAmount.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txteditReceivedAmount.Properties.MaskSettings.Set("mask", "c");
-            this.txteditReceivedAmount.Properties.NullText = "₱0.00";
-            this.txteditReceivedAmount.Size = new System.Drawing.Size(1304, 34);
+            this.txteditReceivedAmount.Properties.NullValuePrompt = "₱0.00";
+            this.txteditReceivedAmount.Size = new System.Drawing.Size(712, 28);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
-            
+            this.txteditReceivedAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txteditReceivedAmount_KeyPress);
             this.txteditReceivedAmount.Leave += new System.EventHandler(this.txteditReceivedAmount_Leave);
             // 
             // btnUpload
@@ -487,8 +485,7 @@
             this.btnUpload.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Appearance.Options.UseBackColor = true;
             this.btnUpload.Appearance.Options.UseFont = true;
-            this.btnUpload.Location = new System.Drawing.Point(18, 358);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Location = new System.Drawing.Point(16, 299);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(645, 34);
             this.btnUpload.StyleController = this.dlcReceivingReport;
@@ -500,10 +497,9 @@
             // 
             // txteditRemarks
             // 
-            this.txteditRemarks.Location = new System.Drawing.Point(18, 447);
-            this.txteditRemarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txteditRemarks.Location = new System.Drawing.Point(16, 364);
             this.txteditRemarks.Name = "txteditRemarks";
-            this.txteditRemarks.Size = new System.Drawing.Size(1430, 110);
+            this.txteditRemarks.Size = new System.Drawing.Size(1430, 90);
             this.txteditRemarks.StyleController = this.dlcReceivingReport;
             this.txteditRemarks.TabIndex = 12;
             // 
@@ -556,39 +552,40 @@
             this.lblUploadGuide,
             this.lblReceivingReport,
             this.lblPONumber,
-            this.emptyspaceReceiving4});
+            this.emptyspaceReceiving4,
+            this.emptySpaceItem1});
             this.lcgReceivingReport.Name = "Root";
             this.lcgReceivingReport.Size = new System.Drawing.Size(1462, 504);
             this.lcgReceivingReport.TextVisible = false;
             // 
             // lblDateReceived
             // 
-            this.lblDateReceived.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateReceived.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateReceived.AppearanceItemCaption.Options.UseFont = true;
             this.lblDateReceived.Control = this.dateEdit;
-            this.lblDateReceived.Location = new System.Drawing.Point(0, 73);
+            this.lblDateReceived.Location = new System.Drawing.Point(0, 69);
             this.lblDateReceived.Name = "lblDateReceived";
-            this.lblDateReceived.Size = new System.Drawing.Size(1310, 68);
-            this.lblDateReceived.Text = "Date Received *";
+            this.lblDateReceived.Size = new System.Drawing.Size(718, 55);
+            this.lblDateReceived.Text = "Date Received";
             this.lblDateReceived.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblDateReceived.TextSize = new System.Drawing.Size(319, 19);
+            this.lblDateReceived.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblItemName
             // 
-            this.lblItemName.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItemName.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemName.AppearanceItemCaption.Options.UseFont = true;
             this.lblItemName.Control = this.txteditItemName;
-            this.lblItemName.Location = new System.Drawing.Point(1310, 73);
+            this.lblItemName.Location = new System.Drawing.Point(718, 69);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(1310, 68);
+            this.lblItemName.Size = new System.Drawing.Size(718, 55);
             this.lblItemName.Text = "Item Name";
             this.lblItemName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblItemName.TextSize = new System.Drawing.Size(319, 19);
+            this.lblItemName.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblAsset
             // 
             this.lblAsset.Control = this.chckboxAsset;
-            this.lblAsset.Location = new System.Drawing.Point(0, 141);
+            this.lblAsset.Location = new System.Drawing.Point(0, 124);
             this.lblAsset.Name = "lblAsset";
             this.lblAsset.Size = new System.Drawing.Size(1310, 34);
             this.lblAsset.TextSize = new System.Drawing.Size(0, 0);
@@ -596,75 +593,75 @@
             // 
             // lblExpQuan
             // 
-            this.lblExpQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpQuan.Control = this.txteditExpectedQuan;
-            this.lblExpQuan.Location = new System.Drawing.Point(0, 175);
+            this.lblExpQuan.Location = new System.Drawing.Point(0, 152);
             this.lblExpQuan.Name = "lblExpQuan";
-            this.lblExpQuan.Size = new System.Drawing.Size(1310, 68);
+            this.lblExpQuan.Size = new System.Drawing.Size(718, 55);
             this.lblExpQuan.Text = "Expected Quantity";
             this.lblExpQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpQuan.TextSize = new System.Drawing.Size(319, 19);
+            this.lblExpQuan.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblExpAmount
             // 
-            this.lblExpAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpAmount.Control = this.txteditExpectedAmount;
-            this.lblExpAmount.Location = new System.Drawing.Point(0, 243);
+            this.lblExpAmount.Location = new System.Drawing.Point(0, 207);
             this.lblExpAmount.Name = "lblExpAmount";
-            this.lblExpAmount.Size = new System.Drawing.Size(1310, 68);
+            this.lblExpAmount.Size = new System.Drawing.Size(718, 55);
             this.lblExpAmount.Text = "Expected Amount";
             this.lblExpAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpAmount.TextSize = new System.Drawing.Size(319, 19);
+            this.lblExpAmount.TextSize = new System.Drawing.Size(248, 15);
             // 
             // emptyspaceReceiving1
             // 
             this.emptyspaceReceiving1.AllowHotTrack = false;
-            this.emptyspaceReceiving1.Location = new System.Drawing.Point(1310, 141);
+            this.emptyspaceReceiving1.Location = new System.Drawing.Point(718, 124);
             this.emptyspaceReceiving1.Name = "emptyspaceReceiving1";
             this.emptyspaceReceiving1.Size = new System.Drawing.Size(1310, 34);
             this.emptyspaceReceiving1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblReceivedQuan
             // 
-            this.lblReceivedQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReceivedQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedQuan.Control = this.spneditReceivedQuan;
-            this.lblReceivedQuan.Location = new System.Drawing.Point(1310, 175);
+            this.lblReceivedQuan.Location = new System.Drawing.Point(718, 152);
             this.lblReceivedQuan.Name = "lblReceivedQuan";
-            this.lblReceivedQuan.Size = new System.Drawing.Size(1310, 68);
-            this.lblReceivedQuan.Text = "Received Quantity *";
+            this.lblReceivedQuan.Size = new System.Drawing.Size(718, 55);
+            this.lblReceivedQuan.Text = "Received Quantity";
             this.lblReceivedQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedQuan.TextSize = new System.Drawing.Size(319, 19);
+            this.lblReceivedQuan.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblReceivedAmount
             // 
-            this.lblReceivedAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReceivedAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedAmount.Control = this.txteditReceivedAmount;
-            this.lblReceivedAmount.Location = new System.Drawing.Point(1310, 243);
+            this.lblReceivedAmount.Location = new System.Drawing.Point(718, 207);
             this.lblReceivedAmount.Name = "lblReceivedAmount";
-            this.lblReceivedAmount.Size = new System.Drawing.Size(1310, 68);
-            this.lblReceivedAmount.Text = "Received Amount *";
+            this.lblReceivedAmount.Size = new System.Drawing.Size(718, 55);
+            this.lblReceivedAmount.Text = "Received Amount";
             this.lblReceivedAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedAmount.TextSize = new System.Drawing.Size(319, 19);
+            this.lblReceivedAmount.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblUploadProof
             // 
             this.lblUploadProof.AllowHotTrack = false;
-            this.lblUploadProof.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUploadProof.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadProof.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadProof.Location = new System.Drawing.Point(0, 311);
+            this.lblUploadProof.Location = new System.Drawing.Point(0, 262);
             this.lblUploadProof.Name = "lblUploadProof";
-            this.lblUploadProof.Size = new System.Drawing.Size(2620, 27);
+            this.lblUploadProof.Size = new System.Drawing.Size(1436, 21);
             this.lblUploadProof.Text = "Proof of Delivery (Receipt/Photo)";
-            this.lblUploadProof.TextSize = new System.Drawing.Size(319, 19);
+            this.lblUploadProof.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblUpload
             // 
             this.lblUpload.Control = this.btnUpload;
-            this.lblUpload.Location = new System.Drawing.Point(0, 338);
+            this.lblUpload.Location = new System.Drawing.Point(0, 283);
             this.lblUpload.Name = "lblUpload";
             this.lblUpload.Size = new System.Drawing.Size(651, 42);
             this.lblUpload.TextSize = new System.Drawing.Size(0, 0);
@@ -673,22 +670,22 @@
             // emptyspaceReceiving2
             // 
             this.emptyspaceReceiving2.AllowHotTrack = false;
-            this.emptyspaceReceiving2.Location = new System.Drawing.Point(1310, 338);
+            this.emptyspaceReceiving2.Location = new System.Drawing.Point(718, 283);
             this.emptyspaceReceiving2.Name = "emptyspaceReceiving2";
             this.emptyspaceReceiving2.Size = new System.Drawing.Size(1310, 42);
             this.emptyspaceReceiving2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblRemarks
             // 
-            this.lblRemarks.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRemarks.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRemarks.AppearanceItemCaption.Options.UseFont = true;
             this.lblRemarks.Control = this.txteditRemarks;
-            this.lblRemarks.Location = new System.Drawing.Point(0, 399);
+            this.lblRemarks.Location = new System.Drawing.Point(0, 327);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(1436, 139);
-            this.lblRemarks.Text = "Remarks";
+            this.lblRemarks.Size = new System.Drawing.Size(1436, 117);
+            this.lblRemarks.Text = "Remarks (Optional)";
             this.lblRemarks.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblRemarks.TextSize = new System.Drawing.Size(319, 21);
+            this.lblRemarks.TextSize = new System.Drawing.Size(248, 15);
             // 
             // lblCancel
             // 
@@ -721,7 +718,7 @@
             this.lblUploadGuide.AllowHotTrack = false;
             this.lblUploadGuide.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadGuide.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadGuide.Location = new System.Drawing.Point(651, 338);
+            this.lblUploadGuide.Location = new System.Drawing.Point(357, 283);
             this.lblUploadGuide.Name = "lblUploadGuide";
             this.lblUploadGuide.Size = new System.Drawing.Size(659, 42);
             this.lblUploadGuide.Text = "or drop file here";
@@ -743,18 +740,18 @@
             // lblPONumber
             // 
             this.lblPONumber.AllowHotTrack = false;
-            this.lblPONumber.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPONumber.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPONumber.AppearanceItemCaption.Options.UseFont = true;
             this.lblPONumber.Location = new System.Drawing.Point(0, 46);
             this.lblPONumber.Name = "lblPONumber";
-            this.lblPONumber.Size = new System.Drawing.Size(2620, 27);
+            this.lblPONumber.Size = new System.Drawing.Size(1436, 23);
             this.lblPONumber.Text = "PO Number:";
-            this.lblPONumber.TextSize = new System.Drawing.Size(319, 19);
+            this.lblPONumber.TextSize = new System.Drawing.Size(248, 17);
             // 
             // emptyspaceReceiving4
             // 
             this.emptyspaceReceiving4.AllowHotTrack = false;
-            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 380);
+            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 317);
             this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
             this.emptyspaceReceiving4.Size = new System.Drawing.Size(2620, 19);
             this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
@@ -828,6 +825,14 @@
             // 
             this.openFileDialogReceipt.FileName = "openFileDialogReceipt";
             // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 59);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1436, 10);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // ReceivingCustodianUC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -892,6 +897,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -956,5 +962,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraLayout.LayoutControlItem lblSearchStatus;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }

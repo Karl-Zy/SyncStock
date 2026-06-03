@@ -55,8 +55,8 @@ namespace SyncStock.Views.UserControl
             layoutControlItem32.Text = "Purchase Order Date <color=Crimson>*</color>";
             layoutControlItem32.AllowHtmlStringInCaption = true;
 
-            layoutControlItem50.Text = "Purchase Order Number <color=Crimson>*</color>";
-            layoutControlItem50.AllowHtmlStringInCaption = true;
+            layoutControlItem30.Text = "Purchase Order Number <color=Crimson>*</color>";
+            layoutControlItem30.AllowHtmlStringInCaption = true;
 
             layoutControlItem21.Text = "Date <color=Crimson>*</color>";
             layoutControlItem21.AllowHtmlStringInCaption = true;
