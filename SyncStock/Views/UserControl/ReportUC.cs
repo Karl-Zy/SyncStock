@@ -1,5 +1,8 @@
 ﻿using DevExpress.DataAccess.Native.Data;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraReports.UI;
 using SyncStock.Database;
 using SyncStock.Models;
@@ -25,10 +28,7 @@ namespace SyncStock.Views.UserControl
         public ReportUC()
         {
             InitializeComponent();
-
-            ReportGV.OptionsBehavior.Editable = false;
-            ReportGV.OptionsBehavior.ReadOnly = true;
-
+            ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
             LoadData();
         }
 
@@ -195,37 +195,72 @@ namespace SyncStock.Views.UserControl
 
         private void AddAttachmentImageColumn()
         {
-            // Button editor that shows "View Image" text
             var btnEdit = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+
             btnEdit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             btnEdit.Buttons.Clear();
-            btnEdit.Buttons.Add(new DevExpress.XtraEditors.Controls.EditorButton(
-                DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)
-            {
-                Caption = "View Image"
-            });
 
-            // Wire up the click
-            btnEdit.ButtonClick += AttachmentButtonEdit_ButtonClick;
+            btnEdit.Buttons.Add(
+                new DevExpress.XtraEditors.Controls.EditorButton(
+                    DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)
+                {
+                    Caption = "View Image"
+                });
 
             ReportGC.RepositoryItems.Add(btnEdit);
-            //nag add og new column sa grid nga "AttachmentPreview" nga nag-display og button para makita ang image, gamit ang btnEdit nga gi-define sa taas
+
             var imgCol = new DevExpress.XtraGrid.Columns.GridColumn
             {
-                FieldName = "AttachmentData",
                 Caption = "Attachment",
                 Name = "AttachmentPreview",
+                UnboundType = DevExpress.Data.UnboundColumnType.String,
                 Visible = true,
                 VisibleIndex = ReportGV.Columns.Count,
                 ColumnEdit = btnEdit
             };
 
+            imgCol.OptionsColumn.AllowEdit = true;
+            imgCol.OptionsColumn.ReadOnly = false;
+
             ReportGV.Columns.Add(imgCol);
+
+            btnEdit.ButtonClick += (s, e) =>
+            {
+                try
+                {
+                    int rowHandle = ReportGV.FocusedRowHandle;
+
+                    var row = ReportGV.GetRow(rowHandle) as Reconciliation;
+
+                    if (row == null)
+                    {
+                        MessageBox.Show("Row is null");
+                        return;
+                    }
+
+                    if (row.AttachmentData == null || row.AttachmentData.Length == 0)
+                    {
+                        MessageBox.Show("No attachment available.");
+                        return;
+                    }
+
+                    ShowImagePreview(
+                        row.AttachmentData,
+                        row.AttachmentFileName
+                    );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            };
         }
 
         private void AttachmentButtonEdit_ButtonClick(object sender,
     DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
+
+            XtraMessageBox.Show("yawa");
             // Kuhaon ang data sa row nga currently focused/gipili sa user
             // Gi-cast as Reconciliation para ma-access ang iyang properties
             var row = ReportGV.GetFocusedRow() as Reconciliation;
@@ -405,6 +440,26 @@ namespace SyncStock.Views.UserControl
         private void SecondFilterBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             ApplyPeriodFilter();
+        }
+
+        private void ReportGV_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Value == null) return;
+
+            if (e.Column.FieldName == "PoType" ||
+                e.Column.FieldName == "POType")
+            {
+                switch (e.Value.ToString().ToUpper())
+                {
+                    case "GPO":
+                        e.DisplayText = "LOCAL";
+                        break;
+
+                    case "OPO":
+                        e.DisplayText = "ONLINE";
+                        break;
+                }
+            }
         }
     }
 
