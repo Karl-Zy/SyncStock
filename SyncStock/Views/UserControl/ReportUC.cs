@@ -29,9 +29,27 @@ namespace SyncStock.Views.UserControl
         {
             InitializeComponent();
             ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
+            ReportGV.RowStyle += ReportGV_RowStyle;
             LoadData();
         }
 
+        private void ReportGV_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) 
+        {
+            if (FilterBox.Text != "Reconciliation") return;
+
+            var row  = ReportGV.GetRow(e.RowHandle) as Reconciliation;
+            if (row == null) return;
+
+            bool QuantityMismatch = row.OrderedQuantity != row.ReceivedQuantity;
+            bool AmountMismatch = row.OrderedAmount != row.ReceivedAmount;
+
+            if (QuantityMismatch || AmountMismatch) 
+            {
+                e.Appearance.BackColor = Color.FromArgb(255, 199, 206); // Light red background
+                e.Appearance.ForeColor = Color.FromArgb(156, 0, 6); // Dark red text
+                e.HighPriority = true;
+            }
+        }
 
         private void labelControl4_Click(object sender, EventArgs e)
         {
