@@ -759,9 +759,7 @@ namespace SyncStock.Database
                 po.InvoiceNumber,
                 ci.ItemName,
                 ci.DateReceived,
-                ci.ExpectedQuantity,
                 ci.ReceivedQuantity,
-                ci.ExpectedAmount,
                 ci.ReceivedAmount,
                 ci.Remarks,
                 po.POType,        
@@ -782,8 +780,8 @@ namespace SyncStock.Database
                 return conn.Query<Reconciliation>(@"
             SELECT
                 po.PONumber,
-                po.InvoiceNumber,   
-                d.DepartmentName,
+                po.InvoiceNumber,
+                ci.IsCapitalizable,
                 po.OrderDate,
                 po.Priority,
                 i.ItemName,
@@ -795,7 +793,6 @@ namespace SyncStock.Database
                 ci.ReceivedQuantity,
                 ci.ExpectedAmount,
                 ci.ReceivedAmount,
-                ci.Remarks,
                 po.POType,
                 po.OrderMode,
                 ci.AttachmentData,
@@ -806,6 +803,7 @@ namespace SyncStock.Database
             INNER JOIN Items i                ON poi.ItemID = i.ItemID
             LEFT  JOIN ConfirmedItems ci      ON ci.PONumber = po.PONumber
                                              AND ci.ItemName = i.ItemName
+            WHERE po.Status = 'Received' OR ci.IsCapitalizable = 1
             ORDER BY po.OrderDate DESC, i.ItemName"
                 ).ToList();
             }

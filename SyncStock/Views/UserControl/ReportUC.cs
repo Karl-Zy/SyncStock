@@ -106,25 +106,26 @@ namespace SyncStock.Views.UserControl
                                     "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                //declaration sa XtraReport variable nga mag-hold sa specific report instance depende sa user selection
+
+                var dataToPrint = GetVisibleFilteredData(); // ✅ Only the filtered rows
                 XtraReport report = null;
 
                 switch (FilterBox.Text)
                 {
                     case "Purchased Orders":
-                        report = new PurchaseReport(_CurrentFilteredData.Cast<PurchaseOrderBrief>()); // Gi-convert/gi-cast para mahibaw-an ang exact nga type
-                        break;                                                                        // karon nahibaw-an na nga "List of PurchaseOrderBrief" siya
+                        report = new PurchaseReport(dataToPrint.Cast<PurchaseOrderBrief>());
+                        break;
 
                     case "Received Orders":
-                        report = new ReceivedReport(_CurrentFilteredData.Cast<ReceivedItemReports>());
+                        report = new ReceivedReport(dataToPrint.Cast<ReceivedItemReports>());
                         break;
 
                     case "Capitalized Orders":
-                        report = new CapitalizedReport(_CurrentFilteredData.Cast<CapitalizedOrder>());
+                        report = new CapitalizedReport(dataToPrint.Cast<CapitalizedOrder>());
                         break;
 
                     case "Reconciliation":
-                        report = new ReconciliationReport(_CurrentFilteredData.Cast<Reconciliation>());
+                        report = new ReconciliationReport(dataToPrint.Cast<Reconciliation>());
                         break;
 
                     default:
@@ -185,6 +186,13 @@ namespace SyncStock.Views.UserControl
                     YearBox.Text = "SELECT YEAR";
                     PeriodTypeBox.Text = "SELECT PERIOD TYPE";
                     GridCaption.Text = "     INVENTORY CAPITALIZED REPORT";
+
+                    var col2 = ReportGV.Columns["IsCapitalizable"];
+                    if (col2 != null)
+                    {
+                        col2.ColumnEdit = new RepositoryItemTextEdit();
+                    }
+
                     break;
 
                 case "Reconciliation":
@@ -207,6 +215,13 @@ namespace SyncStock.Views.UserControl
                     // i-add ang custom button column para ma-view ang image
                     if (ReportGV.Columns["AttachmentPreview"] == null)
                         AddAttachmentImageColumn();
+
+                    var col = ReportGV.Columns["IsCapitalizable"];
+                    if (col != null)
+                    {
+                        col.ColumnEdit = new RepositoryItemTextEdit();
+                    }
+
                     break;
             }
         }
@@ -363,7 +378,7 @@ namespace SyncStock.Views.UserControl
             if (string.IsNullOrEmpty(YearBox.Text)) return;
 
             // If period is selected but no month/quarter chosen yet, just filter by year
-            if (PeriodTypeBox.SelectedIndex != -1 && string.IsNullOrEmpty(SecondFilterBox.Text))
+            if (PeriodTypeBox.SelectedIndex == -1 || string.IsNullOrEmpty(SecondFilterBox.Text))
             {
                 int y = int.Parse(YearBox.Text);
 
@@ -431,32 +446,61 @@ namespace SyncStock.Views.UserControl
 
         private void YearBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            PeriodTypeBox.SelectedIndex = -1;
+            PeriodTypeBox.Text = "SELECT PERIOD TYPE";
             SecondFilterBox.Properties.Items.Clear();
+            SecondFilterBox.SelectedIndex = -1;
+            SecondFilterBox.Text = string.Empty;
             SecondFilterBox.Enabled = false;
             SecondFilterBox.Visible = true;
             ReportGV.ActiveFilterString = string.Empty;
 
-            if (!string.IsNullOrEmpty(YearBox.Text))
-            {
-                PeriodTypeBox.Enabled = true;
-                ApplyPeriodFilter();
-            }
+            if (!int.TryParse(YearBox.Text, out int y)) return;
+
+            PeriodTypeBox.Enabled = true;
+
+            string col = (FilterBox.Text == "Received Orders" || FilterBox.Text == "Capitalized Orders")
+                ? "DateReceived" : "OrderDate";
+
+            ReportGV.ActiveFilterString =
+                $"[{col}] >= #{new DateTime(y, 1, 1):MM/dd/yyyy}# AND [{col}] <= #{new DateTime(y, 12, 31):MM/dd/yyyy}#";
         }
 
         private void PeriodTypeBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             SecondFilterBox.Properties.Items.Clear();
+            SecondFilterBox.SelectedIndex = -1;
+            SecondFilterBox.Text = string.Empty;
             SecondFilterBox.Enabled = false;
-            ReportGV.ActiveFilterString = string.Empty;
 
-            if (!string.IsNullOrEmpty(YearBox.Text))
+            if (!int.TryParse(YearBox.Text, out int y)) return;
+
+            // Re-apply year filter
+            string col = (FilterBox.Text == "Received Orders" || FilterBox.Text == "Capitalized Orders")
+                ? "DateReceived" : "OrderDate";
+
+            ReportGV.ActiveFilterString =
+                $"[{col}] >= #{new DateTime(y, 1, 1):MM/dd/yyyy}# AND [{col}] <= #{new DateTime(y, 12, 31):MM/dd/yyyy}#";
+
+            PopulationSecondFilter(y);
+        }
+
+        private IList GetVisibleFilteredData()
+        {
+            var rows = new System.Collections.ArrayList();
+            for (int i = 0; i < ReportGV.DataRowCount; i++)
             {
-                PopulationSecondFilter(int.Parse(YearBox.Text));
+                // GetRow only returns rows that pass the active filter
+                var row = ReportGV.GetRow(i);
+                if (row != null)
+                    rows.Add(row);
             }
+            return rows;
         }
 
         private void SecondFilterBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(SecondFilterBox.Text)) return;
             ApplyPeriodFilter();
         }
 
@@ -477,6 +521,11 @@ namespace SyncStock.Views.UserControl
                         e.DisplayText = "ONLINE";
                         break;
                 }
+            }
+
+            if (e.Column.FieldName == "IsCapitalizable")
+            {
+                e.DisplayText = (e.Value is bool b && b) ? "YES" : "NO";
             }
         }
     }

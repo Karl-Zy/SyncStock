@@ -12,9 +12,7 @@ namespace SyncStock.Models.Reports
         public string PONumber { get; set; }
         public string InvoiceNumber { get; set; }
         public string ItemName { get; set; }
-        public int ExpectedQuantity { get; set; }
         public int ReceivedQuantity { get; set; }
-        public decimal ExpectedAmount { get; set; }
         public decimal ReceivedAmount { get; set; }
         public string Remarks { get; set; }
         public string POType { get; set; }
