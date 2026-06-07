@@ -539,7 +539,8 @@ namespace SyncStock.Database
             INNER JOIN Departments d          ON po.DepartmentID   = d.DepartmentID
             INNER JOIN PurchaseOrderItems poi ON po.PurchaseOrderID = poi.PurchaseOrderID
             INNER JOIN Items i                ON poi.ItemID         = i.ItemID
-            WHERE po.Status = @Status",
+            WHERE po.Status = @Status
+            AND poi.Status='Pending'",
                     new { Status = WorkflowStatus.Pending });
             }
         }
@@ -589,10 +590,29 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 conn.Execute(@"
-            UPDATE PurchaseOrders
-            SET Status = @newStatus
-            WHERE PONumber = @poNumber",
-                    new { poNumber, itemName, newStatus });
+                UPDATE poi
+                SET poi.Status = @newStatus
+                FROM PurchaseOrderItems poi
+                INNER JOIN PurchaseOrders po ON poi.PurchaseOrderID = po.PurchaseOrderID
+                INNER JOIN Items i ON poi.ItemID = i.ItemID
+                WHERE po.PONumber = @poNumber
+                AND i.ItemName = @itemName",
+                     new { poNumber, itemName, newStatus });
+
+                conn.Execute(@"
+                UPDATE PurchaseOrders
+                SET Status = @newStatus
+                WHERE PONumber = @poNumber
+                AND NOT EXISTS
+                (
+                    SELECT 1
+                    FROM PurchaseOrderItems poi
+                    INNER JOIN PurchaseOrders po
+                        ON poi.PurchaseOrderID = po.PurchaseOrderID
+                    WHERE po.PONumber = @poNumber
+                    AND poi.Status <> @newStatus
+                )",
+                     new { poNumber, newStatus });
             }
         }
 

@@ -37,6 +37,7 @@
             this.reports = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.sidePanel = new DevExpress.XtraEditors.PanelControl();
+            this.teamInfoBtn = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.dashBoardUC1 = new SyncStock.Views.UserControl.DashBoardUC();
@@ -124,6 +125,7 @@
             // sidePanel
             // 
             this.sidePanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.sidePanel.Controls.Add(this.teamInfoBtn);
             this.sidePanel.Controls.Add(this.panelControl1);
             this.sidePanel.Controls.Add(this.accordionControl1);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -131,6 +133,26 @@
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(193, 574);
             this.sidePanel.TabIndex = 0;
+            // 
+            // teamInfoBtn
+            // 
+            this.teamInfoBtn.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.teamInfoBtn.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamInfoBtn.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            this.teamInfoBtn.Appearance.Options.UseBackColor = true;
+            this.teamInfoBtn.Appearance.Options.UseFont = true;
+            this.teamInfoBtn.Appearance.Options.UseForeColor = true;
+            this.teamInfoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.teamInfoBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.teamInfoBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.teamInfoBtn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.teamInfoBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("teamInfoBtn.ImageOptions.SvgImage")));
+            this.teamInfoBtn.Location = new System.Drawing.Point(0, 501);
+            this.teamInfoBtn.Name = "teamInfoBtn";
+            this.teamInfoBtn.Size = new System.Drawing.Size(193, 40);
+            this.teamInfoBtn.TabIndex = 2;
+            this.teamInfoBtn.Text = "Team Info";
+            this.teamInfoBtn.Click += new System.EventHandler(this.teamInfoBtn_Click);
             // 
             // panelControl1
             // 
@@ -215,5 +237,6 @@
         private DevExpress.XtraEditors.PanelControl sidePanel;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton teamInfoBtn;
     }
 }

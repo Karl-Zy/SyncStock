@@ -19,11 +19,18 @@ namespace SyncStock.PrintForm
         public ReconciliationReport(IEnumerable<Reconciliation> data)
         {
             InitializeComponent();
+
+            var list = data.ToList();
+
             this.objectDataSource1.DataSource = null;
             this.objectDataSource2.DataSource = null;
             this.objectDataSource3.DataSource = null;
-            this.DataSource = data.ToList();
+
+            this.DataSource = list;
             this.DataMember = null;
+
+            totalAmountXRL.Text =
+                "₱ " + list.Sum(x => x.ReceivedAmount).ToString("N2");
         }
 
     }

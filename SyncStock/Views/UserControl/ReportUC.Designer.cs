@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportUC));
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -347,6 +347,7 @@
             this.PrintSummaryButton.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PrintSummaryButton.Appearance.Options.UseBackColor = true;
             this.PrintSummaryButton.Appearance.Options.UseFont = true;
+            this.PrintSummaryButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PrintSummaryButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.PrintSummaryButton.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("PrintSummaryButton.ImageOptions.SvgImage")));
             this.PrintSummaryButton.Location = new System.Drawing.Point(1718, 2);
@@ -388,9 +389,9 @@
             // 
             this.ReportGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportGC.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.ReportGC.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.ReportGC.Location = new System.Drawing.Point(2, 52);
             this.ReportGC.MainView = this.ReportGV;
             this.ReportGC.Margin = new System.Windows.Forms.Padding(4);
@@ -429,7 +430,7 @@
             this.GridCaption.Appearance.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GridCaption.Appearance.Options.UseFont = true;
             this.GridCaption.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.GridCaption.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl7.ImageOptions.SvgImage")));
+            this.GridCaption.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("GridCaption.ImageOptions.SvgImage")));
             this.GridCaption.Location = new System.Drawing.Point(4, 10);
             this.GridCaption.Margin = new System.Windows.Forms.Padding(4);
             this.GridCaption.Name = "GridCaption";

@@ -642,9 +642,9 @@ namespace SyncStock.Views.UserControl
             if (
                 status.Equals(WorkflowStatus.Active, StringComparison.OrdinalIgnoreCase) ||
                 status.Equals(WorkflowStatus.Approved, StringComparison.OrdinalIgnoreCase) ||
-                status.Equals("Approved", StringComparison.OrdinalIgnoreCase))
+                status.Equals("Received", StringComparison.OrdinalIgnoreCase))
             {
-                label = "Approved";
+                label = "Received";
                 bgColor = Color.FromArgb(220, 247, 220);
                 textColor = Color.FromArgb(30, 120, 30);
                 return true;
@@ -653,9 +653,9 @@ namespace SyncStock.Views.UserControl
             if (
                 status.Equals(WorkflowStatus.Pending, StringComparison.OrdinalIgnoreCase) ||
                 status.Equals("Pending Review", StringComparison.OrdinalIgnoreCase) ||
-                status.Equals("To be Approved", StringComparison.OrdinalIgnoreCase))
+                status.Equals("To be Receive", StringComparison.OrdinalIgnoreCase))
             {
-                label = "To be Approved";
+                label = "To Receive";
                 bgColor = Color.FromArgb(255, 243, 200);
                 textColor = Color.FromArgb(160, 100, 0);
                 return true;
@@ -664,7 +664,7 @@ namespace SyncStock.Views.UserControl
             if (
                 status.Equals(WorkflowStatus.Received, StringComparison.OrdinalIgnoreCase))
             {
-                label = "Approved";
+                label = "Received";
                 bgColor = Color.FromArgb(220, 247, 220);
                 textColor = Color.FromArgb(30, 120, 30);
                 return true;

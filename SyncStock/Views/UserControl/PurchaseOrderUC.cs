@@ -32,6 +32,44 @@ namespace SyncStock.Views.UserControl
             // gi-initialize ang mga components sa form
             InitializeComponent();
 
+            // OPO Purchase Order Date
+            opopurchaseDate.Properties.DisplayFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            opopurchaseDate.Properties.DisplayFormat.FormatString = "M/d/yyyy";
+            opopurchaseDate.Properties.EditFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            opopurchaseDate.Properties.EditFormat.FormatString = "M/d/yyyy";
+            opopurchaseDate.Properties.Mask.EditMask = "M/d/yyyy";
+            opopurchaseDate.Properties.UseMaskAsDisplayFormat = true;
+
+            // GPO Purchase Order Date
+            gpoPurchaseOrderDate.Properties.DisplayFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            gpoPurchaseOrderDate.Properties.DisplayFormat.FormatString = "M/d/yyyy";
+            gpoPurchaseOrderDate.Properties.EditFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            gpoPurchaseOrderDate.Properties.EditFormat.FormatString = "M/d/yyyy";
+            gpoPurchaseOrderDate.Properties.Mask.EditMask = "M/d/yyyy";
+            gpoPurchaseOrderDate.Properties.UseMaskAsDisplayFormat = true;
+
+            // OPO Add Item Date
+            opoAddItemDateCB.Properties.DisplayFormat.FormatType =
+     DevExpress.Utils.FormatType.DateTime;
+            opoAddItemDateCB.Properties.DisplayFormat.FormatString = "M/d/yyyy";
+            opoAddItemDateCB.Properties.EditFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            opoAddItemDateCB.Properties.EditFormat.FormatString = "M/d/yyyy";
+            opoAddItemDateCB.Properties.Mask.EditMask = "M/d/yyyy";
+            opoAddItemDateCB.Properties.UseMaskAsDisplayFormat = true;
+
+            gpoDateAddItemToOrder.Properties.DisplayFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            gpoDateAddItemToOrder.Properties.DisplayFormat.FormatString = "M/d/yyyy";
+            gpoDateAddItemToOrder.Properties.EditFormat.FormatType =
+                DevExpress.Utils.FormatType.DateTime;
+            gpoDateAddItemToOrder.Properties.EditFormat.FormatString = "M/d/yyyy";
+            gpoDateAddItemToOrder.Properties.Mask.EditMask = "M/d/yyyy";
+            gpoDateAddItemToOrder.Properties.UseMaskAsDisplayFormat = true;
             layoutControl5.AllowCustomization = false;
             layoutControl5.HideCustomizationForm();
             layoutControl6.AllowCustomization = false;
@@ -930,6 +968,8 @@ namespace SyncStock.Views.UserControl
                 // gi-update ang gpo total amount label
                 gpoItemsInCartTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
 
+               
+
                 // gi-clear ang item name field
                 gpoAddItemToOrderItemNameTextEdit.Text = "";
 
@@ -1312,7 +1352,7 @@ namespace SyncStock.Views.UserControl
             gpoTotalAmountTotalItems.Text = totalItems.ToString();
 
             // gi-update ang gpo total amount label nga may peso sign
-            gpoTotalAmountLbl.Text = "₱" + totalAmount.ToString("N2");
+            gpoItemsInOrderTotalAmount.Text = "₱" + totalAmount.ToString("N2");
         }
 
         // method para i-calculate ang gpo total amount base sa quantity ug unit price

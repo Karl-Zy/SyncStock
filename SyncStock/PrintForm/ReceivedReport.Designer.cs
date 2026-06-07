@@ -77,6 +77,9 @@
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
+            this.zz = new DevExpress.XtraReports.UI.XRLine();
+            this.totalAmountXRL = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -208,6 +211,7 @@
             this.xrTableCell12.StylePriority.UseTextAlignment = false;
             this.xrTableCell12.Text = "xrTableCell12";
             this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell12.TextFormatString = "{0:M/d/yyyy}";
             this.xrTableCell12.Weight = 1.0316668251598273D;
             // 
             // xrTableCell14
@@ -572,6 +576,9 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel11,
+            this.zz,
+            this.totalAmountXRL,
             this.xrLabel1,
             this.xrLabel2,
             this.xrLabel3,
@@ -609,7 +616,7 @@
             // xrLabel3
             // 
             this.xrLabel3.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(181.25F, 58.41668F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(109.375F, 58.41668F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -619,14 +626,14 @@
             // 
             // xrLine1
             // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(254.1666F, 58.41668F);
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(182.2916F, 58.41668F);
             this.xrLine1.Name = "xrLine1";
             this.xrLine1.SizeF = new System.Drawing.SizeF(128.125F, 23F);
             // 
             // xrLabel7
             // 
             this.xrLabel7.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(510.4167F, 58.41668F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(337.8753F, 58.41668F);
             this.xrLabel7.Multiline = true;
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -636,14 +643,14 @@
             // 
             // xrLine2
             // 
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(583.3334F, 58.41668F);
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(410.792F, 58.41668F);
             this.xrLine2.Name = "xrLine2";
             this.xrLine2.SizeF = new System.Drawing.SizeF(137.083F, 23F);
             // 
             // xrLabel8
             // 
             this.xrLabel8.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(829.7915F, 58.41668F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(574.5832F, 58.41668F);
             this.xrLabel8.Multiline = true;
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -681,6 +688,35 @@
             this.objectDataSource2.DataMember = "GetAllReceivedOrders";
             this.objectDataSource2.DataSource = typeof(SyncStock.Database.Repository);
             this.objectDataSource2.Name = "objectDataSource2";
+            // 
+            // xrLabel11
+            // 
+            this.xrLabel11.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(829.7916F, 58.41668F);
+            this.xrLabel11.Multiline = true;
+            this.xrLabel11.Name = "xrLabel11";
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(72.91666F, 23F);
+            this.xrLabel11.StylePriority.UseFont = false;
+            this.xrLabel11.Text = "Total Amount:";
+            // 
+            // zz
+            // 
+            this.zz.LocationFloat = new DevExpress.Utils.PointFloat(647.4999F, 58.41668F);
+            this.zz.Name = "zz";
+            this.zz.SizeF = new System.Drawing.SizeF(131.2501F, 23F);
+            // 
+            // totalAmountXRL
+            // 
+            this.totalAmountXRL.AutoWidth = true;
+            this.totalAmountXRL.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.totalAmountXRL.LocationFloat = new DevExpress.Utils.PointFloat(927.7501F, 58.41668F);
+            this.totalAmountXRL.Multiline = true;
+            this.totalAmountXRL.Name = "totalAmountXRL";
+            this.totalAmountXRL.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.totalAmountXRL.SizeF = new System.Drawing.SizeF(131.2502F, 22.99999F);
+            this.totalAmountXRL.StylePriority.UseFont = false;
+            this.totalAmountXRL.Text = "NUMBER";
             // 
             // ReceivedReport
             // 
@@ -762,5 +798,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
+        private DevExpress.XtraReports.UI.XRLine zz;
+        private DevExpress.XtraReports.UI.XRLabel totalAmountXRL;
     }
 }

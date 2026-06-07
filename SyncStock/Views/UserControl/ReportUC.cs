@@ -25,13 +25,32 @@ namespace SyncStock.Views.UserControl
     {
         Repository _repo = new Repository();
         private IList _CurrentFilteredData;
+        public string UserRole { get; set; }
+
         public ReportUC()
         {
             InitializeComponent();
+
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
             ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
             ReportGV.RowStyle += ReportGV_RowStyle;
-            
+
+            ApplyRolePermissions();
             LoadData();
+        }
+
+        public ReportUC(string role)
+        {
+            InitializeComponent();
+
+            UserRole = role;
+            ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
+            ReportGV.RowStyle += ReportGV_RowStyle;
+            ApplyRolePermissions();
+            LoadData();
+
         }
 
         private void ReportGV_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) 
@@ -62,34 +81,38 @@ namespace SyncStock.Views.UserControl
             PeriodTypeBox.Enabled = false;
             SecondFilterBox.Enabled = false;
 
-            // Kuhaon ang tanan distinct nga years gikan sa database
-            // ug i-add sa YearBox dropdown para ma-select sa user
+            // Load years into dropdown
             var years = _repo.GetDistinctYear().ToList();
+
+            YearBox.Properties.Items.Clear();
+
             foreach (var year in years)
                 YearBox.Properties.Items.Add(year.ToString());
 
-            // Default: show received orders
+            // Used only for dashboard statistics
             var receivedItems = _repo.GetAllReceivedOrders().ToList();
 
-            FilterBox.SelectedIndex = 1; 
-
             var now = DateTime.Now;
-            // I-filter ang received items para sa current bulan ug tuig,
-            // ug i-sum ang ReceivedAmount para makuha ang total cost
+
             decimal totalCost = receivedItems
-                .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
+                .Where(i => i.DateReceived.Month == now.Month &&
+                            i.DateReceived.Year == now.Year)
                 .Sum(i => i.ReceivedAmount);
-            //same ra sa total cost pero i-sum ang ReceivedQuantity para makuha ang total items
+
             int totalItems = receivedItems
-                .Where(i => i.DateReceived.Month == now.Month && i.DateReceived.Year == now.Year)
+                .Where(i => i.DateReceived.Month == now.Month &&
+                            i.DateReceived.Year == now.Year)
                 .Sum(i => i.ReceivedQuantity);
-            // I-display ang total cost ug total items sa labels
-            totalMonthlyCostLBL.Text = "₱" +totalCost.ToString("N2");
+
+            totalMonthlyCostLBL.Text = "₱" + totalCost.ToString("N2");
             totalMonthlyItemsLBL.Text = totalItems.ToString();
-            // I-assign ang filtered list sa class-level variable para magamit sa printing
-            _CurrentFilteredData = receivedItems;
-            //default nga i-display ang received orders sa grid
-            ReportGC.DataSource = receivedItems;
+
+            // IMPORTANT:
+            // Let FilterBox_SelectedIndexChanged load the correct report data
+            if (FilterBox.Properties.Items.Count > 0)
+            {
+                FilterBox.SelectedIndex = 0;
+            }
         }
 
         private void ReportGC_Click(object sender, EventArgs e)
@@ -109,30 +132,38 @@ namespace SyncStock.Views.UserControl
                 }
 
                 var dataToPrint = GetVisibleFilteredData(); // ✅ Only the filtered rows
+          
                 XtraReport report = null;
 
                 switch (FilterBox.Text)
                 {
                     case "Purchased Orders":
-                        report = new PurchaseReport(dataToPrint.Cast<PurchaseOrderBrief>());
+                        report = new PurchaseReport(
+                            GetVisibleFilteredData()
+                            .Cast<PurchaseOrderBrief>()
+                            .ToList());
                         break;
 
                     case "Received Orders":
-                        report = new ReceivedReport(dataToPrint.Cast<ReceivedItemReports>());
+                        report = new ReceivedReport(
+                            GetVisibleFilteredData()
+                            .Cast<ReceivedItemReports>()
+                            .ToList());
                         break;
 
                     case "Capitalized Orders":
-                        report = new CapitalizedReport(dataToPrint.Cast<CapitalizedOrder>());
+                        report = new CapitalizedReport(
+                            GetVisibleFilteredData()
+                            .Cast<CapitalizedOrder>()
+                            .ToList());
                         break;
 
                     case "Reconciliation":
-                        report = new ReconciliationReport(dataToPrint.Cast<Reconciliation>());
+                        report = new ReconciliationReport(
+                            GetVisibleFilteredData()
+                            .Cast<Reconciliation>()
+                            .ToList());
                         break;
-
-                    default:
-                        MessageBox.Show("Please select a report type first.",
-                                        "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
                 }
 
                 report.ShowPreviewDialog();
@@ -528,6 +559,36 @@ namespace SyncStock.Views.UserControl
             {
                 e.DisplayText = (e.Value is bool b && b) ? "YES" : "NO";
             }
+        }
+
+        public void ApplyRolePermissions()
+        {
+            FilterBox.Properties.Items.Clear();
+
+            switch (UserRole)
+            {
+                case "Receiving":
+                    FilterBox.Properties.Items.Add("Received Orders");
+                    break;
+
+                case "Purchaser":
+                    FilterBox.Properties.Items.Add("Purchased Orders");
+                    break;
+
+                case "Asset":
+                    FilterBox.Properties.Items.Add("Capitalized Orders");
+                    break;
+
+                case "Admin":
+                    FilterBox.Properties.Items.Add("Purchased Orders");
+                    FilterBox.Properties.Items.Add("Received Orders");
+                    FilterBox.Properties.Items.Add("Capitalized Orders");
+                    FilterBox.Properties.Items.Add("Reconciliation");
+                    break;
+            }
+
+            if (FilterBox.Properties.Items.Count > 0)
+                FilterBox.SelectedIndex = 0;
         }
     }
 

@@ -19,9 +19,15 @@ namespace SyncStock.PrintForm
         public ReceivedReport(IEnumerable<ReceivedItemReports> data)
         {
             InitializeComponent();
+
+            var list = data.ToList();
+
             this.objectDataSource1.DataSource = null;
-            this.DataSource = data.ToList();
+            this.DataSource = list;
             this.DataMember = null;
+
+            totalAmountXRL.Text =
+                "₱ " + list.Sum(x => x.ReceivedAmount).ToString("N2");
         }
 
     }

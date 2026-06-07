@@ -11,7 +11,7 @@ namespace SyncStock
     public partial class MainForm : XtraForm
     {
         private readonly User _currentUser;
-
+        public string UserRole { get; set; }
         public bool LogoutRequested { get; private set; }
         public MainForm(User user)
         {
@@ -47,6 +47,8 @@ namespace SyncStock
             {
                 dashBoard.Visible = true;
                 purchaseOrder.Visible = true;
+                reports.Visible = true;
+               
             }
 
             // RECEIVING ACCESS
@@ -54,6 +56,7 @@ namespace SyncStock
             {
                 dashBoard.Visible = true;
                 reveivingCustodian.Visible = true;
+                reports.Visible = true;
             }
 
             // ASSET ACCESS
@@ -122,10 +125,10 @@ namespace SyncStock
 
         private void reports_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReportUC());
+            LoadControl(new ReportUC(_currentUser.Role));
         }
 
-       
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -145,8 +148,9 @@ namespace SyncStock
             }
         }
 
-       
-
-
+        private void teamInfoBtn_Click(object sender, EventArgs e)
+        {
+            LoadControl(new MeetTheTeam());
+        }
     }
 }
