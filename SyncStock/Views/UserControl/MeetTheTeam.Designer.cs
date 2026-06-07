@@ -232,9 +232,9 @@
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(613, 61);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(234, 20);
+            this.labelControl2.Size = new System.Drawing.Size(277, 20);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "Developed by the SyncStock Team";
+            this.labelControl2.Text = "Developed by the (BSIT) SyncStock Team";
             // 
             // pictureEdit2
             // 
@@ -296,11 +296,11 @@
             this.labelControl8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(184, 173);
+            this.labelControl8.Location = new System.Drawing.Point(167, 173);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(178, 20);
+            this.labelControl8.Size = new System.Drawing.Size(215, 20);
             this.labelControl8.TabIndex = 3;
-            this.labelControl8.Text = "Vecencio, Christian Rohan";
+            this.labelControl8.Text = "BSIT  Vecencio, Christian Rohan";
             // 
             // labelControl6
             // 
@@ -393,11 +393,11 @@
             this.labelControl11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(139, 170);
+            this.labelControl11.Location = new System.Drawing.Point(111, 170);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(145, 20);
+            this.labelControl11.Size = new System.Drawing.Size(186, 20);
             this.labelControl11.TabIndex = 3;
-            this.labelControl11.Text = "Tepacia, Jureen Roda";
+            this.labelControl11.Text = "BSIT   Tepacia, Jureen Roda";
             // 
             // groupControl4
             // 
@@ -452,11 +452,11 @@
             this.labelControl14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(149, 172);
+            this.labelControl14.Location = new System.Drawing.Point(125, 170);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(114, 20);
+            this.labelControl14.Size = new System.Drawing.Size(155, 20);
             this.labelControl14.TabIndex = 3;
-            this.labelControl14.Text = "Pait, Sean Garret";
+            this.labelControl14.Text = "BSIT   Pait, Sean Garret";
             // 
             // groupControl5
             // 
@@ -511,11 +511,11 @@
             this.labelControl17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl17.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(137, 170);
+            this.labelControl17.Location = new System.Drawing.Point(115, 170);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(159, 20);
+            this.labelControl17.Size = new System.Drawing.Size(200, 20);
             this.labelControl17.TabIndex = 3;
-            this.labelControl17.Text = "Ramos, Dyncees Khrian";
+            this.labelControl17.Text = "BSIT   Ramos, Dyncees Khrian";
             // 
             // groupControl6
             // 
@@ -570,11 +570,11 @@
             this.labelControl20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl20.Appearance.Options.UseFont = true;
-            this.labelControl20.Location = new System.Drawing.Point(174, 170);
+            this.labelControl20.Location = new System.Drawing.Point(153, 170);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(84, 20);
+            this.labelControl20.Size = new System.Drawing.Size(125, 20);
             this.labelControl20.TabIndex = 3;
-            this.labelControl20.Text = "Chiong, Karl";
+            this.labelControl20.Text = "BSIT   Chiong, Karl";
             // 
             // groupControl7
             // 
@@ -601,7 +601,7 @@
             // 
             // pictureEdit9
             // 
-            this.pictureEdit9.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
+            this.pictureEdit9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit9.BackgroundImage")));
             this.pictureEdit9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureEdit9.Location = new System.Drawing.Point(166, 47);
             this.pictureEdit9.Name = "pictureEdit9";
