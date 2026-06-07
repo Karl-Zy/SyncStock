@@ -30,6 +30,7 @@ namespace SyncStock.Views.UserControl
             InitializeComponent();
             ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
             ReportGV.RowStyle += ReportGV_RowStyle;
+            
             LoadData();
         }
 
@@ -248,7 +249,7 @@ namespace SyncStock.Views.UserControl
                 Name = "AttachmentPreview",
                 UnboundType = DevExpress.Data.UnboundColumnType.String,
                 Visible = true,
-                VisibleIndex = ReportGV.Columns.Count,
+                VisibleIndex = 10,
                 ColumnEdit = btnEdit
             };
 
