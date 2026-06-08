@@ -37,8 +37,8 @@
             this.reports = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.mainPanel = new DevExpress.XtraEditors.PanelControl();
             this.sidePanel = new DevExpress.XtraEditors.PanelControl();
-            this.teamInfoBtn = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.teamInfoBtn = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.dashBoardUC1 = new SyncStock.Views.UserControl.DashBoardUC();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
@@ -125,7 +125,6 @@
             // sidePanel
             // 
             this.sidePanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.sidePanel.Controls.Add(this.teamInfoBtn);
             this.sidePanel.Controls.Add(this.panelControl1);
             this.sidePanel.Controls.Add(this.accordionControl1);
             this.sidePanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -133,6 +132,19 @@
             this.sidePanel.Name = "sidePanel";
             this.sidePanel.Size = new System.Drawing.Size(193, 574);
             this.sidePanel.TabIndex = 0;
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelControl1.Appearance.Options.UseBackColor = true;
+            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.teamInfoBtn);
+            this.panelControl1.Controls.Add(this.simpleButton1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 450);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(193, 124);
+            this.panelControl1.TabIndex = 1;
             // 
             // teamInfoBtn
             // 
@@ -144,27 +156,14 @@
             this.teamInfoBtn.Appearance.Options.UseForeColor = true;
             this.teamInfoBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.teamInfoBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.teamInfoBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.teamInfoBtn.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.teamInfoBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("teamInfoBtn.ImageOptions.SvgImage")));
-            this.teamInfoBtn.Location = new System.Drawing.Point(0, 501);
+            this.teamInfoBtn.Location = new System.Drawing.Point(3, 35);
             this.teamInfoBtn.Name = "teamInfoBtn";
-            this.teamInfoBtn.Size = new System.Drawing.Size(193, 40);
+            this.teamInfoBtn.Size = new System.Drawing.Size(170, 37);
             this.teamInfoBtn.TabIndex = 2;
             this.teamInfoBtn.Text = "Team Info";
             this.teamInfoBtn.Click += new System.EventHandler(this.teamInfoBtn_Click);
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.panelControl1.Appearance.Options.UseBackColor = true;
-            this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 541);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(193, 33);
-            this.panelControl1.TabIndex = 1;
             // 
             // simpleButton1
             // 
@@ -176,12 +175,11 @@
             this.simpleButton1.Appearance.Options.UseForeColor = true;
             this.simpleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.simpleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.simpleButton1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton1.ImageOptions.SvgImage")));
-            this.simpleButton1.Location = new System.Drawing.Point(0, 2);
+            this.simpleButton1.Location = new System.Drawing.Point(3, 78);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(193, 31);
+            this.simpleButton1.Size = new System.Drawing.Size(170, 34);
             this.simpleButton1.TabIndex = 0;
             this.simpleButton1.Text = "Logout";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);

@@ -68,6 +68,9 @@
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.totalAmountXRL = new DevExpress.XtraReports.UI.XRLabel();
+            this.zz = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
@@ -77,9 +80,6 @@
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.zz = new DevExpress.XtraReports.UI.XRLine();
-            this.totalAmountXRL = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.objectDataSource3 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
@@ -551,7 +551,7 @@
             this.xrTableCell8.StylePriority.UseBorders = false;
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
-            this.xrTableCell8.Text = "Received Amount";
+            this.xrTableCell8.Text = "Paid Amount";
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell8.Weight = 1.18750174781427D;
             // 
@@ -589,6 +589,35 @@
             this.xrLabel9});
             this.PageFooter.HeightF = 112.875F;
             this.PageFooter.Name = "PageFooter";
+            // 
+            // totalAmountXRL
+            // 
+            this.totalAmountXRL.AutoWidth = true;
+            this.totalAmountXRL.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.totalAmountXRL.LocationFloat = new DevExpress.Utils.PointFloat(927.7501F, 58.41668F);
+            this.totalAmountXRL.Multiline = true;
+            this.totalAmountXRL.Name = "totalAmountXRL";
+            this.totalAmountXRL.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.totalAmountXRL.SizeF = new System.Drawing.SizeF(131.2502F, 22.99999F);
+            this.totalAmountXRL.StylePriority.UseFont = false;
+            this.totalAmountXRL.Text = "NUMBER";
+            // 
+            // zz
+            // 
+            this.zz.LocationFloat = new DevExpress.Utils.PointFloat(917.7499F, 58.41669F);
+            this.zz.Name = "zz";
+            this.zz.SizeF = new System.Drawing.SizeF(131.2501F, 23F);
+            // 
+            // xrLabel11
+            // 
+            this.xrLabel11.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(844.8332F, 58.41668F);
+            this.xrLabel11.Multiline = true;
+            this.xrLabel11.Name = "xrLabel11";
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(72.91666F, 23F);
+            this.xrLabel11.StylePriority.UseFont = false;
+            this.xrLabel11.Text = "Total Amount:";
             // 
             // xrLabel1
             // 
@@ -673,35 +702,6 @@
             this.xrLabel9.SizeF = new System.Drawing.SizeF(85.41667F, 23F);
             this.xrLabel9.StylePriority.UseFont = false;
             this.xrLabel9.Text = "Date Prepared:";
-            // 
-            // xrLabel11
-            // 
-            this.xrLabel11.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(844.8332F, 58.41668F);
-            this.xrLabel11.Multiline = true;
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(72.91666F, 23F);
-            this.xrLabel11.StylePriority.UseFont = false;
-            this.xrLabel11.Text = "Total Amount:";
-            // 
-            // zz
-            // 
-            this.zz.LocationFloat = new DevExpress.Utils.PointFloat(917.7499F, 58.41669F);
-            this.zz.Name = "zz";
-            this.zz.SizeF = new System.Drawing.SizeF(131.2501F, 23F);
-            // 
-            // totalAmountXRL
-            // 
-            this.totalAmountXRL.AutoWidth = true;
-            this.totalAmountXRL.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
-            this.totalAmountXRL.LocationFloat = new DevExpress.Utils.PointFloat(927.7501F, 58.41668F);
-            this.totalAmountXRL.Multiline = true;
-            this.totalAmountXRL.Name = "totalAmountXRL";
-            this.totalAmountXRL.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.totalAmountXRL.SizeF = new System.Drawing.SizeF(131.2502F, 22.99999F);
-            this.totalAmountXRL.StylePriority.UseFont = false;
-            this.totalAmountXRL.Text = "NUMBER";
             // 
             // objectDataSource1
             // 
