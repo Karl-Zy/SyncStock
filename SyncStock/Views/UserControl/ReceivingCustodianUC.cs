@@ -2,17 +2,18 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Items;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Models.Accounts;
 using SyncStock.Models.Models_Receiving_;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SyncStock.Models.Accounts;
 
 namespace SyncStock.Views.UserControl
 {
@@ -24,7 +25,8 @@ namespace SyncStock.Views.UserControl
         // ENCAPSULATION 
         // Dli ni makita sa mga external classes, ug dili nila ma access directly.
         // Ang access sa database kay controlled ra sa mga methods sa ubos, dili diretso.
-
+        private string _receivingAttachmentPath = string.Empty;
+        private string _receivingAttachmentFileName = string.Empty;
         // ABSTRACTION
         // Kani ang tig-kuhag data sa database (Repository).
         // dli na kailangan refer sa mga SQL queries diri, kay ang Repository na ang bahala ana.
@@ -279,11 +281,34 @@ namespace SyncStock.Views.UserControl
                     }
 
                     // Basahon ang tibuok file padung sa memory, dayon i-save sa mga private fields.
-                    _uploadedFileBytes = System.IO.File.ReadAllBytes(selectedFilePath);
-                    _uploadedFileName = System.IO.Path.GetFileName(selectedFilePath);
+                    string receivingFolder = Path.Combine(
+    Application.StartupPath,
+    "Attachments",
+    "Receiving");
 
-                    // I-inform ang user kung unsa nga file ang naka-queue na para i-upload.
-                    lblUploadGuide.Text = $"Selected: {_uploadedFileName}";
+                    if (!Directory.Exists(receivingFolder))
+                    {
+                        Directory.CreateDirectory(receivingFolder);
+                    }
+
+                    string fileName = Path.GetFileName(selectedFilePath);
+
+                    string destinationPath = Path.Combine(
+                        receivingFolder,
+                        fileName);
+
+                    File.Copy(selectedFilePath, destinationPath, true);
+
+                    _receivingAttachmentPath =
+                        Path.Combine("Attachments", "Receiving", fileName);
+
+                    _receivingAttachmentFileName = fileName;
+
+                    // KEEP EXISTING DATABASE STORAGE
+                    _uploadedFileBytes = File.ReadAllBytes(selectedFilePath);
+                    _uploadedFileName = fileName;
+
+                    lblUploadGuide.Text = $"Selected: {fileName}";
                 }
                 catch (Exception ex)
                 {

@@ -4,11 +4,12 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Models.Accounts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using SyncStock.Models.Accounts;
 
 // namespace nga naglangkob sa purchase order user control
 namespace SyncStock.Views.UserControl
@@ -16,6 +17,9 @@ namespace SyncStock.Views.UserControl
     // klase nga mao ang purchase order user control, nag-extend sa XtraUserControl
     public partial class PurchaseOrderUC : DevExpress.XtraEditors.XtraUserControl
     {
+        private string _paymentAttachmentPath = string.Empty;
+        private string _paymentAttachmentFileName = string.Empty;
+
         private bool _isEditingOPO = false;
         private bool _isEditingGPO = false;
         private readonly User _currentUser;
@@ -288,6 +292,9 @@ namespace SyncStock.Views.UserControl
 
                     // gi-set ang attachment path nga walay sulod sa una
                     AttachmentPath = "",
+
+                    PaymentAttachmentPath = _paymentAttachmentPath,
+                    PaymentAttachmentFileName = _paymentAttachmentFileName,
 
                     // gi-set ang po type isip opo
                     POType = "OPO",
@@ -564,6 +571,9 @@ namespace SyncStock.Views.UserControl
                     // gi-set ang attachment path nga walay sulod
                     AttachmentPath = "",
 
+                    PaymentAttachmentPath = _paymentAttachmentPath,
+                    PaymentAttachmentFileName = _paymentAttachmentFileName,
+
                     // gi-set ang po type isip opo
                     POType = "OPO",
 
@@ -642,99 +652,55 @@ namespace SyncStock.Views.UserControl
         // method para i-load ang tanan nga opo purchase order items gikan sa database
         private void LoadOPOPurchaseOrderItems()
         {
-            // gi-fetch ang tanan nga opo items ug gi-convert sa list
-            var items = _repo.GetAllOPOPurchaseOrderItems().ToList();
-
-            // gi-clear ang data source sa order grid
-            opoItemsInOrderGC.DataSource = null;
-
-            // gi-assign ang bag-ong lista sa order grid
-            opoItemsInOrderGC.DataSource = items;
-
-            // gi-populate ang mga column base sa data
-            opoItemsInOrderGV.PopulateColumns();
-
-            // gi-rename ang po number column
-            if (opoItemsInOrderGV.Columns["PONumber"] != null)
-                opoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
-
-            // gi-rename ang order date column
-            if (opoItemsInOrderGV.Columns["OrderDate"] != null)
-                opoItemsInOrderGV.Columns["OrderDate"].Caption = "Purchase Order Date";
-
-            // gi-rename ang invoice number column
-            if (opoItemsInOrderGV.Columns["InvoiceNumber"] != null)
-                opoItemsInOrderGV.Columns["InvoiceNumber"].Caption = "Invoice Number";
-
-            // gi-rename ang item name column
-            if (opoItemsInOrderGV.Columns["ItemName"] != null)
-                opoItemsInOrderGV.Columns["ItemName"].Caption = "Item Name";
-
-            // gi-rename ang unit price column
-            if (opoItemsInOrderGV.Columns["UnitPrice"] != null)
-                opoItemsInOrderGV.Columns["UnitPrice"].Caption = "Unit Price";
-
-            // gi-rename ang total price column
-            if (opoItemsInOrderGV.Columns["TotalPrice"] != null)
-                opoItemsInOrderGV.Columns["TotalPrice"].Caption = "Total Price";
-
-            // gi-rename ang remarks column
-            if (opoItemsInOrderGV.Columns["Remarks"] != null)
-                opoItemsInOrderGV.Columns["Remarks"].Caption = "Remarks";
-
-            // gi-set ang unit price column format isip currency nga may 2 decimal places
-            if (opoItemsInOrderGV.Columns["UnitPrice"] != null)
+            try
             {
-                opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "c2";
-            }
+                var items = _repo.GetAllOPOPurchaseOrderItems().ToList();
 
-            // gi-set ang total price column format isip currency nga may 2 decimal places
-            if (opoItemsInOrderGV.Columns["TotalPrice"] != null)
+                opoItemsInOrderGC.DataSource = items;
+
+                opoItemsInOrderGV.Columns.Clear();
+
+                opoItemsInOrderGV.Columns.AddVisible("PONumber", "PO Number");
+                opoItemsInOrderGV.Columns.AddVisible("InvoiceNumber", "Invoice Number");
+                opoItemsInOrderGV.Columns.AddVisible("OrderDate", "Order Date");
+                opoItemsInOrderGV.Columns.AddVisible("DepartmentName", "Department");
+                opoItemsInOrderGV.Columns.AddVisible("ItemName", "Item Name");
+                opoItemsInOrderGV.Columns.AddVisible("Quantity", "Quantity");
+                opoItemsInOrderGV.Columns.AddVisible("UnitPrice", "Unit Price");
+                opoItemsInOrderGV.Columns.AddVisible("TotalPrice", "Total Price");
+                opoItemsInOrderGV.Columns.AddVisible("Priority", "Priority");
+                opoItemsInOrderGV.Columns.AddVisible("OrderMode", "Order Mode");
+                opoItemsInOrderGV.Columns.AddVisible("Remarks", "Remarks");
+
+                opoItemsInOrderGV.Columns["ItemName"].Width = 250;
+                opoItemsInOrderGV.Columns["DepartmentName"].Width = 180;
+                opoItemsInOrderGV.Columns["Remarks"].Width = 250;
+
+                opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+                opoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "n2";
+
+                opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+                opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "n2";
+
+                opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.DateTime;
+                opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MM/dd/yyyy";
+
+                opoItemsInOrderGV.OptionsBehavior.Editable = false;
+                opoItemsInOrderGV.OptionsView.ColumnAutoWidth = true;
+
+                opoItemsInOrderGV.BestFitColumns();
+            }
+            catch (Exception ex)
             {
-                opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                opoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "c2";
+                XtraMessageBox.Show(
+                    $"Error loading OPO items:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
-            // gi-set ang order date column format para ipakita ang buwan, adlaw, ug tuig
-            if (opoItemsInOrderGV.Columns["OrderDate"] != null)
-            {
-                opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                opoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy";
-            }
-
-            // IMPORTANTE: gi-hide ang internal columns gamit ang field name BEFORE mag-BestFit
-            // para dili ma-include ang hidden columns sa auto-fit calculation
-            HideInternalColumns(opoItemsInOrderGV);
-
-            // gi-snapshot ang VisibleColumns sa usa ka list BEFORE mag-iterate
-            // para malikayan ang "Collection was modified" error nga mahitabo
-            // kung ang DevExpress nag-modify sa columns collection sa panahon sa enumeration
-            var opoVisibleCols = opoItemsInOrderGV.VisibleColumns
-                .Cast<DevExpress.XtraGrid.Columns.GridColumn>()
-                .ToList();
-
-            // gi-auto-fit ang lapad sa matag VISIBLE column lang base sa sulod
-            foreach (var col in opoVisibleCols)
-            {
-                col.BestFit();
-            }
-
-            // gi-refresh ang grid para mawala ang empty spaces
-            opoItemsInOrderGV.LayoutChanged();
-            opoItemsInOrderGV.RefreshData();
-
-            // gi-count ang total nga bilang sa items
-            int totalItems = items.Count;
-
-            // gi-calculate ang total amount sa tanan nga items
-            decimal totalAmount = items.Sum(x => x.TotalPrice);
-
-            // gi-update ang total items label
-            opoTotalItemsLBL.Text = totalItems.ToString();
-
-            // gi-update ang total amount label nga may peso sign
-            opoioTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
         }
 
         // method para i-calculate ang opo total amount base sa quantity ug unit price
@@ -1081,6 +1047,8 @@ namespace SyncStock.Views.UserControl
                     // gi-set ang attachment path nga walay sulod
                     AttachmentPath = "",
 
+                    PaymentAttachmentPath = _paymentAttachmentPath,
+                    PaymentAttachmentFileName = _paymentAttachmentFileName,
                     // gi-set ang po type isip gpo
                     POType = "GPO",
 
@@ -1114,6 +1082,8 @@ namespace SyncStock.Views.UserControl
                     };
 
                     // gi-save ang purchase order item sa database
+
+
                     _repo.AddPurchaseOrderItem(poItem);
                 }
 
@@ -1230,6 +1200,8 @@ namespace SyncStock.Views.UserControl
                     // gi-set ang attachment path nga walay sulod
                     AttachmentPath = "",
 
+                    PaymentAttachmentPath = _paymentAttachmentPath,
+                    PaymentAttachmentFileName = _paymentAttachmentFileName,
                     // gi-set ang po type isip gpo
                     POType = "GPO",
 
@@ -1311,99 +1283,55 @@ namespace SyncStock.Views.UserControl
         // method para i-load ang tanan nga gpo purchase order items gikan sa database
         private void LoadGPOPurchaseOrderItems()
         {
-            // gi-fetch ang tanan nga gpo items ug gi-convert sa list
-            var items = _repo.GetAllGPOPurchaseOrderItems().ToList();
-
-            // gi-clear ang data source sa gpo order grid
-            gpoItemsInOrderGC.DataSource = null;
-
-            // gi-assign ang updated lista sa gpo order grid
-            gpoItemsInOrderGC.DataSource = items;
-
-            // gi-populate ang mga column base sa data
-            gpoItemsInOrderGV.PopulateColumns();
-
-            // gi-rename ang po number column
-            if (gpoItemsInOrderGV.Columns["PONumber"] != null)
-                gpoItemsInOrderGV.Columns["PONumber"].Caption = "Purchase Order Number";
-
-            // gi-rename ang order date column
-            if (gpoItemsInOrderGV.Columns["OrderDate"] != null)
-                gpoItemsInOrderGV.Columns["OrderDate"].Caption = "Purchase Order Date";
-
-            // gi-rename ang invoice number column
-            if (gpoItemsInOrderGV.Columns["InvoiceNumber"] != null)
-                gpoItemsInOrderGV.Columns["InvoiceNumber"].Caption = "Invoice Number";
-
-            // gi-rename ang item name column
-            if (gpoItemsInOrderGV.Columns["ItemName"] != null)
-                gpoItemsInOrderGV.Columns["ItemName"].Caption = "Item Name";
-
-            // gi-rename ang unit price column
-            if (gpoItemsInOrderGV.Columns["UnitPrice"] != null)
-                gpoItemsInOrderGV.Columns["UnitPrice"].Caption = "Unit Price";
-
-            // gi-rename ang total price column
-            if (gpoItemsInOrderGV.Columns["TotalPrice"] != null)
-                gpoItemsInOrderGV.Columns["TotalPrice"].Caption = "Total Price";
-
-            // gi-rename ang remarks column
-            if (gpoItemsInOrderGV.Columns["Remarks"] != null)
-                gpoItemsInOrderGV.Columns["Remarks"].Caption = "Remarks";
-
-            // gi-set ang unit price column format isip currency
-            if (gpoItemsInOrderGV.Columns["UnitPrice"] != null)
+            try
             {
-                gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "c2";
-            }
+                var items = _repo.GetAllGPOPurchaseOrderItems().ToList();
 
-            // gi-set ang total price column format isip currency
-            if (gpoItemsInOrderGV.Columns["TotalPrice"] != null)
+                gpoItemsInOrderGC.DataSource = items;
+
+                gpoItemsInOrderGV.Columns.Clear();
+
+                gpoItemsInOrderGV.Columns.AddVisible("PONumber", "PO Number");
+                gpoItemsInOrderGV.Columns.AddVisible("InvoiceNumber", "Invoice Number");
+                gpoItemsInOrderGV.Columns.AddVisible("OrderDate", "Order Date");
+                gpoItemsInOrderGV.Columns.AddVisible("DepartmentName", "Department");
+                gpoItemsInOrderGV.Columns.AddVisible("ItemName", "Item Name");
+                gpoItemsInOrderGV.Columns.AddVisible("Quantity", "Quantity");
+                gpoItemsInOrderGV.Columns.AddVisible("UnitPrice", "Unit Price");
+                gpoItemsInOrderGV.Columns.AddVisible("TotalPrice", "Total Price");
+                gpoItemsInOrderGV.Columns.AddVisible("Priority", "Priority");
+                gpoItemsInOrderGV.Columns.AddVisible("OrderMode", "Order Mode");
+                gpoItemsInOrderGV.Columns.AddVisible("Remarks", "Remarks");
+
+                gpoItemsInOrderGV.Columns["ItemName"].Width = 250;
+                gpoItemsInOrderGV.Columns["DepartmentName"].Width = 180;
+                gpoItemsInOrderGV.Columns["Remarks"].Width = 250;
+
+                gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+                gpoItemsInOrderGV.Columns["UnitPrice"].DisplayFormat.FormatString = "n2";
+
+                gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.Numeric;
+                gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "n2";
+
+                gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType =
+                    DevExpress.Utils.FormatType.DateTime;
+                gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MM/dd/yyyy";
+
+                gpoItemsInOrderGV.OptionsBehavior.Editable = false;
+                gpoItemsInOrderGV.OptionsView.ColumnAutoWidth = true;
+
+                gpoItemsInOrderGV.BestFitColumns();
+            }
+            catch (Exception ex)
             {
-                gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gpoItemsInOrderGV.Columns["TotalPrice"].DisplayFormat.FormatString = "c2";
+                XtraMessageBox.Show(
+                    $"Error loading GPO items:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
-            // gi-set ang order date column format para ipakita ang buwan, adlaw, ug tuig
-            if (gpoItemsInOrderGV.Columns["OrderDate"] != null)
-            {
-                gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-                gpoItemsInOrderGV.Columns["OrderDate"].DisplayFormat.FormatString = "MMMM dd, yyyy";
-            }
-
-            // IMPORTANTE: gi-hide ang internal columns gamit ang field name BEFORE mag-BestFit
-            // para dili ma-include ang hidden columns sa auto-fit calculation
-            HideInternalColumns(gpoItemsInOrderGV);
-
-            // gi-snapshot ang VisibleColumns sa usa ka list BEFORE mag-iterate
-            // para malikayan ang "Collection was modified" error nga mahitabo
-            // kung ang DevExpress nag-modify sa columns collection sa panahon sa enumeration
-            var gpoVisibleCols = gpoItemsInOrderGV.VisibleColumns
-                .Cast<DevExpress.XtraGrid.Columns.GridColumn>()
-                .ToList();
-
-            // gi-auto-fit ang lapad sa matag VISIBLE column lang base sa sulod
-            foreach (var col in gpoVisibleCols)
-            {
-                col.BestFit();
-            }
-
-            // gi-refresh ang layout
-            gpoItemsInOrderGV.LayoutChanged();
-            gpoItemsInOrderGV.RefreshData();
-
-            // gi-count ang total nga bilang sa items
-            int totalItems = items.Count;
-
-            // gi-calculate ang total amount sa tanan nga gpo items
-            decimal totalAmount = items.Sum(x => x.TotalPrice);
-
-            // gi-update ang gpo total items label
-            gpoTotalAmountTotalItems.Text = totalItems.ToString();
-
-            // gi-update ang gpo total amount label nga may peso sign
-            gpoItemsInOrderTotalAmount.Text = "₱" + totalAmount.ToString("N2");
         }
 
         // method para i-calculate ang gpo total amount base sa quantity ug unit price
@@ -1596,7 +1524,8 @@ namespace SyncStock.Views.UserControl
                 "CartItemID",
                 "PurchaseOrderItemID",
                 "PurchaseOrderID",
-                "ItemID"
+                "ItemID",
+                "POType"
             };
 
             // gi-snapshot ang columns sa usa ka list BEFORE mag-iterate
@@ -1648,6 +1577,61 @@ namespace SyncStock.Views.UserControl
             }
         }
 
-       
+        private void localAttachFileBTN_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog
+                {
+                    Title = "Select Payment Attachment",
+                    Filter = "PDF Files (*.pdf)|*.pdf|Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*"
+                };
+
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string attachmentsFolder = Path.Combine(
+                    Application.StartupPath,
+                    "Attachments",
+                    "Payments");
+
+                if (!Directory.Exists(attachmentsFolder))
+                {
+                    Directory.CreateDirectory(attachmentsFolder);
+                }
+
+                string fileName = Path.GetFileName(ofd.FileName);
+
+                string destinationPath = Path.Combine(
+                    attachmentsFolder,
+                    fileName);
+
+                File.Copy(ofd.FileName, destinationPath, true);
+
+                _paymentAttachmentPath =
+                    Path.Combine("Attachments", "Payments", fileName);
+
+                _paymentAttachmentFileName = fileName;
+
+                XtraMessageBox.Show(
+                    $"Attachment uploaded successfully.\n\nFile: {fileName}",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void onlineAttachFileBTN_Click(object sender, EventArgs e)
+        {
+            localAttachFileBTN_Click(sender, e);
+        }
     }
 }

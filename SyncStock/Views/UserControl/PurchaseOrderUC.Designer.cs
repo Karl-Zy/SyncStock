@@ -112,7 +112,7 @@
             this.layoutControlItem45 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl17 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl12 = new DevExpress.XtraLayout.LayoutControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.onlineAttachFileBTN = new DevExpress.XtraEditors.SimpleButton();
             this.opoRemarksTE = new DevExpress.XtraEditors.TextEdit();
             this.opopurchaseDate = new DevExpress.XtraEditors.DateEdit();
             this.opoReqDepartmentCB = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -172,7 +172,7 @@
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl8 = new DevExpress.XtraLayout.LayoutControl();
-            this.attachBTN = new DevExpress.XtraEditors.SimpleButton();
+            this.localAttachFileBTN = new DevExpress.XtraEditors.SimpleButton();
             this.gpoRemarksTxtEdit = new DevExpress.XtraEditors.TextEdit();
             this.gpoPurchaseOrderDate = new DevExpress.XtraEditors.DateEdit();
             this.gpoReqDepartmentCB = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -1395,7 +1395,7 @@
             // 
             // layoutControl12
             // 
-            this.layoutControl12.Controls.Add(this.simpleButton2);
+            this.layoutControl12.Controls.Add(this.onlineAttachFileBTN);
             this.layoutControl12.Controls.Add(this.opoRemarksTE);
             this.layoutControl12.Controls.Add(this.opopurchaseDate);
             this.layoutControl12.Controls.Add(this.opoReqDepartmentCB);
@@ -1408,18 +1408,19 @@
             this.layoutControl12.TabIndex = 0;
             this.layoutControl12.Text = "layoutControl2";
             // 
-            // simpleButton2
+            // onlineAttachFileBTN
             // 
-            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.ForestGreen;
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(565, 105);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(113, 28);
-            this.simpleButton2.StyleController = this.layoutControl12;
-            this.simpleButton2.TabIndex = 10;
-            this.simpleButton2.Text = "Attach File";
+            this.onlineAttachFileBTN.Appearance.BackColor = System.Drawing.Color.ForestGreen;
+            this.onlineAttachFileBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.onlineAttachFileBTN.Appearance.Options.UseBackColor = true;
+            this.onlineAttachFileBTN.Appearance.Options.UseFont = true;
+            this.onlineAttachFileBTN.Location = new System.Drawing.Point(565, 105);
+            this.onlineAttachFileBTN.Name = "onlineAttachFileBTN";
+            this.onlineAttachFileBTN.Size = new System.Drawing.Size(149, 28);
+            this.onlineAttachFileBTN.StyleController = this.layoutControl12;
+            this.onlineAttachFileBTN.TabIndex = 10;
+            this.onlineAttachFileBTN.Text = "Attach Payment Document";
+            this.onlineAttachFileBTN.Click += new System.EventHandler(this.onlineAttachFileBTN_Click);
             // 
             // opoRemarksTE
             // 
@@ -1566,10 +1567,10 @@
             // 
             // layoutControlItem8
             // 
-            this.layoutControlItem8.Control = this.simpleButton2;
+            this.layoutControlItem8.Control = this.onlineAttachFileBTN;
             this.layoutControlItem8.Location = new System.Drawing.Point(549, 89);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(119, 53);
+            this.layoutControlItem8.Size = new System.Drawing.Size(155, 53);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -2075,7 +2076,7 @@
             // 
             // layoutControl8
             // 
-            this.layoutControl8.Controls.Add(this.attachBTN);
+            this.layoutControl8.Controls.Add(this.localAttachFileBTN);
             this.layoutControl8.Controls.Add(this.gpoRemarksTxtEdit);
             this.layoutControl8.Controls.Add(this.gpoPurchaseOrderDate);
             this.layoutControl8.Controls.Add(this.gpoReqDepartmentCB);
@@ -2088,18 +2089,19 @@
             this.layoutControl8.TabIndex = 0;
             this.layoutControl8.Text = "layoutControl2";
             // 
-            // attachBTN
+            // localAttachFileBTN
             // 
-            this.attachBTN.Appearance.BackColor = System.Drawing.Color.ForestGreen;
-            this.attachBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
-            this.attachBTN.Appearance.Options.UseBackColor = true;
-            this.attachBTN.Appearance.Options.UseFont = true;
-            this.attachBTN.Location = new System.Drawing.Point(573, 105);
-            this.attachBTN.Name = "attachBTN";
-            this.attachBTN.Size = new System.Drawing.Size(113, 28);
-            this.attachBTN.StyleController = this.layoutControl8;
-            this.attachBTN.TabIndex = 9;
-            this.attachBTN.Text = "Attach File";
+            this.localAttachFileBTN.Appearance.BackColor = System.Drawing.Color.ForestGreen;
+            this.localAttachFileBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.localAttachFileBTN.Appearance.Options.UseBackColor = true;
+            this.localAttachFileBTN.Appearance.Options.UseFont = true;
+            this.localAttachFileBTN.Location = new System.Drawing.Point(573, 105);
+            this.localAttachFileBTN.Name = "localAttachFileBTN";
+            this.localAttachFileBTN.Size = new System.Drawing.Size(149, 28);
+            this.localAttachFileBTN.StyleController = this.layoutControl8;
+            this.localAttachFileBTN.TabIndex = 9;
+            this.localAttachFileBTN.Text = "Attach Payment Document";
+            this.localAttachFileBTN.Click += new System.EventHandler(this.localAttachFileBTN_Click);
             // 
             // gpoRemarksTxtEdit
             // 
@@ -2245,10 +2247,10 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.attachBTN;
+            this.layoutControlItem7.Control = this.localAttachFileBTN;
             this.layoutControlItem7.Location = new System.Drawing.Point(557, 89);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(119, 53);
+            this.layoutControlItem7.Size = new System.Drawing.Size(155, 53);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -2709,9 +2711,9 @@
         private DevExpress.XtraEditors.SimpleButton gpoEditCartItemBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraEditors.SimpleButton attachBTN;
+        private DevExpress.XtraEditors.SimpleButton localAttachFileBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton onlineAttachFileBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

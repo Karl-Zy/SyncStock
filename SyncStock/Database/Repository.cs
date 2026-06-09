@@ -124,35 +124,43 @@ namespace SyncStock.Database
             using (var conn = CreateConnection())
             {
                 return conn.ExecuteScalar<int>(@"
-            INSERT INTO PurchaseOrders
-            (
-                InvoiceNumber,
-                PONumber,
-                DepartmentID,
-                OrderDate,
-                Status,
-                Priority,
-                Remarks,
-                AttachmentPath,
-                POType,
-                OrderMode
-            )
-            VALUES
-            (
-                @InvoiceNumber,
-                @PONumber,
-                @DepartmentID,
-                @OrderDate,
-                @Status,
-                @Priority,
-                @Remarks,
-                @AttachmentPath,
-                @POType,
-                @OrderMode
-            );
+        INSERT INTO PurchaseOrders
+        (
+            InvoiceNumber,
+            PONumber,
+            DepartmentID,
+            OrderDate,
+            Status,
+            Priority,
+            Remarks,
+            AttachmentPath,
 
-            SELECT CAST(SCOPE_IDENTITY() as int);",
-                    order);
+            PaymentAttachmentPath,
+            PaymentAttachmentFileName,
+
+            POType,
+            OrderMode
+        )
+        VALUES
+        (
+            @InvoiceNumber,
+            @PONumber,
+            @DepartmentID,
+            @OrderDate,
+            @Status,
+            @Priority,
+            @Remarks,
+            @AttachmentPath,
+
+            @PaymentAttachmentPath,
+            @PaymentAttachmentFileName,
+
+            @POType,
+            @OrderMode
+        );
+
+        SELECT CAST(SCOPE_IDENTITY() as int);",
+                order);
             }
         }
 

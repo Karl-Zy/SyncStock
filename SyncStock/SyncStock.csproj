@@ -297,6 +297,8 @@
     <None Include="Resources\logoui.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Attachment\Payments\" />
+    <Folder Include="Attachment\Receiving\" />
     <Folder Include="Uploaded Proofs\" />
   </ItemGroup>
   <ItemGroup>

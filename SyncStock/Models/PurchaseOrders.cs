@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace SyncStock.Models
@@ -30,6 +26,13 @@ namespace SyncStock.Models
 
         [Browsable(false)]
         public string AttachmentPath { get; set; }
+
+        // NEW - Payment Attachment
+        [Browsable(false)]
+        public string PaymentAttachmentPath { get; set; }
+
+        [Browsable(false)]
+        public string PaymentAttachmentFileName { get; set; }
 
         public string POType { get; set; }
 
