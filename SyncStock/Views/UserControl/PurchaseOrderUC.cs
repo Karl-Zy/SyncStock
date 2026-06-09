@@ -1,3 +1,4 @@
+
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraLayout;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 // namespace nga naglangkob sa purchase order user control
 namespace SyncStock.Views.UserControl
@@ -14,6 +16,9 @@ namespace SyncStock.Views.UserControl
     // klase nga mao ang purchase order user control, nag-extend sa XtraUserControl
     public partial class PurchaseOrderUC : DevExpress.XtraEditors.XtraUserControl
     {
+        private bool _isEditingOPO = false;
+        private bool _isEditingGPO = false;
+        private readonly User _currentUser;
         // gi-instansya ang repository para sa database operations
         private readonly Repository _repo = new Repository();
 
@@ -27,11 +32,12 @@ namespace SyncStock.Views.UserControl
         private int _gpoPurchaseOrderId = 0;
 
         // constructor sa user control, gipatuman pag-load sa form
-        public PurchaseOrderUC()
+        public PurchaseOrderUC(User currentUser)
         {
             // gi-initialize ang mga components sa form
             InitializeComponent();
 
+            _currentUser = currentUser;
             // OPO Purchase Order Date
             opopurchaseDate.Properties.DisplayFormat.FormatType =
                 DevExpress.Utils.FormatType.DateTime;
@@ -238,7 +244,7 @@ namespace SyncStock.Views.UserControl
         // ==========================================
 
         // event handler pag-click sa button nga mag-save sa cart items isip opo order
-        private void opoAddToOrderBtn_Click(object sender, EventArgs e)
+        private async void opoAddToOrderBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -371,7 +377,10 @@ namespace SyncStock.Views.UserControl
                 opoAddItemDateCB.EditValue = null;
 
                 // gi-ipakita ang success message
-                XtraMessageBox.Show("OPO saved successfully!");
+                XtraMessageBox.Show("Online Purchase Order saved successfully!");
+
+                _currentUser.Action = $"Created Online Purchase Order {order.PONumber}";
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -381,7 +390,7 @@ namespace SyncStock.Views.UserControl
         }
 
         // event handler pag-click sa button nga mag-add sa item sa opo cart
-        private void opoAddToCartBtn_Click(object sender, EventArgs e)
+        private async void opoAddToCartBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -475,6 +484,20 @@ namespace SyncStock.Views.UserControl
 
                 // gi-ipakita ang success message
                 XtraMessageBox.Show("Added to cart successfully!");
+
+                if (_isEditingOPO)
+                {
+                    _currentUser.Action =
+                        $"Updated Online Purchase Order Cart Item {cart.ItemName} ({cart.PONumber})";
+
+                    _isEditingOPO = false;
+                }
+                else
+                {
+                    _currentUser.Action =
+                        $"Added Online Purchase Order Cart Item {cart.ItemName} ({cart.PONumber})";
+                }
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -484,7 +507,7 @@ namespace SyncStock.Views.UserControl
         }
 
         // event handler pag-click sa button nga mag-add sa single item direkta isip opo order
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private async void simpleButton1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -605,6 +628,9 @@ namespace SyncStock.Views.UserControl
 
                 // gi-ipakita ang success message
                 XtraMessageBox.Show("Single order added successfully!");
+
+                _currentUser.Action = $"Created Single Online Purchase Order {order.PONumber}";
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -731,7 +757,7 @@ namespace SyncStock.Views.UserControl
         private void opoUnitPriceTE_EditValueChanged_1(object sender, EventArgs e) => CalculateOPOTotal();
 
         // event handler pag-click sa delete button sa opo cart
-        private void opoDeleteCartITemBTN_Click(object sender, EventArgs e)
+        private async void opoDeleteCartITemBTN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -793,6 +819,11 @@ namespace SyncStock.Views.UserControl
 
                 // gi-ipakita ang success message
                 XtraMessageBox.Show("Item removed from cart.");
+
+                _currentUser.Action =
+                $"Deleted Online Purchase Order Cart Item {cartItem.ItemName} ({cartItem.PONumber})";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -869,7 +900,7 @@ namespace SyncStock.Views.UserControl
 
                 // gi-update ang total amount label
                 opoTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
-
+                _isEditingOPO = true;
                 // gi-ipakita ang mensahe nga na-load na ang item para ma-edit
                 XtraMessageBox.Show("Item loaded for editing. Modify the fields and click \"Add to Cart\" to save changes.");
             }
@@ -885,7 +916,7 @@ namespace SyncStock.Views.UserControl
         // ==========================================
 
         // event handler pag-click sa button nga mag-add sa item sa gpo cart
-        private void AddToCartBtn_Click(object sender, EventArgs e)
+        private async void AddToCartBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -981,6 +1012,20 @@ namespace SyncStock.Views.UserControl
 
                 // gi-ipakita ang success message
                 XtraMessageBox.Show("Added to cart successfully!");
+
+                if (_isEditingGPO)
+                {
+                    _currentUser.Action =
+                        $"Updated Local Purchase Order Cart Item {cart.ItemName} ({cart.PONumber})";
+
+                    _isEditingGPO = false;
+                }
+                else
+                {
+                    _currentUser.Action =
+                        $"Added Local Purchase Order Cart Item {cart.ItemName} ({cart.PONumber})";
+                }
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -990,7 +1035,7 @@ namespace SyncStock.Views.UserControl
         }
 
         // event handler pag-click sa button nga mag-save sa gpo cart isip order
-        private void gpoAddToOrderBtn_Click(object sender, EventArgs e)
+        private async void gpoAddToOrderBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1115,7 +1160,10 @@ namespace SyncStock.Views.UserControl
                 gpoItemsInCartTotalAmountLBL.Text = "₱0.00";
 
                 // gi-ipakita ang success message
-                XtraMessageBox.Show("GPO saved successfully!");
+                XtraMessageBox.Show("Local Purchase Order saved successfully!");
+
+                _currentUser.Action = $"Created Local Purchase Order {order.PONumber}";
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -1125,7 +1173,7 @@ namespace SyncStock.Views.UserControl
         }
 
         // event handler pag-click sa button nga mag-add sa single item direkta isip gpo order
-        private void gpoAddSingleOrderBTN_Click(object sender, EventArgs e)
+        private async void gpoAddSingleOrderBTN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1248,7 +1296,10 @@ namespace SyncStock.Views.UserControl
                 gpoPurchaseOrderDate.EditValue = null;
 
                 // gi-ipakita ang success message
-                XtraMessageBox.Show("Single order added successfully!");
+                XtraMessageBox.Show("Local Single order added successfully!");
+
+                _currentUser.Action = $"Created Single Local Purchase Order {order.PONumber}";
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -1375,7 +1426,7 @@ namespace SyncStock.Views.UserControl
         private void gpoAddItemToOrderQuantitySpinEdit_ValueChanged(object sender, EventArgs e) => CalculateGPOTotal();
 
         // event handler pag-click sa delete button sa gpo cart
-        private void gpoDeleteCartITemBTN_Click(object sender, EventArgs e)
+        private async void gpoDeleteCartITemBTN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1437,6 +1488,11 @@ namespace SyncStock.Views.UserControl
 
                 // gi-ipakita ang success message
                 XtraMessageBox.Show("Item removed from cart.");
+
+                _currentUser.Action =
+                $"Deleted Local Purchase Order Cart Item {cartItem.ItemName} ({cartItem.PONumber})";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
             }
             catch (Exception ex)
             {
@@ -1446,7 +1502,7 @@ namespace SyncStock.Views.UserControl
         }
 
         // event handler pag-click sa edit button sa gpo cart
-        private void gpoEditCartItemBTN_Click(object sender, EventArgs e)
+        private async void gpoEditCartItemBTN_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1513,9 +1569,11 @@ namespace SyncStock.Views.UserControl
 
                 // gi-update ang gpo total amount label
                 gpoItemsInCartTotalAmountLBL.Text = "₱" + totalAmount.ToString("N2");
-
+                _isEditingGPO = true;
                 // gi-ipakita ang mensahe nga na-load na ang item para ma-edit
                 XtraMessageBox.Show("Item loaded for editing. Modify the fields and click \"Add to Cart\" to save changes.");
+
+                
             }
             catch (Exception ex)
             {
@@ -1589,5 +1647,7 @@ namespace SyncStock.Views.UserControl
                 e.Cancel = true;
             }
         }
+
+       
     }
 }

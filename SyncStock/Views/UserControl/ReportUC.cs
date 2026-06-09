@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock.Views.UserControl
 {
@@ -26,7 +27,7 @@ namespace SyncStock.Views.UserControl
         Repository _repo = new Repository();
         private IList _CurrentFilteredData;
         public string UserRole { get; set; }
-
+        private readonly User _currentUser;
         public ReportUC()
         {
             InitializeComponent();
@@ -41,11 +42,11 @@ namespace SyncStock.Views.UserControl
             LoadData();
         }
 
-        public ReportUC(string role)
+        public ReportUC(User currentUser)
         {
             InitializeComponent();
-
-            UserRole = role;
+            _currentUser = currentUser;
+            UserRole = currentUser.Role;
             ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
             ReportGV.RowStyle += ReportGV_RowStyle;
             ApplyRolePermissions();
@@ -120,19 +121,21 @@ namespace SyncStock.Views.UserControl
 
         }
 
-        private void PrintSummaryButton_Click(object sender, EventArgs e)
+        private async void PrintSummaryButton_Click(object sender, EventArgs e)
         {
             try
             {
                 if (_CurrentFilteredData == null)
                 {
-                    MessageBox.Show("No data to print. Please select a report type first.",
-                                    "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No data to print. Please select a report type first.",
+                        "No Data",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
                     return;
                 }
 
-                var dataToPrint = GetVisibleFilteredData(); // ✅ Only the filtered rows
-          
                 XtraReport report = null;
 
                 switch (FilterBox.Text)
@@ -165,6 +168,24 @@ namespace SyncStock.Views.UserControl
                             .ToList());
                         break;
                 }
+
+                if (report == null)
+                    return;
+
+                // LOG: Opened Print Preview
+                _currentUser.Action =
+                    $"{_currentUser.Role} Opened Print Preview - {FilterBox.Text} Report";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
+
+                // LOG: Actual Print
+                report.PrintingSystem.StartPrint += async (s, args) =>
+                {
+                    _currentUser.Action =
+                        $"{_currentUser.Role} Printed {FilterBox.Text} Report | Year: {YearBox.Text} | Period: {PeriodTypeBox.Text} | Filter: {SecondFilterBox.Text}";
+
+                    await _repo.InsertUserLogsAsync(_currentUser);
+                };
 
                 report.ShowPreviewDialog();
             }

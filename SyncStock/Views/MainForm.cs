@@ -7,6 +7,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
+using SyncStock.Database;
 
 namespace SyncStock
 {
@@ -15,6 +17,8 @@ namespace SyncStock
         private readonly User _currentUser;
         public string UserRole { get; set; }
         public bool LogoutRequested { get; private set; }
+        
+        private readonly Repository _repo = new Repository();
         public MainForm(User user)
         {
             InitializeComponent();
@@ -114,12 +118,12 @@ namespace SyncStock
 
         private void purchaseOrder_Click(object sender, EventArgs e)
         {
-            LoadControl(new PurchaseOrderUC());
+            LoadControl(new PurchaseOrderUC(_currentUser));
         }
 
         private void reveivingCustodian_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReceivingCustodianUC());
+            LoadControl(new ReceivingCustodianUC(_currentUser));
         }
 
         private void auditorReview_Click(object sender, EventArgs e)
@@ -129,12 +133,12 @@ namespace SyncStock
 
         private void reports_Click(object sender, EventArgs e)
         {
-            LoadControl(new ReportUC(_currentUser.Role));
+            LoadControl(new ReportUC(_currentUser));
         }
 
 
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private async void simpleButton1_Click(object sender, EventArgs e)
         {
             DialogResult result =
            XtraMessageBox.Show(
@@ -146,6 +150,10 @@ namespace SyncStock
 
             if (result == DialogResult.Yes)
             {
+                _currentUser.Action = "Logout";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
+
                 LogoutRequested = true;
 
                 this.Close();

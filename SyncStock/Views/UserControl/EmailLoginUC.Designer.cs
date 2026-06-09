@@ -23,19 +23,23 @@
             // 
             // lblEmail
             // 
+            this.lblEmail.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Appearance.Options.UseFont = true;
             this.lblEmail.Location = new System.Drawing.Point(24, 18);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(24, 13);
+            this.lblEmail.Size = new System.Drawing.Size(73, 17);
             this.lblEmail.TabIndex = 0;
-            this.lblEmail.Text = "Email";
+            this.lblEmail.Text = "Username : ";
             // 
             // lblPassword
             // 
-            this.lblPassword.Location = new System.Drawing.Point(24, 79);
+            this.lblPassword.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.Appearance.Options.UseFont = true;
+            this.lblPassword.Location = new System.Drawing.Point(24, 70);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(46, 13);
+            this.lblPassword.Size = new System.Drawing.Size(66, 17);
             this.lblPassword.TabIndex = 2;
-            this.lblPassword.Text = "Password";
+            this.lblPassword.Text = "Password :";
             // 
             // BtnLogin
             // 
@@ -53,7 +57,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(24, 99);
+            this.txtPassword.Location = new System.Drawing.Point(24, 90);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(340, 28);

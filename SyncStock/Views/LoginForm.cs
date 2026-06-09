@@ -6,6 +6,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SyncStock.Views
 {
@@ -137,8 +139,15 @@ namespace SyncStock.Views
             }
         }
 
-        private void FinishLogin(User user)
+        private async void FinishLogin(User user)
         {
+            user.Action = "Login";
+            user.System = Environment.OSVersion.ToString();
+            user.Hostname = Environment.MachineName;
+            user.IPAddress = GetLocalIPAddress();
+
+            await _repository.InsertUserLogsAsync(user);
+
             LoggedInUser = user;
 
             this.DialogResult = DialogResult.OK;
@@ -215,6 +224,21 @@ namespace SyncStock.Views
             RoundButton(BtnRfidTab, 20);
 
             RoundButton(BtnEmailTab, 20);
+        }
+
+        private string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+
+            return "Unknown";
         }
     }
 }

@@ -112,6 +112,7 @@
             this.layoutControlItem45 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl17 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl12 = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.opoRemarksTE = new DevExpress.XtraEditors.TextEdit();
             this.opopurchaseDate = new DevExpress.XtraEditors.DateEdit();
             this.opoReqDepartmentCB = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -123,6 +124,7 @@
             this.layoutControlItem51 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem52 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup11 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem55 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -170,6 +172,7 @@
             this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl10 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl8 = new DevExpress.XtraLayout.LayoutControl();
+            this.attachBTN = new DevExpress.XtraEditors.SimpleButton();
             this.gpoRemarksTxtEdit = new DevExpress.XtraEditors.TextEdit();
             this.gpoPurchaseOrderDate = new DevExpress.XtraEditors.DateEdit();
             this.gpoReqDepartmentCB = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -177,12 +180,11 @@
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem5 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -280,6 +282,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).BeginInit();
@@ -329,12 +332,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
@@ -362,7 +364,7 @@
             this.xtraTabPage3.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabPage3.Controls.Add(this.xtraScrollableControl3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1496, 1202);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1496, 1343);
             this.xtraTabPage3.Text = "Online Purchase Order";
             // 
             // xtraScrollableControl3
@@ -371,7 +373,7 @@
             this.xtraScrollableControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl3.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl3.Name = "xtraScrollableControl3";
-            this.xtraScrollableControl3.Size = new System.Drawing.Size(1496, 1202);
+            this.xtraScrollableControl3.Size = new System.Drawing.Size(1496, 1343);
             this.xtraScrollableControl3.TabIndex = 10;
             // 
             // layoutControl9
@@ -389,7 +391,7 @@
             this.layoutControl9.Location = new System.Drawing.Point(0, 0);
             this.layoutControl9.Name = "layoutControl9";
             this.layoutControl9.Root = this.layoutControlGroup11;
-            this.layoutControl9.Size = new System.Drawing.Size(1479, 1203);
+            this.layoutControl9.Size = new System.Drawing.Size(1479, 1344);
             this.layoutControl9.TabIndex = 1;
             this.layoutControl9.Text = "layoutControl9";
             // 
@@ -400,7 +402,7 @@
             this.opoDeleteCartITemBTN.Appearance.Options.UseBackColor = true;
             this.opoDeleteCartITemBTN.Appearance.Options.UseFont = true;
             this.opoDeleteCartITemBTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.opoDeleteCartITemBTN.Location = new System.Drawing.Point(742, 835);
+            this.opoDeleteCartITemBTN.Location = new System.Drawing.Point(742, 876);
             this.opoDeleteCartITemBTN.Name = "opoDeleteCartITemBTN";
             this.opoDeleteCartITemBTN.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.opoDeleteCartITemBTN.Size = new System.Drawing.Size(721, 38);
@@ -416,7 +418,7 @@
             this.opoEditCartItemBTN.Appearance.Options.UseBackColor = true;
             this.opoEditCartItemBTN.Appearance.Options.UseFont = true;
             this.opoEditCartItemBTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.opoEditCartItemBTN.Location = new System.Drawing.Point(16, 835);
+            this.opoEditCartItemBTN.Location = new System.Drawing.Point(16, 876);
             this.opoEditCartItemBTN.Name = "opoEditCartItemBTN";
             this.opoEditCartItemBTN.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.opoEditCartItemBTN.Size = new System.Drawing.Size(720, 38);
@@ -428,10 +430,10 @@
             // panelControl11
             // 
             this.panelControl11.Controls.Add(this.opoItemsInCartGC);
-            this.panelControl11.Location = new System.Drawing.Point(16, 672);
+            this.panelControl11.Location = new System.Drawing.Point(16, 656);
             this.panelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl11.Name = "panelControl11";
-            this.panelControl11.Size = new System.Drawing.Size(1447, 157);
+            this.panelControl11.Size = new System.Drawing.Size(1447, 214);
             this.panelControl11.TabIndex = 8;
             // 
             // opoItemsInCartGC
@@ -440,7 +442,7 @@
             this.opoItemsInCartGC.Location = new System.Drawing.Point(2, 2);
             this.opoItemsInCartGC.MainView = this.opoItemsInCartGV;
             this.opoItemsInCartGC.Name = "opoItemsInCartGC";
-            this.opoItemsInCartGC.Size = new System.Drawing.Size(1443, 153);
+            this.opoItemsInCartGC.Size = new System.Drawing.Size(1443, 210);
             this.opoItemsInCartGC.TabIndex = 5;
             this.opoItemsInCartGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.opoItemsInCartGV});
@@ -464,9 +466,9 @@
             this.panelControl12.Controls.Add(this.labelControl20);
             this.panelControl12.Controls.Add(this.labelControl21);
             this.panelControl12.Controls.Add(this.labelControl22);
-            this.panelControl12.Location = new System.Drawing.Point(16, 617);
+            this.panelControl12.Location = new System.Drawing.Point(16, 599);
             this.panelControl12.Name = "panelControl12";
-            this.panelControl12.Size = new System.Drawing.Size(1447, 49);
+            this.panelControl12.Size = new System.Drawing.Size(1447, 51);
             this.panelControl12.TabIndex = 7;
             // 
             // labelControl7
@@ -474,7 +476,7 @@
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(14, 27);
+            this.labelControl7.Location = new System.Drawing.Point(14, 28);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(257, 13);
             this.labelControl7.TabIndex = 6;
@@ -488,7 +490,7 @@
             this.opoioTotalAmountInCartLBL.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.opoioTotalAmountInCartLBL.Appearance.Options.UseFont = true;
             this.opoioTotalAmountInCartLBL.Appearance.Options.UseForeColor = true;
-            this.opoioTotalAmountInCartLBL.Location = new System.Drawing.Point(1205, 19);
+            this.opoioTotalAmountInCartLBL.Location = new System.Drawing.Point(1188, 20);
             this.opoioTotalAmountInCartLBL.Name = "opoioTotalAmountInCartLBL";
             this.opoioTotalAmountInCartLBL.Size = new System.Drawing.Size(9, 20);
             this.opoioTotalAmountInCartLBL.TabIndex = 5;
@@ -499,7 +501,7 @@
             this.opoTotalItemsInCartLBL.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.opoTotalItemsInCartLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opoTotalItemsInCartLBL.Appearance.Options.UseFont = true;
-            this.opoTotalItemsInCartLBL.Location = new System.Drawing.Point(1190, 3);
+            this.opoTotalItemsInCartLBL.Location = new System.Drawing.Point(1173, 4);
             this.opoTotalItemsInCartLBL.Name = "opoTotalItemsInCartLBL";
             this.opoTotalItemsInCartLBL.Size = new System.Drawing.Size(9, 20);
             this.opoTotalItemsInCartLBL.TabIndex = 3;
@@ -510,7 +512,7 @@
             this.labelControl20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl20.Appearance.Options.UseFont = true;
-            this.labelControl20.Location = new System.Drawing.Point(1119, 21);
+            this.labelControl20.Location = new System.Drawing.Point(1102, 22);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(81, 17);
             this.labelControl20.TabIndex = 2;
@@ -521,7 +523,7 @@
             this.labelControl21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl21.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl21.Appearance.Options.UseFont = true;
-            this.labelControl21.Location = new System.Drawing.Point(1119, 4);
+            this.labelControl21.Location = new System.Drawing.Point(1102, 5);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(67, 17);
             this.labelControl21.TabIndex = 1;
@@ -534,7 +536,7 @@
             this.labelControl22.Appearance.Options.UseFont = true;
             this.labelControl22.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl22.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl22.ImageOptions.SvgImage")));
-            this.labelControl22.Location = new System.Drawing.Point(3, -3);
+            this.labelControl22.Location = new System.Drawing.Point(3, -2);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(136, 32);
             this.labelControl22.TabIndex = 0;
@@ -543,9 +545,9 @@
             // panelControl13
             // 
             this.panelControl13.Controls.Add(this.layoutControl10);
-            this.panelControl13.Location = new System.Drawing.Point(16, 948);
+            this.panelControl13.Location = new System.Drawing.Point(16, 991);
             this.panelControl13.Name = "panelControl13";
-            this.panelControl13.Size = new System.Drawing.Size(1447, 239);
+            this.panelControl13.Size = new System.Drawing.Size(1447, 337);
             this.panelControl13.TabIndex = 7;
             // 
             // layoutControl10
@@ -555,7 +557,7 @@
             this.layoutControl10.Location = new System.Drawing.Point(2, 2);
             this.layoutControl10.Name = "layoutControl10";
             this.layoutControl10.Root = this.layoutControlGroup8;
-            this.layoutControl10.Size = new System.Drawing.Size(1443, 235);
+            this.layoutControl10.Size = new System.Drawing.Size(1443, 333);
             this.layoutControl10.TabIndex = 0;
             this.layoutControl10.Text = "layoutControl4";
             // 
@@ -564,7 +566,7 @@
             this.opoItemsInOrderGC.Location = new System.Drawing.Point(16, 16);
             this.opoItemsInOrderGC.MainView = this.opoItemsInOrderGV;
             this.opoItemsInOrderGC.Name = "opoItemsInOrderGC";
-            this.opoItemsInOrderGC.Size = new System.Drawing.Size(1411, 203);
+            this.opoItemsInOrderGC.Size = new System.Drawing.Size(1411, 301);
             this.opoItemsInOrderGC.TabIndex = 4;
             this.opoItemsInOrderGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.opoItemsInOrderGV});
@@ -584,7 +586,7 @@
             this.layoutControlGroup8.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem39});
             this.layoutControlGroup8.Name = "layoutControlGroup3";
-            this.layoutControlGroup8.Size = new System.Drawing.Size(1443, 235);
+            this.layoutControlGroup8.Size = new System.Drawing.Size(1443, 333);
             this.layoutControlGroup8.TextVisible = false;
             // 
             // layoutControlItem39
@@ -592,7 +594,7 @@
             this.layoutControlItem39.Control = this.opoItemsInOrderGC;
             this.layoutControlItem39.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem39.Name = "layoutControlItem19";
-            this.layoutControlItem39.Size = new System.Drawing.Size(1417, 209);
+            this.layoutControlItem39.Size = new System.Drawing.Size(1417, 307);
             this.layoutControlItem39.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem39.TextVisible = false;
             // 
@@ -607,9 +609,9 @@
             this.panelControl14.Controls.Add(this.labelControl27);
             this.panelControl14.Controls.Add(this.labelControl28);
             this.panelControl14.Controls.Add(this.labelControl29);
-            this.panelControl14.Location = new System.Drawing.Point(16, 879);
+            this.panelControl14.Location = new System.Drawing.Point(16, 920);
             this.panelControl14.Name = "panelControl14";
-            this.panelControl14.Size = new System.Drawing.Size(1447, 63);
+            this.panelControl14.Size = new System.Drawing.Size(1447, 65);
             this.panelControl14.TabIndex = 6;
             // 
             // labelControl23
@@ -617,7 +619,7 @@
             this.labelControl23.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(15, 37);
+            this.labelControl23.Location = new System.Drawing.Point(15, 38);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(243, 13);
             this.labelControl23.TabIndex = 6;
@@ -631,7 +633,7 @@
             this.opoioTotalAmountLBL.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.opoioTotalAmountLBL.Appearance.Options.UseFont = true;
             this.opoioTotalAmountLBL.Appearance.Options.UseForeColor = true;
-            this.opoioTotalAmountLBL.Location = new System.Drawing.Point(1205, 26);
+            this.opoioTotalAmountLBL.Location = new System.Drawing.Point(1188, 27);
             this.opoioTotalAmountLBL.Name = "opoioTotalAmountLBL";
             this.opoioTotalAmountLBL.Size = new System.Drawing.Size(9, 20);
             this.opoioTotalAmountLBL.TabIndex = 5;
@@ -642,7 +644,7 @@
             this.opoTotalItemsLBL.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.opoTotalItemsLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opoTotalItemsLBL.Appearance.Options.UseFont = true;
-            this.opoTotalItemsLBL.Location = new System.Drawing.Point(1190, 11);
+            this.opoTotalItemsLBL.Location = new System.Drawing.Point(1173, 12);
             this.opoTotalItemsLBL.Name = "opoTotalItemsLBL";
             this.opoTotalItemsLBL.Size = new System.Drawing.Size(9, 20);
             this.opoTotalItemsLBL.TabIndex = 3;
@@ -653,7 +655,7 @@
             this.labelControl27.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl27.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl27.Appearance.Options.UseFont = true;
-            this.labelControl27.Location = new System.Drawing.Point(1119, 28);
+            this.labelControl27.Location = new System.Drawing.Point(1102, 29);
             this.labelControl27.Name = "labelControl27";
             this.labelControl27.Size = new System.Drawing.Size(81, 17);
             this.labelControl27.TabIndex = 2;
@@ -664,7 +666,7 @@
             this.labelControl28.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl28.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl28.Appearance.Options.UseFont = true;
-            this.labelControl28.Location = new System.Drawing.Point(1119, 11);
+            this.labelControl28.Location = new System.Drawing.Point(1102, 12);
             this.labelControl28.Name = "labelControl28";
             this.labelControl28.Size = new System.Drawing.Size(67, 17);
             this.labelControl28.TabIndex = 1;
@@ -677,7 +679,7 @@
             this.labelControl29.Appearance.Options.UseFont = true;
             this.labelControl29.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl29.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl29.ImageOptions.SvgImage")));
-            this.labelControl29.Location = new System.Drawing.Point(4, 2);
+            this.labelControl29.Location = new System.Drawing.Point(4, 3);
             this.labelControl29.Name = "labelControl29";
             this.labelControl29.Size = new System.Drawing.Size(148, 32);
             this.labelControl29.TabIndex = 0;
@@ -692,7 +694,7 @@
             this.panelControl15.Controls.Add(this.labelControl31);
             this.panelControl15.Location = new System.Drawing.Point(16, 16);
             this.panelControl15.Name = "panelControl15";
-            this.panelControl15.Size = new System.Drawing.Size(1447, 63);
+            this.panelControl15.Size = new System.Drawing.Size(1447, 71);
             this.panelControl15.TabIndex = 5;
             // 
             // labelControl30
@@ -700,18 +702,18 @@
             this.labelControl30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl30.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl30.Appearance.Options.UseFont = true;
-            this.labelControl30.Location = new System.Drawing.Point(12, 33);
+            this.labelControl30.Location = new System.Drawing.Point(12, 41);
             this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(255, 13);
+            this.labelControl30.Size = new System.Drawing.Size(291, 13);
             this.labelControl30.TabIndex = 1;
-            this.labelControl30.Text = "Create a new purchase order for asset acquisition";
+            this.labelControl30.Text = "Create a new online purchase order for asset acquisition";
             // 
             // labelControl31
             // 
             this.labelControl31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl31.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelControl31.Appearance.Options.UseFont = true;
-            this.labelControl31.Location = new System.Drawing.Point(12, 9);
+            this.labelControl31.Location = new System.Drawing.Point(12, 17);
             this.labelControl31.Name = "labelControl31";
             this.labelControl31.Size = new System.Drawing.Size(200, 25);
             this.labelControl31.TabIndex = 0;
@@ -722,9 +724,9 @@
             this.panelControl16.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl16.Appearance.Options.UseBackColor = true;
             this.panelControl16.Controls.Add(this.layoutControl11);
-            this.panelControl16.Location = new System.Drawing.Point(16, 338);
+            this.panelControl16.Location = new System.Drawing.Point(16, 329);
             this.panelControl16.Name = "panelControl16";
-            this.panelControl16.Size = new System.Drawing.Size(1447, 273);
+            this.panelControl16.Size = new System.Drawing.Size(1447, 264);
             this.panelControl16.TabIndex = 0;
             // 
             // layoutControl11
@@ -744,7 +746,7 @@
             this.layoutControl11.Name = "layoutControl11";
             this.layoutControl11.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1234, 697, 650, 400);
             this.layoutControl11.Root = this.layoutControlGroup9;
-            this.layoutControl11.Size = new System.Drawing.Size(1443, 269);
+            this.layoutControl11.Size = new System.Drawing.Size(1443, 260);
             this.layoutControl11.TabIndex = 0;
             this.layoutControl11.Text = "layoutControl3";
             // 
@@ -754,7 +756,7 @@
             this.panelControl2.Location = new System.Drawing.Point(16, 162);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(696, 42);
+            this.panelControl2.Size = new System.Drawing.Size(681, 42);
             this.panelControl2.TabIndex = 13;
             // 
             // simpleButton1
@@ -768,7 +770,7 @@
             this.simpleButton1.Location = new System.Drawing.Point(2, 2);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.simpleButton1.Size = new System.Drawing.Size(692, 38);
+            this.simpleButton1.Size = new System.Drawing.Size(677, 38);
             this.simpleButton1.StyleController = this.layoutControl7;
             this.simpleButton1.TabIndex = 11;
             this.simpleButton1.Text = "Add Single Order";
@@ -791,7 +793,7 @@
             this.layoutControl7.Name = "layoutControl7";
             this.layoutControl7.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1234, 697, 650, 400);
             this.layoutControl7.Root = this.layoutControlGroup5;
-            this.layoutControl7.Size = new System.Drawing.Size(1443, 287);
+            this.layoutControl7.Size = new System.Drawing.Size(1443, 260);
             this.layoutControl7.TabIndex = 0;
             this.layoutControl7.Text = "layoutControl3";
             // 
@@ -887,17 +889,17 @@
             this.gpoAddItemToOrderInvoiceNumberTextEdit.Name = "gpoAddItemToOrderInvoiceNumberTextEdit";
             this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.gpoAddItemToOrderInvoiceNumberTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.gpoAddItemToOrderInvoiceNumberTextEdit.Size = new System.Drawing.Size(671, 28);
+            this.gpoAddItemToOrderInvoiceNumberTextEdit.Size = new System.Drawing.Size(675, 28);
             this.gpoAddItemToOrderInvoiceNumberTextEdit.StyleController = this.layoutControl7;
             this.gpoAddItemToOrderInvoiceNumberTextEdit.TabIndex = 6;
             // 
             // gpoAddItemToOrderItemNameTextEdit
             // 
-            this.gpoAddItemToOrderItemNameTextEdit.Location = new System.Drawing.Point(981, 73);
+            this.gpoAddItemToOrderItemNameTextEdit.Location = new System.Drawing.Point(985, 73);
             this.gpoAddItemToOrderItemNameTextEdit.Name = "gpoAddItemToOrderItemNameTextEdit";
             this.gpoAddItemToOrderItemNameTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.gpoAddItemToOrderItemNameTextEdit.Properties.Appearance.Options.UseFont = true;
-            this.gpoAddItemToOrderItemNameTextEdit.Size = new System.Drawing.Size(446, 28);
+            this.gpoAddItemToOrderItemNameTextEdit.Size = new System.Drawing.Size(442, 28);
             this.gpoAddItemToOrderItemNameTextEdit.StyleController = this.layoutControl7;
             this.gpoAddItemToOrderItemNameTextEdit.TabIndex = 7;
             // 
@@ -977,7 +979,7 @@
             this.layoutControlItem26,
             this.layoutControlItem23});
             this.layoutControlGroup5.Name = "Root";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(1443, 287);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(1443, 260);
             this.layoutControlGroup5.TextVisible = false;
             // 
             // layoutControlItem21
@@ -997,9 +999,9 @@
             this.layoutControlItem24.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem24.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem24.Control = this.gpoAddItemToOrderItemNameTextEdit;
-            this.layoutControlItem24.Location = new System.Drawing.Point(965, 38);
+            this.layoutControlItem24.Location = new System.Drawing.Point(969, 38);
             this.layoutControlItem24.Name = "layoutControlItem12";
-            this.layoutControlItem24.Size = new System.Drawing.Size(452, 53);
+            this.layoutControlItem24.Size = new System.Drawing.Size(448, 53);
             this.layoutControlItem24.Text = "Item Name *";
             this.layoutControlItem24.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem24.TextSize = new System.Drawing.Size(174, 13);
@@ -1041,7 +1043,7 @@
             this.layoutControlItem1.Control = this.panelControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 146);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(697, 115);
+            this.layoutControlItem1.Size = new System.Drawing.Size(697, 88);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -1083,7 +1085,7 @@
             this.layoutControlItem26.Control = this.gpoAddToOrderBtn;
             this.layoutControlItem26.Location = new System.Drawing.Point(697, 190);
             this.layoutControlItem26.Name = "layoutControlItem14";
-            this.layoutControlItem26.Size = new System.Drawing.Size(720, 71);
+            this.layoutControlItem26.Size = new System.Drawing.Size(720, 44);
             this.layoutControlItem26.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem26.TextVisible = false;
             // 
@@ -1094,7 +1096,7 @@
             this.layoutControlItem23.Control = this.gpoAddItemToOrderInvoiceNumberTextEdit;
             this.layoutControlItem23.Location = new System.Drawing.Point(288, 38);
             this.layoutControlItem23.Name = "layoutControlItem11";
-            this.layoutControlItem23.Size = new System.Drawing.Size(677, 53);
+            this.layoutControlItem23.Size = new System.Drawing.Size(681, 53);
             this.layoutControlItem23.Text = "Invoice Number *";
             this.layoutControlItem23.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem23.TextSize = new System.Drawing.Size(174, 13);
@@ -1106,10 +1108,10 @@
             this.opoAddToCartBtn.Appearance.Options.UseBackColor = true;
             this.opoAddToCartBtn.Appearance.Options.UseFont = true;
             this.opoAddToCartBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.opoAddToCartBtn.Location = new System.Drawing.Point(718, 162);
+            this.opoAddToCartBtn.Location = new System.Drawing.Point(703, 162);
             this.opoAddToCartBtn.Name = "opoAddToCartBtn";
             this.opoAddToCartBtn.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.opoAddToCartBtn.Size = new System.Drawing.Size(709, 38);
+            this.opoAddToCartBtn.Size = new System.Drawing.Size(724, 38);
             this.opoAddToCartBtn.StyleController = this.layoutControl11;
             this.opoAddToCartBtn.TabIndex = 12;
             this.opoAddToCartBtn.Text = "Add to Cart";
@@ -1157,7 +1159,7 @@
             this.opoUnitPriceTE.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.opoUnitPriceTE.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.opoUnitPriceTE.Properties.MaskSettings.Set("mask", "n2");
-            this.opoUnitPriceTE.Size = new System.Drawing.Size(696, 28);
+            this.opoUnitPriceTE.Size = new System.Drawing.Size(681, 28);
             this.opoUnitPriceTE.StyleController = this.layoutControl11;
             this.opoUnitPriceTE.TabIndex = 5;
             this.opoUnitPriceTE.EditValueChanged += new System.EventHandler(this.opoUnitPriceTE_EditValueChanged_1);
@@ -1169,18 +1171,18 @@
             this.opoInvoiceNumTE.Name = "opoInvoiceNumTE";
             this.opoInvoiceNumTE.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.opoInvoiceNumTE.Properties.Appearance.Options.UseFont = true;
-            this.opoInvoiceNumTE.Size = new System.Drawing.Size(666, 28);
+            this.opoInvoiceNumTE.Size = new System.Drawing.Size(681, 28);
             this.opoInvoiceNumTE.StyleController = this.layoutControl11;
             this.opoInvoiceNumTE.TabIndex = 6;
             // 
             // opoItemNameTE
             // 
             this.opoItemNameTE.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.opoItemNameTE.Location = new System.Drawing.Point(975, 73);
+            this.opoItemNameTE.Location = new System.Drawing.Point(990, 73);
             this.opoItemNameTE.Name = "opoItemNameTE";
             this.opoItemNameTE.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.opoItemNameTE.Properties.Appearance.Options.UseFont = true;
-            this.opoItemNameTE.Size = new System.Drawing.Size(452, 28);
+            this.opoItemNameTE.Size = new System.Drawing.Size(437, 28);
             this.opoItemNameTE.StyleController = this.layoutControl11;
             this.opoItemNameTE.TabIndex = 7;
             // 
@@ -1191,10 +1193,10 @@
             this.opoAddToOrderBtn.Appearance.Options.UseBackColor = true;
             this.opoAddToOrderBtn.Appearance.Options.UseFont = true;
             this.opoAddToOrderBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.opoAddToOrderBtn.Location = new System.Drawing.Point(718, 206);
+            this.opoAddToOrderBtn.Location = new System.Drawing.Point(703, 206);
             this.opoAddToOrderBtn.Name = "opoAddToOrderBtn";
             this.opoAddToOrderBtn.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.opoAddToOrderBtn.Size = new System.Drawing.Size(709, 38);
+            this.opoAddToOrderBtn.Size = new System.Drawing.Size(724, 38);
             this.opoAddToOrderBtn.StyleController = this.layoutControl11;
             this.opoAddToOrderBtn.TabIndex = 9;
             this.opoAddToOrderBtn.Text = "Add to Order";
@@ -1207,14 +1209,14 @@
             0,
             0,
             0});
-            this.opoQuantitySE.Location = new System.Drawing.Point(718, 126);
+            this.opoQuantitySE.Location = new System.Drawing.Point(703, 126);
             this.opoQuantitySE.Name = "opoQuantitySE";
             this.opoQuantitySE.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.opoQuantitySE.Properties.Appearance.Options.UseFont = true;
             this.opoQuantitySE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.opoQuantitySE.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.opoQuantitySE.Size = new System.Drawing.Size(261, 28);
+            this.opoQuantitySE.Size = new System.Drawing.Size(276, 28);
             this.opoQuantitySE.StyleController = this.layoutControl11;
             this.opoQuantitySE.TabIndex = 8;
             this.opoQuantitySE.ValueChanged += new System.EventHandler(this.opoQuantitySE_ValueChanged_1);
@@ -1259,7 +1261,7 @@
             this.layoutControlItem2,
             this.layoutControlItem45});
             this.layoutControlGroup9.Name = "Root";
-            this.layoutControlGroup9.Size = new System.Drawing.Size(1443, 269);
+            this.layoutControlGroup9.Size = new System.Drawing.Size(1443, 260);
             this.layoutControlGroup9.TextVisible = false;
             // 
             // layoutControlItem40
@@ -1281,7 +1283,7 @@
             this.layoutControlItem41.Control = this.opoUnitPriceTE;
             this.layoutControlItem41.Location = new System.Drawing.Point(0, 91);
             this.layoutControlItem41.Name = "layoutControlItem10";
-            this.layoutControlItem41.Size = new System.Drawing.Size(702, 55);
+            this.layoutControlItem41.Size = new System.Drawing.Size(687, 55);
             this.layoutControlItem41.Text = "Unit Price *";
             this.layoutControlItem41.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem41.TextSize = new System.Drawing.Size(174, 13);
@@ -1293,7 +1295,7 @@
             this.layoutControlItem42.Control = this.opoInvoiceNumTE;
             this.layoutControlItem42.Location = new System.Drawing.Point(287, 38);
             this.layoutControlItem42.Name = "layoutControlItem11";
-            this.layoutControlItem42.Size = new System.Drawing.Size(672, 53);
+            this.layoutControlItem42.Size = new System.Drawing.Size(687, 53);
             this.layoutControlItem42.Text = "Invoice Number *";
             this.layoutControlItem42.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem42.TextSize = new System.Drawing.Size(174, 13);
@@ -1303,9 +1305,9 @@
             this.layoutControlItem43.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem43.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem43.Control = this.opoItemNameTE;
-            this.layoutControlItem43.Location = new System.Drawing.Point(959, 38);
+            this.layoutControlItem43.Location = new System.Drawing.Point(974, 38);
             this.layoutControlItem43.Name = "layoutControlItem12";
-            this.layoutControlItem43.Size = new System.Drawing.Size(458, 53);
+            this.layoutControlItem43.Size = new System.Drawing.Size(443, 53);
             this.layoutControlItem43.Text = "Item Name *";
             this.layoutControlItem43.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem43.TextSize = new System.Drawing.Size(174, 13);
@@ -1315,9 +1317,9 @@
             this.layoutControlItem44.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.layoutControlItem44.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem44.Control = this.opoQuantitySE;
-            this.layoutControlItem44.Location = new System.Drawing.Point(702, 91);
+            this.layoutControlItem44.Location = new System.Drawing.Point(687, 91);
             this.layoutControlItem44.Name = "layoutControlItem13";
-            this.layoutControlItem44.Size = new System.Drawing.Size(267, 55);
+            this.layoutControlItem44.Size = new System.Drawing.Size(282, 55);
             this.layoutControlItem44.Text = "Quantity *";
             this.layoutControlItem44.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem44.TextSize = new System.Drawing.Size(174, 13);
@@ -1357,9 +1359,9 @@
             // layoutControlItem48
             // 
             this.layoutControlItem48.Control = this.opoAddToCartBtn;
-            this.layoutControlItem48.Location = new System.Drawing.Point(702, 146);
+            this.layoutControlItem48.Location = new System.Drawing.Point(687, 146);
             this.layoutControlItem48.Name = "layoutControlItem96";
-            this.layoutControlItem48.Size = new System.Drawing.Size(715, 44);
+            this.layoutControlItem48.Size = new System.Drawing.Size(730, 44);
             this.layoutControlItem48.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem48.TextVisible = false;
             // 
@@ -1368,16 +1370,16 @@
             this.layoutControlItem2.Control = this.panelControl2;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 146);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(702, 97);
+            this.layoutControlItem2.Size = new System.Drawing.Size(687, 88);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem45
             // 
             this.layoutControlItem45.Control = this.opoAddToOrderBtn;
-            this.layoutControlItem45.Location = new System.Drawing.Point(702, 190);
+            this.layoutControlItem45.Location = new System.Drawing.Point(687, 190);
             this.layoutControlItem45.Name = "layoutControlItem14";
-            this.layoutControlItem45.Size = new System.Drawing.Size(715, 53);
+            this.layoutControlItem45.Size = new System.Drawing.Size(730, 44);
             this.layoutControlItem45.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem45.TextVisible = false;
             // 
@@ -1386,13 +1388,14 @@
             this.panelControl17.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl17.Appearance.Options.UseBackColor = true;
             this.panelControl17.Controls.Add(this.layoutControl12);
-            this.panelControl17.Location = new System.Drawing.Point(16, 85);
+            this.panelControl17.Location = new System.Drawing.Point(16, 93);
             this.panelControl17.Name = "panelControl17";
-            this.panelControl17.Size = new System.Drawing.Size(1447, 247);
+            this.panelControl17.Size = new System.Drawing.Size(1447, 230);
             this.panelControl17.TabIndex = 4;
             // 
             // layoutControl12
             // 
+            this.layoutControl12.Controls.Add(this.simpleButton2);
             this.layoutControl12.Controls.Add(this.opoRemarksTE);
             this.layoutControl12.Controls.Add(this.opopurchaseDate);
             this.layoutControl12.Controls.Add(this.opoReqDepartmentCB);
@@ -1401,9 +1404,22 @@
             this.layoutControl12.Location = new System.Drawing.Point(2, 2);
             this.layoutControl12.Name = "layoutControl12";
             this.layoutControl12.Root = this.layoutControlGroup10;
-            this.layoutControl12.Size = new System.Drawing.Size(1443, 243);
+            this.layoutControl12.Size = new System.Drawing.Size(1443, 226);
             this.layoutControl12.TabIndex = 0;
             this.layoutControl12.Text = "layoutControl2";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.BackColor = System.Drawing.Color.ForestGreen;
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(565, 105);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(113, 28);
+            this.simpleButton2.StyleController = this.layoutControl12;
+            this.simpleButton2.TabIndex = 10;
+            this.simpleButton2.Text = "Attach File";
             // 
             // opoRemarksTE
             // 
@@ -1419,7 +1435,7 @@
             // opopurchaseDate
             // 
             this.opopurchaseDate.EditValue = null;
-            this.opopurchaseDate.Location = new System.Drawing.Point(559, 71);
+            this.opopurchaseDate.Location = new System.Drawing.Point(565, 71);
             this.opopurchaseDate.Name = "opopurchaseDate";
             this.opopurchaseDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opopurchaseDate.Properties.Appearance.Options.UseFont = true;
@@ -1434,7 +1450,7 @@
             this.opopurchaseDate.Properties.DisplayFormat.FormatString = "M/d/yyyy";
             this.opopurchaseDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.opopurchaseDate.Properties.MaskSettings.Set("mask", "");
-            this.opopurchaseDate.Size = new System.Drawing.Size(868, 28);
+            this.opopurchaseDate.Size = new System.Drawing.Size(862, 28);
             this.opopurchaseDate.StyleController = this.layoutControl12;
             this.opopurchaseDate.TabIndex = 5;
             // 
@@ -1446,7 +1462,7 @@
             this.opoReqDepartmentCB.Properties.Appearance.Options.UseFont = true;
             this.opoReqDepartmentCB.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.opoReqDepartmentCB.Size = new System.Drawing.Size(539, 28);
+            this.opoReqDepartmentCB.Size = new System.Drawing.Size(545, 28);
             this.opoReqDepartmentCB.StyleController = this.layoutControl12;
             this.opoReqDepartmentCB.TabIndex = 4;
             // 
@@ -1457,7 +1473,7 @@
             this.opopoNumberTE.Name = "opopoNumberTE";
             this.opopoNumberTE.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opopoNumberTE.Properties.Appearance.Options.UseFont = true;
-            this.opopoNumberTE.Size = new System.Drawing.Size(537, 28);
+            this.opopoNumberTE.Size = new System.Drawing.Size(543, 28);
             this.opopoNumberTE.StyleController = this.layoutControl12;
             this.opopoNumberTE.TabIndex = 6;
             this.opopoNumberTE.EditValueChanged += new System.EventHandler(this.textEdit5_EditValueChanged);
@@ -1472,9 +1488,10 @@
             this.simpleLabelItem8,
             this.layoutControlItem51,
             this.layoutControlItem52,
-            this.emptySpaceItem9});
+            this.emptySpaceItem9,
+            this.layoutControlItem8});
             this.layoutControlGroup10.Name = "layoutControlGroup1";
-            this.layoutControlGroup10.Size = new System.Drawing.Size(1443, 243);
+            this.layoutControlGroup10.Size = new System.Drawing.Size(1443, 226);
             this.layoutControlGroup10.TextVisible = false;
             // 
             // layoutControlItem49
@@ -1485,7 +1502,7 @@
             this.layoutControlItem49.Location = new System.Drawing.Point(0, 36);
             this.layoutControlItem49.Name = "layoutControlItem3";
             this.layoutControlItem49.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-            this.layoutControlItem49.Size = new System.Drawing.Size(543, 53);
+            this.layoutControlItem49.Size = new System.Drawing.Size(549, 53);
             this.layoutControlItem49.Text = "Requesting Department *";
             this.layoutControlItem49.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem49.TextSize = new System.Drawing.Size(210, 13);
@@ -1497,7 +1514,7 @@
             this.layoutControlItem50.Control = this.opopoNumberTE;
             this.layoutControlItem50.Location = new System.Drawing.Point(0, 89);
             this.layoutControlItem50.Name = "layoutControlItem5";
-            this.layoutControlItem50.Size = new System.Drawing.Size(543, 53);
+            this.layoutControlItem50.Size = new System.Drawing.Size(549, 53);
             this.layoutControlItem50.Text = "Purchase Order Number";
             this.layoutControlItem50.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem50.TextSize = new System.Drawing.Size(210, 13);
@@ -1522,7 +1539,7 @@
             this.layoutControlItem51.Control = this.opoRemarksTE;
             this.layoutControlItem51.Location = new System.Drawing.Point(0, 142);
             this.layoutControlItem51.Name = "layoutControlItem7";
-            this.layoutControlItem51.Size = new System.Drawing.Size(1417, 75);
+            this.layoutControlItem51.Size = new System.Drawing.Size(1417, 58);
             this.layoutControlItem51.Text = "Remarks";
             this.layoutControlItem51.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem51.TextSize = new System.Drawing.Size(210, 16);
@@ -1532,9 +1549,9 @@
             this.layoutControlItem52.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem52.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem52.Control = this.opopurchaseDate;
-            this.layoutControlItem52.Location = new System.Drawing.Point(543, 36);
+            this.layoutControlItem52.Location = new System.Drawing.Point(549, 36);
             this.layoutControlItem52.Name = "layoutControlItem4";
-            this.layoutControlItem52.Size = new System.Drawing.Size(874, 53);
+            this.layoutControlItem52.Size = new System.Drawing.Size(868, 53);
             this.layoutControlItem52.Text = "Purchase Order Date *";
             this.layoutControlItem52.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem52.TextSize = new System.Drawing.Size(210, 13);
@@ -1542,10 +1559,19 @@
             // emptySpaceItem9
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
-            this.emptySpaceItem9.Location = new System.Drawing.Point(543, 89);
+            this.emptySpaceItem9.Location = new System.Drawing.Point(668, 89);
             this.emptySpaceItem9.Name = "emptySpaceItem6";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(874, 53);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(749, 53);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.simpleButton2;
+            this.layoutControlItem8.Location = new System.Drawing.Point(549, 89);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(119, 53);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControlGroup11
             // 
@@ -1562,24 +1588,24 @@
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.layoutControlGroup11.Name = "Root";
-            this.layoutControlGroup11.Size = new System.Drawing.Size(1479, 1203);
+            this.layoutControlGroup11.Size = new System.Drawing.Size(1479, 1344);
             this.layoutControlGroup11.TextVisible = false;
             // 
             // layoutControlItem54
             // 
             this.layoutControlItem54.Control = this.panelControl17;
-            this.layoutControlItem54.Location = new System.Drawing.Point(0, 69);
+            this.layoutControlItem54.Location = new System.Drawing.Point(0, 77);
             this.layoutControlItem54.Name = "layoutControlItem1";
-            this.layoutControlItem54.Size = new System.Drawing.Size(1453, 253);
+            this.layoutControlItem54.Size = new System.Drawing.Size(1453, 236);
             this.layoutControlItem54.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem54.TextVisible = false;
             // 
             // layoutControlItem55
             // 
             this.layoutControlItem55.Control = this.panelControl16;
-            this.layoutControlItem55.Location = new System.Drawing.Point(0, 322);
+            this.layoutControlItem55.Location = new System.Drawing.Point(0, 313);
             this.layoutControlItem55.Name = "layoutControlItem2";
-            this.layoutControlItem55.Size = new System.Drawing.Size(1453, 279);
+            this.layoutControlItem55.Size = new System.Drawing.Size(1453, 270);
             this.layoutControlItem55.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem55.TextVisible = false;
             // 
@@ -1588,50 +1614,50 @@
             this.layoutControlItem56.Control = this.panelControl15;
             this.layoutControlItem56.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem56.Name = "layoutControlItem8";
-            this.layoutControlItem56.Size = new System.Drawing.Size(1453, 69);
+            this.layoutControlItem56.Size = new System.Drawing.Size(1453, 77);
             this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem56.TextVisible = false;
             // 
             // layoutControlItem57
             // 
             this.layoutControlItem57.Control = this.panelControl14;
-            this.layoutControlItem57.Location = new System.Drawing.Point(0, 863);
+            this.layoutControlItem57.Location = new System.Drawing.Point(0, 904);
             this.layoutControlItem57.Name = "layoutControlItem17";
-            this.layoutControlItem57.Size = new System.Drawing.Size(1453, 69);
+            this.layoutControlItem57.Size = new System.Drawing.Size(1453, 71);
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem57.TextVisible = false;
             // 
             // layoutControlItem58
             // 
             this.layoutControlItem58.Control = this.panelControl13;
-            this.layoutControlItem58.Location = new System.Drawing.Point(0, 932);
+            this.layoutControlItem58.Location = new System.Drawing.Point(0, 975);
             this.layoutControlItem58.Name = "layoutControlItem18";
-            this.layoutControlItem58.Size = new System.Drawing.Size(1453, 245);
+            this.layoutControlItem58.Size = new System.Drawing.Size(1453, 343);
             this.layoutControlItem58.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem58.TextVisible = false;
             // 
             // layoutControlItem59
             // 
             this.layoutControlItem59.Control = this.panelControl12;
-            this.layoutControlItem59.Location = new System.Drawing.Point(0, 601);
+            this.layoutControlItem59.Location = new System.Drawing.Point(0, 583);
             this.layoutControlItem59.Name = "layoutControlItem97";
-            this.layoutControlItem59.Size = new System.Drawing.Size(1453, 55);
+            this.layoutControlItem59.Size = new System.Drawing.Size(1453, 57);
             this.layoutControlItem59.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem59.TextVisible = false;
             // 
             // layoutControlItem60
             // 
             this.layoutControlItem60.Control = this.panelControl11;
-            this.layoutControlItem60.Location = new System.Drawing.Point(0, 656);
+            this.layoutControlItem60.Location = new System.Drawing.Point(0, 640);
             this.layoutControlItem60.Name = "layoutControlItem98";
-            this.layoutControlItem60.Size = new System.Drawing.Size(1453, 163);
+            this.layoutControlItem60.Size = new System.Drawing.Size(1453, 220);
             this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem60.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.opoEditCartItemBTN;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 819);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 860);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(726, 44);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -1640,7 +1666,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.opoDeleteCartITemBTN;
-            this.layoutControlItem4.Location = new System.Drawing.Point(726, 819);
+            this.layoutControlItem4.Location = new System.Drawing.Point(726, 860);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(727, 44);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -1658,7 +1684,7 @@
             this.xtraTabPage2.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabPage2.Controls.Add(this.xtraScrollableControl2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1496, 1202);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1496, 1343);
             this.xtraTabPage2.Text = "Local Purchase Order";
             // 
             // xtraScrollableControl2
@@ -1667,7 +1693,7 @@
             this.xtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl2.Location = new System.Drawing.Point(0, 0);
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(1496, 1202);
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(1496, 1343);
             this.xtraScrollableControl2.TabIndex = 9;
             // 
             // layoutControl5
@@ -1685,7 +1711,7 @@
             this.layoutControl5.Location = new System.Drawing.Point(0, 0);
             this.layoutControl5.Name = "layoutControl5";
             this.layoutControl5.Root = this.layoutControlGroup7;
-            this.layoutControl5.Size = new System.Drawing.Size(1479, 1203);
+            this.layoutControl5.Size = new System.Drawing.Size(1479, 1344);
             this.layoutControl5.TabIndex = 0;
             this.layoutControl5.Text = "layoutControl5";
             // 
@@ -1695,7 +1721,7 @@
             this.gpoDeleteCartITemBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoDeleteCartITemBTN.Appearance.Options.UseBackColor = true;
             this.gpoDeleteCartITemBTN.Appearance.Options.UseFont = true;
-            this.gpoDeleteCartITemBTN.Location = new System.Drawing.Point(742, 944);
+            this.gpoDeleteCartITemBTN.Location = new System.Drawing.Point(742, 897);
             this.gpoDeleteCartITemBTN.Name = "gpoDeleteCartITemBTN";
             this.gpoDeleteCartITemBTN.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.gpoDeleteCartITemBTN.Size = new System.Drawing.Size(721, 38);
@@ -1710,7 +1736,7 @@
             this.gpoEditCartItemBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoEditCartItemBTN.Appearance.Options.UseBackColor = true;
             this.gpoEditCartItemBTN.Appearance.Options.UseFont = true;
-            this.gpoEditCartItemBTN.Location = new System.Drawing.Point(16, 944);
+            this.gpoEditCartItemBTN.Location = new System.Drawing.Point(16, 897);
             this.gpoEditCartItemBTN.Name = "gpoEditCartItemBTN";
             this.gpoEditCartItemBTN.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.gpoEditCartItemBTN.Size = new System.Drawing.Size(720, 38);
@@ -1722,10 +1748,10 @@
             // panelControl27
             // 
             this.panelControl27.Controls.Add(this.gpoItemsInCartGC);
-            this.panelControl27.Location = new System.Drawing.Point(16, 725);
+            this.panelControl27.Location = new System.Drawing.Point(16, 656);
             this.panelControl27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl27.Name = "panelControl27";
-            this.panelControl27.Size = new System.Drawing.Size(1447, 213);
+            this.panelControl27.Size = new System.Drawing.Size(1447, 235);
             this.panelControl27.TabIndex = 8;
             // 
             // gpoItemsInCartGC
@@ -1734,7 +1760,7 @@
             this.gpoItemsInCartGC.Location = new System.Drawing.Point(2, 2);
             this.gpoItemsInCartGC.MainView = this.gpoItemsInCartGV;
             this.gpoItemsInCartGC.Name = "gpoItemsInCartGC";
-            this.gpoItemsInCartGC.Size = new System.Drawing.Size(1443, 209);
+            this.gpoItemsInCartGC.Size = new System.Drawing.Size(1443, 231);
             this.gpoItemsInCartGC.TabIndex = 5;
             this.gpoItemsInCartGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gpoItemsInCartGV,
@@ -1766,9 +1792,9 @@
             this.panelControl26.Controls.Add(this.labelControl51);
             this.panelControl26.Controls.Add(this.labelControl52);
             this.panelControl26.Controls.Add(this.labelControl53);
-            this.panelControl26.Location = new System.Drawing.Point(16, 663);
+            this.panelControl26.Location = new System.Drawing.Point(16, 591);
             this.panelControl26.Name = "panelControl26";
-            this.panelControl26.Size = new System.Drawing.Size(1447, 56);
+            this.panelControl26.Size = new System.Drawing.Size(1447, 59);
             this.panelControl26.TabIndex = 7;
             // 
             // labelControl47
@@ -1776,7 +1802,7 @@
             this.labelControl47.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl47.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.labelControl47.Appearance.Options.UseFont = true;
-            this.labelControl47.Location = new System.Drawing.Point(14, 29);
+            this.labelControl47.Location = new System.Drawing.Point(14, 30);
             this.labelControl47.Name = "labelControl47";
             this.labelControl47.Size = new System.Drawing.Size(243, 13);
             this.labelControl47.TabIndex = 6;
@@ -1790,7 +1816,7 @@
             this.gpoItemsInCartTotalAmountLBL.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.gpoItemsInCartTotalAmountLBL.Appearance.Options.UseFont = true;
             this.gpoItemsInCartTotalAmountLBL.Appearance.Options.UseForeColor = true;
-            this.gpoItemsInCartTotalAmountLBL.Location = new System.Drawing.Point(1222, 21);
+            this.gpoItemsInCartTotalAmountLBL.Location = new System.Drawing.Point(1222, 22);
             this.gpoItemsInCartTotalAmountLBL.Name = "gpoItemsInCartTotalAmountLBL";
             this.gpoItemsInCartTotalAmountLBL.Size = new System.Drawing.Size(9, 20);
             this.gpoItemsInCartTotalAmountLBL.TabIndex = 5;
@@ -1801,7 +1827,7 @@
             this.gpoItemsInCartTotalItemsLBL.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.gpoItemsInCartTotalItemsLBL.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoItemsInCartTotalItemsLBL.Appearance.Options.UseFont = true;
-            this.gpoItemsInCartTotalItemsLBL.Location = new System.Drawing.Point(1207, 3);
+            this.gpoItemsInCartTotalItemsLBL.Location = new System.Drawing.Point(1207, 4);
             this.gpoItemsInCartTotalItemsLBL.Name = "gpoItemsInCartTotalItemsLBL";
             this.gpoItemsInCartTotalItemsLBL.Size = new System.Drawing.Size(9, 20);
             this.gpoItemsInCartTotalItemsLBL.TabIndex = 3;
@@ -1812,7 +1838,7 @@
             this.labelControl51.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl51.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl51.Appearance.Options.UseFont = true;
-            this.labelControl51.Location = new System.Drawing.Point(1136, 21);
+            this.labelControl51.Location = new System.Drawing.Point(1136, 22);
             this.labelControl51.Name = "labelControl51";
             this.labelControl51.Size = new System.Drawing.Size(81, 17);
             this.labelControl51.TabIndex = 2;
@@ -1823,7 +1849,7 @@
             this.labelControl52.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl52.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl52.Appearance.Options.UseFont = true;
-            this.labelControl52.Location = new System.Drawing.Point(1136, 4);
+            this.labelControl52.Location = new System.Drawing.Point(1136, 5);
             this.labelControl52.Name = "labelControl52";
             this.labelControl52.Size = new System.Drawing.Size(67, 17);
             this.labelControl52.TabIndex = 1;
@@ -1836,7 +1862,7 @@
             this.labelControl53.Appearance.Options.UseFont = true;
             this.labelControl53.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl53.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl53.ImageOptions.SvgImage")));
-            this.labelControl53.Location = new System.Drawing.Point(3, 0);
+            this.labelControl53.Location = new System.Drawing.Point(3, 1);
             this.labelControl53.Name = "labelControl53";
             this.labelControl53.Size = new System.Drawing.Size(136, 32);
             this.labelControl53.TabIndex = 0;
@@ -1845,9 +1871,9 @@
             // panelControl6
             // 
             this.panelControl6.Controls.Add(this.layoutControl6);
-            this.panelControl6.Location = new System.Drawing.Point(16, 1054);
+            this.panelControl6.Location = new System.Drawing.Point(16, 1016);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(1447, 133);
+            this.panelControl6.Size = new System.Drawing.Size(1447, 312);
             this.panelControl6.TabIndex = 7;
             // 
             // layoutControl6
@@ -1857,7 +1883,7 @@
             this.layoutControl6.Location = new System.Drawing.Point(2, 2);
             this.layoutControl6.Name = "layoutControl6";
             this.layoutControl6.Root = this.layoutControlGroup4;
-            this.layoutControl6.Size = new System.Drawing.Size(1443, 129);
+            this.layoutControl6.Size = new System.Drawing.Size(1443, 308);
             this.layoutControl6.TabIndex = 0;
             this.layoutControl6.Text = "layoutControl4";
             // 
@@ -1866,7 +1892,7 @@
             this.gpoItemsInOrderGC.Location = new System.Drawing.Point(16, 16);
             this.gpoItemsInOrderGC.MainView = this.gpoItemsInOrderGV;
             this.gpoItemsInOrderGC.Name = "gpoItemsInOrderGC";
-            this.gpoItemsInOrderGC.Size = new System.Drawing.Size(1411, 97);
+            this.gpoItemsInOrderGC.Size = new System.Drawing.Size(1411, 276);
             this.gpoItemsInOrderGC.TabIndex = 4;
             this.gpoItemsInOrderGC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gpoItemsInOrderGV,
@@ -1894,7 +1920,7 @@
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem20});
             this.layoutControlGroup4.Name = "layoutControlGroup3";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(1443, 129);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(1443, 308);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem20
@@ -1902,7 +1928,7 @@
             this.layoutControlItem20.Control = this.gpoItemsInOrderGC;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem19";
-            this.layoutControlItem20.Size = new System.Drawing.Size(1417, 103);
+            this.layoutControlItem20.Size = new System.Drawing.Size(1417, 282);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
@@ -1917,9 +1943,9 @@
             this.panelControl7.Controls.Add(this.labelControl13);
             this.panelControl7.Controls.Add(this.labelControl14);
             this.panelControl7.Controls.Add(this.labelControl15);
-            this.panelControl7.Location = new System.Drawing.Point(16, 988);
+            this.panelControl7.Location = new System.Drawing.Point(16, 941);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(1447, 60);
+            this.panelControl7.Size = new System.Drawing.Size(1447, 69);
             this.panelControl7.TabIndex = 6;
             // 
             // labelControl3
@@ -1927,7 +1953,7 @@
             this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(15, 39);
+            this.labelControl3.Location = new System.Drawing.Point(15, 43);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(243, 13);
             this.labelControl3.TabIndex = 6;
@@ -1941,7 +1967,7 @@
             this.gpoItemsInOrderTotalAmount.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(130)))), ((int)(((byte)(54)))));
             this.gpoItemsInOrderTotalAmount.Appearance.Options.UseFont = true;
             this.gpoItemsInOrderTotalAmount.Appearance.Options.UseForeColor = true;
-            this.gpoItemsInOrderTotalAmount.Location = new System.Drawing.Point(1222, 28);
+            this.gpoItemsInOrderTotalAmount.Location = new System.Drawing.Point(1222, 32);
             this.gpoItemsInOrderTotalAmount.Name = "gpoItemsInOrderTotalAmount";
             this.gpoItemsInOrderTotalAmount.Size = new System.Drawing.Size(9, 20);
             this.gpoItemsInOrderTotalAmount.TabIndex = 5;
@@ -1952,7 +1978,7 @@
             this.gpoTotalAmountTotalItems.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.gpoTotalAmountTotalItems.Appearance.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoTotalAmountTotalItems.Appearance.Options.UseFont = true;
-            this.gpoTotalAmountTotalItems.Location = new System.Drawing.Point(1207, 13);
+            this.gpoTotalAmountTotalItems.Location = new System.Drawing.Point(1207, 17);
             this.gpoTotalAmountTotalItems.Name = "gpoTotalAmountTotalItems";
             this.gpoTotalAmountTotalItems.Size = new System.Drawing.Size(9, 20);
             this.gpoTotalAmountTotalItems.TabIndex = 3;
@@ -1963,7 +1989,7 @@
             this.labelControl13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(1136, 31);
+            this.labelControl13.Location = new System.Drawing.Point(1136, 35);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(81, 17);
             this.labelControl13.TabIndex = 2;
@@ -1974,7 +2000,7 @@
             this.labelControl14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(1136, 14);
+            this.labelControl14.Location = new System.Drawing.Point(1136, 18);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(67, 17);
             this.labelControl14.TabIndex = 1;
@@ -1987,7 +2013,7 @@
             this.labelControl15.Appearance.Options.UseFont = true;
             this.labelControl15.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelControl15.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("labelControl15.ImageOptions.SvgImage")));
-            this.labelControl15.Location = new System.Drawing.Point(4, 4);
+            this.labelControl15.Location = new System.Drawing.Point(4, 8);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(148, 32);
             this.labelControl15.TabIndex = 0;
@@ -2002,7 +2028,7 @@
             this.panelControl8.Controls.Add(this.labelControl17);
             this.panelControl8.Location = new System.Drawing.Point(16, 16);
             this.panelControl8.Name = "panelControl8";
-            this.panelControl8.Size = new System.Drawing.Size(1447, 69);
+            this.panelControl8.Size = new System.Drawing.Size(1447, 63);
             this.panelControl8.TabIndex = 5;
             // 
             // labelControl16
@@ -2010,18 +2036,18 @@
             this.labelControl16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl16.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl16.Appearance.Options.UseFont = true;
-            this.labelControl16.Location = new System.Drawing.Point(12, 43);
+            this.labelControl16.Location = new System.Drawing.Point(12, 37);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(255, 13);
+            this.labelControl16.Size = new System.Drawing.Size(282, 13);
             this.labelControl16.TabIndex = 1;
-            this.labelControl16.Text = "Create a new purchase order for asset acquisition";
+            this.labelControl16.Text = "Create a new local purchase order for asset acquisition";
             // 
             // labelControl17
             // 
             this.labelControl17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl17.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(12, 16);
+            this.labelControl17.Location = new System.Drawing.Point(12, 10);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(188, 25);
             this.labelControl17.TabIndex = 0;
@@ -2032,9 +2058,9 @@
             this.panelControl9.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl9.Appearance.Options.UseBackColor = true;
             this.panelControl9.Controls.Add(this.layoutControl7);
-            this.panelControl9.Location = new System.Drawing.Point(16, 366);
+            this.panelControl9.Location = new System.Drawing.Point(16, 321);
             this.panelControl9.Name = "panelControl9";
-            this.panelControl9.Size = new System.Drawing.Size(1447, 291);
+            this.panelControl9.Size = new System.Drawing.Size(1447, 264);
             this.panelControl9.TabIndex = 0;
             // 
             // panelControl10
@@ -2042,13 +2068,14 @@
             this.panelControl10.Appearance.BackColor = System.Drawing.Color.White;
             this.panelControl10.Appearance.Options.UseBackColor = true;
             this.panelControl10.Controls.Add(this.layoutControl8);
-            this.panelControl10.Location = new System.Drawing.Point(16, 91);
+            this.panelControl10.Location = new System.Drawing.Point(16, 85);
             this.panelControl10.Name = "panelControl10";
-            this.panelControl10.Size = new System.Drawing.Size(1447, 269);
+            this.panelControl10.Size = new System.Drawing.Size(1447, 230);
             this.panelControl10.TabIndex = 4;
             // 
             // layoutControl8
             // 
+            this.layoutControl8.Controls.Add(this.attachBTN);
             this.layoutControl8.Controls.Add(this.gpoRemarksTxtEdit);
             this.layoutControl8.Controls.Add(this.gpoPurchaseOrderDate);
             this.layoutControl8.Controls.Add(this.gpoReqDepartmentCB);
@@ -2057,13 +2084,26 @@
             this.layoutControl8.Location = new System.Drawing.Point(2, 2);
             this.layoutControl8.Name = "layoutControl8";
             this.layoutControl8.Root = this.layoutControlGroup6;
-            this.layoutControl8.Size = new System.Drawing.Size(1443, 265);
+            this.layoutControl8.Size = new System.Drawing.Size(1443, 226);
             this.layoutControl8.TabIndex = 0;
             this.layoutControl8.Text = "layoutControl2";
             // 
+            // attachBTN
+            // 
+            this.attachBTN.Appearance.BackColor = System.Drawing.Color.ForestGreen;
+            this.attachBTN.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.attachBTN.Appearance.Options.UseBackColor = true;
+            this.attachBTN.Appearance.Options.UseFont = true;
+            this.attachBTN.Location = new System.Drawing.Point(573, 105);
+            this.attachBTN.Name = "attachBTN";
+            this.attachBTN.Size = new System.Drawing.Size(113, 28);
+            this.attachBTN.StyleController = this.layoutControl8;
+            this.attachBTN.TabIndex = 9;
+            this.attachBTN.Text = "Attach File";
+            // 
             // gpoRemarksTxtEdit
             // 
-            this.gpoRemarksTxtEdit.Location = new System.Drawing.Point(16, 219);
+            this.gpoRemarksTxtEdit.Location = new System.Drawing.Point(16, 180);
             this.gpoRemarksTxtEdit.Name = "gpoRemarksTxtEdit";
             this.gpoRemarksTxtEdit.Properties.Appearance.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoRemarksTxtEdit.Properties.Appearance.Options.UseFont = true;
@@ -2074,7 +2114,7 @@
             // gpoPurchaseOrderDate
             // 
             this.gpoPurchaseOrderDate.EditValue = null;
-            this.gpoPurchaseOrderDate.Location = new System.Drawing.Point(557, 71);
+            this.gpoPurchaseOrderDate.Location = new System.Drawing.Point(573, 71);
             this.gpoPurchaseOrderDate.Name = "gpoPurchaseOrderDate";
             this.gpoPurchaseOrderDate.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoPurchaseOrderDate.Properties.Appearance.Options.UseFont = true;
@@ -2091,7 +2131,7 @@
             this.gpoPurchaseOrderDate.Properties.EditFormat.FormatString = "";
             this.gpoPurchaseOrderDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gpoPurchaseOrderDate.Properties.MaskSettings.Set("mask", "");
-            this.gpoPurchaseOrderDate.Size = new System.Drawing.Size(870, 28);
+            this.gpoPurchaseOrderDate.Size = new System.Drawing.Size(854, 28);
             this.gpoPurchaseOrderDate.StyleController = this.layoutControl8;
             this.gpoPurchaseOrderDate.TabIndex = 5;
             // 
@@ -2103,7 +2143,7 @@
             this.gpoReqDepartmentCB.Properties.Appearance.Options.UseFont = true;
             this.gpoReqDepartmentCB.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gpoReqDepartmentCB.Size = new System.Drawing.Size(537, 28);
+            this.gpoReqDepartmentCB.Size = new System.Drawing.Size(553, 28);
             this.gpoReqDepartmentCB.StyleController = this.layoutControl8;
             this.gpoReqDepartmentCB.TabIndex = 4;
             // 
@@ -2113,7 +2153,7 @@
             this.gpoPurchaseOrderNumberTxtEdit.Name = "gpoPurchaseOrderNumberTxtEdit";
             this.gpoPurchaseOrderNumberTxtEdit.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpoPurchaseOrderNumberTxtEdit.Properties.Appearance.Options.UseFont = true;
-            this.gpoPurchaseOrderNumberTxtEdit.Size = new System.Drawing.Size(535, 28);
+            this.gpoPurchaseOrderNumberTxtEdit.Size = new System.Drawing.Size(551, 28);
             this.gpoPurchaseOrderNumberTxtEdit.StyleController = this.layoutControl8;
             this.gpoPurchaseOrderNumberTxtEdit.TabIndex = 6;
             // 
@@ -2124,14 +2164,13 @@
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem29,
             this.layoutControlItem30,
-            this.emptySpaceItem4,
             this.simpleLabelItem5,
             this.layoutControlItem31,
             this.layoutControlItem32,
             this.emptySpaceItem7,
-            this.emptySpaceItem8});
+            this.layoutControlItem7});
             this.layoutControlGroup6.Name = "layoutControlGroup1";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(1443, 265);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(1443, 226);
             this.layoutControlGroup6.TextVisible = false;
             // 
             // layoutControlItem29
@@ -2142,7 +2181,7 @@
             this.layoutControlItem29.Location = new System.Drawing.Point(0, 36);
             this.layoutControlItem29.Name = "layoutControlItem3";
             this.layoutControlItem29.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 4, 2);
-            this.layoutControlItem29.Size = new System.Drawing.Size(541, 53);
+            this.layoutControlItem29.Size = new System.Drawing.Size(557, 53);
             this.layoutControlItem29.Text = "Requesting Department *";
             this.layoutControlItem29.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem29.TextSize = new System.Drawing.Size(210, 13);
@@ -2154,18 +2193,10 @@
             this.layoutControlItem30.Control = this.gpoPurchaseOrderNumberTxtEdit;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 89);
             this.layoutControlItem30.Name = "layoutControlItem5";
-            this.layoutControlItem30.Size = new System.Drawing.Size(541, 53);
+            this.layoutControlItem30.Size = new System.Drawing.Size(557, 53);
             this.layoutControlItem30.Text = "Purchase Order Number";
             this.layoutControlItem30.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem30.TextSize = new System.Drawing.Size(210, 13);
-            // 
-            // emptySpaceItem4
-            // 
-            this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 142);
-            this.emptySpaceItem4.Name = "emptySpaceItem2";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(1407, 39);
-            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem5
             // 
@@ -2185,7 +2216,7 @@
             this.layoutControlItem31.AppearanceItemCaption.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem31.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem31.Control = this.gpoRemarksTxtEdit;
-            this.layoutControlItem31.Location = new System.Drawing.Point(0, 181);
+            this.layoutControlItem31.Location = new System.Drawing.Point(0, 142);
             this.layoutControlItem31.Name = "layoutControlItem7";
             this.layoutControlItem31.Size = new System.Drawing.Size(1417, 58);
             this.layoutControlItem31.Text = "Remarks";
@@ -2197,9 +2228,9 @@
             this.layoutControlItem32.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem32.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem32.Control = this.gpoPurchaseOrderDate;
-            this.layoutControlItem32.Location = new System.Drawing.Point(541, 36);
+            this.layoutControlItem32.Location = new System.Drawing.Point(557, 36);
             this.layoutControlItem32.Name = "layoutControlItem4";
-            this.layoutControlItem32.Size = new System.Drawing.Size(876, 53);
+            this.layoutControlItem32.Size = new System.Drawing.Size(860, 53);
             this.layoutControlItem32.Text = "Purchase Order Date *";
             this.layoutControlItem32.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem32.TextSize = new System.Drawing.Size(210, 13);
@@ -2207,18 +2238,19 @@
             // emptySpaceItem7
             // 
             this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(541, 89);
+            this.emptySpaceItem7.Location = new System.Drawing.Point(676, 89);
             this.emptySpaceItem7.Name = "emptySpaceItem6";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(876, 53);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(741, 53);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // emptySpaceItem8
+            // layoutControlItem7
             // 
-            this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(1407, 142);
-            this.emptySpaceItem8.Name = "emptySpaceItem5";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(10, 39);
-            this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.Control = this.attachBTN;
+            this.layoutControlItem7.Location = new System.Drawing.Point(557, 89);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(119, 53);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlGroup7
             // 
@@ -2235,24 +2267,24 @@
             this.layoutControlItem5,
             this.layoutControlItem6});
             this.layoutControlGroup7.Name = "Root";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(1479, 1203);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(1479, 1344);
             this.layoutControlGroup7.TextVisible = false;
             // 
             // layoutControlItem34
             // 
             this.layoutControlItem34.Control = this.panelControl10;
-            this.layoutControlItem34.Location = new System.Drawing.Point(0, 75);
+            this.layoutControlItem34.Location = new System.Drawing.Point(0, 69);
             this.layoutControlItem34.Name = "layoutControlItem1";
-            this.layoutControlItem34.Size = new System.Drawing.Size(1453, 275);
+            this.layoutControlItem34.Size = new System.Drawing.Size(1453, 236);
             this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem34.TextVisible = false;
             // 
             // layoutControlItem35
             // 
             this.layoutControlItem35.Control = this.panelControl9;
-            this.layoutControlItem35.Location = new System.Drawing.Point(0, 350);
+            this.layoutControlItem35.Location = new System.Drawing.Point(0, 305);
             this.layoutControlItem35.Name = "layoutControlItem2";
-            this.layoutControlItem35.Size = new System.Drawing.Size(1453, 297);
+            this.layoutControlItem35.Size = new System.Drawing.Size(1453, 270);
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
             // 
@@ -2261,50 +2293,50 @@
             this.layoutControlItem36.Control = this.panelControl8;
             this.layoutControlItem36.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem36.Name = "layoutControlItem8";
-            this.layoutControlItem36.Size = new System.Drawing.Size(1453, 75);
+            this.layoutControlItem36.Size = new System.Drawing.Size(1453, 69);
             this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem36.TextVisible = false;
             // 
             // layoutControlItem37
             // 
             this.layoutControlItem37.Control = this.panelControl7;
-            this.layoutControlItem37.Location = new System.Drawing.Point(0, 972);
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 925);
             this.layoutControlItem37.Name = "layoutControlItem17";
-            this.layoutControlItem37.Size = new System.Drawing.Size(1453, 66);
+            this.layoutControlItem37.Size = new System.Drawing.Size(1453, 75);
             this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem37.TextVisible = false;
             // 
             // layoutControlItem38
             // 
             this.layoutControlItem38.Control = this.panelControl6;
-            this.layoutControlItem38.Location = new System.Drawing.Point(0, 1038);
+            this.layoutControlItem38.Location = new System.Drawing.Point(0, 1000);
             this.layoutControlItem38.Name = "layoutControlItem18";
-            this.layoutControlItem38.Size = new System.Drawing.Size(1453, 139);
+            this.layoutControlItem38.Size = new System.Drawing.Size(1453, 318);
             this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem38.TextVisible = false;
             // 
             // layoutControlItem97
             // 
             this.layoutControlItem97.Control = this.panelControl26;
-            this.layoutControlItem97.Location = new System.Drawing.Point(0, 647);
+            this.layoutControlItem97.Location = new System.Drawing.Point(0, 575);
             this.layoutControlItem97.Name = "layoutControlItem97";
-            this.layoutControlItem97.Size = new System.Drawing.Size(1453, 62);
+            this.layoutControlItem97.Size = new System.Drawing.Size(1453, 65);
             this.layoutControlItem97.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem97.TextVisible = false;
             // 
             // layoutControlItem98
             // 
             this.layoutControlItem98.Control = this.panelControl27;
-            this.layoutControlItem98.Location = new System.Drawing.Point(0, 709);
+            this.layoutControlItem98.Location = new System.Drawing.Point(0, 640);
             this.layoutControlItem98.Name = "layoutControlItem98";
-            this.layoutControlItem98.Size = new System.Drawing.Size(1453, 219);
+            this.layoutControlItem98.Size = new System.Drawing.Size(1453, 241);
             this.layoutControlItem98.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem98.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.gpoEditCartItemBTN;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 928);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 881);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(726, 44);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -2313,7 +2345,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.gpoDeleteCartITemBTN;
-            this.layoutControlItem6.Location = new System.Drawing.Point(726, 928);
+            this.layoutControlItem6.Location = new System.Drawing.Point(726, 881);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(727, 44);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -2332,7 +2364,7 @@
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.PageImagePosition = DevExpress.XtraTab.TabPageImagePosition.Center;
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage3;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1498, 1235);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1498, 1376);
             this.xtraTabControl1.TabIndex = 5;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage2,
@@ -2347,7 +2379,7 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PurchaseOrderUC";
-            this.Size = new System.Drawing.Size(1498, 1235);
+            this.Size = new System.Drawing.Size(1498, 1376);
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraScrollableControl3.ResumeLayout(false);
@@ -2436,6 +2468,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem51)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem52)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).EndInit();
@@ -2488,12 +2521,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
@@ -2647,12 +2679,10 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem34;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
@@ -2679,5 +2709,9 @@
         private DevExpress.XtraEditors.SimpleButton gpoEditCartItemBTN;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.SimpleButton attachBTN;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

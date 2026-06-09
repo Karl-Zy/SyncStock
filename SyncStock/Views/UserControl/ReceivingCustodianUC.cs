@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyncStock.Models.Accounts;
 
 namespace SyncStock.Views.UserControl
 {
@@ -47,11 +48,13 @@ namespace SyncStock.Views.UserControl
         // Gi-check ni sa button ug sa drag-and-drop.
         private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".pdf" };
 
+        private readonly User _currentUser;
 
-
-        public ReceivingCustodianUC()
+        public ReceivingCustodianUC(User currentUser)
         {
             InitializeComponent();
+
+            _currentUser = currentUser;
         }
 
 
@@ -362,7 +365,7 @@ namespace SyncStock.Views.UserControl
         //   - Mo-insert og bag-ong confirmed-item record.
         //   - I-update ang status sa PO line-item ngadto sa "Received".
         //   - I-clear ang form dayon i-refresh ang grid para updated.
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private async void btnConfirm_Click(object sender, EventArgs e)
         {
             // --- Validation Step 1: Siguraduhon nga naay gi-pili nga row sa grid ---
             if (string.IsNullOrEmpty(lblPONumber.Text) || lblPONumber.Text == "PO Number:")
@@ -467,6 +470,19 @@ namespace SyncStock.Views.UserControl
                 DevExpress.XtraEditors.XtraMessageBox.Show(
                     "Asset inventory ledger updated and item confirmed successfully!",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (_isEditMode)
+                {
+                    _currentUser.Action =
+                        $"Updated Received Item {confirmationPayload.ItemName} ({confirmationPayload.PONumber})";
+                }
+                else
+                {
+                    _currentUser.Action =
+                        $"Confirmed Received Item {confirmationPayload.ItemName} ({confirmationPayload.PONumber})";
+                }
+
+                await _repo.InsertUserLogsAsync(_currentUser);
 
                 if (_isEditMode)
                 {

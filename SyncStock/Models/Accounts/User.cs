@@ -17,6 +17,14 @@ namespace SyncStock.Models.Accounts
 
         public string RfidUID { get; set; }
 
+        public string Action { get; set; }
+
+        public string System { get; set; }
+
+        public string Hostname { get; set; }
+
+        public string IPAddress { get; set; }
+
         private string _password;
 
         public User() { }

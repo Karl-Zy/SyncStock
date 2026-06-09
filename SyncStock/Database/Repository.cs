@@ -1289,5 +1289,35 @@ WHERE ConfirmedItemID = @ConfirmedItemID";
                     new { Status = WorkflowStatus.Received });
             }
         }
+
+        public async Task InsertUserLogsAsync(User user)
+        {
+            using (var conn = CreateConnection())
+            {
+                string query = @"
+        INSERT INTO Logs
+        (
+            username,
+            action,
+            [date],
+            [timestamp],
+            system,
+            hostname,
+            IPAddress
+        )
+        VALUES
+        (
+            @UserName,
+            @Action,
+            GETDATE(),
+            GETDATE(),
+            @System,
+            @Hostname,
+            @IPAddress
+        )";
+
+                await conn.ExecuteAsync(query, user);
+            }
+        }
     }
 }

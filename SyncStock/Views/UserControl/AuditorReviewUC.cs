@@ -1050,7 +1050,7 @@ namespace SyncStock.Views.UserControl
 
             // Maghimo ug ReceivingCustodianUC ug i-load ang napili nga item
             ReceivingCustodianUC receivingUC =
-                new ReceivingCustodianUC();
+                new ReceivingCustodianUC(_currentUser);
 
             receivingUC.LoadEditItem(_selectedItem);
 
