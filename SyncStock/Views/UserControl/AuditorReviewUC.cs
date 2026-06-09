@@ -1030,7 +1030,7 @@ namespace SyncStock.Views.UserControl
 
         // Gi-trigger kung gi-click ang Edit button
         // I-abri ang Receiving Custodian form para sa editing
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private  void BtnEdit_Click(object sender, EventArgs e)
         {
             // I-check kung Admin ang user; kung dili, dili pwede mag-edit
             if (!IsAdmin)
@@ -1066,13 +1066,15 @@ namespace SyncStock.Views.UserControl
             // I-show ang form ug hulaton ang user nga mosira
             editForm.ShowDialog();
 
+            
+
             // Human masira ang edit form, i-reload ang data para makita ang mga pagbag-o
             LoadReviewItems();
         }
 
         // Gi-trigger kung gi-click ang Remarks button
         // Ipakita ang remarks sa napili nga item sa message box
-        private void BtnRemarks_Click(object sender, EventArgs e)
+        private async void BtnRemarks_Click(object sender, EventArgs e)
         {
             // Kung walay napili nga item, undangon na
             if (_selectedItem == null)
@@ -1086,6 +1088,11 @@ namespace SyncStock.Views.UserControl
                 "Item Remarks",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            _currentUser.Action =
+    $"Viewed Remarks for Item {_selectedItem.ItemName} ({_selectedItem.PONumber})";
+
+            await _repo.InsertUserLogsAsync(_currentUser);
         }
     }
 }
