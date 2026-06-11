@@ -119,18 +119,20 @@
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1726, 972);
+            this.layoutControl1.Size = new System.Drawing.Size(2301, 1196);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.labelControl21);
-            this.panelControl4.Location = new System.Drawing.Point(16, 122);
+            this.panelControl4.Location = new System.Drawing.Point(21, 150);
+            this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1694, 76);
+            this.panelControl4.Size = new System.Drawing.Size(2259, 93);
             this.panelControl4.TabIndex = 6;
             // 
             // labelControl21
@@ -139,9 +141,10 @@
             this.labelControl21.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl21.Appearance.Options.UseBackColor = true;
             this.labelControl21.Appearance.Options.UseFont = true;
-            this.labelControl21.Location = new System.Drawing.Point(105, 19);
+            this.labelControl21.Location = new System.Drawing.Point(140, 23);
+            this.labelControl21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(1446, 32);
+            this.labelControl21.Size = new System.Drawing.Size(1812, 41);
             this.labelControl21.TabIndex = 0;
             this.labelControl21.Text = "SyncStock is an inventory and asset management system that streamlines procuremen" +
     "t, receiving, auditing, and reporitng processes.";
@@ -149,9 +152,10 @@
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.pictureEdit1);
-            this.panelControl3.Location = new System.Drawing.Point(16, 16);
+            this.panelControl3.Location = new System.Drawing.Point(21, 20);
+            this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(137, 100);
+            this.panelControl3.Size = new System.Drawing.Size(183, 122);
             this.panelControl3.TabIndex = 0;
             // 
             // pictureEdit1
@@ -160,13 +164,14 @@
             this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
+            this.pictureEdit1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.NullText = " ";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Size = new System.Drawing.Size(133, 96);
+            this.pictureEdit1.Size = new System.Drawing.Size(179, 118);
             this.pictureEdit1.TabIndex = 0;
             // 
             // panelControl2
@@ -180,9 +185,10 @@
             this.panelControl2.Controls.Add(this.groupControl4);
             this.panelControl2.Controls.Add(this.groupControl3);
             this.panelControl2.Controls.Add(this.groupControl1);
-            this.panelControl2.Location = new System.Drawing.Point(16, 204);
+            this.panelControl2.Location = new System.Drawing.Point(21, 251);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1694, 752);
+            this.panelControl2.Size = new System.Drawing.Size(2259, 925);
             this.panelControl2.TabIndex = 5;
             // 
             // groupControl7
@@ -195,9 +201,10 @@
             this.groupControl7.Controls.Add(this.pictureEdit9);
             this.groupControl7.Controls.Add(this.labelControl24);
             this.groupControl7.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl7.Location = new System.Drawing.Point(579, 35);
+            this.groupControl7.Location = new System.Drawing.Point(772, 43);
+            this.groupControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl7.Name = "groupControl7";
-            this.groupControl7.Size = new System.Drawing.Size(535, 225);
+            this.groupControl7.Size = new System.Drawing.Size(713, 277);
             this.groupControl7.TabIndex = 11;
             // 
             // labelControl23
@@ -205,32 +212,35 @@
             this.labelControl23.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl23.Appearance.Options.UseFont = true;
-            this.labelControl23.Location = new System.Drawing.Point(179, 16);
+            this.labelControl23.Location = new System.Drawing.Point(239, 20);
+            this.labelControl23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(176, 25);
+            this.labelControl23.Size = new System.Drawing.Size(225, 32);
             this.labelControl23.TabIndex = 5;
             this.labelControl23.Text = "TEAM INSTRUCTOR";
             // 
             // labelControl22
             // 
-            this.labelControl22.Location = new System.Drawing.Point(243, 198);
+            this.labelControl22.Location = new System.Drawing.Point(324, 244);
+            this.labelControl22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(36, 13);
+            this.labelControl22.Size = new System.Drawing.Size(42, 16);
             this.labelControl22.TabIndex = 4;
             this.labelControl22.Text = "Adviser";
             // 
             // pictureEdit9
             // 
             this.pictureEdit9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit9.BackgroundImage")));
-            this.pictureEdit9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit9.Location = new System.Drawing.Point(166, 47);
+            this.pictureEdit9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureEdit9.Location = new System.Drawing.Point(221, 58);
+            this.pictureEdit9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit9.Name = "pictureEdit9";
             this.pictureEdit9.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit9.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit9.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit9.Properties.NullText = " ";
             this.pictureEdit9.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit9.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit9.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit9.TabIndex = 1;
             // 
             // labelControl24
@@ -238,9 +248,10 @@
             this.labelControl24.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl24.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(184, 173);
+            this.labelControl24.Location = new System.Drawing.Point(245, 213);
+            this.labelControl24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(158, 20);
+            this.labelControl24.Size = new System.Drawing.Size(199, 25);
             this.labelControl24.TabIndex = 3;
             this.labelControl24.Text = "Gascon, Rhyne Karlo A.";
             // 
@@ -254,16 +265,18 @@
             this.groupControl6.Controls.Add(this.labelControl19);
             this.groupControl6.Controls.Add(this.labelControl20);
             this.groupControl6.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl6.Location = new System.Drawing.Point(1259, 522);
+            this.groupControl6.Location = new System.Drawing.Point(1679, 642);
+            this.groupControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl6.Name = "groupControl6";
-            this.groupControl6.Size = new System.Drawing.Size(403, 225);
+            this.groupControl6.Size = new System.Drawing.Size(537, 277);
             this.groupControl6.TabIndex = 10;
             // 
             // labelControl18
             // 
-            this.labelControl18.Location = new System.Drawing.Point(128, 196);
+            this.labelControl18.Location = new System.Drawing.Point(171, 241);
+            this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(176, 13);
+            this.labelControl18.Size = new System.Drawing.Size(207, 16);
             this.labelControl18.TabIndex = 4;
             this.labelControl18.Text = "UI/UX Designer, Backend Developer.";
             // 
@@ -271,14 +284,15 @@
             // 
             this.pictureEdit8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit8.BackgroundImage")));
             this.pictureEdit8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit8.Location = new System.Drawing.Point(118, 47);
+            this.pictureEdit8.Location = new System.Drawing.Point(157, 58);
+            this.pictureEdit8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit8.Name = "pictureEdit8";
             this.pictureEdit8.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit8.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit8.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit8.Properties.NullText = " ";
             this.pictureEdit8.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit8.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit8.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit8.TabIndex = 1;
             // 
             // labelControl19
@@ -286,9 +300,10 @@
             this.labelControl19.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl19.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl19.Appearance.Options.UseFont = true;
-            this.labelControl19.Location = new System.Drawing.Point(144, 16);
+            this.labelControl19.Location = new System.Drawing.Point(192, 20);
+            this.labelControl19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(138, 25);
+            this.labelControl19.Size = new System.Drawing.Size(178, 32);
             this.labelControl19.TabIndex = 2;
             this.labelControl19.Text = "TEAM MEMBER";
             // 
@@ -297,9 +312,10 @@
             this.labelControl20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl20.Appearance.Options.UseFont = true;
-            this.labelControl20.Location = new System.Drawing.Point(153, 170);
+            this.labelControl20.Location = new System.Drawing.Point(204, 209);
+            this.labelControl20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(125, 20);
+            this.labelControl20.Size = new System.Drawing.Size(157, 25);
             this.labelControl20.TabIndex = 3;
             this.labelControl20.Text = "BSIT   Chiong, Karl";
             // 
@@ -313,16 +329,18 @@
             this.groupControl5.Controls.Add(this.labelControl16);
             this.groupControl5.Controls.Add(this.labelControl17);
             this.groupControl5.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl5.Location = new System.Drawing.Point(850, 522);
+            this.groupControl5.Location = new System.Drawing.Point(1133, 642);
+            this.groupControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(403, 225);
+            this.groupControl5.Size = new System.Drawing.Size(537, 277);
             this.groupControl5.TabIndex = 9;
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(131, 196);
+            this.labelControl15.Location = new System.Drawing.Point(175, 241);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(176, 13);
+            this.labelControl15.Size = new System.Drawing.Size(207, 16);
             this.labelControl15.TabIndex = 4;
             this.labelControl15.Text = "UI/UX Designer, Backend Developer.";
             // 
@@ -330,14 +348,15 @@
             // 
             this.pictureEdit7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit7.BackgroundImage")));
             this.pictureEdit7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit7.Location = new System.Drawing.Point(118, 47);
+            this.pictureEdit7.Location = new System.Drawing.Point(157, 58);
+            this.pictureEdit7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit7.Name = "pictureEdit7";
             this.pictureEdit7.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit7.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit7.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit7.Properties.NullText = " ";
             this.pictureEdit7.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit7.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit7.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit7.TabIndex = 1;
             // 
             // labelControl16
@@ -345,9 +364,10 @@
             this.labelControl16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl16.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl16.Appearance.Options.UseFont = true;
-            this.labelControl16.Location = new System.Drawing.Point(142, 16);
+            this.labelControl16.Location = new System.Drawing.Point(189, 20);
+            this.labelControl16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(138, 25);
+            this.labelControl16.Size = new System.Drawing.Size(178, 32);
             this.labelControl16.TabIndex = 2;
             this.labelControl16.Text = "TEAM MEMBER";
             // 
@@ -356,9 +376,10 @@
             this.labelControl17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl17.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(115, 170);
+            this.labelControl17.Location = new System.Drawing.Point(153, 209);
+            this.labelControl17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(200, 20);
+            this.labelControl17.Size = new System.Drawing.Size(253, 25);
             this.labelControl17.TabIndex = 3;
             this.labelControl17.Text = "BSIT   Ramos, Dyncees Khrian";
             // 
@@ -372,16 +393,18 @@
             this.groupControl4.Controls.Add(this.labelControl13);
             this.groupControl4.Controls.Add(this.labelControl14);
             this.groupControl4.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl4.Location = new System.Drawing.Point(441, 522);
+            this.groupControl4.Location = new System.Drawing.Point(588, 642);
+            this.groupControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(403, 225);
+            this.groupControl4.Size = new System.Drawing.Size(537, 277);
             this.groupControl4.TabIndex = 8;
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(55, 196);
+            this.labelControl12.Location = new System.Drawing.Point(73, 241);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(297, 13);
+            this.labelControl12.Size = new System.Drawing.Size(349, 16);
             this.labelControl12.TabIndex = 4;
             this.labelControl12.Text = "System Analyst, Backend Developer, Database Administrator.";
             // 
@@ -389,14 +412,15 @@
             // 
             this.pictureEdit6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit6.BackgroundImage")));
             this.pictureEdit6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit6.Location = new System.Drawing.Point(118, 47);
+            this.pictureEdit6.Location = new System.Drawing.Point(157, 58);
+            this.pictureEdit6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit6.Name = "pictureEdit6";
             this.pictureEdit6.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit6.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit6.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit6.Properties.NullText = " ";
             this.pictureEdit6.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit6.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit6.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit6.TabIndex = 1;
             // 
             // labelControl13
@@ -404,9 +428,10 @@
             this.labelControl13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(142, 16);
+            this.labelControl13.Location = new System.Drawing.Point(189, 20);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(138, 25);
+            this.labelControl13.Size = new System.Drawing.Size(178, 32);
             this.labelControl13.TabIndex = 2;
             this.labelControl13.Text = "TEAM MEMBER";
             // 
@@ -415,9 +440,10 @@
             this.labelControl14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(125, 170);
+            this.labelControl14.Location = new System.Drawing.Point(167, 209);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(155, 20);
+            this.labelControl14.Size = new System.Drawing.Size(195, 25);
             this.labelControl14.TabIndex = 3;
             this.labelControl14.Text = "BSIT   Pait, Sean Garret";
             // 
@@ -431,16 +457,18 @@
             this.groupControl3.Controls.Add(this.labelControl10);
             this.groupControl3.Controls.Add(this.labelControl11);
             this.groupControl3.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl3.Location = new System.Drawing.Point(31, 522);
+            this.groupControl3.Location = new System.Drawing.Point(41, 642);
+            this.groupControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(403, 225);
+            this.groupControl3.Size = new System.Drawing.Size(537, 277);
             this.groupControl3.TabIndex = 7;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(56, 196);
+            this.labelControl9.Location = new System.Drawing.Point(75, 241);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(297, 13);
+            this.labelControl9.Size = new System.Drawing.Size(349, 16);
             this.labelControl9.TabIndex = 4;
             this.labelControl9.Text = "System Analyst, Backend Developer, Database Administrator.";
             // 
@@ -448,14 +476,15 @@
             // 
             this.pictureEdit5.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
             this.pictureEdit5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit5.Location = new System.Drawing.Point(118, 47);
+            this.pictureEdit5.Location = new System.Drawing.Point(157, 58);
+            this.pictureEdit5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit5.Name = "pictureEdit5";
             this.pictureEdit5.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit5.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit5.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit5.Properties.NullText = " ";
             this.pictureEdit5.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit5.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit5.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit5.TabIndex = 1;
             // 
             // labelControl10
@@ -463,9 +492,10 @@
             this.labelControl10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(141, 16);
+            this.labelControl10.Location = new System.Drawing.Point(188, 20);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(138, 25);
+            this.labelControl10.Size = new System.Drawing.Size(178, 32);
             this.labelControl10.TabIndex = 2;
             this.labelControl10.Text = "TEAM MEMBER";
             // 
@@ -474,9 +504,10 @@
             this.labelControl11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(111, 170);
+            this.labelControl11.Location = new System.Drawing.Point(148, 209);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(186, 20);
+            this.labelControl11.Size = new System.Drawing.Size(233, 25);
             this.labelControl11.TabIndex = 3;
             this.labelControl11.Text = "BSIT   Tepacia, Jureen Roda";
             // 
@@ -490,16 +521,18 @@
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Light;
-            this.groupControl1.Location = new System.Drawing.Point(579, 266);
+            this.groupControl1.Location = new System.Drawing.Point(772, 327);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(535, 225);
+            this.groupControl1.Size = new System.Drawing.Size(713, 277);
             this.groupControl1.TabIndex = 6;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(126, 199);
+            this.labelControl6.Location = new System.Drawing.Point(168, 245);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(297, 13);
+            this.labelControl6.Size = new System.Drawing.Size(349, 16);
             this.labelControl6.TabIndex = 4;
             this.labelControl6.Text = "System Analyst, Backend Developer, Database Administrator.";
             // 
@@ -507,14 +540,15 @@
             // 
             this.pictureEdit4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit4.BackgroundImage")));
             this.pictureEdit4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureEdit4.Location = new System.Drawing.Point(184, 47);
+            this.pictureEdit4.Location = new System.Drawing.Point(245, 58);
+            this.pictureEdit4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit4.Name = "pictureEdit4";
             this.pictureEdit4.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit4.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit4.Properties.NullText = " ";
             this.pictureEdit4.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit4.Size = new System.Drawing.Size(174, 120);
+            this.pictureEdit4.Size = new System.Drawing.Size(232, 148);
             this.pictureEdit4.TabIndex = 1;
             // 
             // labelControl7
@@ -522,9 +556,10 @@
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(206, 16);
+            this.labelControl7.Location = new System.Drawing.Point(275, 20);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(127, 25);
+            this.labelControl7.Size = new System.Drawing.Size(164, 32);
             this.labelControl7.TabIndex = 2;
             this.labelControl7.Text = "TEAM LEADER";
             // 
@@ -533,9 +568,10 @@
             this.labelControl8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(167, 173);
+            this.labelControl8.Location = new System.Drawing.Point(223, 213);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(215, 20);
+            this.labelControl8.Size = new System.Drawing.Size(270, 25);
             this.labelControl8.TabIndex = 3;
             this.labelControl8.Text = "BSIT  Vecencio, Christian Rohan";
             // 
@@ -544,9 +580,10 @@
             this.panelControl1.Controls.Add(this.pictureEdit2);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Location = new System.Drawing.Point(159, 16);
+            this.panelControl1.Location = new System.Drawing.Point(212, 20);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1551, 100);
+            this.panelControl1.Size = new System.Drawing.Size(2068, 122);
             this.panelControl1.TabIndex = 4;
             // 
             // pictureEdit2
@@ -554,14 +591,15 @@
             this.pictureEdit2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureEdit2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
-            this.pictureEdit2.Location = new System.Drawing.Point(549, 49);
+            this.pictureEdit2.Location = new System.Drawing.Point(732, 60);
+            this.pictureEdit2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit2.Properties.NullText = " ";
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit2.Size = new System.Drawing.Size(48, 40);
+            this.pictureEdit2.Size = new System.Drawing.Size(64, 49);
             this.pictureEdit2.TabIndex = 2;
             // 
             // labelControl2
@@ -569,9 +607,10 @@
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(598, 59);
+            this.labelControl2.Location = new System.Drawing.Point(797, 73);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(277, 20);
+            this.labelControl2.Size = new System.Drawing.Size(353, 25);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Developed by the (BSIT) SyncStock Team";
             // 
@@ -580,9 +619,10 @@
             this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(570, 5);
+            this.labelControl1.Location = new System.Drawing.Point(760, 6);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(290, 50);
+            this.labelControl1.Size = new System.Drawing.Size(358, 62);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "MEET THE TEAM";
             // 
@@ -596,24 +636,24 @@
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1726, 972);
+            this.Root.Size = new System.Drawing.Size(2301, 1196);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.panelControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(143, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(191, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1557, 106);
+            this.layoutControlItem1.Size = new System.Drawing.Size(2076, 130);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 188);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 231);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1700, 758);
+            this.layoutControlItem2.Size = new System.Drawing.Size(2267, 933);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -622,26 +662,27 @@
             this.layoutControlItem3.Control = this.panelControl3;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(143, 106);
+            this.layoutControlItem3.Size = new System.Drawing.Size(191, 130);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.panelControl4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 106);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 130);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1700, 82);
+            this.layoutControlItem4.Size = new System.Drawing.Size(2267, 101);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // MeetTheTeam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MeetTheTeam";
-            this.Size = new System.Drawing.Size(1726, 972);
+            this.Size = new System.Drawing.Size(2301, 1196);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();

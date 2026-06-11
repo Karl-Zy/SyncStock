@@ -110,12 +110,12 @@
             // 
             // xrTable2
             // 
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(4.374353F, 0.3750165F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0.3750165F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(1054.626F, 25F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(1059F, 25F);
             // 
             // xrTableRow2
             // 
@@ -147,7 +147,7 @@
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.Text = "xrTableCell10";
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell10.Weight = 1.0305187511072156D;
+            this.xrTableCell10.Weight = 1.0787409986796512D;
             // 
             // xrTableCell20
             // 
