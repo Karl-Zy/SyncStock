@@ -283,7 +283,7 @@
             // pictureEdit8
             // 
             this.pictureEdit8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit8.BackgroundImage")));
-            this.pictureEdit8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureEdit8.Location = new System.Drawing.Point(157, 58);
             this.pictureEdit8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit8.Name = "pictureEdit8";
@@ -347,7 +347,7 @@
             // pictureEdit7
             // 
             this.pictureEdit7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit7.BackgroundImage")));
-            this.pictureEdit7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureEdit7.Location = new System.Drawing.Point(157, 58);
             this.pictureEdit7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit7.Name = "pictureEdit7";
@@ -411,7 +411,7 @@
             // pictureEdit6
             // 
             this.pictureEdit6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit6.BackgroundImage")));
-            this.pictureEdit6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureEdit6.Location = new System.Drawing.Point(157, 58);
             this.pictureEdit6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit6.Name = "pictureEdit6";
@@ -474,8 +474,8 @@
             // 
             // pictureEdit5
             // 
-            this.pictureEdit5.BackgroundImage = global::SyncStock.Properties.Resources.logo_main_ui;
-            this.pictureEdit5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit5.BackgroundImage")));
+            this.pictureEdit5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureEdit5.Location = new System.Drawing.Point(157, 58);
             this.pictureEdit5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit5.Name = "pictureEdit5";
@@ -539,7 +539,7 @@
             // pictureEdit4
             // 
             this.pictureEdit4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit4.BackgroundImage")));
-            this.pictureEdit4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureEdit4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureEdit4.Location = new System.Drawing.Point(245, 58);
             this.pictureEdit4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureEdit4.Name = "pictureEdit4";
