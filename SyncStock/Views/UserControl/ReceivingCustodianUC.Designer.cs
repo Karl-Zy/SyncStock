@@ -179,7 +179,7 @@
             this.lcMainContainer.Name = "lcMainContainer";
             this.lcMainContainer.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(379, 174, 650, 400);
             this.lcMainContainer.Root = this.Root;
-            this.lcMainContainer.Size = new System.Drawing.Size(1731, 1313);
+            this.lcMainContainer.Size = new System.Drawing.Size(1727, 1313);
             this.lcMainContainer.TabIndex = 0;
             this.lcMainContainer.Text = "layoutControl1";
             // 
@@ -187,9 +187,9 @@
             // 
             this.lblSubtitle.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtitle.Appearance.Options.UseFont = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(16, 57);
+            this.lblSubtitle.Location = new System.Drawing.Point(16, 64);
             this.lblSubtitle.Name = "lblSubtitle";
-            this.lblSubtitle.Size = new System.Drawing.Size(297, 13);
+            this.lblSubtitle.Size = new System.Drawing.Size(354, 19);
             this.lblSubtitle.StyleController = this.lcMainContainer;
             this.lblSubtitle.TabIndex = 1;
             this.lblSubtitle.Text = "Receive and confirm incoming items from purchase orders";
@@ -201,7 +201,7 @@
             this.lblTitle.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.LeftBottom;
             this.lblTitle.Location = new System.Drawing.Point(16, 16);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(326, 35);
+            this.lblTitle.Size = new System.Drawing.Size(408, 42);
             this.lblTitle.StyleController = this.lcMainContainer;
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Receiving - Asset Custodian";
@@ -209,9 +209,9 @@
             // pnlPendingIncoming
             // 
             this.pnlPendingIncoming.Controls.Add(this.dlcPendingIncoming);
-            this.pnlPendingIncoming.Location = new System.Drawing.Point(16, 76);
+            this.pnlPendingIncoming.Location = new System.Drawing.Point(16, 89);
             this.pnlPendingIncoming.Name = "pnlPendingIncoming";
-            this.pnlPendingIncoming.Size = new System.Drawing.Size(1699, 577);
+            this.pnlPendingIncoming.Size = new System.Drawing.Size(1695, 571);
             this.pnlPendingIncoming.TabIndex = 4;
             // 
             // dlcPendingIncoming
@@ -227,7 +227,7 @@
             this.dlcPendingIncoming.Name = "dlcPendingIncoming";
             this.dlcPendingIncoming.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(504, 319, 650, 400);
             this.dlcPendingIncoming.Root = this.lcgPendingIncoming;
-            this.dlcPendingIncoming.Size = new System.Drawing.Size(1695, 573);
+            this.dlcPendingIncoming.Size = new System.Drawing.Size(1691, 567);
             this.dlcPendingIncoming.TabIndex = 1;
             this.dlcPendingIncoming.Text = "dataLayoutControl2";
             // 
@@ -243,14 +243,14 @@
             // 
             // searchControl
             // 
-            this.searchControl.Location = new System.Drawing.Point(1120, 71);
+            this.searchControl.Location = new System.Drawing.Point(1117, 85);
             this.searchControl.Margin = new System.Windows.Forms.Padding(4);
             this.searchControl.Name = "searchControl";
             this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.searchControl.Properties.NullValuePrompt = "Filter incoming items...";
-            this.searchControl.Size = new System.Drawing.Size(559, 28);
+            this.searchControl.Size = new System.Drawing.Size(558, 34);
             this.searchControl.StyleController = this.dlcPendingIncoming;
             this.searchControl.TabIndex = 6;
             this.searchControl.TextChanged += new System.EventHandler(this.searchControl_TextChanged);
@@ -258,11 +258,11 @@
             // gcItems
             // 
             this.gcItems.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcItems.Location = new System.Drawing.Point(16, 105);
+            this.gcItems.Location = new System.Drawing.Point(16, 125);
             this.gcItems.MainView = this.gvItemsView;
             this.gcItems.Margin = new System.Windows.Forms.Padding(4);
             this.gcItems.Name = "gcItems";
-            this.gcItems.Size = new System.Drawing.Size(1663, 452);
+            this.gcItems.Size = new System.Drawing.Size(1659, 426);
             this.gcItems.TabIndex = 5;
             this.gcItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvItemsView});
@@ -303,15 +303,15 @@
             this.emptySpacePending,
             this.layoutControlItem5});
             this.lcgPendingIncoming.Name = "Root";
-            this.lcgPendingIncoming.Size = new System.Drawing.Size(1695, 573);
+            this.lcgPendingIncoming.Size = new System.Drawing.Size(1691, 567);
             this.lcgPendingIncoming.TextVisible = false;
             // 
             // lciGrid
             // 
             this.lciGrid.Control = this.gcItems;
-            this.lciGrid.Location = new System.Drawing.Point(0, 89);
+            this.lciGrid.Location = new System.Drawing.Point(0, 109);
             this.lciGrid.Name = "lciGrid";
-            this.lciGrid.Size = new System.Drawing.Size(1669, 458);
+            this.lciGrid.Size = new System.Drawing.Size(1665, 432);
             this.lciGrid.TextSize = new System.Drawing.Size(0, 0);
             this.lciGrid.TextVisible = false;
             // 
@@ -324,44 +324,44 @@
             this.lblPendingIncoming.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.lblPendingIncoming.Location = new System.Drawing.Point(0, 0);
             this.lblPendingIncoming.Name = "lblPendingIncoming";
-            this.lblPendingIncoming.Size = new System.Drawing.Size(1669, 36);
+            this.lblPendingIncoming.Size = new System.Drawing.Size(1665, 44);
             this.lblPendingIncoming.Text = "Pending Incoming Items";
-            this.lblPendingIncoming.TextSize = new System.Drawing.Size(253, 30);
+            this.lblPendingIncoming.TextSize = new System.Drawing.Size(324, 38);
             // 
             // lblPendingGuide
             // 
             this.lblPendingGuide.AllowHotTrack = false;
             this.lblPendingGuide.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPendingGuide.AppearanceItemCaption.Options.UseFont = true;
-            this.lblPendingGuide.Location = new System.Drawing.Point(0, 36);
+            this.lblPendingGuide.Location = new System.Drawing.Point(0, 44);
             this.lblPendingGuide.Name = "lblPendingGuide";
-            this.lblPendingGuide.Size = new System.Drawing.Size(1669, 19);
+            this.lblPendingGuide.Size = new System.Drawing.Size(1665, 25);
             this.lblPendingGuide.Text = "Click on an item to process receipt";
-            this.lblPendingGuide.TextSize = new System.Drawing.Size(253, 13);
+            this.lblPendingGuide.TextSize = new System.Drawing.Size(324, 19);
             // 
             // emptySpacePending
             // 
             this.emptySpacePending.AllowHotTrack = false;
-            this.emptySpacePending.Location = new System.Drawing.Point(0, 55);
+            this.emptySpacePending.Location = new System.Drawing.Point(0, 69);
             this.emptySpacePending.Name = "emptySpacePending";
-            this.emptySpacePending.Size = new System.Drawing.Size(1104, 34);
+            this.emptySpacePending.Size = new System.Drawing.Size(1101, 40);
             this.emptySpacePending.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.searchControl;
-            this.layoutControlItem5.Location = new System.Drawing.Point(1104, 55);
+            this.layoutControlItem5.Location = new System.Drawing.Point(1101, 69);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(565, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(564, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // pnlReceivingReport
             // 
             this.pnlReceivingReport.Controls.Add(this.dlcReceivingReport);
-            this.pnlReceivingReport.Location = new System.Drawing.Point(16, 659);
+            this.pnlReceivingReport.Location = new System.Drawing.Point(16, 666);
             this.pnlReceivingReport.Name = "pnlReceivingReport";
-            this.pnlReceivingReport.Size = new System.Drawing.Size(1699, 638);
+            this.pnlReceivingReport.Size = new System.Drawing.Size(1695, 631);
             this.pnlReceivingReport.TabIndex = 0;
             // 
             // dlcReceivingReport
@@ -383,14 +383,14 @@
             this.dlcReceivingReport.Name = "dlcReceivingReport";
             this.dlcReceivingReport.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(633, 368, 650, 400);
             this.dlcReceivingReport.Root = this.lcgReceivingReport;
-            this.dlcReceivingReport.Size = new System.Drawing.Size(1695, 634);
+            this.dlcReceivingReport.Size = new System.Drawing.Size(1691, 627);
             this.dlcReceivingReport.TabIndex = 0;
             this.dlcReceivingReport.Text = "dataLayoutControl1";
             // 
             // dateEdit
             // 
             this.dateEdit.EditValue = null;
-            this.dateEdit.Location = new System.Drawing.Point(16, 109);
+            this.dateEdit.Location = new System.Drawing.Point(16, 126);
             this.dateEdit.Name = "dateEdit";
             editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
             editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(20, 20);
@@ -398,51 +398,51 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.dateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit.Size = new System.Drawing.Size(452, 28);
+            this.dateEdit.Size = new System.Drawing.Size(451, 34);
             this.dateEdit.StyleController = this.dlcReceivingReport;
             this.dateEdit.TabIndex = 4;
             // 
             // txteditItemName
             // 
-            this.txteditItemName.Location = new System.Drawing.Point(474, 109);
+            this.txteditItemName.Location = new System.Drawing.Point(473, 126);
             this.txteditItemName.Name = "txteditItemName";
             this.txteditItemName.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditItemName.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditItemName.Properties.ReadOnly = true;
-            this.txteditItemName.Size = new System.Drawing.Size(1205, 28);
+            this.txteditItemName.Size = new System.Drawing.Size(1202, 34);
             this.txteditItemName.StyleController = this.dlcReceivingReport;
             this.txteditItemName.TabIndex = 5;
             // 
             // chckboxAsset
             // 
-            this.chckboxAsset.Location = new System.Drawing.Point(16, 143);
+            this.chckboxAsset.Location = new System.Drawing.Point(16, 166);
             this.chckboxAsset.Name = "chckboxAsset";
             this.chckboxAsset.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chckboxAsset.Properties.Appearance.Options.UseFont = true;
             this.chckboxAsset.Properties.Caption = "Capitalizable Asset";
-            this.chckboxAsset.Size = new System.Drawing.Size(1663, 22);
+            this.chckboxAsset.Size = new System.Drawing.Size(1659, 26);
             this.chckboxAsset.StyleController = this.dlcReceivingReport;
             this.chckboxAsset.TabIndex = 6;
             // 
             // txteditExpectedQuan
             // 
-            this.txteditExpectedQuan.Location = new System.Drawing.Point(16, 192);
+            this.txteditExpectedQuan.Location = new System.Drawing.Point(16, 224);
             this.txteditExpectedQuan.Name = "txteditExpectedQuan";
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedQuan.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditExpectedQuan.Properties.ReadOnly = true;
-            this.txteditExpectedQuan.Size = new System.Drawing.Size(452, 28);
+            this.txteditExpectedQuan.Size = new System.Drawing.Size(451, 34);
             this.txteditExpectedQuan.StyleController = this.dlcReceivingReport;
             this.txteditExpectedQuan.TabIndex = 7;
             // 
             // txteditExpectedAmount
             // 
-            this.txteditExpectedAmount.Location = new System.Drawing.Point(16, 257);
+            this.txteditExpectedAmount.Location = new System.Drawing.Point(16, 300);
             this.txteditExpectedAmount.Name = "txteditExpectedAmount";
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txteditExpectedAmount.Properties.AppearanceReadOnly.Options.UseBackColor = true;
             this.txteditExpectedAmount.Properties.ReadOnly = true;
-            this.txteditExpectedAmount.Size = new System.Drawing.Size(452, 28);
+            this.txteditExpectedAmount.Size = new System.Drawing.Size(451, 34);
             this.txteditExpectedAmount.StyleController = this.dlcReceivingReport;
             this.txteditExpectedAmount.TabIndex = 8;
             // 
@@ -453,26 +453,21 @@
             0,
             0,
             0});
-            this.spneditReceivedQuan.Location = new System.Drawing.Point(474, 202);
+            this.spneditReceivedQuan.Location = new System.Drawing.Point(473, 234);
             this.spneditReceivedQuan.Name = "spneditReceivedQuan";
             this.spneditReceivedQuan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spneditReceivedQuan.Properties.MaxValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.spneditReceivedQuan.Size = new System.Drawing.Size(1205, 28);
+            this.spneditReceivedQuan.Size = new System.Drawing.Size(1202, 34);
             this.spneditReceivedQuan.StyleController = this.dlcReceivingReport;
             this.spneditReceivedQuan.TabIndex = 9;
             // 
             // txteditReceivedAmount
             // 
             this.txteditReceivedAmount.EditValue = "";
-            this.txteditReceivedAmount.Location = new System.Drawing.Point(474, 257);
+            this.txteditReceivedAmount.Location = new System.Drawing.Point(473, 300);
             this.txteditReceivedAmount.Name = "txteditReceivedAmount";
             this.txteditReceivedAmount.Properties.NullValuePrompt = "₱0.00";
-            this.txteditReceivedAmount.Size = new System.Drawing.Size(1205, 28);
+            this.txteditReceivedAmount.Size = new System.Drawing.Size(1202, 34);
             this.txteditReceivedAmount.StyleController = this.dlcReceivingReport;
             this.txteditReceivedAmount.TabIndex = 10;
             this.txteditReceivedAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txteditReceivedAmount_KeyPress);
@@ -485,9 +480,9 @@
             this.btnUpload.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Appearance.Options.UseBackColor = true;
             this.btnUpload.Appearance.Options.UseFont = true;
-            this.btnUpload.Location = new System.Drawing.Point(16, 312);
+            this.btnUpload.Location = new System.Drawing.Point(16, 366);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(409, 28);
+            this.btnUpload.Size = new System.Drawing.Size(408, 34);
             this.btnUpload.StyleController = this.dlcReceivingReport;
             this.btnUpload.TabIndex = 11;
             this.btnUpload.Text = "UPLOAD";
@@ -497,9 +492,9 @@
             // 
             // txteditRemarks
             // 
-            this.txteditRemarks.Location = new System.Drawing.Point(16, 410);
+            this.txteditRemarks.Location = new System.Drawing.Point(16, 473);
             this.txteditRemarks.Name = "txteditRemarks";
-            this.txteditRemarks.Size = new System.Drawing.Size(1663, 133);
+            this.txteditRemarks.Size = new System.Drawing.Size(1659, 58);
             this.txteditRemarks.StyleController = this.dlcReceivingReport;
             this.txteditRemarks.TabIndex = 12;
             // 
@@ -509,9 +504,9 @@
             this.btnConfirm.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.Appearance.Options.UseBackColor = true;
             this.btnConfirm.Appearance.Options.UseFont = true;
-            this.btnConfirm.Location = new System.Drawing.Point(701, 549);
+            this.btnConfirm.Location = new System.Drawing.Point(699, 537);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(978, 28);
+            this.btnConfirm.Size = new System.Drawing.Size(976, 34);
             this.btnConfirm.StyleController = this.dlcReceivingReport;
             this.btnConfirm.TabIndex = 13;
             this.btnConfirm.Text = "✓ Confirm Receipt";
@@ -521,9 +516,9 @@
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(16, 549);
+            this.btnCancel.Location = new System.Drawing.Point(16, 537);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(679, 28);
+            this.btnCancel.Size = new System.Drawing.Size(677, 34);
             this.btnCancel.StyleController = this.dlcReceivingReport;
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
@@ -554,7 +549,7 @@
             this.emptyspaceReceiving4,
             this.emptySpaceItem1});
             this.lcgReceivingReport.Name = "Root";
-            this.lcgReceivingReport.Size = new System.Drawing.Size(1695, 634);
+            this.lcgReceivingReport.Size = new System.Drawing.Size(1691, 627);
             this.lcgReceivingReport.TextVisible = false;
             // 
             // lblDateReceived
@@ -562,31 +557,31 @@
             this.lblDateReceived.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateReceived.AppearanceItemCaption.Options.UseFont = true;
             this.lblDateReceived.Control = this.dateEdit;
-            this.lblDateReceived.Location = new System.Drawing.Point(0, 72);
+            this.lblDateReceived.Location = new System.Drawing.Point(0, 84);
             this.lblDateReceived.Name = "lblDateReceived";
-            this.lblDateReceived.Size = new System.Drawing.Size(458, 55);
+            this.lblDateReceived.Size = new System.Drawing.Size(457, 66);
             this.lblDateReceived.Text = "Date Received";
             this.lblDateReceived.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblDateReceived.TextSize = new System.Drawing.Size(248, 15);
+            this.lblDateReceived.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblItemName
             // 
             this.lblItemName.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemName.AppearanceItemCaption.Options.UseFont = true;
             this.lblItemName.Control = this.txteditItemName;
-            this.lblItemName.Location = new System.Drawing.Point(458, 72);
+            this.lblItemName.Location = new System.Drawing.Point(457, 84);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(1211, 55);
+            this.lblItemName.Size = new System.Drawing.Size(1208, 66);
             this.lblItemName.Text = "Item Name";
             this.lblItemName.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblItemName.TextSize = new System.Drawing.Size(248, 15);
+            this.lblItemName.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblAsset
             // 
             this.lblAsset.Control = this.chckboxAsset;
-            this.lblAsset.Location = new System.Drawing.Point(0, 127);
+            this.lblAsset.Location = new System.Drawing.Point(0, 150);
             this.lblAsset.Name = "lblAsset";
-            this.lblAsset.Size = new System.Drawing.Size(1669, 28);
+            this.lblAsset.Size = new System.Drawing.Size(1665, 32);
             this.lblAsset.TextSize = new System.Drawing.Size(0, 0);
             this.lblAsset.TextVisible = false;
             // 
@@ -595,31 +590,31 @@
             this.lblExpQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpQuan.Control = this.txteditExpectedQuan;
-            this.lblExpQuan.Location = new System.Drawing.Point(0, 155);
+            this.lblExpQuan.Location = new System.Drawing.Point(0, 182);
             this.lblExpQuan.Name = "lblExpQuan";
-            this.lblExpQuan.Size = new System.Drawing.Size(458, 65);
+            this.lblExpQuan.Size = new System.Drawing.Size(457, 76);
             this.lblExpQuan.Text = "Expected Quantity";
             this.lblExpQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpQuan.TextSize = new System.Drawing.Size(248, 15);
+            this.lblExpQuan.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblExpAmount
             // 
             this.lblExpAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblExpAmount.Control = this.txteditExpectedAmount;
-            this.lblExpAmount.Location = new System.Drawing.Point(0, 220);
+            this.lblExpAmount.Location = new System.Drawing.Point(0, 258);
             this.lblExpAmount.Name = "lblExpAmount";
-            this.lblExpAmount.Size = new System.Drawing.Size(458, 55);
+            this.lblExpAmount.Size = new System.Drawing.Size(457, 66);
             this.lblExpAmount.Text = "Expected Amount";
             this.lblExpAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblExpAmount.TextSize = new System.Drawing.Size(248, 15);
+            this.lblExpAmount.TextSize = new System.Drawing.Size(319, 20);
             // 
             // emptyspaceReceiving1
             // 
             this.emptyspaceReceiving1.AllowHotTrack = false;
-            this.emptyspaceReceiving1.Location = new System.Drawing.Point(458, 155);
+            this.emptyspaceReceiving1.Location = new System.Drawing.Point(457, 182);
             this.emptyspaceReceiving1.Name = "emptyspaceReceiving1";
-            this.emptyspaceReceiving1.Size = new System.Drawing.Size(1211, 10);
+            this.emptyspaceReceiving1.Size = new System.Drawing.Size(1208, 10);
             this.emptyspaceReceiving1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblReceivedQuan
@@ -627,51 +622,51 @@
             this.lblReceivedQuan.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedQuan.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedQuan.Control = this.spneditReceivedQuan;
-            this.lblReceivedQuan.Location = new System.Drawing.Point(458, 165);
+            this.lblReceivedQuan.Location = new System.Drawing.Point(457, 192);
             this.lblReceivedQuan.Name = "lblReceivedQuan";
-            this.lblReceivedQuan.Size = new System.Drawing.Size(1211, 55);
+            this.lblReceivedQuan.Size = new System.Drawing.Size(1208, 66);
             this.lblReceivedQuan.Text = "Received Quantity";
             this.lblReceivedQuan.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedQuan.TextSize = new System.Drawing.Size(248, 15);
+            this.lblReceivedQuan.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblReceivedAmount
             // 
             this.lblReceivedAmount.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReceivedAmount.AppearanceItemCaption.Options.UseFont = true;
             this.lblReceivedAmount.Control = this.txteditReceivedAmount;
-            this.lblReceivedAmount.Location = new System.Drawing.Point(458, 220);
+            this.lblReceivedAmount.Location = new System.Drawing.Point(457, 258);
             this.lblReceivedAmount.Name = "lblReceivedAmount";
-            this.lblReceivedAmount.Size = new System.Drawing.Size(1211, 55);
+            this.lblReceivedAmount.Size = new System.Drawing.Size(1208, 66);
             this.lblReceivedAmount.Text = "Paid Amount";
             this.lblReceivedAmount.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblReceivedAmount.TextSize = new System.Drawing.Size(248, 15);
+            this.lblReceivedAmount.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblUploadProof
             // 
             this.lblUploadProof.AllowHotTrack = false;
             this.lblUploadProof.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadProof.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadProof.Location = new System.Drawing.Point(0, 275);
+            this.lblUploadProof.Location = new System.Drawing.Point(0, 324);
             this.lblUploadProof.Name = "lblUploadProof";
-            this.lblUploadProof.Size = new System.Drawing.Size(1669, 21);
+            this.lblUploadProof.Size = new System.Drawing.Size(1665, 26);
             this.lblUploadProof.Text = "Proof of Delivery (Receipt/Photo)";
-            this.lblUploadProof.TextSize = new System.Drawing.Size(248, 15);
+            this.lblUploadProof.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblUpload
             // 
             this.lblUpload.Control = this.btnUpload;
-            this.lblUpload.Location = new System.Drawing.Point(0, 296);
+            this.lblUpload.Location = new System.Drawing.Point(0, 350);
             this.lblUpload.Name = "lblUpload";
-            this.lblUpload.Size = new System.Drawing.Size(415, 34);
+            this.lblUpload.Size = new System.Drawing.Size(414, 40);
             this.lblUpload.TextSize = new System.Drawing.Size(0, 0);
             this.lblUpload.TextVisible = false;
             // 
             // emptyspaceReceiving2
             // 
             this.emptyspaceReceiving2.AllowHotTrack = false;
-            this.emptyspaceReceiving2.Location = new System.Drawing.Point(415, 296);
+            this.emptyspaceReceiving2.Location = new System.Drawing.Point(414, 350);
             this.emptyspaceReceiving2.Name = "emptyspaceReceiving2";
-            this.emptyspaceReceiving2.Size = new System.Drawing.Size(1254, 34);
+            this.emptyspaceReceiving2.Size = new System.Drawing.Size(1251, 40);
             this.emptyspaceReceiving2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblRemarks
@@ -679,37 +674,37 @@
             this.lblRemarks.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRemarks.AppearanceItemCaption.Options.UseFont = true;
             this.lblRemarks.Control = this.txteditRemarks;
-            this.lblRemarks.Location = new System.Drawing.Point(0, 373);
+            this.lblRemarks.Location = new System.Drawing.Point(0, 431);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(1669, 160);
+            this.lblRemarks.Size = new System.Drawing.Size(1665, 90);
             this.lblRemarks.Text = "Remarks (Optional)";
             this.lblRemarks.TextLocation = DevExpress.Utils.Locations.Top;
-            this.lblRemarks.TextSize = new System.Drawing.Size(248, 15);
+            this.lblRemarks.TextSize = new System.Drawing.Size(319, 20);
             // 
             // lblCancel
             // 
             this.lblCancel.Control = this.btnCancel;
-            this.lblCancel.Location = new System.Drawing.Point(0, 533);
+            this.lblCancel.Location = new System.Drawing.Point(0, 521);
             this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(685, 34);
+            this.lblCancel.Size = new System.Drawing.Size(683, 40);
             this.lblCancel.TextSize = new System.Drawing.Size(0, 0);
             this.lblCancel.TextVisible = false;
             // 
             // lblConfirm
             // 
             this.lblConfirm.Control = this.btnConfirm;
-            this.lblConfirm.Location = new System.Drawing.Point(685, 533);
+            this.lblConfirm.Location = new System.Drawing.Point(683, 521);
             this.lblConfirm.Name = "lblConfirm";
-            this.lblConfirm.Size = new System.Drawing.Size(984, 34);
+            this.lblConfirm.Size = new System.Drawing.Size(982, 40);
             this.lblConfirm.TextSize = new System.Drawing.Size(0, 0);
             this.lblConfirm.TextVisible = false;
             // 
             // emptyspaceReceiving3
             // 
             this.emptyspaceReceiving3.AllowHotTrack = false;
-            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 567);
+            this.emptyspaceReceiving3.Location = new System.Drawing.Point(0, 561);
             this.emptyspaceReceiving3.Name = "emptyspaceReceiving3";
-            this.emptyspaceReceiving3.Size = new System.Drawing.Size(1669, 41);
+            this.emptyspaceReceiving3.Size = new System.Drawing.Size(1665, 40);
             this.emptyspaceReceiving3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lblUploadGuide
@@ -717,11 +712,11 @@
             this.lblUploadGuide.AllowHotTrack = false;
             this.lblUploadGuide.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUploadGuide.AppearanceItemCaption.Options.UseFont = true;
-            this.lblUploadGuide.Location = new System.Drawing.Point(0, 330);
+            this.lblUploadGuide.Location = new System.Drawing.Point(0, 390);
             this.lblUploadGuide.Name = "lblUploadGuide";
-            this.lblUploadGuide.Size = new System.Drawing.Size(1669, 19);
+            this.lblUploadGuide.Size = new System.Drawing.Size(1665, 25);
             this.lblUploadGuide.Text = "or drop file here";
-            this.lblUploadGuide.TextSize = new System.Drawing.Size(248, 13);
+            this.lblUploadGuide.TextSize = new System.Drawing.Size(319, 19);
             // 
             // lblReceivingReport
             // 
@@ -732,35 +727,35 @@
             this.lblReceivingReport.ImageOptions.SvgImageSize = new System.Drawing.Size(30, 30);
             this.lblReceivingReport.Location = new System.Drawing.Point(0, 0);
             this.lblReceivingReport.Name = "lblReceivingReport";
-            this.lblReceivingReport.Size = new System.Drawing.Size(1669, 36);
+            this.lblReceivingReport.Size = new System.Drawing.Size(1665, 44);
             this.lblReceivingReport.Text = "Receiving Report From: ";
-            this.lblReceivingReport.TextSize = new System.Drawing.Size(248, 30);
+            this.lblReceivingReport.TextSize = new System.Drawing.Size(319, 38);
             // 
             // lblPONumber
             // 
             this.lblPONumber.AllowHotTrack = false;
             this.lblPONumber.AppearanceItemCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPONumber.AppearanceItemCaption.Options.UseFont = true;
-            this.lblPONumber.Location = new System.Drawing.Point(0, 36);
+            this.lblPONumber.Location = new System.Drawing.Point(0, 44);
             this.lblPONumber.Name = "lblPONumber";
-            this.lblPONumber.Size = new System.Drawing.Size(1669, 23);
+            this.lblPONumber.Size = new System.Drawing.Size(1665, 27);
             this.lblPONumber.Text = "PO Number:";
-            this.lblPONumber.TextSize = new System.Drawing.Size(248, 17);
+            this.lblPONumber.TextSize = new System.Drawing.Size(319, 21);
             // 
             // emptyspaceReceiving4
             // 
             this.emptyspaceReceiving4.AllowHotTrack = false;
-            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 349);
+            this.emptyspaceReceiving4.Location = new System.Drawing.Point(0, 415);
             this.emptyspaceReceiving4.Name = "emptyspaceReceiving4";
-            this.emptyspaceReceiving4.Size = new System.Drawing.Size(1669, 24);
+            this.emptyspaceReceiving4.Size = new System.Drawing.Size(1665, 16);
             this.emptyspaceReceiving4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 59);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 71);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1669, 13);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(1665, 13);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
@@ -789,24 +784,24 @@
             this.layoutControlItem3,
             this.layoutControlItem4});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1731, 1313);
+            this.Root.Size = new System.Drawing.Size(1727, 1313);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.pnlPendingIncoming;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 60);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 73);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1705, 583);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1701, 577);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.pnlReceivingReport;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 643);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 650);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1705, 644);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1701, 637);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -815,16 +810,16 @@
             this.layoutControlItem3.Control = this.lblTitle;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1705, 41);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1701, 48);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.lblSubtitle;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 41);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1705, 19);
+            this.layoutControlItem4.Size = new System.Drawing.Size(1701, 25);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 

@@ -807,6 +807,7 @@ namespace SyncStock.Database
             {
                 return conn.Query<Reconciliation>(@"
             SELECT
+                ci.ConfirmedItemID,
                 po.PONumber,
                 po.InvoiceNumber,
                 ci.IsCapitalizable,

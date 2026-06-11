@@ -6,6 +6,8 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraReports.UI;
 using SyncStock.Database;
 using SyncStock.Models;
+using SyncStock.Models.Accounts;
+using SyncStock.Models.Models_Receiving_;
 using SyncStock.Models.Reports;
 using SyncStock.PrintForm;
 using System;
@@ -18,7 +20,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SyncStock.Models.Accounts;
 
 namespace SyncStock.Views.UserControl
 {
@@ -37,7 +38,7 @@ namespace SyncStock.Views.UserControl
 
             ReportGV.CustomColumnDisplayText += ReportGV_CustomColumnDisplayText;
             ReportGV.RowStyle += ReportGV_RowStyle;
-
+            ReportGV.MouseUp += ReportGV_MouseUp;
             ApplyRolePermissions();
             LoadData();
         }
@@ -51,7 +52,7 @@ namespace SyncStock.Views.UserControl
             ReportGV.RowStyle += ReportGV_RowStyle;
             ApplyRolePermissions();
             LoadData();
-
+            ReportGV.MouseUp += ReportGV_MouseUp;
         }
 
         private void ReportGV_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e) 
@@ -610,6 +611,148 @@ namespace SyncStock.Views.UserControl
 
             if (FilterBox.Properties.Items.Count > 0)
                 FilterBox.SelectedIndex = 0;
+        }
+
+        private async void ReportGV_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (FilterBox.Text != "Reconciliation")
+                return;
+
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            var hitInfo = ReportGV.CalcHitInfo(e.Location);
+
+            if (!hitInfo.InRow)
+                return;
+
+            ReportGV.FocusedRowHandle = hitInfo.RowHandle;
+
+            var row = ReportGV.GetRow(hitInfo.RowHandle) as Reconciliation;
+
+            if (row == null)
+                return;
+
+            bool quantityMismatch =
+                row.OrderedQuantity != row.ReceivedQuantity;
+
+            bool amountMismatch =
+                row.OrderedAmount != row.ReceivedAmount;
+
+            if (!quantityMismatch && !amountMismatch)
+                return;
+
+            string details =
+                $"PO Number: {row.PONumber}\n\n" +
+                $"Item Name: {row.ItemName}\n" +
+                $"Invoice Number: {row.InvoiceNumber}\n\n" +
+                $"Ordered Quantity: {row.OrderedQuantity}\n" +
+                $"Received Quantity: {row.ReceivedQuantity}\n\n" +
+                $"Ordered Amount: ₱{row.OrderedAmount:N2}\n" +
+                $"Received Amount: ₱{row.ReceivedAmount:N2}\n\n" +
+                $"Do you want to reconcile this record?";
+
+            DialogResult result = XtraMessageBox.Show(
+                details,
+                "Reconciliation Mismatch Detected",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes)
+                return;
+
+            // QUANTITY ONLY
+            if (quantityMismatch && !amountMismatch)
+            {
+                string newQty = XtraInputBox.Show(
+                    "Enter the corrected Received Quantity:",
+                    "Edit Quantity",
+                    row.ReceivedQuantity.ToString());
+
+                if (!int.TryParse(newQty, out int correctedQty))
+                    return;
+
+                int oldQty = row.ReceivedQuantity;
+
+                var confirmedItem = new ConfirmedItems
+                {
+                    DateReceived = row.DateReceived,
+                    IsCapitalizable = row.IsCapitalizable,
+                    ReceivedQuantity = correctedQty,
+                    ReceivedAmount = row.ReceivedAmount,
+                    Remarks = "Reconciled",
+                    Status = "Received"
+                };
+
+                _repo.UpdateConfirmedItem(
+                    row.ConfirmedItemID,
+                    confirmedItem);
+
+                ReportGC.DataSource = _repo.GetReconciliationItems().ToList();
+
+                _currentUser.Action =
+                    $"{_currentUser.Role} Reconciled PO #{row.PONumber} | Item: {row.ItemName} | Quantity Changed: {oldQty} -> {correctedQty}";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
+
+                XtraMessageBox.Show(
+                    $"Received Quantity updated from {oldQty} to {correctedQty}",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            // AMOUNT ONLY
+            else if (!quantityMismatch && amountMismatch)
+            {
+                string newAmount = XtraInputBox.Show(
+                    "Enter the corrected Received Amount:",
+                    "Edit Amount",
+                    row.ReceivedAmount.ToString());
+
+                if (!decimal.TryParse(newAmount, out decimal correctedAmount))
+                    return;
+
+                decimal oldAmount = row.ReceivedAmount;
+
+                var confirmedItem = new ConfirmedItems
+                {
+                    DateReceived = row.DateReceived,
+                    IsCapitalizable = row.IsCapitalizable,
+                    ReceivedQuantity = row.ReceivedQuantity,
+                    ReceivedAmount = correctedAmount,
+                    Remarks = "Reconciled",
+                    Status = "Received"
+                };
+
+                _repo.UpdateConfirmedItem(
+                    row.ConfirmedItemID,
+                    confirmedItem);
+
+                ReportGC.DataSource = _repo.GetReconciliationItems().ToList();
+
+                _currentUser.Action =
+                    $"{_currentUser.Role} Reconciled PO #{row.PONumber} | Item: {row.ItemName} | Amount Changed: ₱{oldAmount:N2} -> ₱{correctedAmount:N2}";
+
+                await _repo.InsertUserLogsAsync(_currentUser);
+
+                XtraMessageBox.Show(
+                    $"Received Amount updated from ₱{oldAmount:N2} to ₱{correctedAmount:N2}",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            // BOTH QUANTITY AND AMOUNT
+            else
+            {
+                XtraMessageBox.Show(
+                    "This record contains both Quantity and Amount mismatches.\nPlease reconcile one field at a time.",
+                    "Reconciliation",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            ReportGC.DataSource = _repo.GetReconciliationItems().ToList();
+            ReportGV.RefreshData();
         }
     }
 
