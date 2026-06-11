@@ -1325,7 +1325,14 @@ WHERE ConfirmedItemID = @ConfirmedItemID";
             @IPAddress
         )";
 
-                await conn.ExecuteAsync(query, user);
+                await conn.ExecuteAsync(query, new
+                {
+                    UserName = user.UserName,
+                    Action = user.Action,
+                    System = "SyncStock",
+                    Hostname = user.Hostname,
+                    IPAddress = user.IPAddress
+                });
             }
         }
     }
